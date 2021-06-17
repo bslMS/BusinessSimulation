@@ -1,0 +1,6 @@
+within BusinessSimulation.Icons;
+
+partial model Outflow "Icon for outflow classes"
+  extends ComponentName;
+  annotation(__Wolfram(itemFlippingEnabled = true), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10}), graphics = {Rectangle(visible = true, lineColor = {0, 128, 0}, fillColor = {255, 255, 255}, fillPattern = FillPattern.Solid, lineThickness = 5, extent = {{100, 100}, {-100, -100}}), Polygon(visible = true, origin = {72.114, -0.25}, rotation = -450, lineColor = {0, 128, 0}, fillColor = {0, 128, 0}, fillPattern = FillPattern.Solid, points = {{-22.295, -7.943}, {22.191, -7.943}, {0.104, 15.886}}), Text(visible = true, origin = {-73.452, 37.479}, textColor = {0, 128, 0}, extent = {{-13.452, -20}, {13.452, 20}}, textString = "A"), Text(visible = true, origin = {73.452, -43.134}, textColor = {0, 128, 0}, extent = {{-13.452, -20}, {13.452, 20}}, textString = "B"), Line(visible = true, origin = {-3.902, 11.777}, points = {{-70.951, 0}, {70.951, 0}}, color = {0, 128, 0}, thickness = 4, arrowSize = 1), Line(visible = true, origin = {-4.227, -11.973}, points = {{-70.669, 0}, {70.669, 0}}, color = {0, 128, 0}, thickness = 4, arrowSize = 1)}), Diagram(coordinateSystem(extent = {{-148.5, -105}, {148.5, 105}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})));
+end Outflow;

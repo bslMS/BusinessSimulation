@@ -1,0 +1,17 @@
+AllTrue
+And
+AnyTrue
+Boole
+ConstantConverterBoolean
+Greater
+GreaterEqual
+Less
+LessEqual
+NoneTrue
+Not
+NotZero
+Or
+Switch
+SwitchN
+Threshold
+Xor
