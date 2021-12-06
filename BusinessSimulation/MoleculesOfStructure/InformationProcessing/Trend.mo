@@ -7,9 +7,9 @@ block Trend "Calculating a fractional rate of change to be used in forecasting"
   Interfaces.Connectors.RealInput u "Current value as basis for trend formulation" annotation(Placement(visible = true, transformation(origin = {-145, -0}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-110, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Interfaces.Connectors.RealOutput y_ppc if reportPPC "Report the perceived present condition (optional)" annotation(Placement(visible = true, transformation(origin = {160, -60}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {110, -50}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   parameter Rate initialTrend = 0 "Initial trend" annotation(Dialog(enable = not init == InitializationOptions.SteadyState));
-  parameter Time tppc(min = 0) = 1 "Averaging time for perception of current quantity (i.e. the present condition)";
+  parameter Time tppc(min = 0) = 1 "Averaging time for perception of current quantity (i.e., the present condition)";
   parameter Time thrc(min = 0) = 1 "Time horizon for reference condition";
-  parameter Time tpt(min = 0) = 1 "Time to perceive the trend (i.e. there is gradual adaptation to a new trend)" annotation(Dialog(enable = smoothTrend));
+  parameter Time tpt(min = 0) = 1 "Time to perceive the trend (i.e., there is gradual adaptation to a new trend)" annotation(Dialog(enable = smoothTrend));
   parameter Boolean smoothTrend = false "= true, if the calculated trend is to be smoothed" annotation(Evaluate = true, Dialog(group = "Structural Parameters"));
   parameter Boolean reportPPC = false "= true, if the perceived present conditon is to be reported" annotation(Evaluate = true, Dialog(group = "Structural Parameters"));
   parameter InitializationOptions init = modelSettings.init "Provide InitializationOptions (Free, FixedValue, SteadyState)" annotation(Evaluate = true, Dialog(tab = "Advanced"));
@@ -22,7 +22,7 @@ protected
   Converters.DiscreteDelay.Smooth ppc(initialValue = initialPPC, hasConstantDelayTime = false, init = init) "Perceived present condition" annotation(Placement(visible = true, transformation(origin = {-85, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Converters.ConstantConverterTime parTPPC(value = tppc) "Time to perceive present condition" annotation(Placement(visible = true, transformation(origin = {-105, 20}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Converters.ConstantConverterTime parTHRC(value = thrc) "Time horizon for the reference condition (duration of trend formulation)" annotation(Placement(visible = true, transformation(origin = {-105, -60}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  Converters.ConstantConverterTime parTPT(value = tpt) if smoothTrend "Time to perceive the trend (i.e. adjustment time)" annotation(Placement(visible = true, transformation(origin = {100, 25}, extent = {{10, -10}, {-10, 10}}, rotation = 0)));
+  Converters.ConstantConverterTime parTPT(value = tpt) if smoothTrend "Time to perceive the trend (i.e., adjustment time)" annotation(Placement(visible = true, transformation(origin = {100, 25}, extent = {{10, -10}, {-10, 10}}, rotation = 0)));
   Converters.DiscreteDelay.Smooth perceivedTrend(initialValue = initialTrend, hasConstantDelayTime = false, redeclare replaceable type OutputType = Rate, init = init) if smoothTrend "Perceived growth rate" annotation(Placement(visible = true, transformation(origin = {80, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Converters.Division_Guarded indicatedTrend "Indicated fractional growth rate (trend)" annotation(Placement(visible = true, transformation(origin = {30, -10}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Converters.Gap delta "Difference between perceived present condition and reference condition" annotation(Placement(visible = true, transformation(origin = {-20, -5}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
@@ -50,7 +50,7 @@ equation
   annotation(Documentation(info = "<html>
 <p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
 <p>The <em>Trend</em> component represents forecasting in behavioral models and has been proposed by Sterman [<a href=\"modelica://BusinessSimulation.MoleculesOfStructure.InformationProcessing.Trend\">3</a>, pp. 634 - 638]. The basic idea is rather intuitive: Forecasters perceive a present condition of some input as a smoothed input (ppc), while they also perceive the historic or reference condition&nbsp;(rc) as a smooth of their current perception.</p>
-<p>Dividing the diffence between the current condition and the reference condition by the reference condition will determine the fractional increase. A further division by the time horizon for the reference condition will then turn this into a <em>fractional rate</em>. The thus calculated rate of change (i.e. the indicated trend) may then again be smoothed, if <code>smoothTrend = true</code>.</p>
+<p>Dividing the diffence between the current condition and the reference condition by the reference condition will determine the fractional increase. A further division by the time horizon for the reference condition will then turn this into a <em>fractional rate</em>. The thus calculated rate of change (i.e., the indicated trend) may then again be smoothed, if <code>smoothTrend = true</code>.</p>
 <h4>See also</h4>
 <p>
 <a href=\"modelica://BusinessSimulation.MoleculesOfStructure.InformationProcessing.TrendBasedForecast\">TrendBasedForecast</a>,

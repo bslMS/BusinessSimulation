@@ -33,6 +33,7 @@ Time_months
 Time_quarters
 Time_years
 Rate
+AmountRate
 VolumeFlowRate
 MassFlowRate
 EnergyFlowRate

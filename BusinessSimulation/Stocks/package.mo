@@ -11,7 +11,7 @@ package Stocks "Containers (\"reservoirs\") used to represent entities that have
 <p>Nevertheless, it is good modeling practice to follow the convention of connecting flows that are strictly inflows or outflows to the corresponding stock port.</p>
 <p><strong>There are two important cases, where closely sticking to the inflow and outflow designations is very important:</strong></p>
 <ul>
-<li>For <em>dynamic stocks</em> (e.g. conveyors and ovens that have a StockPort_Special) the <em>inflow</em> and <em>outflow</em>&nbsp;designations have to be strictly observed. These stocks cannot be filled&nbsp;on the outflow side or be drained on the input side.</li><br>
+<li>For <em>dynamic stocks</em> (e.g., conveyors and ovens that have a StockPort_Special) the <em>inflow</em> and <em>outflow</em>&nbsp;designations have to be strictly observed. These stocks cannot be filled&nbsp;on the outflow side or be drained on the input side.</li><br>
 <li>Should a <a href=\"modelica://BusinessSimulation.Stocks.HinesCoflow\">HinesCoflow </a>component be connected to a stock&mdash;conveniently using the <a href=\"modelica://BusinessSimulation.Interfaces.Connectors.StockInfoOutput\">StockInfoOutput</a>&mdash;the reported average attribute will give false results, if inflows and outflows are mixed at any port (it will suffice to connect inflows and outflows to <em>separate</em> ports). Should a biflow be connected to a port, there should not be another flow connected to that port.</li>
 </ul>
 <h4>See also</h4>

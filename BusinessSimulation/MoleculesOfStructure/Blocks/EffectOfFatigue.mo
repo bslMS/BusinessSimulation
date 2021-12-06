@@ -7,7 +7,7 @@ block EffectOfFatigue "Modeling the influence of excessive workloads on producti
   extends Icons.SubsystemBlock;
   Interfaces.Connectors.RealInput u "Input of workload" annotation(Placement(visible = true, transformation(origin = {-145, -0}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-100, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Interfaces.Connectors.RealInput u_ref if not hasConstantReference "Input for the reference workload (optional)" annotation(Placement(visible = true, transformation(origin = {-145, 60}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {0, 100}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
-  Interfaces.Connectors.RealOutput y "Effect on Productivity given as a multiplier" annotation(Placement(visible = true, transformation(origin = {160, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {104, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  Interfaces.Connectors.RealOutput y "Effect on Productivity given as a multiplier" annotation(Placement(visible = true, transformation(origin = {160, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {105, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   parameter Time timeToGetFatigued(min = 0) "Time constant for the exponential smooth of overtime in periods";
   parameter Rate referenceWorkload(min = 0.1) = 1 "Constant reference workload (optinal)" annotation(Dialog(enable = hasConstantReference));
   parameter Integer delayOrder(min = 1) = 1 "Delay order of the smooth for workload" annotation(Evaluate = true, Dialog(group = "Structural Parameters"));
@@ -46,7 +46,7 @@ equation
 <p>Janoscheks growth curve is used to model the nonlinear effect of a prolonged work intensity. It describes a negatively sloping s-shaped curve that will pass through the reference point (1,1). The upper bound of the effect (<code>effectMax</code>) must be given slightly above 1.0 as the curve will collapse in all other cases. If the effect is to be clipped at 1.0 then the parameter <code>clipEffect</code> should be set to <code>true</code>.</p>
 <h4>Notes</h4>
 <ul>
-<li>The <em>workload</em> (and its reference value) will typically be some rate (e.g. <code>hours worked per month</code>, <code>output per hour</code> etc.).<br><br></li>
+<li>The <em>workload</em> (and its reference value) will typically be some rate (e.g., <code>hours worked per month</code>, <code>output per hour</code> etc.).<br><br></li>
 <li>Jim Hines [<a href=\"modelica://BusinessSimulation.UsersGuide.References\">6</a>, p. 82] uses <em>overtime</em> as the main driver of fatigue. See also on his <em>Molecules of Structure</em> website (→<a href = \"https://sdmolecules.org/index.htm#MoleculeTopics/DimensionlessInputToFunction/UnivariateAnchoringAndAdjustment/EffectOfFatigue/EffectOfFatigue.htm\">Effect of Fatigue</a>).</li><br>
 <li>The parameter <code>init</code> in the Advanced tab allows to select &rarr;<a href=\"modelica://BusinessSimulation.Types.InitializationOptions\">InitializationOptions</a>:<br>
 <ul>

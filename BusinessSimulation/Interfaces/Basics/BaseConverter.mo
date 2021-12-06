@@ -1,7 +1,9 @@
 within BusinessSimulation.Interfaces.Basics;
 
-partial block BaseConverter "Basic converter class"
-  extends Icons.Converter;
+encapsulated partial block BaseConverter "Basic converter class"
+  import BusinessSimulation.Icons.Converter;
+  import BusinessSimulation.Interfaces.Basics.OutputTypeChoice;
+  extends Converter;
   extends OutputTypeChoice;
   annotation(Documentation(info = "<html>
 <p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>

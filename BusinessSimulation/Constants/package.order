@@ -5,6 +5,7 @@ INF
 pi
 small
 timeBaseUnits
+timeBaseRateUnits
 rateStrings
 timeBaseConversionFactors
 zero

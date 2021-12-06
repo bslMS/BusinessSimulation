@@ -3,9 +3,9 @@ within BusinessSimulation.Functions;
 function trimf "Triangular membership function"
   extends BusinessSimulation.Icons.Function;
   input Real x "Input value for which the degree of membership is to be computed";
-  input Real a "Lower bound (i.e. f(a) = 0)";
-  input Real b "Peak (i.e. f(b) = 1)";
-  input Real c "Upper bound (i.e. f(c) = 0)";
+  input Real a "Lower bound (i.e., f(a) = 0)";
+  input Real b "Peak (i.e., f(b) = 1)";
+  input Real c "Upper bound (i.e., f(c) = 0)";
   output Real y "Degree of membership";
 algorithm
   y := max(min((x - a) / (b - a), (c - x) / (c - b)), 0);

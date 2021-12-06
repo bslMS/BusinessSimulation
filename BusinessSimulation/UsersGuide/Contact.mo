@@ -9,7 +9,7 @@ final class Contact "Contact Information"
 <dt>
 <p>This page contains the contact information for the library's main author and a list of contributors.</p>
 <h4>Main Author</h4>
-<p><strong><img src=\"modelica://BusinessSimulation/Resources/Images/UsersGuide/Contact/BSL_Schriftzug.png\" alt=\"BSL_Schriftzug.png\" width=\"500\"></strong></p>
+<p><strong><img src=\"modelica://BusinessSimulation/Resources/Images/UsersGuide/Contact/bslFullLogo.png\" alt=\"bslFullLogo.png\" width=\"500\"></strong></p>
 </dt>
 <dt></dt>
 <dt>
@@ -33,11 +33,11 @@ final class Contact "Contact Information"
 </tr>
 <tr>
 <td><span style=\"font-size: 12pt;\">Phone</span></td>
-<td><span style=\"font-size: 12pt;\">+49 431 5606-855</span></td>
+<td><span style=\"font-size: 12pt;\">+49 431 90898902</span></td>
 </tr>
 <tr>
 <td><span style=\"font-size: 12pt;\">Fax</span></td>
-<td><span style=\"font-size: 12pt;\">+49 431 5606-856</span></td>
+<td><span style=\"font-size: 12pt;\">+49 431 90898903</span></td>
 </tr>
 <tr>
 <td><span style=\"font-size: 12pt;\">E-Mail</span></td>

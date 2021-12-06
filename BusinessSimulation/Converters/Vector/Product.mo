@@ -6,7 +6,7 @@ equation
   y = product(u);
   annotation(Documentation(info = "<html>
 <p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
-<p>The output <em><strong>y</strong></em> is derived as a multiplication of n inputs <strong><em>u</em>&nbsp;</strong>given as an vector:</p>
+<p>The output <em><strong>y</strong></em> is derived as a multiplication of n inputs <strong><em>u</em>&nbsp;</strong>given as a vector:</p>
 <p><img src=\"modelica://BusinessSimulation/Resources/Images/Converters/Vector/Product/Formula.svg\" alt=\"y_i = prod(u_i)\"></p>
 <h4>See also</h4>
 <p><a href=\"modelica://BusinessSimulation.Converters.Product_2\">Product_2</a>,&nbsp;<a href=\"modelica://BusinessSimulation.Converters.Product_3\">Product_3</a></p>

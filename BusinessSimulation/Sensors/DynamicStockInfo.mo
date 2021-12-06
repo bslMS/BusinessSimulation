@@ -20,7 +20,7 @@ equation
   y_stockInfo.infoMeanResidenceTime = residenceTimeInfo;
   annotation(Documentation(info = "<html>
 <p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
-<p>The <em>DynamicStockInfo</em> is used inside stock components with inherent dynamic behavior (e.g. a &rarr;<a href=\"modelica://BusinessSimulation.Stocks.DelayN\">DelayN</a>) and will be connected to the matching&nbsp;outside connectors of a component to collect basic &rarr;<a href=\"modelica://BusinessSimulation.Types.StockInformation\">stock-related information </a>which will be passed as a record to the <code>StockInfoOutput</code> connector.</p>
+<p>The <em>DynamicStockInfo</em> is used inside stock components with inherent dynamic behavior (e.g., a &rarr;<a href=\"modelica://BusinessSimulation.Stocks.DelayN\">DelayN</a>) and will be connected to the matching&nbsp;outside connectors of a component to collect basic &rarr;<a href=\"modelica://BusinessSimulation.Types.StockInformation\">stock-related information </a>which will be passed as a record to the <code>StockInfoOutput</code> connector.</p>
 <h4>Notes</h4>
 <ul>
 <li>The rates of inflow and outflow are determined by looking at the net flows at each <code>StockPort</code>—for this to be meaningful known inflows and outflows should be connected to the designated <code>inflow</code> and <code>outflow</code> ports of a stock. If a bi-flow is connected to a stock's port, then no other flow component should be connected to that port.</li><br>

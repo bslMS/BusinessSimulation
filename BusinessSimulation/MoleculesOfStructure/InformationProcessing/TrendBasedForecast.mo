@@ -6,9 +6,9 @@ block TrendBasedForecast "Trend-based forecast for an exponentially growing quan
   Interfaces.Connectors.RealInput u "Current value as basis for trend formulation" annotation(Placement(visible = true, transformation(origin = {-145, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-110, -0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   parameter Units.Rate initialTrend = 0 "Initial trend (fracGrowthRate.initialTrend)";
   parameter Time fcsth(min = 0) = 1 "Forecast horizon";
-  parameter Time tppc(min = 0) = 1 "Averaging time for perception of current quantity (i.e. the present condition)";
+  parameter Time tppc(min = 0) = 1 "Averaging time for perception of current quantity (i.e., the present condition)";
   parameter Time thrc(min = 0) = 1 "Time horizon for reference condition";
-  parameter Time tpt(min = 0) = 1 "Time to perceive the trend (i.e. there is gradual adaptation to a new trend)" annotation(Dialog(enable = smoothTrend));
+  parameter Time tpt(min = 0) = 1 "Time to perceive the trend (i.e., there is gradual adaptation to a new trend)" annotation(Dialog(enable = smoothTrend));
   parameter Boolean smoothTrend = false "= true, if the calculated trend is to be smoothed (fracGrowthRate.smoothTrend)" annotation(Evaluate = true, Dialog(group = "Structural Parameters"));
 protected
   Converters.Product_2 fractionalGrowth "FractionalGrowthRate times perceptionTime" annotation(Placement(visible = true, transformation(origin = {-7.422, 40.047}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));

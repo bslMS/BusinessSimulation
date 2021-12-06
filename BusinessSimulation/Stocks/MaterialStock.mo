@@ -29,7 +29,7 @@ equation
   end if;
   annotation(Documentation(info = "<html>
 <p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
-<p>This is a restricted&nbsp;<em>reservoir</em> of the System Dynamics methodology, which accumulates <em>material &nbsp;</em>(i.e. countable entities, some kind of mass) transported by flow components connected to the component's StockPorts. The&nbsp;<em>MaterialStock&nbsp;</em>can never become negative &ndash;&nbsp;we are not collecting \"antimatter\"&nbsp;&ndash; and will prevent connected flow components from draining its value below zero.</p>
+<p>This is a restricted&nbsp;<em>reservoir</em> of the System Dynamics methodology, which accumulates <em>material &nbsp;</em>(i.e., countable entities, some kind of mass) transported by flow components connected to the component's StockPorts. The&nbsp;<em>MaterialStock&nbsp;</em>can never become negative &ndash;&nbsp;we are not collecting \"antimatter\"&nbsp;&ndash; and will prevent connected flow components from draining its value below zero.</p>
 <h4>Implementation</h4>
 <p>The value of the stock will be set to zero if the calculated value <code>x</code> is less than a very small positive amount and if <code>reinitializeStock = true</code> is chosen in the Advanced tab:</p>
 <pre>  if reinitializeStock then

@@ -110,7 +110,7 @@ equation
 <p>1/s</p>
 </td>
 <td>
-<p>Fractional rate of growth for stock A<br>(e.g. the self-coupling coefficient for A)</p>
+<p>Fractional rate of growth for stock A<br>(e.g., the self-coupling coefficient for A)</p>
 </td>
 </tr>
 <tr>
@@ -121,7 +121,7 @@ equation
 <p>1/s</p>
 </td>
 <td>
-<p>Fractional rate of growth for stock B<br>(e.g.the self-coupling coefficient for B)</p>
+<p>Fractional rate of growth for stock B<br>(e.g., the self-coupling coefficient for B)</p>
 </td>
 </tr>
 <tr>
@@ -132,7 +132,7 @@ equation
 <p>amount of A per amount of B per second</p>
 </td>
 <td>
-<p>Rate of growth for stock A per stock B<br>(e.g. the coupling-cofficient for B towards A)</p>
+<p>Rate of growth for stock A per stock B<br>(e.g., the coupling-cofficient for B towards A)</p>
 </td>
 </tr>
 <tr>
@@ -143,21 +143,21 @@ equation
 <p>amount of B per amount of A per second</p>
 </td>
 <td>
-<p>Rate of growth for stock B per stock A<br>(e.g. the coupling-coefficient for A towards B)</p>
+<p>Rate of growth for stock B per stock A<br>(e.g., the coupling-coefficient for A towards B)</p>
 </td>
 </tr>
 <tr>
 <td><code>a_AB</code></td>
 <td>1 per second per amount of B</td>
 <td>
-<p>Factor used to determine the net flow to A<br>(e.g. nonlinear coupling factor for A)</p>
+<p>Factor used to determine the net flow to A<br>(e.g., nonlinear coupling factor for A)</p>
 </td>
 </tr>
 <tr>
 <td><code>b_AB</code></td>
 <td>1 per second per amount of A</td>
 <td>
-<p>Factor used to determine the net flow to B<br>(e.g. nonlinear coupling factor for B)</p>
+<p>Factor used to determine the net flow to B<br>(e.g., nonlinear coupling factor for B)</p>
 </td>
 </tr>
 </tbody>

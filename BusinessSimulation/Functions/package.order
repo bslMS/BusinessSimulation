@@ -1,3 +1,9 @@
+allocateAvailable
+allocatedAmounts
+allocateExtremeValue
+allocateNormal
+allocateTriangular
+allocateUniform
 allTrueQ
 arithmeticMean
 boole
@@ -23,3 +29,4 @@ smf
 stringToTimeBase
 trapmf
 trimf
+UtilityFunctions

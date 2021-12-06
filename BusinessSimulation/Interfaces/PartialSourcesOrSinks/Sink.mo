@@ -11,7 +11,7 @@ equation
   assert(rate >= 0, "Rate must be positive and will be set to zero", level = AssertionLevel.warning);
   massPort.rate = Functions.constrainedRate(max(rate, 0), massPort.stopInflow, massPort.stopOutflow);
   // report current rate of flow via output connectors
-  // so that it may be used directly as exogenous rate by another sink element (e.g. positive rate!)
+  // so that it may be used directly as exogenous rate by another sink element (e.g., positive rate!)
   y = massPort.rate;
   y1 = massPort.rate;
   y2 = massPort.rate;

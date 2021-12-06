@@ -7,7 +7,7 @@ block LinearTimeTable "Generate a (possibly discontinuous) signal by linear inte
   parameter Real offset = 0 "Offset of output signal y";
   parameter Time startTime = 0 "Output y = offset for time < startTime";
   parameter Real[:, 2] data = [0, 0] "n x 2 matrix of time series data (t,u(t))";
-  parameter Time timeScale = 1 "Time scale of first table column (e.g. if first column is given in hours, then timeScale should be 3600)";
+  parameter Time timeScale = 1 "Time scale of first table column (e.g., if first column is given in hours, then timeScale should be 3600)";
   parameter Time shiftTime = startTime "Shift time of first table column (timeTable.shiftTime)";
 protected
   Modelica.Blocks.Sources.TimeTable timeTable(offset = offset, startTime = startTime, table = data, timeScale = timeScale, shiftTime = shiftTime) annotation(Placement(visible = true, transformation(origin = {90, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));

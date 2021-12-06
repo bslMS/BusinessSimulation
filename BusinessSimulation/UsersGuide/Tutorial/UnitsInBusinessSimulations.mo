@@ -13,12 +13,12 @@ final class UnitsInBusinessSimulations "How to make use of the unit framework"
 </ul>
 <p>While the rigor of physical models cannot be fully transfered to modeling in the social sciences and ecology, there is maybe some middle ground:</p>
 <ul>
-<li>We realize, that <em>meaning</em> (e.g. quantity) is very important and here we might strive for a bit of pragmatism, e.g. Forrester [<a href = \"modelica://BusinessSimulation.UsersGuide.References\">2</a>] just distinguished <em>personnel, material, money, capital equipment, orders, and information</em>.</li><br>
-<li>While we may have <code>types</code> with a fixed (e.g. <code>final</code>) unit, there are too many possibilities and preferences in social science modeling, so we may often leave the choice of unit to the modeler.</li><br>
+<li>We realize, that <em>meaning</em> (e.g., quantity) is very important and here we might strive for a bit of pragmatism, e.g., Forrester [<a href = \"modelica://BusinessSimulation.UsersGuide.References\">2</a>] just distinguished <em>personnel, material, money, capital equipment, orders, and information</em>.</li><br>
+<li>While we may have <code>types</code> with a fixed (e.g., <code>final</code>) unit, there are too many possibilities and preferences in social science modeling, so we may often leave the choice of unit to the modeler.</li><br>
 <li>Nevertheless, we would like to make use of <code>displayUnit</code> whenever possible, as using a standard unit for calculations, while compatible units can be used for input and output, takes care of a significant source of error. SystemModeler allows to enter custom unit converions in the <code>Tools>Options</code> menu.</li>
 </ul>
 <h4>Units in the Business Simulation Library</h4>
-<p>Currently, units are not used for <em>acausal</em> connectors, i.e. the <em>stock</em> and the <em>rate</em> in a →<a href=\"modelica://BusinessSimulation.Interfaces.Connectors.StockPort\">StockPort</a> or in a →<a href=\"modelica://BusinessSimulation.Interfaces.Connectors.FlowPort\">FlowPort</a> are simply of the predefined type <code>Real</code> with <code>quantity = \"\"</code> and <code>unit = \"1\"</code>, making them <em>dimensionless</em>.</p>
+<p>Currently, units are not used for <em>acausal</em> connectors, i.e., the <em>stock</em> and the <em>rate</em> in a →<a href=\"modelica://BusinessSimulation.Interfaces.Connectors.StockPort\">StockPort</a> or in a →<a href=\"modelica://BusinessSimulation.Interfaces.Connectors.FlowPort\">FlowPort</a> are simply of the predefined type <code>Real</code> with <code>quantity = \"\"</code> and <code>unit = \"1\"</code>, making them <em>dimensionless</em>.</p>
 <p>Quantities and units are used for the <em>information outputs</em> of components. In most elementary classes there is a <code>replaceable type OutputType</code> which can be conveniently set using a drop down list in SystemModeler. In general, the default will be one of the following types: <code>Types.Reals, Units.Rate</code>, or <code>Units.Time</code>.</p>
 <p>A modeler may simply stick with say <code>Types.Reals</code>, which is identical to Modelica's predefined type <code>Real</code>, for a stock called \"personnel\" and then use the editor to <em>modify</em> the <code>quantity</code> and <code>unit</code> attributes:</p>
 <pre><span style = \"background-color : lightgray\">Types.Reals<strong>(quantity = \"HumanPopulation\", unit = \"people\")</strong></span></pre>
@@ -46,7 +46,7 @@ final class UnitsInBusinessSimulations "How to make use of the unit framework"
 </tbody>
 </table>
 <p>In the example <a href=\"modelica://BusinessSimulation.Examples.SimpleProductionChain\">Examples.SimpleProductionChain</a> we can set the <code>productionRate</code> in the ConstantConverter by leaving <code>ValueType = Types.Reals</code> (default) and using <code>timeBaseString</code> to select \"month\", so that <code>value = 100</code> is then correctly shown as a fractional rate of <code>100 per month</code>. Remember, that the value used in any calculations will be the corresponding rate <em>per second</em>.</p>
-<p>Next to fractional rates we can also work with correct rates for some physical flows, e.g. <code>VolumeFlowRate, MassFlowRate, EnergyFlowRate, MomentumFlowRate, AngularMomentumFlowRate, Velocity</code>, which are defined as follows:</p>
+<p>Next to fractional rates we can also work with correct rates for some physical flows, e.g., <code>VolumeFlowRate, MassFlowRate, EnergyFlowRate, MomentumFlowRate, AngularMomentumFlowRate, Velocity</code>, which are defined as follows:</p>
 <pre>
   type Rate = Types.Reals(quantity = \"Rate\", unit = \"1/s\") \"Fractional rate per unit of time\";
   type VolumeFlowRate = Rate(quantity = \"VolumeFlowRate\", unit = \"m3/s\") \"Volume flow rate measured in m3/s\";
@@ -64,7 +64,7 @@ final class UnitsInBusinessSimulations "How to make use of the unit framework"
 <pre>
   type Information = Types.Reals(quantity = \"Information\") \"Information that may have an arbitrary unit (base unit = '1')\";
   type Fraction = Information(min = 0, max = 1) \"Information given as a fraction between zero and one\";
-  type Dimensionless = Information(unit = \"1\") \"Information that is dimensionless (e.g. utility)\";
+  type Dimensionless = Information(unit = \"1\") \"Information that is dimensionless (e.g., utility)\";
   type Probability = Dimensionless(min = 0, max = 1) \"Probability between zero and one\";
 </pre>
 <br>
@@ -81,6 +81,10 @@ final class UnitsInBusinessSimulations "How to make use of the unit framework"
 </tr>
 </tbody>
 </table>
+<P>Verison 2 of the Business Simulation library introduces <code>AmountRate</code>:</p>
+<pre>
+type AmountRate = Rate(quantity = \"AmountRate\", unit = \"each/s\") \"Rate of flow for some amount measured in each per second\";
+</pre>
 <h6>Monetary Value</h6>
 <p>Value in economic models may be either expressed as (dimensionless) <em>utility</em> or in <em>monetary</em> terms. For the latter, the following <code>types</code> are defined in the <code>Units</code> package:
 <pre>

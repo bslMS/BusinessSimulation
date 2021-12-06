@@ -7,10 +7,10 @@ block ConstantConverterRate "A list of constant rates is turned into a vector of
   extends Interfaces.Basics.OutputTypeChoice_Rate;
   RealMultiOutput[nout] y annotation(Placement(visible = true, transformation(origin = {151.657, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {60, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   parameter Real[:] value = {0} "Vector of constant rates given in the unit pertaining to OutputType [y.unit * s] per time base";
-  parameter String timeBaseString = "second" "Time base of the rates entered (default = per second)" annotation(choices(choice = "second", choice = "minute", choice = "hour", choice = "day", choice = "week", choice = "month", choice = "quarter", choice = "year"));
+  constant String timeBaseString = "second" "Time base of the rates entered (default = per second)" annotation(Dialog(group = "Parameters"), choices(choice = "second", choice = "minute", choice = "hour", choice = "day", choice = "week", choice = "month", choice = "quarter", choice = "year"));
 protected
   parameter Integer nout = size(value, 1) "Length of the vector" annotation(Evaluate = true, Dialog(tab = "Initialization", enable = false));
-  parameter TimeBases timeBase = Functions.stringToTimeBase(timeBaseString) "Element of the enumeration TimeBases corresponding to the timeBase given as string" annotation(Dialog(tab = "Initialization", enable = false));
+  constant TimeBases timeBase = Functions.stringToTimeBase(timeBaseString) "Element of the enumeration TimeBases corresponding to the timeBase given as string" annotation(Dialog(tab = "Initialization", enable = false));
   RateConversion[nout] convertRate(each timeBaseA = timeBase, each timeBaseB = TimeBases.seconds) "Convert the rate input to a rate per seconds" annotation(Placement(visible = true, transformation(origin = {80, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   ConstantConverter ratesInTimeBase(value = value) annotation(Placement(visible = true, transformation(origin = {0, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
 equation

@@ -3,8 +3,8 @@ within BusinessSimulation.Functions;
 function smf "S-shaped membership function"
   extends BusinessSimulation.Icons.Function;
   input Real x "Input value for which the degree of membership is to be computed";
-  input Real a "Foot of the function (i.e. f(a) = 0)";
-  input Real b "Shoulder of the function (i.e. f(b) = 1)";
+  input Real a "Foot of the function (i.e., f(a) = 0)";
+  input Real b "Shoulder of the function (i.e., f(b) = 1)";
   output Real y "Degree of membership";
 protected
   Real midpoint = (a + b) / 2;

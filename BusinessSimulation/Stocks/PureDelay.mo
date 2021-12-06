@@ -108,7 +108,7 @@ equation
   assert(samplingPeriod < modelSettings.dt, "Sampling period should be significantly smaller than det", level = AssertionLevel.warning);
   annotation(Documentation(info = "<html>
 <p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
-<p>At any given time, the <em>inflow</em> to the <em>PureDelay</em> is delayed by an exact amount of time given either by the parameter <code>delayTime</code> or the continuous&nbsp;input <code>u</code>. Changes in the delay time will only affect the current or later inflow, i.e. whatever is already in the process of being delayed will not be affected.</p>
+<p>At any given time, the <em>inflow</em> to the <em>PureDelay</em> is delayed by an exact amount of time given either by the parameter <code>delayTime</code> or the continuous&nbsp;input <code>u</code>. Changes in the delay time will only affect the current or later inflow, i.e., whatever is already in the process of being delayed will not be affected.</p>
 <h4>Implementation</h4>
 <p>The <em>PureDelay</em>&nbsp; will work at <em>discrete</em> time intervals:</p>
 <pre>when sample(modelSettings.modelStartTime + samplingPeriod, samplingPeriod) then
@@ -120,7 +120,7 @@ end when;
 <ul>
 <li>All <em>inflows</em> have to go to the <code>inflow</code> port of the <em>PureDelay</em>.</li><br>
 <li>Since the <em>outflow</em> will be controlled by the <em>PureDelay</em>, →<a href=\"modelica://BusinessSimulation.Flows.Unidirectional.OutflowDynamicStock\"><code>OutflowDynamicStock</code></a>&nbsp;or →<a href=\"modelica://BusinessSimulation.Flows.Unidirectional.SplitOutflowDynamicStock\"><code>SplitOutflowDynamicStock</code></a>&nbsp;have to be connected to the <code>outflow</code> port.</li><br>
-<li>Using more than one <em>outflow</em> (e.g. →<a href=\"modelica://BusinessSimulation.Flows.Unidirectional.SplitOutflowDynamicStock\"><code>SplitOutflowDynamicStock</code></a>) can be used to model <em>leaking</em>.</li><br>
+<li>Using more than one <em>outflow</em> (e.g., →<a href=\"modelica://BusinessSimulation.Flows.Unidirectional.SplitOutflowDynamicStock\"><code>SplitOutflowDynamicStock</code></a>) can be used to model <em>leaking</em>.</li><br>
 <ul>
 <li>The parameter <code>init</code> in the Advanced tab allows to select &rarr;<a href=\"modelica://BusinessSimulation.Types.InitializationOptions\">InitializationOptions</a>:
 <ul>

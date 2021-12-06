@@ -121,7 +121,7 @@ equation
   assert(samplingPeriod > small, "Sampling period must be greater than zero", level = AssertionLevel.error);
   annotation(Documentation(info = "<html>
 <p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
-<p>The <em>Conveyor</em> (aka <em>pipeline</em> <em>delay</em>) bevhaves as one would expect a conveyor belt to work: What <em>flows</em> <em>into</em> the Conveyor will <em>flow out</em> after a period given by  <code>delayTime</code> or the variable input <code>u</code> has passed. The order of outflow will preserve the order of inflow, i.e. when the delay time increases or decreases during the simulation, then it will affect everything that is currently \"loaded\" on the conveyor in the same way. Therefore, material&nbsp;might come out at the same time as material that had entered before, but it can never <em>overtake</em> older entries (this would be possible in a <em>PureDelay</em>).</p>
+<p>The <em>Conveyor</em> (aka <em>pipeline</em> <em>delay</em>) bevhaves as one would expect a conveyor belt to work: What <em>flows</em> <em>into</em> the Conveyor will <em>flow out</em> after a period given by  <code>delayTime</code> or the variable input <code>u</code> has passed. The order of outflow will preserve the order of inflow, i.e., when the delay time increases or decreases during the simulation, then it will affect everything that is currently \"loaded\" on the conveyor in the same way. Therefore, material&nbsp;might come out at the same time as material that had entered before, but it can never <em>overtake</em> older entries (this would be possible in a <em>PureDelay</em>).</p>
 <h4>Implementation</h4>
 <p>The <em>Conveyor</em>&nbsp; will work at <em>discrete</em> time intervals:</p>
 <pre>when sample(modelSettings.modelStartTime + samplingPeriod, samplingPeriod) then
@@ -133,7 +133,7 @@ end when;
 <ul>
 <li>All <em>inflows</em> have to go to the <code>inflow</code> port of the <em>Conveyor</em>.</li><br>
 <li>Since the <em>outflow</em> will be controlled by the <em>Conveyor</em>, →<a href=\"modelica://BusinessSimulation.Flows.Unidirectional.OutflowDynamicStock\"><code>OutflowDynamicStock</code></a>&nbsp;or →<a href=\"modelica://BusinessSimulation.Flows.Unidirectional.SplitOutflowDynamicStock\"><code>SplitOutflowDynamicStock</code></a>&nbsp;have to be connected to the <code>outflow</code> port.</li><br>
-<li>Using more than one <em>outflow</em> (e.g. →<a href=\"modelica://BusinessSimulation.Flows.Unidirectional.SplitOutflowDynamicStock\"><code>SplitOutflowDynamicStock</code></a>) can be used to model <em>leaking</em>.</li><br>
+<li>Using more than one <em>outflow</em> (e.g., →<a href=\"modelica://BusinessSimulation.Flows.Unidirectional.SplitOutflowDynamicStock\"><code>SplitOutflowDynamicStock</code></a>) can be used to model <em>leaking</em>.</li><br>
 <ul>
 <li>The parameter <code>init</code> in the Advanced tab allows to select &rarr;<a href=\"modelica://BusinessSimulation.Types.InitializationOptions\">InitializationOptions</a>:
 <ul>

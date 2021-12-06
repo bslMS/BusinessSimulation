@@ -1,15 +1,16 @@
 <p align = "left"><img src = "/BusinessSimulation/Resources/Images/BusinessSimulation.svg" width = 150></p>
 
 # Business Simulation Library (BSL)
-A Modelica library for modeling &amp; simulation of dynamical systems in the social sciences, e.g. business/economics, and ecology using the System Dynamics metaphor.
+A Modelica library for modeling &amp; simulation of dynamical systems in the social sciences, e.g., business, economics, and ecology using the System Dynamics metaphor.
 
 ## Library Description
-System Dynamics offers a very general, low-level modeling paradigm, that lends itself perfectly to model, simulate, and analyze strategic business and policy issues in any kind of organization. Unlike existing aproaches the `BSL` makes use of Modelica's acausal connectors to better distinguish _material/mass_ flows from instantaneous _information_ signal flows (causal connections). The approach has the additional benefit of allowing the modeler to build more compact models in a fast and reliable fashion.
+System Dynamics offers a very general, low-level modeling paradigm, that lends itself perfectly to model, simulate, and analyze strategic business and policy issues in any kind of organization. Unlike existing aproaches the __BSL__ makes use of Modelica's acausal connectors to better distinguish _material/mass_ flows from instantaneous _information_ signal flows (causal connections). The approach has the additional benefit of allowing the modeler to build more compact models in a fast and reliable fashion.
 
-#### Overview of the Main Classes
+#### Overview of the Main Packages
 
-| Icon     | Main Class        | Description |
+| Icon     | Name              | Description |
 | :-------:|:------------------|:------------|
+| <img src = "/BusinessSimulation/Resources/Images/CausalLoop.svg" width = "70"> |  __CausalLoop__ | Agile system dynamics modeling with quantitative causal loop diagrams (CLD<sup>+</sup>) |
 | <img src = "/BusinessSimulation/Resources/Images/Stocks.svg" width = "70"> | __Stocks__  | Containers ("reservoirs") used to represent entities that have been stored in a specific state |
 | <img src = "/BusinessSimulation/Resources/Images/Flows.svg" width = "70"> | __Flows__ | Processes that move entities from one stock to another at a specific rate |
 | <img src = "/BusinessSimulation/Resources/Images/SourcesOrSinks.svg" width = "70"> | __SourcesOrSinks__ | Flows into or out of a stock with infinite capacity at a system's boundary |

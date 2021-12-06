@@ -15,6 +15,7 @@ ConstantConverterTime
 Division
 Division_Guarded
 DmnlInput
+Disruption
 Exp
 Gain
 Gap
@@ -23,11 +24,15 @@ Max
 Min
 PassThrough
 PolynomialFunction
+PolynomialFunctionDivisor
+PolynomialFunctionFactor
 Power
 Product_2
 Product_3
 ForceOfInterest
 RateConversion
 Rescale
+SoftMax
+SoftMin
 TimeConversion
 ZeroIfNegative

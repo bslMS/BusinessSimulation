@@ -17,7 +17,7 @@ final class ElementaryBuildingBlocks "A quick tour introducing the library's mai
 <td><img src=\"modelica://BusinessSimulation/Resources/Images/UsersGuide/Tutorial/ElementaryBuildingBlocks/Stocks.svg\" alt=\"Stocks.svg\" width=\"200\"></td>
 <td><a href=\"modelica://BusinessSimulation.Stocks\"><strong>Stocks</strong></a></td>
 <td>
-<p>Stocks describe the <em>states</em> of a system, e.g. some measurable quantity, which might—at least on principle—be measured even when we (hypothetically) \"freeze the system\".</p>
+<p>Stocks describe the <em>states</em> of a system, e.g., some measurable quantity, which might—at least on principle—be measured even when we (hypothetically) \"freeze the system\".</p>
 </td>
 </tr>
 </tr>
@@ -25,7 +25,7 @@ final class ElementaryBuildingBlocks "A quick tour introducing the library's mai
 <td><img src=\"modelica://BusinessSimulation/Resources/Images/UsersGuide/Tutorial/ElementaryBuildingBlocks/Flows.svg\" alt=\"Flows.svg\" width=\"200\"></td>
 <td><a href=\"modelica://BusinessSimulation.Flows\"><strong>Flows</strong></a></td>
 <td>
-<p>Flows are <em>aggregate processes</em> that change the states of a system, i.e. they <em>fill</em> and <em>drain</em> stocks at a certain rate.</p>
+<p>Flows are <em>aggregate processes</em> that change the states of a system, i.e., they <em>fill</em> and <em>drain</em> stocks at a certain rate.</p>
 </td>
 </tr>
 <tr>
@@ -86,7 +86,7 @@ final class ElementaryBuildingBlocks "A quick tour introducing the library's mai
 <td><img src=\"modelica://BusinessSimulation/Resources/Images/UsersGuide/Tutorial/ElementaryBuildingBlocks/MaterialStock.png\" alt=\"MaterialStock.png\" width=\"250\"></td>
 <td><strong><a href=\"modelica://BusinessSimulation.Stocks.MaterialStock\">Material Stock</a></strong></td>
 <td>
-<p>A <em>MaterialStock</em> will usually contain some form of <em>matter or mass</em>, e.g. living beings and people, raw material, finished goods, capital equipment&nbsp;etc. The plus sign in the upper left corner of the icon indicates, that a material stock can never become negative. If a flow tries to drain a material stock, that does not contain any element, it will be set to zero, as a flow cannot transport \"antimatter\".</p>
+<p>A <em>MaterialStock</em> will usually contain some form of <em>matter or mass</em>, e.g., living beings and people, raw material, finished goods, capital equipment&nbsp;etc. The plus sign in the upper left corner of the icon indicates, that a material stock can never become negative. If a flow tries to drain a material stock, that does not contain any element, it will be set to zero, as a flow cannot transport \"antimatter\".</p>
 </td>
 </tr>
 <tr>
@@ -129,7 +129,7 @@ final class ElementaryBuildingBlocks "A quick tour introducing the library's mai
 <td><img src=\"modelica://BusinessSimulation/Resources/Images/UsersGuide/Tutorial/ElementaryBuildingBlocks/SimpleConveyor.png\" alt=\"SimpleConveyor.png\" width=\"250\"></td>
 <td><strong><a href=\"modelica://BusinessSimulation.Stocks.SimpleConveyor\">Simple Conveyor</a></strong></td>
 <td>
-<p>This stock can be seen as an <em>ideal conveyor belt</em>, i.e. everything that enters is delayed by a fixed amount of time (which cannot change during the simulation).</p>
+<p>This stock can be seen as an <em>ideal conveyor belt</em>, i.e., everything that enters is delayed by a fixed amount of time (which cannot change during the simulation).</p>
 </td>
 </tr>
 <tr>
@@ -148,7 +148,7 @@ final class ElementaryBuildingBlocks "A quick tour introducing the library's mai
 </tr>
 </tbody>
 </table>
-<p>All dynamic stocks are material stocks (e.g. there can never be negative amounts inside a process). Dynamic stocks may have additional input ports (or a <a href=\"modelica://BusinessSimulation.Interfaces.Connectors.DataInPort\">DataInPort </a>in the case of the Oven) in case process or delay times (and optionally other parameters) are to be variable during the simulation.</p>
+<p>All dynamic stocks are material stocks (e.g., there can never be negative amounts inside a process). Dynamic stocks may have additional input ports (or a <a href=\"modelica://BusinessSimulation.Interfaces.Connectors.DataInPort\">DataInPort </a>in the case of the Oven) in case process or delay times (and optionally other parameters) are to be variable during the simulation.</p>
 <p><strong>For dynamic stocks the designation of the ports is binding: &nbsp;They can only be filled via the inflow port and can only be drained via the outflow port.</strong></p>
 <p>Unlike regular stocks, dynamic stocks will determine the rate of outflow, so that the rate of outflow is not set independently by the flow component connected to the outflow port of a dynamic stock. Only the →<a href=\"modelica://BusinessSimulation.Flows.Unidirectional.OutflowDynamicStock\">OutflowDynamicStock</a>&nbsp;and the →<a href=\"modelica://BusinessSimulation.Flows.Unidirectional.SplitOutflowDynamicStock\">SplitOutFlowDynamicStock</a>&nbsp;components have a corresponding <a href=\"modelica://BusinessSimulation.Interfaces.Connectors.FlowPort_Special\">FlowPort_Specia</a>l and can be connected to the outflow port of a dynamic stock.</p>
 <h4><a name =\"Flows\">Flows</a></h4>
@@ -178,7 +178,7 @@ final class ElementaryBuildingBlocks "A quick tour introducing the library's mai
 <td><img src=\"modelica://BusinessSimulation/Resources/Images/UsersGuide/Tutorial/ElementaryBuildingBlocks/Interaction.png\" alt=\"Interaction.png\" width=\"250\"></td>
 <td><strong><a href=\"modelica://BusinessSimulation.Flows.Interaction\">Interaction</a></strong></td>
 <td>
-<p><em>Interactions</em>&nbsp;model the general case of two stocks which&nbsp;have a <em>bidrectional flow from/to a cloud</em> (\"netflow\")&nbsp;where the rate of the netflow (a positive rate will fill the respective stock) may depend on the current amount in one or both of the connected stocks. A simple example is the →<a href=\"modelica://BusinessSimulation.Flows.Interaction.BrokenTransition\">BrokenTransition</a>, where the inflow to stock B is proportional to the rate of the outflow of stock A, i.e. here some kind of <em>transformation</em> is modeled rather than a mere transition.</p>
+<p><em>Interactions</em>&nbsp;model the general case of two stocks which&nbsp;have a <em>bidrectional flow from/to a cloud</em> (\"netflow\")&nbsp;where the rate of the netflow (a positive rate will fill the respective stock) may depend on the current amount in one or both of the connected stocks. A simple example is the →<a href=\"modelica://BusinessSimulation.Flows.Interaction.BrokenTransition\">BrokenTransition</a>, where the inflow to stock B is proportional to the rate of the outflow of stock A, i.e., here some kind of <em>transformation</em> is modeled rather than a mere transition.</p>
 </td>
 </tr>
 </tbody>
@@ -286,7 +286,7 @@ final class ElementaryBuildingBlocks "A quick tour introducing the library's mai
 </table>
 <h5>Subsystems—Modeling a System of Systems</h5>
 <p>When we look at complex systems in society or even at individual&nbsp;companies and markets, we are well advised to conquer their complexity by applying a&nbsp;<em>hierarchical</em> modeling approach: &nbsp;<strong>We will model the system in focus as a <em>system of systems</em> exchanging information and/or physical entities</strong>. Jay Forrester, for example, in his seminal book \"<em>Industrial Dynamics</em>\" [<a href=\"modelica://BusinessSimulation.UsersGuide.References\">2</a>, Section 6.2] distinguished the \"physical\" flow of <em>material</em>, <em>orders</em>, <em>money</em>, <em>personnel</em>, and<em> capital equipment </em>from that of <em>information</em>.</p>
-<p>Since a closed system, i.e. one that does not exchange anything with other systems, is rather irrelevant, we can usually assume that all subsystems will receive and/or transmit information for managerial control or just for information processing. Accordingly, <strong>all subsystems will have connectors for information input and output</strong> (typically →<a href = \"modelica://BusinessSimulation.Interfaces.Connectors.DataInPort\">DataInPort</a> and →<a href = \"modelica://BusinessSimulation.Interfaces.Connectors.DataOutPort\">DataOutPort</a>).</p>
+<p>Since a closed system, i.e., one that does not exchange anything with other systems, is rather irrelevant, we can usually assume that all subsystems will receive and/or transmit information for managerial control or just for information processing. Accordingly, <strong>all subsystems will have connectors for information input and output</strong> (typically →<a href = \"modelica://BusinessSimulation.Interfaces.Connectors.DataInPort\">DataInPort</a> and →<a href = \"modelica://BusinessSimulation.Interfaces.Connectors.DataOutPort\">DataOutPort</a>).</p>
 <p>We can thus best distinguish different types of subsystems by looking at the presence of <em>stock and flow ports</em>:</p>
 <table width = 600>
 <tbody>
@@ -299,7 +299,7 @@ final class ElementaryBuildingBlocks "A quick tour introducing the library's mai
 <td><img src=\"modelica://BusinessSimulation/Resources/Images/UsersGuide/Tutorial/ElementaryBuildingBlocks/Blocks.svg\" alt=\"Blocks.svg\" width=\"150\"></td>
 <td><strong><a href=\"modelica://BusinessSimulation.MoleculesOfStructure.Blocks\">Blocks</a></strong></td>
 <td>
-<p>Systems or processes that do not exchange physical entities with other systems vie stock or flow ports&mdash;there is only exchange of information via DataIn- and DataOutPorts, e.g. managerial control, government, and/or information processing.</p>
+<p>Systems or processes that do not exchange physical entities with other systems vie stock or flow ports&mdash;there is only exchange of information via DataIn- and DataOutPorts, e.g., managerial control, government, and/or information processing.</p>
 </td>
 </tr>
 <tr>

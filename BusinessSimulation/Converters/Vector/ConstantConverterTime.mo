@@ -7,10 +7,10 @@ block ConstantConverterTime "A list of constant time values is turned into a vec
   extends Interfaces.Basics.OutputTypeChoice_Time(redeclare final type OutputType = Time);
   RealMultiOutput[nout] y annotation(Placement(visible = true, transformation(origin = {151.87, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {60, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   parameter Real[:] value = {0} "List of constant time values";
-  parameter String unitTime = "s" "Unit of time for the values entered (default = 's')" annotation(choices(choice = "s", choice = "m", choice = "h", choice = "d", choice = "wk", choice = "mo", choice = "qtr", choice = "yr"));
+  constant String unitTime = "s" "Unit of time for the values entered (default = 's')" annotation(Dialog(group = "Parameters"), choices(choice = "s", choice = "m", choice = "h", choice = "d", choice = "wk", choice = "mo", choice = "qtr", choice = "yr"));
 protected
   parameter Integer nout = size(value, 1) "Length of vector" annotation(Evaluate = true, Dialog(tab = "Initialization", enable = false));
-  parameter TimeBases timeBase = Functions.stringToTimeBase(unitTime) "Element of the enumeration TimeBases corresponding to the unit of time given as string" annotation(Dialog(tab = "Initialization", enable = false));
+  constant TimeBases timeBase = Functions.stringToTimeBase(unitTime) "Element of the enumeration TimeBases corresponding to the unit of time given as string" annotation(Dialog(tab = "Initialization", enable = false));
   ConstantConverter timesInUnitTime(value = value) annotation(Placement(visible = true, transformation(origin = {-0, -0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   TimeConversion[nout] convertTime(each timeBaseA = timeBase, each timeBaseB = TimeBases.seconds) "Convert the time input to seconds" annotation(Placement(visible = true, transformation(origin = {70, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
 equation

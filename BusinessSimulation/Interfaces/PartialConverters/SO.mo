@@ -1,7 +1,8 @@
 within BusinessSimulation.Interfaces.PartialConverters;
 
-partial block SO "Generic converter for signals"
-  extends Basics.BaseConverter;
+encapsulated partial block SO "Generic converter for signals"
+  import BusinessSimulation.Interfaces.Basics.BaseConverter;
+  extends BaseConverter;
   RealOutput y annotation(Placement(visible = true, transformation(origin = {160.268, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {80, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   annotation(Documentation(info = "<html>
 <p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>

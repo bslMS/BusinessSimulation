@@ -4,3 +4,5 @@ PartialConverters
 PartialSourcesOrSinks
 PartialFlows
 PartialStocks
+PartialCLD
+PartialSubsystems

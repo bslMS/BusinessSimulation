@@ -3,8 +3,8 @@ within BusinessSimulation.Converters.Vector;
 block ArithmeticMean "(Weighted) arithmetic mean"
   extends Interfaces.PartialConverters.MISO;
   parameter Real[nin] weights = ones(nin) "Weights to be used for inputs" annotation(Dialog(enable = useWeights and hasConstantWeights));
-  parameter Boolean useWeights = false "= true, if the output is to be a weighted arithmetic mean" annotation(Dialog(group = "Structural Parameters"));
-  parameter Boolean hasConstantWeights = true "= true, if the weights are constant" annotation(Dialog(group = "Structural Parameters", enable = useWeights));
+  parameter Boolean useWeights = false "= true, if the output is to be a weighted arithmetic mean" annotation(Evaluate = true, Dialog(group = "Structural Parameters"));
+  parameter Boolean hasConstantWeights = true "= true, if the weights are constant" annotation(Evaluate = true, Dialog(group = "Structural Parameters", enable = useWeights));
   Interfaces.Connectors.RealMultiInput u_weights[nin] if useWeights and not hasConstantWeights "Input of weights" annotation(Placement(visible = true, transformation(origin = {-145, 35}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {0, 80}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
 protected
   Interfaces.Connectors.RealMultiInput[nin] constWeights = weights if not useWeights or hasConstantWeights;

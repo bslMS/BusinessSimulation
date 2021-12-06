@@ -32,7 +32,7 @@ equation
 <p>Partial model extending from the &rarr;<a href=\"modelica://BusinessSimulation.Interfaces.Basics.GenericFlow\">GenericFlow</a> base class. This is a generic class for <em>interactional</em> flow components where the values for the rates at port A (<code>A_rate</code>) and B (<code>B_rate</code>) can be set by equations. Positive rates will fill the connected stocks, while negative rates will drain them.</p>
 <h4>Notes</h4>
 <ul>
-<li>The flow-element will observe the Boolean flags of the connected stocks (e.g. <em>stopOutflow</em> or <em>stopInflow</em>) on both ports which may override the intended rate to give zero flow.</li>
+<li>The flow-element will observe the Boolean flags of the connected stocks (e.g., <em>stopOutflow</em> or <em>stopInflow</em>) on both ports which may override the intended rate to give zero flow.</li>
 </ul>
 </html>"), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10})), Diagram(coordinateSystem(extent = {{-148.5, -105}, {148.5, 105}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})));
 end Interaction;

@@ -1,7 +1,7 @@
 within BusinessSimulation.Examples;
 
 model SimpleProductionChainIII "Further extending the first example to explain new product diffusion"
-  import BusinessSimulation.Units.{Amount,Rate};
+  import BusinessSimulation.Units.{Amount,Rate,AmountRate};
   extends Icons.Example;
   ModelOutput modelOutput annotation(Placement(visible = true, transformation(origin = {135, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {90, -0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   inner ModelSettings modelSettings(modelDisplayTimeBase = BusinessSimulation.Types.TimeBases.months, dt(displayUnit = "mo") = 657000, modelTimeHorizon(displayUnit = "mo") = 315360000) annotation(Placement(visible = true, transformation(origin = {-135, -75}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
@@ -14,9 +14,9 @@ model SimpleProductionChainIII "Further extending the first example to explain n
     Amount installedBase "Installed base";
     Amount inventory "Finished goods in stock";
     // rates
-    Rate producing(displayUnit = "1/mo") "Production rate";
-    Rate shipping(displayUnit = "1/mo") "Shipping rate";
-    Rate scrapping(displayUnit = "1/mo") "Scrapping rate";
+    AmountRate producing(displayUnit = "thousand/mo") "Production rate";
+    AmountRate shipping(displayUnit = "thousand/mo") "Shipping rate";
+    AmountRate scrapping(displayUnit = "thousand/mo") "Scrapping rate";
   end ModelOutput;
 protected
   Stocks.MaterialStock inventory(initialValue = 100, hasStockInfoOutput = false) "Finished goods inventory" annotation(Placement(visible = true, transformation(origin = {-50, -30}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
@@ -69,5 +69,9 @@ equation
 <p>
 <a href=\"modelica://BusinessSimulation.UsersGuide.Tutorial.StrategicBusinessSimulation\">Tutorial.StrategicBusinessSimulation</a>,
 <a href=\"modelica://BusinessSimulation.Examples.SimpleProductionChain\">SimpleProductionChain</a>,&nbsp;<a href=\"modelica://BusinessSimulation.Examples.SimpleProductionChainII\">SimpleProductionChainII</a>,&nbsp;<a href=\"modelica://BusinessSimulation.MoleculesOfStructure.Actuators.Diffusion\">Diffusion</a></p>
-</html>"), __Wolfram(PlotSet(plots = {Plot(name = "Stocks and Rates", identifier = "stocks-rates", preferred = true, subPlots = {SubPlot(curves = {Curve(x = time, y = modelOutput.potentialCustomers), Curve(x = time, y = modelOutput.customers)}, range = Range(xunit = "yr", yunit = "thousand")), SubPlot(curves = {Curve(x = time, y = modelOutput.producing), Curve(x = time, y = modelOutput.scrapping)}, range = Range(xunit = "yr"))})})), Diagram(coordinateSystem(extent = {{-150, -90}, {150, 90}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5}), graphics = {Text(visible = true, origin = {0, 65}, textColor = {76, 112, 136}, extent = {{-140, -6}, {140, 6}}, textString = "Simple Production Chain III", fontName = "Lato Black", textStyle = {TextStyle.Bold})}));
+</html>", figures = {Figure(title = "Stocks and Rates", identifier = "stocks-rates", preferred = true, plots = {Plot(title = "Stocks", identifier = "stocks", curves = {Curve(y = modelOutput.potentialCustomers, legend = "potential Customers"), Curve(y = modelOutput.customers, legend = "customers")}, x = Axis(unit = "yr"), y = Axis(unit = "thousand")), Plot(title = "Rates", identifier = "rates", curves = {Curve(y = modelOutput.producing, legend = "producing"), Curve(y = modelOutput.scrapping, legend = "scrapping")}, x = Axis(unit = "yr"))})}, revisions = "<html>
+<ul>
+<li>Updated plot and chanaged type to <code>AmountRate</code> for reported flows in v2.0.0.</li>
+</ul>
+</html>"), __Wolfram, Diagram(coordinateSystem(extent = {{-150, -90}, {150, 90}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5}), graphics = {Text(visible = true, origin = {0, 65}, textColor = {76, 112, 136}, extent = {{-140, -6}, {140, 6}}, textString = "Simple Production Chain III", fontName = "Lato Black", textStyle = {TextStyle.Bold})}));
 end SimpleProductionChainIII;

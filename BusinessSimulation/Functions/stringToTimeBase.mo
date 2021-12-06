@@ -7,7 +7,7 @@ function stringToTimeBase "Find the corresponding element of the TimeBases enume
   input String timeBaseString "String for a time base given in lower case";
   output TimeBases timeBase "Element in the enumeration corresponding to the string given";
 protected
-  constant Boolean ignoreCase = false "= true, to set caseSensitive flag to true";
+  Boolean ignoreCase = false "= true, to set caseSensitive flag to true";
 algorithm
   timeBase := if isEqual(timeBaseString, "minute", ignoreCase) or isEqual(timeBaseString, "min", ignoreCase) then TimeBases.minutes else if isEqual(timeBaseString, "hour", ignoreCase) or isEqual(timeBaseString, "hours", ignoreCase) or isEqual(timeBaseString, "h", ignoreCase) then TimeBases.hours else if isEqual(timeBaseString, "day", ignoreCase) or isEqual(timeBaseString, "days", ignoreCase) or isEqual(timeBaseString, "d", ignoreCase) then TimeBases.days else if isEqual(timeBaseString, "week", ignoreCase) or isEqual(timeBaseString, "weeks", ignoreCase) or isEqual(timeBaseString, "wk", ignoreCase) then TimeBases.weeks else if isEqual(timeBaseString, "month", ignoreCase) or isEqual(timeBaseString, "months", ignoreCase) or isEqual(timeBaseString, "mo", ignoreCase) then TimeBases.months else if isEqual(timeBaseString, "quarter", ignoreCase) or isEqual(timeBaseString, "quarters", ignoreCase) or isEqual(timeBaseString, "qtr", ignoreCase) then TimeBases.quarters else if isEqual(timeBaseString, "year", ignoreCase) or isEqual(timeBaseString, "years", ignoreCase) or isEqual(timeBaseString, "yr", ignoreCase) then TimeBases.years else TimeBases.seconds;
   annotation(Documentation(info = "<html>

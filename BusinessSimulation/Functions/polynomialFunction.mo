@@ -7,7 +7,7 @@ function polynomialFunction "Polynomial function of degree n"
   output Real y "Value of the polynomial equation";
 protected
   Integer i;
-  constant Integer n = size(a, 1);
+  Integer n = size(a, 1);
 algorithm
   y := 0;
   for i in 1:n loop

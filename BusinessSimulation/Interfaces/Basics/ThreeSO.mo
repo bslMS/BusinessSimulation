@@ -8,7 +8,7 @@ partial class ThreeSO "Generic information output for stock and rate elements"
   RealOutput y2 "Level or rate information" annotation(Placement(visible = true, transformation(origin = {160, -50}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-105, -50}, extent = {{-10, 10}, {10, -10}}, rotation = -180)));
   annotation(Documentation(info = "<html>
 <p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
-<p>Partial model that extends&nbsp;&rarr;<a href=\"modelica://BusinessSimulation.Interfaces.Basics.OutputTypeChoice\">OutputTypeChoice </a>and has three Real output connectors. It is typically used by Stock components to report the amount inside (e.g. its state).</p>
+<p>Partial model that extends&nbsp;&rarr;<a href=\"modelica://BusinessSimulation.Interfaces.Basics.OutputTypeChoice\">OutputTypeChoice </a>and has three Real output connectors. It is typically used by Stock components to report the amount inside (e.g., its state).</p>
 <h4>See also</h4>
 <p>
 <a href=\"modelica://BusinessSimulation.Interfaces.Basics.ThreeSO_rate\">ThreeSO_rate </a>

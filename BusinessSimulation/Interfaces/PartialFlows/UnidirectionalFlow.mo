@@ -6,21 +6,21 @@ partial model UnidirectionalFlow "Flow from Stock A to Stock B"
   extends Icons.UnidirectionalFlow;
   extends Basics.ThreeSO_rate;
 protected
-  // positive rates will drain the conected stock (e.g. flow from A to B)
+  // positive rates will drain the conected stock (e.g., flow from A to B)
   Rate A_rate(min = 0) "Indicted rate for portA";
   Rate B_rate(max = 0) "Indicted rate for portB";
   Boolean useA_rate "= true, if indicated rate for portA meets constraints";
   Boolean useB_rate "= true, if indicated rate for portB meets constraints";
 initial equation
   // make sure that discrete vars are properly initialized
-  pre(useA_rate) = Functions.constrainedRateBoolean(A_rate, portA.stopInflow, portA.stopOutflow) and A_rate > 0;
-  pre(useB_rate) = Functions.constrainedRateBoolean(B_rate, portB.stopInflow, portB.stopOutflow);
+  pre(useA_rate) = Functions.constrainedRateBoolean(A_rate < 0, portA.stopInflow, portA.stopOutflow) and A_rate > 0;
+  pre(useB_rate) = Functions.constrainedRateBoolean(B_rate < 0, portB.stopInflow, portB.stopOutflow);
 equation
   // set indicated rates according to flow rules
   A_rate = -B_rate;
   // make sure that stock constraints are met
-  useA_rate = Functions.constrainedRateBoolean(A_rate, portA.stopInflow, portA.stopOutflow) and A_rate > 0;
-  useB_rate = Functions.constrainedRateBoolean(B_rate, portB.stopInflow, portB.stopOutflow);
+  useA_rate = Functions.constrainedRateBoolean(A_rate < 0, portA.stopInflow, portA.stopOutflow) and A_rate > 0;
+  useB_rate = Functions.constrainedRateBoolean(B_rate < 0, portB.stopInflow, portB.stopOutflow);
   portA.rate = if useA_rate and useB_rate then A_rate else 0;
   portB.rate = -portA.rate;
   // report the actual rate of flow at Port A
@@ -36,7 +36,7 @@ equation
 <li>The rate of flow at port B is given by the equation <code>B_rate = - A_rate</code>.</li>
 </ul>
 <ul>
-<li>The flow-element will observe the Boolean flags of the connected stocks (e.g. <em>stopOutflow</em> or <em>stopInflow</em>) on both ports which may override the intended rate to give zero flow.</li>
+<li>The flow-element will observe the Boolean flags of the connected stocks (e.g., <em>stopOutflow</em> or <em>stopInflow</em>) on both ports which may override the intended rate to give zero flow.</li>
 </ul>
 </html>"), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10})), Diagram(coordinateSystem(extent = {{-148.5, -105}, {148.5, 105}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})));
 end UnidirectionalFlow;

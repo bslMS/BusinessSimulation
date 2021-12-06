@@ -35,7 +35,7 @@ equation
   annotation(Documentation(info = "<html>
 <p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
 <p>Basic Orientation will provide two outputs: an aggregate performance score (<code>y_perf</code>) and a score indicating the <em>minimum sustainability</em> (<code>y_sus</code>) according to a set of basic orientor inputs <code>u</code>.</p>
-<p>While a system is free to emphasize certain orientors over others (i.e. freedom in the choice of weights according to preferences/strategies), no system can excape the pressures put upon it from its environment and other systems therein. In a much cited report to the Balaton Group Hartmut Bossel [<a href=\"modelica://BusinessSimulation.UsersGuide.References\">22</a>] identified <em>six basic orientors</em>, that will guide a (living) systems evolution in order to maintain viability [<a href=\"modelica://BusinessSimulation.UsersGuide.References\">10</a>, p. 185]:</p>
+<p>While a system is free to emphasize certain orientors over others (i.e., freedom in the choice of weights according to preferences/strategies), no system can excape the pressures put upon it from its environment and other systems therein. In a much cited report to the Balaton Group Hartmut Bossel [<a href=\"modelica://BusinessSimulation.UsersGuide.References\">22</a>] identified <em>six basic orientors</em> that will guide a (living) systems' evolution in order to maintain viability [<a href=\"modelica://BusinessSimulation.UsersGuide.References\">10</a>, p. 185]:</p>
 <table>
 <tbody>
 <tr>
@@ -56,7 +56,7 @@ equation
 </tr>
 <tr>
 <td style=\"text-align: left;\"><strong>SECURITY</strong></td>
-<td style=\"text-align: left;\">The system must be able to protect itself from the detrimental effects of environmental variability, i.e. variable, fluctuating, and unpredictable conditions outside the normal environmental state.&nbsp;</td>
+<td style=\"text-align: left;\">The system must be able to protect itself from the detrimental effects of environmental variability, i.e., variable, fluctuating, and unpredictable conditions outside the normal environmental state.&nbsp;</td>
 </tr>
 <tr>
 <td style=\"text-align: left;\"><strong>ADAPTABILITY</strong></td>
@@ -71,7 +71,7 @@ equation
 <p>Each of the six basic dimensions highlights a necessary aspect of viability, that cannot be compensated by a good score in another dimension. Accordingly, the sustainability score according to the inputs for the basic orientors will be aggregated using the <em>min</em> operator. fo further details, see [<a href=\"modelica://BusinessSimulation.UsersGuide.References\">10</a>, Chapter 4].</p>
 <h4>Notes</h4>
 <ul>
-<li>Bossel additionally points out, that next to <em>environment-determined</em> orientors, there are <em>system-determined</em> orientors (i.e. reproduction, psychological needs, and responsibility). The discussion can be limited to the six orientors from above plus psychological needs for systems containing sentinent beings [<a href=\"modelica://BusinessSimulation.UsersGuide.References\">10</a>, pp. 185-186].</li><br>
+<li>Bossel additionally points out, that next to <em>environment-determined</em> orientors, there are <em>system-determined</em> orientors (i.e., reproduction, psychological needs, and responsibility). The discussion can be limited to the six orientors from above plus psychological needs for systems containing sentinent beings [<a href=\"modelica://BusinessSimulation.UsersGuide.References\">10</a>, pp. 185-186].</li><br>
 <li>It is advisable to work with dimensionless indicator scores on the closed unit interval, where a score of 0 indicates unsustainable performance, while a score of 1 would indicate the best possible performance. (This also conicides with the notion, that all continuous utility functions can be limited to the closed unit interval without loss of generality.)</li><br>
 <li>The basic orientors have to be operationalized in any real application and a lot of though has to go into finding fitting indicators (which may \"load\" onto different orientors at the same time). For systems that are made up of subsystems, a subsystem's viability impact upon the total system's viability has to be considered explicitly.</li>
 </ul>

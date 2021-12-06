@@ -131,7 +131,7 @@ equation
 <p>1/s</p>
 </td>
 <td>
-<p>Fractional rate of growth for stock A<br>(e.g. the self-coupling coefficient for A)</p>
+<p>Fractional rate of growth for stock A<br>(e.g., the self-coupling coefficient for A)</p>
 </td>
 </tr>
 <tr>
@@ -142,7 +142,7 @@ equation
 <p>1/s</p>
 </td>
 <td>
-<p>Fractional rate of growth for stock B<br>(e.g.the self-coupling coefficient for B)</p>
+<p>Fractional rate of growth for stock B<br>(e.g., the self-coupling coefficient for B)</p>
 </td>
 </tr>
 <tr>
@@ -153,7 +153,7 @@ equation
 <p>amount of A per amount of B per second</p>
 </td>
 <td>
-<p>Rate of growth for stock A per stock B<br>(e.g. the coupling-cofficient for B towards A)</p>
+<p>Rate of growth for stock A per stock B<br>(e.g., the coupling-cofficient for B towards A)</p>
 </td>
 </tr>
 <tr>
@@ -164,14 +164,14 @@ equation
 <p>amount of B per amount of A per second</p>
 </td>
 <td>
-<p>Rate of growth for stock B per stock A<br>(e.g. the coupling-coefficient for A towards B)</p>
+<p>Rate of growth for stock B per stock A<br>(e.g., the coupling-coefficient for A towards B)</p>
 </td>
 </tr>
 </tbody>
 </table>
 <p>The coefficients can be given as <em>parameters</em> or as <em>variables</em> via the expandable connector <code>dataIn</code>.</p>
 <h4><br>Examples</h4>
-<p>A<em> linear harmonic oscillator</em> can be modeled as&nbsp;a special case of linear interactions where the rates for the mutual influences (e.g. <em>fractionalGrowthRate_B_per_A</em> and <em>fractionalGrowthRate_A_per_B</em>) are negative. In that case, positive stock A will decrease stock B and vice versa.</p>
+<p>A<em> linear harmonic oscillator</em> can be modeled as&nbsp;a special case of linear interactions where the rates for the mutual influences (e.g., <em>fractionalGrowthRate_B_per_A</em> and <em>fractionalGrowthRate_A_per_B</em>) are negative. In that case, positive stock A will decrease stock B and vice versa.</p>
 <p>The<em> Linear Interaction</em> can be used to model Strogatz' famous model for the dynamics of a love affair (conspicuously between \"Romeo\" and \"Juliet\") as shown in →<a href=\"modelica://BusinessSimulation.Examples.LoveHateDynamics\">LoveHateDynamics</a> [<a href=\"modelica://BusinessSimulation.UsersGuide.References\">16</a>].</p>
 <h4>See also</h4>
 <p><a href=\"modelica://BusinessSimulation.Flows.Interaction.NonlinearInteraction\">NonlinearInteraction</a>,&nbsp;<a href=\"modelica://BusinessSimulation.Flows.Interaction.ComplexInteraction\">ComplexInteraction</a></p>

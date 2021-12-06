@@ -12,7 +12,7 @@ equation
   // observe stock signals and constraints
   massPort.rate = Functions.constrainedRate(-max(rate, 0), massPort.stopInflow, massPort.stopOutflow);
   // report current rate of flow via output connectors
-  // so that it may be used directly as exogenous rate by another source element (e.g. positive rate)
+  // so that it may be used directly as exogenous rate by another source element (e.g., positive rate)
   y = -massPort.rate;
   y1 = -massPort.rate;
   y2 = -massPort.rate;

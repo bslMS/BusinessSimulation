@@ -1,0 +1,4 @@
+# SVG as text files and pdf as binary
+*.svg text
+*.pdf binary
+*.nb binary

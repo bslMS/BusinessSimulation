@@ -33,7 +33,7 @@ equation
 <ul>
 <li>By default it is assumed, that the rate given is a continously compounding rate (<code>isCCR = true</code>). If this is not case, the rate will be converted using the &rarr;<a href=\"modelica://BusinessSimulation.Converters.ForceOfInterest\">ForceOfInterest </a>converter.</li><br>
 <li>The effective rate of decline(e.g the product of the rate and amount in stock) must never be negative, as filling the connected stock is prohibited. Should the rate of outflow from&nbsp;the stock become negative, it will be set to zero.</li><br>
-<li>Exponential decline processes have a <em>constant half-life</em> (e.g. the time it takes to to shrink by 50%) which can be found by dividing log(2)&nbsp;&asymp; 0.69 by the continuously compounding fractional rate (or by log(1+rate) if the rate is not a continuously compounding rate).</li>
+<li>Exponential decline processes have a <em>constant half-life</em> (e.g., the time it takes to to shrink by 50%) which can be found by dividing log(2)&nbsp;&asymp; 0.69 by the continuously compounding fractional rate (or by log(1+rate) if the rate is not a continuously compounding rate).</li>
 </ul>
 <h4>See also</h4>
 <p><a href=\"modelica://BusinessSimulation.SourcesOrSinks.ExponentialGrowth\">ExponentialGrowth</a>, <a href=\"modelica://BusinessSimulation.SourcesOrSinks.ExponentialDecay\">ExponentialDecay</a>,&nbsp;<a href=\"modelica://BusinessSimulation.SourcesOrSinks.ExponentialChange\">ExponentialChange</a></p>

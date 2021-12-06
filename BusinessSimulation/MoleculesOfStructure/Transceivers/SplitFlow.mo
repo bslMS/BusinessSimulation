@@ -46,7 +46,7 @@ equation
   annotation(Documentation(info = "<html>
 <p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
 <p>The flow connected to the stock port (<code>stockPort</code>) will be split or broken into <em>n</em> = <code>nout</code> flows. This is a rather generic component, so that the input vector <strong>u</strong>&nbsp;of weights or factors may add up to 1 (the flow is split into <em>n</em> components that in sum will match the aggregate flow) or not.</p>
-<p>When the factors do not add up to 1, the structure can be used to describe some kind of multiple-production from one main effort, e.g. the flow of work hours per period may be used to produce n products according to a productivity ratio ( products per work hour ).</p>
+<p>When the factors do not add up to 1, the structure can be used to describe some kind of multiple-production from one main effort, e.g., the flow of work hours per period may be used to produce n products according to a productivity ratio ( products per work hour ).</p>
 <h4>Notes</h4>
 <ul>
 <li>Unlike the model published by Jim Hines [<a href=\"modelica://BusinessSimulation.UsersGuide.References\">6</a>, p. 17] the <em>SplitFlow</em> component is more general and also allows a bidirectional flow being connected to <code>stockPort</code>. If a negative rate at <code>stockPort</code> splits an inflow to a stock, then several stocks connected to <code>flowPort</code> will be drained.</li><br>

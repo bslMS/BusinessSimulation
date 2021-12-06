@@ -1,6 +1,7 @@
 within BusinessSimulation.Flows.Unidirectional;
 
 model OutflowDynamicStock "Outflow from a dynamic stock—the rate is set by the stock"
+  import BusinessSimulation.Constants.eps;
   import BusinessSimulation.Units.Rate;
   extends Interfaces.Basics.GenericFlow_Special;
   extends Icons.Outflow;
@@ -17,10 +18,10 @@ equation
   assert(not portB.stopInflow, "There must not be capacity restrictions (stopInflow) for the stock at portB");
   annotation(Documentation(info = "<html>
 <p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
-<p><em>OutflowDynamicStock</em> can be used to model the outflow from a stock with inherent dynamic behavior (e.g. a conveyor or a higher-order delay). In these cases, the stock will set the flow and \"signal\" it via its &rarr;<a href=\"modelica://BusinessSimulation.Interfaces.Connectors.StockPort_Special\">StockPort_Special</a>.
+<p><em>OutflowDynamicStock</em> can be used to model the outflow from a stock with inherent dynamic behavior (e.g., a conveyor or a higher-order delay). In these cases, the stock will set the flow and \"signal\" it via its &rarr;<a href=\"modelica://BusinessSimulation.Interfaces.Connectors.StockPort_Special\">StockPort_Special</a>.
 &nbsp;</p>
 <h4>Implementation</h4>
-<p>Since neither negative outflows (after all, this is a unidirectional flow) nor preventing an outflow by \"stock control\" (e.g. the receiving stock at <code>portB</code> has <code>stopInflow = true</code>) are compatible with this flow element, the following <code>assert</code> conditions will have breaches of these conditions cause errors that will stop the simulation:</p>
+<p>Since neither negative outflows (after all, this is a unidirectional flow) nor preventing an outflow by \"stock control\" (e.g., the receiving stock at <code>portB</code> has <code>stopInflow = true</code>) are compatible with this flow element, the following <code>assert</code> conditions will have breaches of these conditions cause errors that will stop the simulation:</p>
 <pre>assert(portA.rate &gt;= 0, \"Rate of outflow must never be negative\");<br>assert(not portB.stopInflow, \"There must not be capacity restrictions (stopInflow) for the stock at portB\");</pre>
 <h4>Notes</h4>
 <ul>

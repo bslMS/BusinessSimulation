@@ -10,7 +10,7 @@ equation
   // switch signs in accordance with Modelica's rule for rates
   // observe constraining signals from stock
   massPort.rate = Functions.constrainedRate(-rate, massPort.stopInflow, massPort.stopOutflow);
-  // report current rate of flow via output connectors so that it can be used as exogenous input for another source or sink (e.g. switch signs!)
+  // report current rate of flow via output connectors so that it can be used as exogenous input for another source or sink (e.g., switch signs!)
   y = -massPort.rate;
   y1 = -massPort.rate;
   y2 = -massPort.rate;

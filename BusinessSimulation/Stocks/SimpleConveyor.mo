@@ -59,7 +59,7 @@ equation
 <ul>
 <li>All <em>inflows</em> have to go to the <code>inflow</code> port of the <em>Conveyor</em>—no draining is allowed via this port.</li><br>
 <li>Since the <em>outflow</em> will be controlled by the <em>Conveyor</em>, →<a href=\"modelica://BusinessSimulation.Flows.Unidirectional.OutflowDynamicStock\"><code>OutflowDynamicStock</code></a>&nbsp;or →<a href=\"modelica://BusinessSimulation.Flows.Unidirectional.SplitOutflowDynamicStock\"><code>SplitOutflowDynamicStock</code></a>&nbsp;have to be connected to the <code>outflow</code> port.</li><br>
-<li>Using more than one <em>outflow</em> (e.g. <code>SplitOutflowDynamicStock</code>) can be used to model <em>leaking</em>.</li><br>
+<li>Using more than one <em>outflow</em> (e.g., <code>SplitOutflowDynamicStock</code>) can be used to model <em>leaking</em>.</li><br>
 <li>During the interval <code>[modelSettings.modelStartTime, delayTime]</code> the <em>outflow</em> will simply be the initial value for the stock divided by the delay time.</li>
 </ul>
 <ul>
@@ -72,7 +72,7 @@ equation
 </ul>
 <ul>
 <li>The <em>Conveyor</em> behaves exactly like the <em>PureDelay</em>&nbsp;or the <em>Conveyor</em> when the delay time is constant; the main difference is the absence of time events introduced by the discrete nature of the <em>PureDelay</em>&nbsp;or <em>Conveyor </em>stocks.</li><br>
-<li>The <em>Conveyor</em> stock can additionally deal with variable delay times, but is discrete in nature (i.e. it uses time events).</li>
+<li>The <em>Conveyor</em> stock can additionally deal with variable delay times, but is discrete in nature (i.e., it uses time events).</li>
 </ul>
 <h4>See also</h4>
 <p><a href=\"modelica://BusinessSimulation.Stocks.Conveyor\">Conveyor</a>,&nbsp;<a href=\"modelica://BusinessSimulation.Stocks.PureDelay\">PureDelay</a>, <a href=\"modelica://BusinessSimulation.Converters.DiscreteDelay.DelayFixed\">DelayFixed</a>,&nbsp;<a href=\"modelica://BusinessSimulation.Converters.DiscreteDelay.DelayInformation\">DelayInformation</a></p>

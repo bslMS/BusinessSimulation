@@ -16,12 +16,15 @@ algorithm
 <p>The function takes a vector of Booleans and will return true, if all of the elements in the input vector is true, and false otherwise.</p>
 <h4>Syntax</h4>
 <br>
-<pre>Function.<strong>allTrueQ</strong>(vec);</pre>
+<pre>Functions.<strong>allTrueQ</strong>(vec);</pre>
 <br>
 <h4>Examples</h4>
 <br>
-<pre>Function.allTrueQ({false, false, false}); // false</pre><pre>Function.allTrueQ({true, true, true}); // true</pre>
-<pre>Function.allTrueQ({false, false, true}); // false</pre>
+<pre>
+Functions.allTrueQ({false, false, false}); // false
+Functions.allTrueQ({true, true, true}); // true
+Functions.allTrueQ({false, false, true}); // false
+</pre>
 <br>
 <h4>See also</h4>
 <p><a href=\"modelica://BusinessSimulation.Functions.noneTrueQ\">Functions.noneTrueQ</a></p>

@@ -5,7 +5,7 @@ block CloseGap "Determine the rate of flow (action) to close a gap between a qua
   import BusinessSimulation.Constants.inf;
   import Modelica.Blocks.Types.LimiterHomotopy;
   extends Interfaces.PartialConverters.Policy_SO(redeclare replaceable type OutputType = Units.Rate);
-  Interfaces.Connectors.RealInput u_reference "Desired or reference value for the controlled quantity (i.e. the goal)" annotation(Placement(visible = true, transformation(origin = {-145, 50}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-110, 0}, extent = {{-10, -10}, {10, 10}}, rotation = -360)));
+  Interfaces.Connectors.RealInput u_reference "Desired or reference value for the controlled quantity (i.e., the goal)" annotation(Placement(visible = true, transformation(origin = {-145, 50}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-110, 0}, extent = {{-10, -10}, {10, 10}}, rotation = -360)));
   Interfaces.Connectors.RealInput u_current "Current value of controlled quantity" annotation(Placement(visible = true, transformation(origin = {-145, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {0, 110}, extent = {{-10, -10}, {10, 10}}, rotation = -450)));
   Interfaces.Connectors.RealInput u_adjTime if not hasConstantAdjTime "Time to close the gap" annotation(Placement(visible = true, transformation(origin = {-145, -60}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-110, -50}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   parameter Time adjTime(min = 0) = 1 "Time to close the gap" annotation(Dialog(enable = hasConstantAdjTime));
@@ -47,7 +47,7 @@ equation
 <h4>Limitations</h4>
 <ul>
 <li>The adjustment time must not be negative. Negative values will be caught by an assert statement and will cause the simulation to stop.</li><br>
-<li>Catching a division by zero (e.g.<em>adjustement time</em> is zero) by&nbsp;returning a zero output&nbsp;will not be an adequate structure if some kind of discrete behavior is what is wanted:&nbsp; Adjustement time being zero may then mean that the stock should change immediately which usually only makes sense at defined events. If such discrete behavior is intended this structure should not be used.</li>
+<li>Catching a division by zero (e.g., <em>adjustement time</em> is zero) by&nbsp;returning a zero output&nbsp;will not be an adequate structure if some kind of discrete behavior is what is wanted:&nbsp; Adjustement time being zero may then mean that the stock should change immediately which usually only makes sense at defined events. If such discrete behavior is intended this structure should not be used.</li>
 </ul>
 <h4>Notes</h4>
 <ul>

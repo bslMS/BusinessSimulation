@@ -3,10 +3,10 @@ within BusinessSimulation.Functions;
 function trapmf "Trapezoidal membership function"
   extends BusinessSimulation.Icons.Function;
   input Real x "Input value for which the degree of membership is to be computed";
-  input Real a "Lower bound for the support (i.e. f(a) = 0)";
-  input Real b "Lower bound for the core (i.e. f(b) = 1)";
-  input Real c "Upper bound for the core (i.e. f(c) = 1)";
-  input Real d "Upper bound for the support(i.e. f(d) = 0)";
+  input Real a "Lower bound for the support (i.e., f(a) = 0)";
+  input Real b "Lower bound for the core (i.e., f(b) = 1)";
+  input Real c "Upper bound for the core (i.e., f(c) = 1)";
+  input Real d "Upper bound for the support(i.e., f(d) = 0)";
   output Real y "Degree of membership";
 algorithm
   y := max(min(1, min((x - a) / (b - a), (d - x) / (d - c))), 0);

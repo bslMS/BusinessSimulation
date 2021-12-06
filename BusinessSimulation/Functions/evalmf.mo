@@ -2,7 +2,7 @@ within BusinessSimulation.Functions;
 
 function evalmf "Evaluate a fuzzy membership function"
   import BusinessSimulation.Types.MembershipFunctionTypes;
-  import BusinessSimulation.Functions.{rampmf,trimf,smf,sigmf,pimf,gaussmf,gbellmf,trapmf};
+  import BusinessSimulation.Functions.{rampmf,trimf,smf,sigmf,pimf,psigmf,gaussmf,gbellmf,trapmf};
   extends BusinessSimulation.Icons.Function;
   input Real x "Input value for which the degree of membership is to be computed";
   input MembershipFunctionTypes mft = MembershipFunctionTypes.trapezoidal "Type of membership function to be used";

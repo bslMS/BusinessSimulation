@@ -12,7 +12,7 @@ equation
   connect(flowFromResource.y, y) annotation(Line(visible = true, origin = {84, 0}, points = {{-76, 0}, {76, 0}}, color = {0, 0, 127}));
   annotation(Documentation(info = "<html>
 <p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
-<p>The output <strong>y</strong> is the <em>product</em> of the amount of some resource (<code>u_res</code>) and its ability to generate a flow/action (i.e. its productivity <code>u_prod</code>).</p>
+<p>The output <strong>y</strong> is the <em>product</em> of the amount of some resource (<code>u_res</code>) and its ability to generate a flow/action (i.e., its productivity <code>u_prod</code>).</p>
 <p><code>y[1/s] = u_res[1] &middot; u_prod[1/s] </code></p>
 <h4>Acknowledgements</h4>
 <p>Additonal information can be found in [<a href=\"modelica://BusinessSimulation.UsersGuide.References\">6</a>, p. 109] and on Jim Hines's <em>Molecules of Structure</em> website: →<a href=\"https://sdmolecules.org/index.htm#MoleculeTopics/FlowFromResource/flowFromResource.htm\">Flow From Resource</a>.</p>

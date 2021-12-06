@@ -1,3 +1,4 @@
+FlexTypeSignals
 StockPort
 StockMultiPort
 ExpandableStockPort
@@ -9,9 +10,15 @@ StockPort_Special
 FlowPort_Special
 StockInfoOutput
 StockInfoInput
+StockInfoMultiInput
+StockInfoMultiOutput
 BooleanOutput
 BooleanInput
 BooleanMultiInput
+IntegerInput
+IntegerOutput
+IntegerMultiInput
+IntegerMultiOutput
 RealInput
 RealOutput
 RealMultiInput

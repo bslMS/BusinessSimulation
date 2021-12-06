@@ -3,7 +3,7 @@ within BusinessSimulation.Functions;
 function gbellmf "Generalized bell-shaped membership function"
   extends BusinessSimulation.Icons.Function;
   input Real x "Input value for which the degree of membership is to be computed";
-  input Real a "Width of core (i.e. the interval for which the function gives 1)";
+  input Real a "Width of core (i.e., the interval for which the function gives 1)";
   input Real b "Shape parameter (larger values → steeper transition";
   input Real c "Center of membership function";
   output Real y "Degree of membership";

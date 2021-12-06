@@ -21,9 +21,9 @@ equation
   connect(changing.y, y) annotation(Line(visible = true, origin = {56.667, 23.467}, points = {{-51.667, -13.067}, {-51.667, 6.533}, {103.333, 6.533}}, color = {1, 37, 163}));
   connect(changing.y1, y2) annotation(Line(visible = true, origin = {52.625, -27.5}, points = {{-42.125, 22.5}, {-32.625, 22.5}, {-32.625, -22.5}, {107.375, -22.5}}, color = {1, 37, 163}));
   connect(changingRate.y, changing.u) annotation(Line(visible = true, origin = {-5, 13.819}, points = {{0, 3.819}, {0, -3.819}}, color = {1, 37, 163}));
-  connect(u, ccRate.u) annotation(Line(visible = true, origin = {-124, 40}, points = {{-46, 0}, {46, 0}}, color = {1, 37, 163}));
+  connect(u, ccRate.u) annotation(Line(visible = true, origin = {-111.5, 40}, points = {{-33.5, 0}, {33.5, 0}}, color = {1, 37, 163}));
   connect(ccRate.y, changingRate.u2) annotation(Line(visible = true, origin = {-27.333, 37.667}, points = {{-34.667, 2.333}, {17.333, 2.333}, {17.333, -4.667}}, color = {1, 37, 163}));
-  connect(u, indicatedFractionalRate.u) annotation(Line(visible = true, origin = {-112, 55}, points = {{-58, -15}, {12, -15}, {12, 15}, {34, 15}}, color = {1, 37, 163}));
+  connect(u, indicatedFractionalRate.u) annotation(Line(visible = true, origin = {-112, 55}, points = {{-33, -15}, {12, -15}, {12, 15}, {34, 15}}, color = {1, 37, 163}));
   connect(indicatedFractionalRate.y, changingRate.u2) annotation(Line(visible = true, origin = {-27.333, 57.667}, points = {{-34.667, 12.333}, {17.333, 12.333}, {17.333, -24.667}}, color = {1, 37, 163}));
   annotation(Documentation(info = "<html>
 <p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>

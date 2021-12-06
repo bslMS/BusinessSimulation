@@ -7,7 +7,7 @@ function gaussmf "Gaussian membership function"
   input Real c "Mean value";
   output Real y "Degree of membership";
 protected
-  // sigma = a/ sqrt(log(4))
+  // sigma = a / sqrt(log(4))
   Real sigma = a / 1.177410022515474691;
 algorithm
   y := exp(-(x - c) ^ 2 / (2 * sigma ^ 2));

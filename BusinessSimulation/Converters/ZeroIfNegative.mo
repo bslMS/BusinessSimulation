@@ -5,7 +5,7 @@ block ZeroIfNegative "The input will be set to zero, if it is negative"
   parameter Boolean strict = true "= true, if strict limits with noEvent(..)" annotation(Evaluate = true, Dialog(tab = "Advanced"));
 equation
   if strict then
-    y = smooth(0, noEvent(if u < 0 then 0 else u));
+    y = noEvent(if u < 0 then 0 else u);
   else
     y = smooth(0, if u < 0 then 0 else u);
   end if;
@@ -15,11 +15,15 @@ equation
 <h4>Implementation</h4>
 <p>In the default setting (<code>strict = false</code>) in the Advanced tab, nonnegativity will be strictly ovserved:</p>
 <pre>  if strict then
-    y = smooth(0, noEvent(if u < 0 then 0 else u));
+    y = noEvent(if u < 0 then 0 else u);
   else
     y = smooth(0, if u < 0 then 0 else u);
   end if;<br><br></pre>
 <h4>See also</h4>
 <p><a href=\"modelica://BusinessSimulation.Converters.Clip\">Clip</a>,&nbsp;<a href=\"modelica://BusinessSimulation.Converters.ClipProcessTime\">ClipProcessTime</a></p>
+</html>", revisions = "<html>
+<ul>
+<li>updated in v2.0.0</li>
+</ul>
 </html>"), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10}), graphics = {Text(visible = true, origin = {0.484, 0}, textColor = {0, 0, 128}, extent = {{-40.484, -12}, {40.484, 12}}, textString = "0 if < 0", fontName = "Lato Black", textStyle = {TextStyle.Bold})}), Diagram(coordinateSystem(extent = {{-148.5, -105}, {148.5, 105}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})));
 end ZeroIfNegative;

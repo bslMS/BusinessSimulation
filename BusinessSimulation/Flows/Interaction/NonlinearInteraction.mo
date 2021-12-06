@@ -80,7 +80,7 @@ equation
 </table>
 <p>The coefficients can be given as <em>parameters</em> or as <em>variables</em> via the expandable connector <code>dataIn</code>.</p>
 <h4>Examples</h4>
-<p>A nonlinear component is typically found in predator-prey models or models of infectious diseases, where the exponential growth rate for a population depends upon the size of another population (e.g. prey or susceptible population).</p>
+<p>A nonlinear component is typically found in predator-prey models or models of infectious diseases, where the exponential growth rate for a population depends upon the size of another population (e.g., prey or susceptible population).</p>
 <h4>See also</h4>
 <p><a href=\"modelica://BusinessSimulation.Flows.Interaction.LinearInteraction\">LinearInteraction</a>,&nbsp;<a href=\"modelica://BusinessSimulation.Flows.Interaction.ComplexInteraction\">ComplexInteraction</a></p>
 </html>"), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10}), graphics = {Text(visible = true, origin = {0, 75}, textColor = {0, 128, 0}, extent = {{-100, -12}, {100, 12}}, textString = "Nonlinear", fontName = "Lato Black", textStyle = {TextStyle.Bold})}), Diagram(coordinateSystem(extent = {{-150, -90}, {150, 90}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})));

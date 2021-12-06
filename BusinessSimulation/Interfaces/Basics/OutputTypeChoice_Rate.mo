@@ -1,7 +1,8 @@
 within BusinessSimulation.Interfaces.Basics;
 
-partial class OutputTypeChoice_Rate "Partial model to set the output type to some kind of rate"
-  replaceable encapsulated type OutputType = .BusinessSimulation.Units.Rate;
+encapsulated partial class OutputTypeChoice_Rate "Partial model to set the output type to some kind of rate"
+  import BusinessSimulation.Units.{Rate,VolumeFlowRate,MassFlowRate,EnergyFlowRate,MomentumFlowRate,AngularMomentumFlowRate,Velocity};
+  replaceable type OutputType = Rate "Type choice" annotation(choices(choice(redeclare type OutputType = .BusinessSimulation.Units.Rate "Rate [1/s]"), choice(redeclare type OutputType = .BusinessSimulation.Units.AmountRate "Amount rate [each/s]"), choice(redeclare type OutputType = .BusinessSimulation.Units.VolumeFlowRate "Volume flow rate [m3/s]"), choice(redeclare type OutputType = .BusinessSimulation.Units.MassFlowRate "Mass flow rate [kg/s]"), choice(redeclare type OutputType = .BusinessSimulation.Units.EnergyFlowRate "Energy flow rate [J/s]"), choice(redeclare type OutputType = .BusinessSimulation.Units.MomentumFlowRate "Momentum flow rate [kg.m/s2]"), choice(redeclare type OutputType = .BusinessSimulation.Units.AngularMomentumFlowRate "Angular momentum flow rate [kg.m2/s2]"), choice(redeclare type OutputType = .BusinessSimulation.Units.Velocity "Velocity [m/s]")));
   connector RealOutput = output OutputType "Output rate signal" annotation(defaultComponentName = "y", Icon(coordinateSystem(preserveAspectRatio = true, extent = {{-100, -100}, {100, 100}}, initialScale = 0.1, grid = {10, 10}), graphics = {Polygon(visible = true, lineColor = {1, 37, 163}, fillColor = {255, 255, 255}, fillPattern = FillPattern.Solid, points = {{-100, 100}, {100, 0}, {-100, -100}})}), Diagram(coordinateSystem(preserveAspectRatio = true, extent = {{-100, -100}, {100, 100}}, initialScale = 0.1, grid = {10, 10}), graphics = {Polygon(visible = true, lineColor = {1, 37, 163}, fillColor = {255, 255, 255}, fillPattern = FillPattern.Solid, points = {{-100, 50}, {0, 0}, {-100, -50}}), Text(visible = true, origin = {0, 80}, textColor = {128, 128, 128}, extent = {{-100, -12}, {100, 12}}, textString = "%name", fontName = "Lato", textStyle = {TextStyle.Bold})}), Documentation(info = "<html>
 <p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
 <p>A Real <em>output</em> connector.</p></html>"));
@@ -10,8 +11,12 @@ partial class OutputTypeChoice_Rate "Partial model to set the output type to som
 <p>A Real <em>output</em> connector to indicate vector or list output.</p></html>"));
   annotation(Documentation(info = "<html>
 <p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
-<p>Partial class that enables the redeclaration of <code>type OutputType</code> which by default is set to <code>Units.Rate</code>. This class is only used for extensions.</p>
+<p>Partial class that enables the redeclaration of <code>type OutputType</code> which by default is set to <code>Units.Rate</code>. This class is only used for extensions and contains two <code>connector</code> classes (<code>RealOutput</code> and <code>RealMultiOutput</code>) that can be used for reporting the chosen <code>OutputType</code>.</p>
 <h4>See also</h4>
 <p><a href=\"modelica://BusinessSimulation.Units.Rate\">Units.Rate</a>,&nbsp;<a href=\"modelica://BusinessSimulation.Units\">Units</a></p>
+</html>", revisions = "<html>
+<ul>
+<li>Updated in v2.0.0.</li>
+</ul>
 </html>"), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10}), graphics = {Rectangle(visible = true, fillColor = {255, 255, 255}, pattern = LinePattern.None, extent = {{-100, -100}, {100, 100}})}), Diagram(coordinateSystem(extent = {{-150, -90}, {150, 90}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})));
 end OutputTypeChoice_Rate;

@@ -8,7 +8,7 @@ function arithmeticMean "(Weighted) arithmetic mean"
   output Real y;
 protected
   Real[n] w "Normalized and clipped weights";
-  constant Integer n = size(x, 1) "Length of the input vector";
+  Integer n = size(x, 1) "Length of the input vector";
 algorithm
   // clip weights to eliminate negative values
   w := BusinessSimulation.Functions.clip(weights, {0, inf});

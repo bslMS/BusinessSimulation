@@ -24,7 +24,7 @@ equation
 <ul>
 <li>The rates of inflow and outflow are determined by looking at the net flows at each <code>StockPort</code>—for this to be meaningful known inflows and outflows should be connected to the designated <code>inflow</code> and <code>outflow</code> ports of a stock. If a bi-flow is connected to a stock's port, then no other flow component should be connected to that port.</li><br>
 <li>The net flow will be <em>positive for a net inflow</em> and <em>negative for a net outflow</em>.</li><br>
-<li>The mean residence time will either be a specific value reported for a dynamic stock (e.g. the time of delay) or it will be determined by dividing the current amount in stock by the rate of outflow from the stock (see above note though). In case of no outflow a value of <code>-1</code> will be reported.</li>
+<li>The mean residence time will either be a specific value reported for a dynamic stock (e.g., the time of delay) or it will be determined by dividing the current amount in stock by the rate of outflow from the stock (see above note though). In case of no outflow a value of <code>-1</code> will be reported.</li>
 </ul>
 <h4>See also</h4>
 <p><a href=\"modelica://BusinessSimulation.Sensors.AbsoluteSensor\">AbsoluteSensor</a>,&nbsp;<a href=\"modelica://BusinessSimulation.Sensors.DynamicStockInfo\">DynamicStockInfo</a></p>

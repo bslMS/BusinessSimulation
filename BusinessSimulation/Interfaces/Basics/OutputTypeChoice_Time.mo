@@ -1,7 +1,8 @@
 within BusinessSimulation.Interfaces.Basics;
 
-partial class OutputTypeChoice_Time "Partial model to set output type to some derivative of time"
-  replaceable encapsulated type OutputType = .BusinessSimulation.Units.Time;
+encapsulated partial class OutputTypeChoice_Time "Partial model to set output type to some derivative of time"
+  import BusinessSimulation.Units.{Time,Time_minutes,Time_hours,Time_days,Time_weeks,Time_months,Time_quarters,Time_years};
+  replaceable type OutputType = Time "Type choice" annotation(choices(choice(redeclare type OutputType = .BusinessSimulation.Units.Time "Time [s]"), choice(redeclare type OutputType = .BusinessSimulation.Units.Time_minutes "Time [min]"), choice(redeclare type OutputType = .BusinessSimulation.Units.Time_hours "Time [h]"), choice(redeclare type OutputType = .BusinessSimulation.Units.Time_days "Time [d]"), choice(redeclare type OutputType = .BusinessSimulation.Units.Time_weeks "Time [wk]"), choice(redeclare type OutputType = .BusinessSimulation.Units.Time_months "Time [mo]"), choice(redeclare type OutputType = .BusinessSimulation.Units.Time_quarters "Time [qtr]"), choice(redeclare type OutputType = .BusinessSimulation.Units.Time_years "Time [yr]")));
   connector RealOutput = output OutputType "Output time signal" annotation(defaultComponentName = "y", Icon(coordinateSystem(preserveAspectRatio = true, extent = {{-100, -100}, {100, 100}}, initialScale = 0.1, grid = {10, 10}), graphics = {Polygon(visible = true, lineColor = {1, 37, 163}, fillColor = {255, 255, 255}, fillPattern = FillPattern.Solid, points = {{-100, 100}, {100, 0}, {-100, -100}})}), Diagram(coordinateSystem(preserveAspectRatio = true, extent = {{-100, -100}, {100, 100}}, initialScale = 0.1, grid = {10, 10}), graphics = {Polygon(visible = true, lineColor = {1, 37, 163}, fillColor = {255, 255, 255}, fillPattern = FillPattern.Solid, points = {{-100, 50}, {0, 0}, {-100, -50}}), Text(visible = true, origin = {0, 80}, textColor = {128, 128, 128}, extent = {{-100, -12}, {100, 12}}, textString = "%name", fontName = "Lato", textStyle = {TextStyle.Bold})}), Documentation(info = "<html>
 <p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
 <p>A Real <em>output</em> connector.</p></html>"));
@@ -10,8 +11,12 @@ partial class OutputTypeChoice_Time "Partial model to set output type to some de
 <p>A Real <em>output</em> connector to indicate vector or list output.</p></html>"));
   annotation(Documentation(info = "<html>
 <p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
-<p>Partial class that enables the redeclaration of <code>type OutputType</code> which by default is set to <code>Units.Time</code>. This class is only used for extensions.</p>
+<p>Partial class that enables the redeclaration of <code>type OutputType</code> which by default is set to <code>Units.Time</code>. This class is only used for extensions and contains two <code>connector</code> classes (<code>RealOutput</code> and <code>RealMultiOutput</code>) that can be used for reporting the chosen <code>OutputType</code>.</p>
 <h4>See also</h4>
 <p><a href=\"modelica://BusinessSimulation.Units.Time\">Units.Time</a>,&nbsp;<a href=\"modelica://BusinessSimulation.Units\">Units</a></p>
+</html>", revisions = "<html>
+<ul>
+<li>Updated in v2.0.0.</li>
+</ul>
 </html>"), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10}), graphics = {Rectangle(visible = true, fillColor = {255, 255, 255}, pattern = LinePattern.None, extent = {{-100, -100}, {100, 100}})}), Diagram(coordinateSystem(extent = {{-150, -90}, {150, 90}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})));
 end OutputTypeChoice_Time;
