@@ -1,8 +1,9 @@
 within BusinessSimulation.Stocks;
 
 model CapacityRestrictedStock "Material stock, that cannot be drained or filled beyond its capacity limits"
-  import BusinessSimulation.Constants.{small,zero};
   import BusinessSimulation.Types.InitializationOptions;
+  import BusinessSimulation.Units.*;
+  import BusinessSimulation.Constants.{small,zero,inf,INF};
   extends Interfaces.PartialStocks.BasicStock(initialValue(min = 0), minValue(min = zero) = zero, useAssert = false);
   extends Icons.MaterialStockIndicator;
   extends Icons.CapacityLabel;
@@ -17,17 +18,17 @@ protected
 initial equation
   // properly initialize discrete vars with fixed = false
   // provide Boolean signal when above capacity
-  pre(inflow.stopInflow) = not x < maxCapacity - BusinessSimulation.Constants.small;
+  pre(inflow.stopInflow) = not x < maxCapacity - small;
   pre(outflow.stopInflow) = inflow.stopInflow;
   // provide Boolean signal when below capacity
-  pre(inflow.stopOutflow) = not x > minCapacity + BusinessSimulation.Constants.small;
+  pre(inflow.stopOutflow) = not x > minCapacity + small;
   pre(outflow.stopOutflow) = pre(inflow.stopOutflow);
 equation
   // provide Boolean signal when above capacity
-  inflow.stopInflow = not x < maxCapacity - BusinessSimulation.Constants.small;
+  inflow.stopInflow = not x < maxCapacity - small;
   outflow.stopInflow = inflow.stopInflow;
   // provide Boolean signal when below capacity
-  inflow.stopOutflow = not x > minCapacity + BusinessSimulation.Constants.small;
+  inflow.stopOutflow = not x > minCapacity + small;
   outflow.stopOutflow = inflow.stopOutflow;
   // optional reinitialize stock to zero if negative //
   if reinitializeStock then
@@ -52,7 +53,7 @@ equation
 <p><em>CapacityRestrictedStock</em> components will prevent connected flows from draining the stock via their &rarr;<a href=\"modelica://BusinessSimulation.Interfaces.Connectors.StockPort\">StockPort </a>connectors' Boolean flags, should the calculated state variable&nbsp;<code>x</code> be less than a very small positive amount:</p>
 <br>
 <pre>  inflow.stopInflow = not x < maxCapacity - BusinessSimulation.Constants.small;
-  outflow.stopInflow = inflow.stopInflow;</pre><br>   
+  outflow.stopInflow = inflow.stopInflow;</pre><br>
 <pre>  inflow.stopOutflow = not x > minCapacity + BusinessSimulation.Constants.small;
   outflow.stopOutflow = inflow.stopOutflow;</pre><br>
 <h4>Notes</h4>

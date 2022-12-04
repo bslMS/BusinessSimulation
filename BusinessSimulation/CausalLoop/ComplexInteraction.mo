@@ -1,7 +1,7 @@
 within BusinessSimulation.CausalLoop;
 
 model ComplexInteraction "Interaction with linear and nonlinear terms"
-  import BusinessSimulation.Units.Rate;
+  import BusinessSimulation.Units.*;
   extends Interfaces.PartialCLD.Interaction(polA = "±", polB = "±");
   parameter Rate a_0 "Growth rate for A (independent)" annotation(Dialog(group = "Parameters for net flow to A"));
   parameter Rate a_A "Fractional rate of growth for A (self-coupling A)" annotation(Dialog(group = "Parameters for net flow to A"));
@@ -12,8 +12,8 @@ model ComplexInteraction "Interaction with linear and nonlinear terms"
   parameter Rate b_A "Rate of growth for B per unit of A (coupling of A to B)" annotation(Dialog(group = "Parameters for net flow to B"));
   parameter Rate b_AB "Fractional growth rate for B per unit of A (nonlinear coupling)" annotation(Dialog(group = "Parameters for net flow to B"));
 protected
-  Flows.Interaction.ComplexInteraction complexInteraction annotation(Placement(visible = true, transformation(origin = {0, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  Converters.Vector.ScalarMultiplication actualCoefficients(nin = 8, redeclare replaceable type OutputType = Rate) annotation(Placement(visible = true, transformation(origin = {-0, 65}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
+  Flows.Interaction.ComplexInteraction complexInteraction(redeclare type OutputType_A = OutputType_A, redeclare type OutputType_B = OutputType_B) annotation(Placement(visible = true, transformation(origin = {0, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  Converters.Vector.ScalarMultiplication actualCoefficients(nin = 8, redeclare type OutputType = Rate) annotation(Placement(visible = true, transformation(origin = {-0, 65}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
   Converters.Vector.ConstantConverter constantCoefficients(value = {a_0, a_A, a_B, a_AB, b_0, b_B, b_A, b_AB}) annotation(Placement(visible = true, transformation(origin = {60, 80}, extent = {{10, -10}, {-10, 10}}, rotation = 0)));
   Interfaces.Connectors.RealOutput y_a0 annotation(Placement(visible = true, transformation(origin = {-50, 35}, extent = {{-5, -5}, {5, 5}}, rotation = -90), iconTransformation(origin = {-41.575, 16.667}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Flows.Interaction.ComplexInteraction.InputConnector dataIn annotation(Placement(visible = true, transformation(origin = {-0, 20}, extent = {{-5, -5}, {5, 5}}, rotation = -90), iconTransformation(origin = {0, 22.222}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
@@ -31,7 +31,7 @@ equation
   connect(actualCoefficients.y[1], y_a0) annotation(Line(visible = true, origin = {-16.667, 57.179}, points = {{16.667, 0.321}, {16.667, -7.179}, {-33.333, -7.179}, {-33.333, -22.179}}, color = {1, 37, 163}));
   connect(u, actualCoefficients.u2) annotation(Line(visible = true, origin = {-78.985, 70.608}, points = {{-66.015, -10.608}, {-41.015, -10.608}, {-41.015, 9.392}, {74.023, 9.392}, {74.023, 2.43}}, color = {0, 0, 128}));
   connect(one, actualCoefficients.u2) annotation(Line(visible = true, origin = {-78.985, 62.608}, points = {{-66.015, -22.608}, {-41.015, -22.608}, {-41.015, 17.392}, {74.023, 17.392}, {74.023, 10.43}}, color = {0, 0, 128}));
-  connect(dataIn, complexInteraction.dataIn) annotation(Line(visible = true, origin = {-0, 15}, points = {{-0, 5}, {0, -5}}, color = {0, 0, 128}));
+  connect(dataIn, complexInteraction.dataIn) annotation(Line(visible = true, origin = {0, 15}, points = {{0, 5}, {0, -5}}, color = {0, 0, 128}));
   connect(y_a0, dataIn.a_0) annotation(Line(visible = true, origin = {-20, 33.75}, points = {{-30, 1.25}, {-30, -3.75}, {20, -3.75}, {20, -13.75}}, color = {1, 37, 163}));
   connect(actualCoefficients.y[2], y_aA) annotation(Line(visible = true, origin = {-20, 48.125}, points = {{20, 9.375}, {20, 1.875}, {-20, 1.875}, {-20, -13.125}}, color = {1, 37, 163}));
   connect(actualCoefficients.y[3], y_aB) annotation(Line(visible = true, origin = {-15, 45.625}, points = {{15, 11.875}, {15, 4.375}, {-15, 4.375}, {-15, -10.625}}, color = {1, 37, 163}));

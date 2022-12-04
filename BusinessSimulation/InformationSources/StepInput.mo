@@ -1,7 +1,7 @@
 within BusinessSimulation.InformationSources;
 
 model StepInput "Generate a step signal of real input"
-  import BusinessSimulation.Units.Time;
+  import BusinessSimulation.Units.*;
   extends Interfaces.PartialConverters.InformationSource_SO;
   parameter OutputType offset = 0 "Offset of output signal y";
   parameter Time startTime = 0 "Output y = offset for time < startTime";

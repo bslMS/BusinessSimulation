@@ -1,7 +1,8 @@
 within BusinessSimulation.CausalLoop;
 
 model LinearChange "Process of growth or decline at given rate"
-  extends Interfaces.PartialCLD.SourceOrSink;
+  import BusinessSimulation.Units.*;
+  extends Interfaces.PartialCLD.SourceOrSink(hasConstantRate = true);
 protected
   SourcesOrSinks.ExogenousChange linearlyChanging annotation(Placement(visible = true, transformation(origin = {0, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
 equation

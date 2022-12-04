@@ -1,23 +1,26 @@
 within BusinessSimulation.Flows.Interaction;
 
 model ComplexInteraction "Combined linear and nonlinear interaction"
+  import BusinessSimulation.Units.*;
   extends Icons.Interaction;
   extends Interfaces.Basics.GenericFlow;
   extends Interfaces.Basics.Interaction4SO;
   InputConnector dataIn "Expandable connector for continuous input" annotation(Placement(visible = true, transformation(origin = {-150, 40}, extent = {{-10, -10}, {10, 10}}, rotation = -360), iconTransformation(origin = {0, 100}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
 
-  expandable connector InputConnector "Data bus for inputs"
-    extends Icons.DataInPort;
+  encapsulated expandable connector InputConnector "Data bus for inputs"
+    import ICON = BusinessSimulation.Icons.DataInPort;
+    import BusinessSimulation.Units.*;
+    extends ICON;
     // coefficients for net flow equations A
-    Real a_0 "Growth rate for A (independent)";
-    Real a_A "Fractional rate of growth for A (self-coupling A)";
-    Real a_B "Rate of growth for A per unit of B (coupling of B to A)";
-    Real a_AB "Fractional rate of growth for A per unit of B (nonlinear coupling)";
+    Rate a_0 "Growth rate for A (independent)";
+    Rate a_A "Fractional rate of growth for A (self-coupling A)";
+    Rate a_B "Rate of growth for A per unit of B (coupling of B to A)";
+    Rate a_AB "Fractional rate of growth for A per unit of B (nonlinear coupling)";
     // coefficients for net flow equation B
-    Real b_0 "Growth rate for B (independent)";
-    Real b_B "Fractional growth rate for B (self-coupling)";
-    Real b_A "Rate of growth for B per unit of A (coupling of A to B)";
-    Real b_AB "Fractional growth rate for B per unit of A (nonlinear coupling)";
+    Rate b_0 "Growth rate for B (independent)";
+    Rate b_B "Fractional growth rate for B (self-coupling)";
+    Rate b_A "Rate of growth for B per unit of A (coupling of A to B)";
+    Rate b_AB "Fractional growth rate for B per unit of A (nonlinear coupling)";
   end InputConnector;
 protected
   LinearInteraction linearInteraction "Linear interaction between A and B" annotation(Placement(visible = true, transformation(origin = {0, 40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
@@ -168,5 +171,9 @@ equation
 <p style=\"padding-left: 30px;\"><code>a_0 = 0, a_A =&nbsp;&alpha;, a_B = 0, a_AB = -&beta;, b_0 = 0, b_B = -&gamma;, b_A = 0, b_AB =&nbsp;&delta;</code></p>
 <h4>See also</h4>
 <p><a href=\"modelica://BusinessSimulation.Flows.Interaction.LinearInteraction\">LinearInteraction</a>, <a href=\"modelica://BusinessSimulation.Flows.Interaction.ComplexInteraction\">ComplexInteraction</a>,&nbsp;<a href=\"modelica://BusinessSimulation.Flows.Interaction.LotkaVolterra\">LotkaVolterra</a></p>
-</html>"), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10}), graphics = {Text(visible = true, origin = {0, 75}, textColor = {0, 128, 0}, extent = {{-100, -12}, {100, 12}}, textString = "Linear & Nonlinear", fontName = "Lato Black", textStyle = {TextStyle.Bold})}));
+</html>", revisions = "<html>
+<ul>
+<li><code>InputConnector</code> defined as <code>encapsulated expandable connector</code> in v2.1.0.</li><br>
+</ul>
+</html>"), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10}), graphics = {Text(visible = true, origin = {0, 75}, textColor = {0, 128, 0}, extent = {{-100, -12}, {100, 12}}, textString = "Linear & Nonlinear", fontName = "Lato", textStyle = {TextStyle.Bold})}));
 end ComplexInteraction;

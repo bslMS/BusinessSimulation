@@ -1,8 +1,10 @@
 within BusinessSimulation.Stocks;
 
 model InformationLevel "Unrestricted reservoir to store information"
-  extends Interfaces.PartialStocks.BasicStock;
   import BusinessSimulation.Types.InitializationOptions;
+  import BusinessSimulation.Units.*;
+  import BusinessSimulation.Constants.{small,zero,inf,INF};
+  extends Interfaces.PartialStocks.BasicStock;
 initial equation
   // properly initialize discrete vars with fixed = false
   pre(inflow.stopInflow) = false;

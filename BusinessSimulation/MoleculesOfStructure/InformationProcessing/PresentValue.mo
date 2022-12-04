@@ -1,16 +1,16 @@
 within BusinessSimulation.MoleculesOfStructure.InformationProcessing;
 
 block PresentValue "Calculates the present value of a stream of cash flows"
-  import BusinessSimulation.Units.{Rate,Time};
+  import BusinessSimulation.Units.*;
   extends Interfaces.PartialConverters.InformationProcessing_SO;
   Interfaces.Connectors.RealInput u "Cash stream input" annotation(Placement(visible = true, transformation(origin = {-145, 85}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-110, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Interfaces.Connectors.RealInput u_r if not hasConstantRate "Discount rate input" annotation(Placement(visible = true, transformation(origin = {-145, 20}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-110, -50}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  parameter Real initialValue = 0 "Initial PV at start time";
+  parameter OutputType initialValue = 0 "Initial PV at start time";
   parameter Rate rate = 0.05 "Constant discount rate per period (optional)" annotation(Dialog(enable = hasConstantRate));
   parameter Boolean hasConstantRate = false "If true the discount rate is a constant parameter" annotation(Evaluate = true, Dialog(group = "Structural Parameters"));
   parameter Boolean isCCR = true "If false the given rate is transformed to a continuously compounding rate" annotation(Evaluate = true, Dialog(group = "Structural Parameters"));
 protected
-  Converters.AccumulationFunction futureValueFactor(isCCR = isCCR, redeclare replaceable type OutputType = Units.Dimensionless) "Accumulation function a(t)" annotation(Placement(visible = true, transformation(origin = {-60, 20}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  Converters.AccumulationFunction futureValueFactor(isCCR = isCCR, redeclare replaceable type OutputType = Dimensionless) "Accumulation function a(t)" annotation(Placement(visible = true, transformation(origin = {-60, 20}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Converters.Division discountedStream "Discounted stream of cash flows" annotation(Placement(visible = true, transformation(origin = {0, 80}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Stocks.InformationLevel PV(initialValue = initialValue, init = BusinessSimulation.Types.InitializationOptions.FixedValue) "Present Value for stream of cash flows" annotation(Placement(visible = true, transformation(origin = {90, 5}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   SourcesOrSinks.Growth increasingPV "Present value is accumulation of discounted CF-stream" annotation(Placement(visible = true, transformation(origin = {50, 5}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
@@ -33,5 +33,5 @@ equation
 <a href=\"modelica://BusinessSimulation.Converters.AccumulationFunction\">AccumulationFunction</a>,
 <a href=\"modelica://BusinessSimulation.Converters.ForceOfInterest\">ForceOfInterest</a>
 </p>
-</html>"), Diagram(coordinateSystem(extent = {{-148.5, -35}, {148.5, 105}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10}), graphics = {Text(visible = true, textColor = {0, 0, 128}, extent = {{-96.456, -12}, {96.456, 12}}, textString = "Present Value", fontName = "Lato Black", textStyle = {TextStyle.Bold}), Text(visible = true, origin = {0, -25}, textColor = {0, 0, 128}, extent = {{-96.456, -12}, {96.456, 12}}, textString = "PV", fontName = "Lato Black", textStyle = {TextStyle.Bold})}));
+</html>"), Diagram(coordinateSystem(extent = {{-148.5, -35}, {148.5, 105}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10}), graphics = {Text(visible = true, textColor = {0, 0, 128}, extent = {{-96.456, -12}, {96.456, 12}}, textString = "Present Value", fontName = "Lato", textStyle = {TextStyle.Bold}), Text(visible = true, origin = {0, -25}, textColor = {0, 0, 128}, extent = {{-96.456, -12}, {96.456, 12}}, textString = "PV", fontName = "Lato", textStyle = {TextStyle.Bold})}));
 end PresentValue;

@@ -4,10 +4,11 @@ partial model Flow "Partial interaction for causal loop diagramming"
   Connectors.FlowPort portA annotation(Placement(visible = true, transformation(origin = {-150, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-50, -0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Connectors.FlowPort portB annotation(Placement(visible = true, transformation(origin = {150, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {50, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Connectors.RealInput u if hasFactor "Factor input" annotation(Placement(visible = true, transformation(origin = {-145, 60}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {0, 50}, extent = {{-10, 10}, {10, -10}}, rotation = 270)));
+  extends Interfaces.Basics.OutputTypeChoice_Rate;
   parameter Boolean hasFactor = false "= true, if coefficients are to be multiplied with input u" annotation(Evaluate = true, Dialog(group = "Structural Parameters"));
   parameter Boolean hasRateOutput = false "= true, if the rate is reported via real output connectors" annotation(Evaluate = true, Dialog(group = "Structural Parameters"));
-  Connectors.RealOutput y(quantity = "Rate", unit = "1/s") if hasRateOutput "Output of current rate of flow" annotation(Placement(visible = true, transformation(origin = {161.845, 40}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {80, 30}, extent = {{-10, -10}, {10, 10}}, rotation = -270)));
-  Connectors.RealOutput y1(quantity = "Rate", unit = "1/s") if hasRateOutput "Output of current rate of flow" annotation(Placement(visible = true, transformation(origin = {162.083, -40}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {80, -30}, extent = {{-10, 10}, {10, -10}}, rotation = 270)));
+  RealOutput y if hasRateOutput "Output of current rate of flow" annotation(Placement(visible = true, transformation(origin = {161.845, 40}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {80, 30}, extent = {{-10, -10}, {10, 10}}, rotation = -270)));
+  RealOutput y1 if hasRateOutput "Output of current rate of flow" annotation(Placement(visible = true, transformation(origin = {162.083, -40}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {80, -30}, extent = {{-10, 10}, {10, -10}}, rotation = 270)));
 protected
   Connectors.RealOutput one = 1.0 if not hasFactor "Default factor" annotation(Placement(visible = true, transformation(origin = {-135, 40}, extent = {{-10, -10}, {10, 10}}, rotation = -720), iconTransformation(origin = {-42, -58}, extent = {{-10, -10}, {10, 10}}, rotation = -270)));
   annotation(Documentation(revisions = "<html>

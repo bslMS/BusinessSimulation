@@ -1,8 +1,8 @@
 within BusinessSimulation.Interfaces.Basics;
 
 partial class Interaction4SO "Output connectors for interaction elements reporting rates"
-  replaceable type OutputType_A = Units.Rate constrainedby Units.Rate "Type selection for the flow to/from A";
-  replaceable type OutputType_B = Units.Rate constrainedby Units.Rate "Type selection for the flow to/from B";
+  replaceable type OutputType_A = Rate constrainedby Rate "Type selection for the flow to/from A" annotation(choicesAllMatching = true);
+  replaceable type OutputType_B = Rate constrainedby Rate "Type selection for the flow to/from B" annotation(choicesAllMatching = true);
   RealOutput_B y_B "Rate for flow to and from B (positive value indicates inflow)" annotation(Placement(visible = true, transformation(origin = {160, -40}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {50, 104}, extent = {{-10, -10}, {10, 10}}, rotation = -1350)));
   RealOutput_B y1_B "Rate for flow to and from B (positive value indicates inflow)" annotation(Placement(visible = true, transformation(origin = {160, -80}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {105, -50}, extent = {{-10, -10}, {10, 10}}, rotation = -360)));
   RealOutput_A y1_A "Rate for flow to and from A (positive value indicates inflow)" annotation(Placement(visible = true, transformation(origin = {160, 40}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-105, -50}, extent = {{-10, 10}, {10, -10}}, rotation = -180)));

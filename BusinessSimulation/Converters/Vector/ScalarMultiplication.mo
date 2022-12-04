@@ -1,6 +1,7 @@
 within BusinessSimulation.Converters.Vector;
 
 block ScalarMultiplication "Multiplication of a vector with a scalar"
+  import BusinessSimulation.Units.*;
   extends Interfaces.Basics.BaseConverter;
   parameter Integer nin(min = 2) = 2 "Length of input vector" annotation(Evaluate = true, Dialog(group = "Structural Parameters"));
   Interfaces.Connectors.RealMultiInput[nin] u1 "Input vector of length nin" annotation(Placement(visible = true, transformation(origin = {-145, 40}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-80.378, 49.622}, extent = {{-10.378, -10.378}, {10.378, 10.378}}, rotation = 0)));

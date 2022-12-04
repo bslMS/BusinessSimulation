@@ -2,7 +2,8 @@ within BusinessSimulation.Stocks;
 
 model SimpleConveyor "Conveyor (aka pipeline delay) with constant delay time and no leakage"
   import BusinessSimulation.Types.InitializationOptions;
-  import BusinessSimulation.Units.{Time,Rate};
+  import BusinessSimulation.Units.*;
+  import BusinessSimulation.Constants.{small,zero,inf,INF};
   extends Icons.Conveyor;
   extends Interfaces.Basics.GenericStock_Special(hasStockInfoOutput = false, init = modelSettings.init);
   parameter OutputType initialValue(min = 0) = 0 "Initial load";
@@ -76,5 +77,5 @@ equation
 </ul>
 <h4>See also</h4>
 <p><a href=\"modelica://BusinessSimulation.Stocks.Conveyor\">Conveyor</a>,&nbsp;<a href=\"modelica://BusinessSimulation.Stocks.PureDelay\">PureDelay</a>, <a href=\"modelica://BusinessSimulation.Converters.DiscreteDelay.DelayFixed\">DelayFixed</a>,&nbsp;<a href=\"modelica://BusinessSimulation.Converters.DiscreteDelay.DelayInformation\">DelayInformation</a></p>
-</html>"), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10}), graphics = {Rectangle(visible = true, origin = {240.961, -10}, fillColor = {255, 255, 255}, extent = {{-0.961, -0}, {0.961, 0}}), Text(visible = true, origin = {0, -80}, textColor = {0, 0, 128}, extent = {{-100, -6}, {100, 6}}, textString = "%initialValue", fontName = "Lato")}), Diagram(coordinateSystem(extent = {{-148.5, -105}, {148.5, 105}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})));
+</html>"), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10}), graphics = {Rectangle(visible = true, origin = {240.961, -10}, fillColor = {255, 255, 255}, extent = {{-0.961, -0}, {0.961, 0}})}), Diagram(coordinateSystem(extent = {{-148.5, -105}, {148.5, 105}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})));
 end SimpleConveyor;

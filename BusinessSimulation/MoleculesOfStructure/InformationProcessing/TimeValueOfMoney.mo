@@ -1,8 +1,8 @@
 within BusinessSimulation.MoleculesOfStructure.InformationProcessing;
 
 block TimeValueOfMoney "Calculate the time value of money (TVM) using continuous compounding"
+  import BusinessSimulation.Units.*;
   extends Interfaces.PartialConverters.InformationProcessing_SO;
-  import BusinessSimulation.Units.{Rate,Time};
   Interfaces.Connectors.RealInput u "Current value input" annotation(Placement(visible = true, transformation(origin = {-145, -5}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-110, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Interfaces.Connectors.RealInput u_T(quantity = "Time", unit = "s") if not hasConstantHorizon "Time horizon(T >0 → FV, T < 0 → PV)" annotation(Placement(visible = true, transformation(origin = {-145, -40}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-110, -50}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Interfaces.Connectors.RealInput u_r(quantity = "Rate", unit = "1/s") if not hasConstantRate "Interest rate" annotation(Placement(visible = true, transformation(origin = {-145, 60}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-110, 50}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
@@ -47,5 +47,5 @@ equation
 <a href=\"modelica://BusinessSimulation.Converters.ForceOfInterest\">ForceOfInterest</a>,
 <a href=\"modelica://BusinessSimulation.Converters.AccumulationFunction\">AccumulationFunction</a>
 </p>
-</html>"), Diagram(coordinateSystem(extent = {{-148.5, -70}, {148.5, 90}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10}), graphics = {Text(visible = true, textColor = {0, 0, 128}, extent = {{-96.456, -12}, {96.456, 12}}, textString = "Time Value", fontName = "Lato Black", textStyle = {TextStyle.Bold}), Text(visible = true, origin = {0, -25}, textColor = {0, 0, 128}, extent = {{-96.456, -12}, {96.456, 12}}, textString = "TVM", fontName = "Lato Black", textStyle = {TextStyle.Bold})}));
+</html>"), Diagram(coordinateSystem(extent = {{-148.5, -70}, {148.5, 90}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10}), graphics = {Text(visible = true, textColor = {0, 0, 128}, extent = {{-96.456, -12}, {96.456, 12}}, textString = "Time Value", fontName = "Lato", textStyle = {TextStyle.Bold}), Text(visible = true, origin = {0, -25}, textColor = {0, 0, 128}, extent = {{-96.456, -12}, {96.456, 12}}, textString = "TVM", fontName = "Lato", textStyle = {TextStyle.Bold})}));
 end TimeValueOfMoney;

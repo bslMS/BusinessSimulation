@@ -1,7 +1,6 @@
 within BusinessSimulation.Interfaces.PartialFlows;
 
 partial model BidirectionalFlow "Generic bi-directional flow between two stocks"
-  import BusinessSimulation.Units.Rate;
   extends Basics.GenericFlow;
   extends Icons.BidirectionalFlow;
   extends Basics.ThreeSO_rate;

@@ -1,7 +1,7 @@
 within BusinessSimulation.Converters.Vector;
 
 block ConstantConverterTime "A list of constant time values is turned into a vector of constant time signals"
-  import BusinessSimulation.Units.Time;
+  import BusinessSimulation.Units.*;
   import BusinessSimulation.Types.TimeBases;
   extends Icons.ConstantConverter;
   extends Interfaces.Basics.OutputTypeChoice_Time(redeclare final type OutputType = Time);

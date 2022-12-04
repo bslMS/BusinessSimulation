@@ -1,7 +1,7 @@
 within BusinessSimulation.CausalLoop;
 
 model SimpleControl "Directly influencing a stock to keep it at setpoint value"
-  import BusinessSimulation.Units.Time;
+  import BusinessSimulation.Units.*;
   extends BusinessSimulation.Interfaces.PartialCLD.Control;
   parameter Time adjTime(min = modelSettings.dt) = 1 "Time constant for stock control";
   outer ModelSettings modelSettings;

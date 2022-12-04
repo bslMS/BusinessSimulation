@@ -1,6 +1,7 @@
 within BusinessSimulation.Converters;
 
 block Disruption "Output is the disturbed input"
+  import BusinessSimulation.Units.*;
   extends Interfaces.PartialConverters.SISO;
   Interfaces.Connectors.RealInput u_dis "Disruptive input" annotation(Placement(visible = true, transformation(origin = {-145, 40}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {0, 80}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
   parameter Boolean isAdditive = false "= true, if disruptive effect is multiplicative" annotation(Evaluate = true, Dialog(group = "Structural Parameters"));

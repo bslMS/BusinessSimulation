@@ -149,6 +149,24 @@ final class References "Bibliography"
 <p>H. Bossel, <em>Systeme, Dynamik, Simulation: Modellbildung Analyse und Simulation komplexer Systeme</em>. Norderstedt, Germany: Books on Demand, 2004.</p>
 </td>
 </tr>
+<tr>
+<td>[26]</td>
+<td>
+<p>W.H. Press, S.A. Teukolsky, W.T. Vetterling, and B.P. Flannery, <em>Numerical recipes: The art of scientific computing</em>, 3rd ed. New York, NY, USA: Cambridge Univ. Press, 2007.</p>
+</td>
+</tr>
+<tr>
+<td>[27]</td>
+<td>
+<p>A. Louwen and J. Subtil Lacerda, \"The experience curve: concept, history, methods, and issues,\" in <em>Technological Learning in the Transition to a Low-Carbon Energy System: Conceptual Issues, Empirical Findings, and Use</em>, in Energy Modeling, M. Junginger and A. Louwen, Eds., Cambridge, MA, USA: Academic Press, 2020, pp. 9-31.</p>
+</td>
+</tr>
+<tr>
+<td>[28]</td>
+<td>
+<p>G.W. Reichert, \"Hierarchical, Component-Based Modeling Using the Cyber-Physical Modeling Language Modelica\", <em>Conference Record of the 2022 System Dynamics Conference</em>, Frankfurt, Germany, 2022. Available:&nbsp;<a href = \"https://proceedings.systemdynamics.org/2022/papers/P1332.pdf\">https://proceedings.systemdynamics.org/2022/papers/P1332.pdf</a></p>
+</td>
+</tr>
 </tbody>
 </table>
 </html>"), Diagram(coordinateSystem(extent = {{-150, -90}, {150, 90}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})), Icon(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}}, initialScale = 0.1, grid = {10, 10}), graphics = {Polygon(visible = true, origin = {-20, -28}, lineColor = {56, 56, 56}, fillColor = {128, 128, 128}, fillPattern = FillPattern.Solid, points = {{-70, 108}, {-80, 98}, {-80, -72}, {110, -72}, {120, -62}}), Polygon(visible = true, origin = {-60, -5}, lineColor = {56, 56, 56}, fillColor = {179, 179, 179}, fillPattern = FillPattern.Solid, points = {{0, 85}, {-30, 85}, {-30, -85}, {60, -85}}), Rectangle(visible = true, origin = {50, -5}, lineColor = {56, 56, 56}, fillColor = {244, 244, 244}, fillPattern = FillPattern.Solid, extent = {{-50, -85}, {50, 85}}), Polygon(visible = true, origin = {-20.603, -3.83}, lineColor = {56, 56, 56}, fillColor = {230, 230, 230}, fillPattern = FillPattern.Solid, points = {{20.603, 83.83}, {0.603, 103.83}, {-59.397, 103.83}, {-59.397, 103.83}, {-59.397, -66.17}, {-59.397, -66.17}, {0.603, -66.17}, {20.603, -86.17}, {20.603, -86.17}, {20.603, 83.83}}, smooth = Smooth.Bezier), Line(visible = true, origin = {50, 15}, points = {{-35, 0}, {35, 0}}, color = {56, 56, 56}), Line(visible = true, origin = {50, -20}, points = {{-35, 0}, {35, 0}}, color = {56, 56, 56}), Line(visible = true, origin = {50, -55}, points = {{-35, 0}, {35, 0}}, color = {56, 56, 56}), Line(visible = true, origin = {50, 50}, points = {{-35, 0}, {35, 0}}, color = {56, 56, 56})}));

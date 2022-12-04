@@ -1,8 +1,7 @@
 within BusinessSimulation.Interfaces.PartialCLD;
 
 partial block Performance "Evaluating a stock"
-  import BusinessSimulation.Units.Information;
-  extends Lookup(redeclare final type OutputType = Information);
+  extends Lookup;
   annotation(Documentation(revisions = "<html>
 <ul>
 <li>Introduced in v2.0.0.</li>

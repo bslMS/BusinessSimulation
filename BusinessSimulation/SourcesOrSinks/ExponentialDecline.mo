@@ -1,11 +1,12 @@
 within BusinessSimulation.SourcesOrSinks;
 
 model ExponentialDecline "Exponential decline of connected stock"
-  import BusinessSimulation.Units.Rate;
+  import BusinessSimulation.Units.*;
+  import BusinessSimulation.Constants.*;
   extends Interfaces.Basics.GenericSourceOrSink;
   extends Icons.Sink;
   Interfaces.Connectors.RealInput u if not hasConstantRate "Fractional rate given as exogenous input" annotation(Placement(visible = true, transformation(origin = {-145, 40}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-50, 100}, extent = {{-10, 10}, {10, -10}}, rotation = 270)));
-  parameter OutputType fractionalRate(min = 0) = 0 "Constant fractional rate to be used if chosen" annotation(Dialog(enable = hasConstantRate));
+  parameter OutputType fractionalRate(min = 0) = unspecified "Constant fractional rate to be used if chosen" annotation(Dialog(enable = hasConstantRate));
   parameter Boolean isCCR = true "= true, if the factional rate given is assumed to be a continuously compounding rate else the rate will be converted" annotation(Dialog(group = "Structural Parameters"));
   parameter Boolean hasConstantRate = false "= true, if the constant fractional rate is used instead of the real input u" annotation(Evaluate = true, Dialog(group = "Structural Parameters"));
 protected
@@ -15,6 +16,7 @@ protected
   Converters.PassThrough indicatedRate if isCCR "Indicated fractional rate" annotation(Placement(visible = true, transformation(origin = {-70, 50}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Converters.ForceOfInterest convertedRate if not isCCR "Continuously compounding rate" annotation(Placement(visible = true, transformation(origin = {-70, 70}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
 equation
+  assert(not hasConstantRate or fractionalRate < inf, "Parameter fractionalRate needs to be specified");
   connect(massPort, decreasing.portA) annotation(Line(visible = true, origin = {85, 0}, points = {{75, 0}, {-75, 0}}, color = {128, 0, 128}));
   connect(decreasing.portB, cloud.massPort) annotation(Line(visible = true, origin = {-15, 0}, points = {{5, 0}, {-5, 0}}, color = {128, 0, 128}));
   connect(parFractionalRate.y, convertedRate.u) annotation(Line(visible = true, origin = {-92.269, 70}, points = {{-14.269, 0}, {14.269, 0}}, color = {1, 37, 163}));
@@ -37,5 +39,9 @@ equation
 </ul>
 <h4>See also</h4>
 <p><a href=\"modelica://BusinessSimulation.SourcesOrSinks.ExponentialGrowth\">ExponentialGrowth</a>, <a href=\"modelica://BusinessSimulation.SourcesOrSinks.ExponentialDecay\">ExponentialDecay</a>,&nbsp;<a href=\"modelica://BusinessSimulation.SourcesOrSinks.ExponentialChange\">ExponentialChange</a></p>
-</html>"), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10}), graphics = {Text(visible = true, origin = {0, 75}, textColor = {0, 128, 0}, extent = {{-100, -12}, {100, 12}}, textString = "EXP Decline", fontName = "Lato Black", textStyle = {TextStyle.Bold}), Line(visible = true, origin = {63.558, -10.273}, rotation = -5.306, points = {{32.722, 10.515}, {27.406, -27.31}, {3.18, -33.132}, {-12.083, -16.513}}, color = {0, 0, 128}, thickness = 2.5, arrowSize = 0, smooth = Smooth.Bezier), Text(visible = true, origin = {0, -78.316}, textColor = {0, 0, 128}, extent = {{-71.945, -12}, {71.945, 12}}, textString = "fractional rate", fontName = "Lato", textStyle = {TextStyle.Bold}), Line(visible = true, origin = {-22.154, -19.63}, rotation = 5.306, points = {{36.522, -45.771}, {36.663, -27.43}, {51.602, -8.364}}, color = {0, 0, 128}, thickness = 2.5, arrowSize = 0, smooth = Smooth.Bezier), Polygon(visible = true, origin = {51.134, -25.316}, rotation = 30, lineColor = {0, 0, 128}, fillColor = {0, 0, 128}, fillPattern = FillPattern.Solid, points = {{0, 9}, {5, -5}, {-5, -5}}), Polygon(visible = true, origin = {29.113, -25.409}, rotation = -30, lineColor = {0, 0, 128}, fillColor = {0, 0, 128}, fillPattern = FillPattern.Solid, points = {{0, 9}, {-5, -5}, {5, -5}})}), Diagram(coordinateSystem(extent = {{-148.5, -105}, {148.5, 105}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})));
+</html>", revisions = "<html>
+<ul>
+<li>Value for parameter set to <code>unspecified</code> in v2.1.0.</li><br>
+</ul>
+</html>"), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10}), graphics = {Text(visible = true, origin = {0, 75}, textColor = {0, 128, 0}, extent = {{-100, -12}, {100, 12}}, textString = "EXP Decline", fontName = "Lato", textStyle = {TextStyle.Bold}), Line(visible = true, origin = {63.558, -10.273}, rotation = -5.306, points = {{32.722, 10.515}, {27.406, -27.31}, {3.18, -33.132}, {-12.083, -16.513}}, color = {0, 0, 128}, thickness = 2.5, arrowSize = 0, smooth = Smooth.Bezier), Text(visible = true, origin = {0, -78.316}, textColor = {0, 0, 128}, extent = {{-71.945, -12}, {71.945, 12}}, textString = "fractional rate", fontName = "Lato", textStyle = {TextStyle.Bold}), Line(visible = true, origin = {-22.154, -19.63}, rotation = 5.306, points = {{36.522, -45.771}, {36.663, -27.43}, {51.602, -8.364}}, color = {0, 0, 128}, thickness = 2.5, arrowSize = 0, smooth = Smooth.Bezier), Polygon(visible = true, origin = {51.134, -25.316}, rotation = 30, lineColor = {0, 0, 128}, fillColor = {0, 0, 128}, fillPattern = FillPattern.Solid, points = {{0, 9}, {5, -5}, {-5, -5}}), Polygon(visible = true, origin = {29.113, -25.409}, rotation = -30, lineColor = {0, 0, 128}, fillColor = {0, 0, 128}, fillPattern = FillPattern.Solid, points = {{0, 9}, {-5, -5}, {5, -5}})}), Diagram(coordinateSystem(extent = {{-148.5, -105}, {148.5, 105}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})));
 end ExponentialDecline;

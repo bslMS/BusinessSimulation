@@ -1,3 +1,5 @@
 within BusinessSimulation.Units;
 
-type Material = Types.Reals(quantity = "Material") "Primary commodities and unprocessed material";
+type Material = TangibleAssets(quantity = "Material") "Material [each]" annotation(Documentation(info = "<html>
+<p>Primary commodities and unprocessed material.</p>
+</html>"));

@@ -1,11 +1,12 @@
 within BusinessSimulation.Converters.Lookup;
 
 block TableFunctionVector "Table function for vector input and output using Modelica's CombiTable format"
+  import BusinessSimulation.Units.*;
   import Modelica.Blocks.Types.{Extrapolation,Smoothness};
   extends Interfaces.PartialConverters.MIMO_nin;
   extends Icons.InterpolationTable;
   parameter Boolean tableOnFile = false "= true, if table is defined on file or in function usertab (combiTable1D.tableOnFile)" annotation(Dialog(group = "TableDataDefinition"));
-  parameter Real table[:, :] = fill(0.0, 0, 2) "Table matrix (grid = first column; e.g., table=[0,2]) (combiTable1D.table)" annotation(Dialog(group = "TableDataDefinition", enable = not tableOnFile));
+  parameter Real table[:, :] = fill(0.0, 2, 2) "Table matrix (combiTable1D.table)" annotation(Dialog(group = "TableDataDefinition", enable = not tableOnFile));
   parameter String tableName = "NoName" "Name of the table in the file containing the data" annotation(Dialog(group = "TableDataDefinition", enable = tableOnFile));
   parameter String fileNameURI = modelSettings.lookupDataFileURI "URI of the file to read the data from (default = lookupDataFileURI)" annotation(Dialog(group = "TableDataDefinition", enable = tableOnFile));
   parameter Smoothness smoothness = Smoothness.LinearSegments "Smoothness of table interpolation" annotation(Dialog(group = "TableDataInterpretation"));

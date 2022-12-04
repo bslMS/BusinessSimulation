@@ -1,7 +1,9 @@
 within BusinessSimulation.CausalLoop;
 
 model Product "Multiply all inputs"
+  import BusinessSimulation.Units.*;
   extends Interfaces.PartialCLD.InfoAggregation;
+protected
   Converters.Vector.Product product(nin = nin) annotation(Placement(visible = true, transformation(origin = {0, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
 equation
   connect(u, product.u) annotation(Line(visible = true, origin = {-76.5, 0}, points = {{-68.5, 0}, {68.5, 0}}, color = {0, 0, 128}));

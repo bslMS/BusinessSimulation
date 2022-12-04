@@ -1,6 +1,7 @@
 within BusinessSimulation.Converters.Vector;
 
 block Times "Elementwise multiplication of two vectors of the same length"
+  import BusinessSimulation.Units.*;
   extends Interfaces.Basics.BaseConverter;
   Interfaces.Connectors.RealMultiInput[nin] u1 "Input vector 1" annotation(Placement(visible = true, transformation(origin = {-145, 40}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-79.622, 49.622}, extent = {{-10.378, -10.378}, {10.378, 10.378}}, rotation = 0)));
   Interfaces.Connectors.RealMultiInput[nin] u2 "Input vector 2" annotation(Placement(visible = true, transformation(origin = {-145, -40}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-79.622, -50.378}, extent = {{-10.378, -10.378}, {10.378, 10.378}}, rotation = 0)));

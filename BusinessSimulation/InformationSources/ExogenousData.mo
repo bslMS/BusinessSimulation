@@ -1,7 +1,8 @@
 within BusinessSimulation.InformationSources;
 
 block ExogenousData "Reading external data from a file using Modelica's CombiTimeTable format (MCTT)"
-  import BusinessSimulation.Units.Time;
+  import BusinessSimulation.Units.*;
+  import BusinessSimulation.Constants.*;
   import Modelica.Blocks.Types.{Smoothness,Extrapolation,TimeEvents};
   extends Interfaces.Basics.BaseConverter;
   extends Icons.InformationSourceIndicator;
@@ -9,14 +10,14 @@ block ExogenousData "Reading external data from a file using Modelica's CombiTim
   RealMultiOutput[combiTimeTable.nout] y_nout if combiTimeTable.nout > 1 "Output vector" annotation(Placement(visible = true, transformation(origin = {150, -20}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {80, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   // RealMultiOutput y_nout[combiTimeTable.nout] if combiTimeTable.nout > 1 "Output vector" annotation(Placement(visible = true, transformation(origin = {150, -20}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {80, 0}, extent = {{-10, -10}, {10, 10}}, rotation = -1440)));
   parameter Boolean tableOnFile = true "= true, if table is defined on file or in function usertab (combiTimeTable.tableOnFile)" annotation(Dialog(group = "TableDataDefinition"));
-  parameter Real table[:, :] = fill(0.0, 0, 2) "Table matrix (time = first column; e.g., table=[0, 0; 1, 1; 2, 4]) (combiTimeTable.table)" annotation(Dialog(group = "TableDataDefinition", enable = not tableOnFile));
+  parameter Real table[:, :] = fill(0.0, 2, 2) "Table matrix (time = first column; e.g., table=[0, 0; 1, 1; 2, 4]) (combiTimeTable.table)" annotation(Dialog(group = "TableDataDefinition", enable = not tableOnFile));
   parameter String tableName = "NoName" "Table name on file or in function usertab (see docu) (combiTimeTable.tableName)" annotation(Dialog(group = "TableDataDefinition", enable = tableOnFile));
   parameter String fileNameURI = modelSettings.exogenousDataFileURI "URI for the exogenous data file" annotation(Evaluate = true, Dialog(group = "TableDataDefinition", enable = tableOnFile));
   parameter Boolean verboseRead = true "= true, if info message that file is loading is to be printed (combiTimeTable.verboseRead)" annotation(Dialog(group = "TableDataDefinition", enable = tableOnFile));
   parameter Integer columns[:] = 2:size(table, 2) "Columns of table to be interpolated (combiTimeTable.columns)" annotation(Dialog(group = "TableDataInterpretation"));
   parameter Smoothness smoothness = Smoothness.LinearSegments "Smoothness of table interpolation (combiTimeTable.smoothness)" annotation(Dialog(group = "TableDataInterpretation"));
   parameter Extrapolation extrapolation = Extrapolation.LastTwoPoints "Extrapolation of data outside the definition range (combiTimeTable.extrapolation)" annotation(Dialog(group = "TableDataInterpretation"));
-  parameter Time timeScale(min = Modelica.Constants.eps) = 1 "Time scale of first table column (combiTimeTable.timeScale)" annotation(Dialog(group = "TableDataInterpretation"));
+  parameter Time timeScale(min = eps) = 1 "Time scale of first table column (combiTimeTable.timeScale)" annotation(Dialog(group = "TableDataInterpretation"));
   parameter Real offset[:] = {0} "Offsets of output signals (combiTimeTable.offset)" annotation(Dialog(group = "TableDataInterpretation"));
   parameter Time startTime = 0 "Output = offset for time < startTime (combiTimeTable.startTime)" annotation(Dialog(group = "TableDataInterpretation"));
   parameter Time shiftTime = startTime "Shift time of first table column (combiTimeTable.shiftTime)" annotation(Dialog(group = "TableDataInterpretation"));

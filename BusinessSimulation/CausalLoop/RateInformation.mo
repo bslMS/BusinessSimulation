@@ -1,6 +1,7 @@
 within BusinessSimulation.CausalLoop;
 
 model RateInformation "Provide rate of net flow information"
+  import BusinessSimulation.Units.*;
   extends Interfaces.Basics.OutputTypeChoice;
   Interfaces.Connectors.StockInfoInput stockInfoInput "StockInfo input" annotation(Placement(visible = true, transformation(origin = {-145, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-100, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   RealOutput y "Output of type OutputType" annotation(Placement(visible = true, transformation(origin = {161.619, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-50, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));

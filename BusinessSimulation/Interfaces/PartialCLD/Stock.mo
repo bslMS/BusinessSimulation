@@ -1,8 +1,7 @@
 within BusinessSimulation.Interfaces.PartialCLD;
 
 partial model Stock "Partial stock forCLD+ modeling"
-  import BusinessSimulation.Types.Reals;
-  extends Basics.OutputTypeChoice;
+  extends Interfaces.Basics.OutputTypeChoice;
   Connectors.StockPort stockPort annotation(Placement(visible = true, transformation(origin = {-150, -0}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {0, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Connectors.StockInfoOutput stockInfoOutput annotation(Placement(visible = true, transformation(origin = {151.921, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {0, 50}, extent = {{-10, -10}, {10, 10}}, rotation = -270)));
   parameter OutputType initialValue = 1 "Initial value";

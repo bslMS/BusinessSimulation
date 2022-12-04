@@ -1,14 +1,14 @@
 within BusinessSimulation.CausalLoop;
 
 model ProportionalityDelayed "Process driven by proportionality with additional exponential delay"
-  import BusinessSimulation.Units.Time;
+  import BusinessSimulation.Units.*;
   extends Interfaces.PartialCLD.StockInfoToFlow(hasRateOutput = false);
   parameter Real factor = 1 "Constant factor of proportionality";
   parameter Time delayTime(min = modelSettings.dt) = 1 "Average time of delay";
   parameter Integer ORD(min = 1) = 1 "Order of the exponential delay" annotation(Evaluate = true, Dialog(group = "Structural Parameters"));
   outer ModelSettings modelSettings;
-  Sensors.AbsoluteSensor absoluteSensor if hasRateOutput annotation(Placement(visible = true, transformation(origin = {0, 20}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
 protected
+  Sensors.AbsoluteSensor absoluteSensor if hasRateOutput annotation(Placement(visible = true, transformation(origin = {0, 20}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Proportionality link(coefficient = factor, hasFactor = false) annotation(Placement(visible = true, transformation(origin = {-40, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   ExponentialDelay del(hasFactor = false, hasStockInfoOutput = hasRateOutput, ORD = ORD, delayTime = delayTime) annotation(Placement(visible = true, transformation(origin = {0, -0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
 equation

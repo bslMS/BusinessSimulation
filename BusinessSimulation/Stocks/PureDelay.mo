@@ -2,8 +2,8 @@ within BusinessSimulation.Stocks;
 
 model PureDelay "Delay the flow of material for a fixed (but variable) delay time"
   import BusinessSimulation.Types.InitializationOptions;
-  import BusinessSimulation.Units.{Time,Rate};
-  import BusinessSimulation.Constants.small;
+  import BusinessSimulation.Units.*;
+  import BusinessSimulation.Constants.{small,zero,inf,INF};
   extends Icons.DelayN;
   extends Icons.DiscreteStockLabel;
   extends Interfaces.Basics.GenericStock_Special(hasStockInfoOutput = false, init = modelSettings.init);
@@ -133,5 +133,5 @@ end when;
 </ul>
 <h4>See also</h4>
 <p><a href=\"modelica://BusinessSimulation.Stocks.SimpleConveyor\">SimpleConveyor</a>, <a href=\"modelica://BusinessSimulation.Stocks.Conveyor\">Conveyor</a>, <a href=\"modelica://BusinessSimulation.Stocks.DelayN\">DelayN</a>,&nbsp;<a href=\"modelica://BusinessSimulation.Converters.DiscreteDelay.DelayFixed\">DelayFixed</a>,&nbsp;<a href=\"modelica://BusinessSimulation.Converters.DiscreteDelay.DelayInformation\">DelayInformation</a></p>
-</html>"), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10}), graphics = {Text(visible = true, origin = {0, -80}, textColor = {0, 0, 128}, extent = {{-100, -6}, {100, 6}}, textString = "%initialValue", fontName = "Lato"), Text(visible = true, origin = {0, 75}, textColor = {255, 0, 0}, extent = {{-100, -12}, {100, 12}}, textString = "Pure Delay", fontName = "Lato Black", textStyle = {TextStyle.Bold})}), Diagram(coordinateSystem(extent = {{-150, -90}, {150, 90}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})));
+</html>"), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10}), graphics = {Text(visible = true, origin = {0, 75}, textColor = {255, 0, 0}, extent = {{-100, -12}, {100, 12}}, textString = "Pure Delay", fontName = "Lato", textStyle = {TextStyle.Bold})}), Diagram(coordinateSystem(extent = {{-150, -90}, {150, 90}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})));
 end PureDelay;

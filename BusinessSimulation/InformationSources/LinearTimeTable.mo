@@ -1,7 +1,7 @@
 within BusinessSimulation.InformationSources;
 
 block LinearTimeTable "Generate a (possibly discontinuous) signal by linear interpolation in a table of (time,value) pairs"
-  import BusinessSimulation.Units.Time;
+  import BusinessSimulation.Units.*;
   extends Interfaces.PartialConverters.InformationSource_SO;
   extends Icons.InterpolationTable;
   parameter Real offset = 0 "Offset of output signal y";

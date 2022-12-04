@@ -1,6 +1,7 @@
 within BusinessSimulation.Converters.Vector;
 
 block Product "Gives the product of all components of the input vector"
+  import BusinessSimulation.Units.*;
   extends Interfaces.PartialConverters.MISO;
 equation
   y = product(u);

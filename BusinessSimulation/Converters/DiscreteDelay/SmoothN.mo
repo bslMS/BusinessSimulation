@@ -1,8 +1,9 @@
 within BusinessSimulation.Converters.DiscreteDelay;
 
 block SmoothN "N-th order exponential smooth with constant averaging time"
+  import BusinessSimulation.Units.*;
   import BusinessSimulation.Types.InitializationOptions;
-  import BusinessSimulation.Units.{Time,Rate};
+  import BusinessSimulation.Constants.{inf,small,eps,e};
   extends Interfaces.PartialConverters.SmoothSISO;
   Interfaces.Connectors.RealInput u_delayTime if not hasConstantDelayTime "Delay time input" annotation(Placement(visible = true, transformation(origin = {-145, 45}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {0, 50}, extent = {{-10, 10}, {10, -10}}, rotation = -810)));
   parameter Integer n(min = 1) = 3 "Order of the smooth" annotation(Evaluate = true, Dialog(group = "Structural Parameters"));
@@ -43,6 +44,7 @@ equation
 </ul>
 </ul>
 <h4>See also</h4>
-<p><a href=\"modelica://BusinessSimulation.Converters.DiscreteDelay.Smooth\">Smooth</a></p>
-</html>"), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10}), graphics = {Text(visible = true, textColor = {0, 0, 128}, extent = {{-60.252, -12}, {60.252, 12}}, textString = "SMOOTH  N", fontName = "Lato Black", textStyle = {TextStyle.Bold}, horizontalAlignment = TextAlignment.Left)}), Diagram(coordinateSystem(extent = {{-148.5, -105}, {148.5, 105}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})));
+<p><a href=\"modelica://BusinessSimulation.Converters.DiscreteDelay.Smooth\">Smooth</a>, <a href=\"modelica://BusinessSimulation.Converters.DiscreteDelay.AsymmetricSmoothN\">AsymmetricSmoothN</a>
+</p>
+</html>"), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10}), graphics = {Text(visible = true, textColor = {0, 0, 128}, extent = {{-60.252, -12}, {60.252, 12}}, textString = "SMOOTH  N", fontName = "Lato", textStyle = {TextStyle.Bold}, horizontalAlignment = TextAlignment.Left)}), Diagram(coordinateSystem(extent = {{-148.5, -105}, {148.5, 105}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})));
 end SmoothN;

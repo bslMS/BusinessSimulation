@@ -1,6 +1,7 @@
 within BusinessSimulation.Converters;
 
 block Add_2 "Sum of two inputs"
+  import BusinessSimulation.Units.*;
   extends Interfaces.PartialConverters.SI2SO;
 equation
   y = u1 + u2;

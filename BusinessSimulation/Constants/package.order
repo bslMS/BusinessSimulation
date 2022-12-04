@@ -8,5 +8,7 @@ timeBaseUnits
 timeBaseRateUnits
 rateStrings
 timeBaseConversionFactors
+unspecified
+unspec
 zero
 '1each'

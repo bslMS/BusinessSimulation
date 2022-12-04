@@ -1,7 +1,7 @@
 within BusinessSimulation.InformationSources;
 
 block ConstantInputTime "Input signal with constant time information"
-  import BusinessSimulation.Units.Time;
+  import BusinessSimulation.Units.*;
   extends Icons.Converter;
   extends Icons.InformationSourceIndicator;
   extends Interfaces.Basics.OutputTypeChoice_Time;

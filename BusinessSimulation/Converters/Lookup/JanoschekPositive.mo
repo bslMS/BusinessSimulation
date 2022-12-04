@@ -1,6 +1,7 @@
 within BusinessSimulation.Converters.Lookup;
 
 block JanoschekPositive "Janoschek's (S-shaped) growth curve with positive slope"
+  import BusinessSimulation.Units.*;
   extends Interfaces.PartialConverters.SISO_Conversion;
   parameter Real lowerBound = 0 "Lower asymptote for u <= 0 (lowerBound < upperBound)";
   parameter Real upperBound = 2 "Upper asymptote for u -> infinity";

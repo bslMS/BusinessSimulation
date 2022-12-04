@@ -1,6 +1,7 @@
 within BusinessSimulation.CausalLoop;
 
 model SimpleMaterialStock "Information level for CLD-mapping"
+  import BusinessSimulation.Units.*;
   extends Interfaces.PartialCLD.Stock;
 protected
   Stocks.MaterialStock informationLevel(hasStockInfoOutput = true, initialValue = initialValue) annotation(Placement(visible = true, transformation(origin = {-0, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
@@ -16,5 +17,5 @@ equation
 <p>
 <a href=\"modelica://BusinessSimulation.CausalLoop.SimpleInformationLevel\">SimpleInformationLevel</a>
 </p> 
-</html>"), defaultComponentName = "s", Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10}), graphics = {Text(visible = true, origin = {-20, 20}, textColor = {128, 0, 128}, extent = {{-45, -12}, {45, 12}}, textString = "+", fontName = "Lato Black")}), Diagram(coordinateSystem(extent = {{-150, -90}, {150, 90}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})));
+</html>"), defaultComponentName = "s", Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10}), graphics = {Text(visible = true, origin = {-20, 20}, textColor = {128, 0, 128}, extent = {{-45, -12}, {45, 12}}, textString = "+", fontName = "Lato")}), Diagram(coordinateSystem(extent = {{-150, -90}, {150, 90}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})));
 end SimpleMaterialStock;

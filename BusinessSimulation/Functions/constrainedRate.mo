@@ -12,7 +12,7 @@ protected
 algorithm
   // set rate to zero if stopSignal matches character of flow
   actualRate := if stopInflow and indRateIsInflow then 0 elseif stopOutflow and not indRateIsInflow then 0 else indicatedRate;
-  annotation(Documentation(info = "<html>
+  annotation(Inline = true, Documentation(info = "<html>
 <p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
 <p>The real output <strong><code>actualRate</code> </strong>is determined by checking whether the real input <strong><code>indicatedRate</code> </strong>is complying with the restrictions signaled by a connected stock in form of the boolean flags <strong><code>stopInflow</code> </strong>and <strong><code>stopOutflow</code></strong>. If the rate is found to violate either flag 0 is returned, in all other cases the <code>indicated rate</code> is returned unchanged.</p>
 <h4>Syntax</h4>
@@ -26,5 +26,9 @@ algorithm
 <p>Thus, in the first example above the indicated negative rate for a &rarr;<a href=\"modelica://BusinessSimulation.Interfaces.Connectors.FlowPort\">FlowPort </a>would mean an outflow from the flow component and an inflow with regard to the connected &rarr;<a href=\"modelica://BusinessSimulation.Interfaces.Connectors.StockPort\">StockPort</a>. Observing the flow restriction signaled by the stock the acutal rate is set to zero.</p>
 <h4>See also</h4>
 <p><a href=\"modelica://BusinessSimulation.Functions.constrainedRateBoolean\">constrainedRateBoolean</a></p>
-</html>"), Diagram(coordinateSystem(extent = {{-148.5, -105}, {148.5, 105}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})));
+</html>", revisions = "<html>
+<ul>
+<li>Added <code>Inline = true</code> in v2.1.0.</li>
+</ul>
+<html>"), Diagram(coordinateSystem(extent = {{-148.5, -105}, {148.5, 105}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})));
 end constrainedRate;

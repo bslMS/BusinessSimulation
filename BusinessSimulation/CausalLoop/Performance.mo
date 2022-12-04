@@ -1,21 +1,27 @@
 within BusinessSimulation.CausalLoop;
 
 block Performance "Evaluation of a stock on a [0,1] scale"
+  import BusinessSimulation.Units.*;
+  import BusinessSimulation.Constants.*;
   import MFT = BusinessSimulation.Types.MembershipFunctionTypes;
-  import BusinessSimulation.Units.Amount;
   extends BusinessSimulation.Interfaces.PartialCLD.Performance;
   parameter Amount a "Parameter to control shape of membership function" annotation(Dialog(enable = true));
-  parameter Amount b "Parameter to control shape of membership function" annotation(Dialog(enable = not (mft == MFT.sigmoidal or mft == MFT.gaussian)));
-  parameter Amount c "Parameter to control shape of membership function" annotation(Dialog(enable = not (mft == MFT.ramp or mft == MFT.sshaped)));
-  parameter Amount d "Parameter to control shape of membership function" annotation(Dialog(enable = mft == MFT.trapezoidal or mft == MFT.pishaped or mft == MFT.psigmoidal));
-  parameter MFT mft = MFT.ramp "Membership function type to use" annotation(Dialog(group = "Structural Parameters"));
+  parameter Amount b = unspecified "Parameter to control shape of membership function" annotation(Dialog(enable = not (mft == MFT.sigmoidal or mft == MFT.gaussian)));
+  parameter Amount c = unspecified "Parameter to control shape of membership function" annotation(Dialog(enable = not (mft == MFT.ramp or mft == MFT.sshaped)));
+  parameter Amount d = unspecified "Parameter to control shape of membership function" annotation(Dialog(enable = mft == MFT.trapezoidal or mft == MFT.pishaped or mft == MFT.psigmoidal));
+  parameter MFT mft = MFT.ramp "Membership function type to use" annotation(Evaluate = true, Dialog(group = "Structural Parameters"));
   parameter Boolean invertResult = false "= true, if the degree of membership is to be inverted (i.e., y = 1 - mf(u))" annotation(Dialog(group = "Structural Parameters"));
 protected
   Converters.Lookup.PerformanceIndicator performanceIndicator(a = a, b = b, c = c, d = d, mft = mft, invertResult = invertResult) annotation(Placement(visible = true, transformation(origin = {0, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  parameter Boolean b_enabled = not (mft == MFT.sigmoidal or mft == MFT.gaussian) annotation(Evaluate = true, Dialog(enable = false, tab = "Initialization"));
+  parameter Boolean c_enabled = not (mft == MFT.ramp or mft == MFT.sshaped) annotation(Evaluate = true, Dialog(enable = false, tab = "Initialization"));
+  parameter Boolean d_enabled = mft == MFT.trapezoidal or mft == MFT.pishaped or mft == MFT.psigmoidal annotation(Evaluate = true, Dialog(enable = false, tab = "Initialization"));
 equation
   connect(normalizedStock.y, performanceIndicator.u) annotation(Line(visible = true, origin = {-30, 0}, points = {{-22, 0}, {22, 0}}, color = {1, 37, 163}));
   connect(performanceIndicator.y, y) annotation(Line(visible = true, origin = {85.043, 0}, points = {{-77.043, 0}, {77.043, 0}}, color = {1, 37, 163}));
-  /* orientor */
+  assert(not b_enabled or b < inf, "The parameter b should be specified");
+  assert(not c_enabled or c < inf, "The parameter b should be specified");
+  assert(not d_enabled or d < inf, "The parameter b should be specified");
   annotation(Documentation(info = "<html>
 <p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
 <p>The output <strong>y</strong> is the dimensionless <em>degree of membership</em> to the set of \"good performances\" or \"good outcomes\" according to a chosen type of membership function. Using the PerformanceIndicator allows to quickly grasp how a system is currently performing with regard to some criterion with a value of 1 indicating <em>best possible performance</em> and a value of 0 indicating <em>worst possible (and possbily unsustainable) performance</em>.</p>

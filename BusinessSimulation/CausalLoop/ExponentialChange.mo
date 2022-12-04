@@ -1,8 +1,9 @@
 within BusinessSimulation.CausalLoop;
 
 model ExponentialChange "Exponential growth or decline process"
+  import BusinessSimulation.Units.*;
   import BusinessSimulation.Interfaces.PartialCLD.SourceOrSink;
-  extends SourceOrSink;
+  extends SourceOrSink(hasConstantRate = true);
   parameter Boolean isCCR = true "= true, if the factional rate given is assumed to be a continuously compounding rate else the rate will be converted" annotation(Dialog(group = "Structural Parameters"));
 protected
   SourcesOrSinks.ExponentialChange exponentiallyChanging(isCCR = isCCR) annotation(Placement(visible = true, transformation(origin = {0, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));

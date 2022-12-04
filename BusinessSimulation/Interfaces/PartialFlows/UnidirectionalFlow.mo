@@ -1,7 +1,6 @@
 within BusinessSimulation.Interfaces.PartialFlows;
 
 partial model UnidirectionalFlow "Flow from Stock A to Stock B"
-  import BusinessSimulation.Units.Rate;
   extends Basics.GenericFlow;
   extends Icons.UnidirectionalFlow;
   extends Basics.ThreeSO_rate;
@@ -19,8 +18,10 @@ equation
   // set indicated rates according to flow rules
   A_rate = -B_rate;
   // make sure that stock constraints are met
-  useA_rate = Functions.constrainedRateBoolean(A_rate < 0, portA.stopInflow, portA.stopOutflow) and A_rate > 0;
-  useB_rate = Functions.constrainedRateBoolean(B_rate < 0, portB.stopInflow, portB.stopOutflow);
+  useA_rate = A_rate > 0 and not portA.stopOutflow;
+  // A_rate > 0 => isInflow = false
+  useB_rate = not portB.stopInflow;
+  // B must be less than 0 thus only one check needed
   portA.rate = if useA_rate and useB_rate then A_rate else 0;
   portB.rate = -portA.rate;
   // report the actual rate of flow at Port A
@@ -37,6 +38,10 @@ equation
 </ul>
 <ul>
 <li>The flow-element will observe the Boolean flags of the connected stocks (e.g., <em>stopOutflow</em> or <em>stopInflow</em>) on both ports which may override the intended rate to give zero flow.</li>
+</ul>
+</html>", revisions = "<html>
+<ul>
+<li>Minor modifications for <code>useA_rate</code> and <code>useB_rate</code> expressions in v2.1.0.</li>
 </ul>
 </html>"), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10})), Diagram(coordinateSystem(extent = {{-148.5, -105}, {148.5, 105}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})));
 end UnidirectionalFlow;

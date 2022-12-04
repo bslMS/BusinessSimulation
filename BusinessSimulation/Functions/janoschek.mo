@@ -10,7 +10,7 @@ function janoschek "Janoschek's Growth Curve"
   output Real y;
 algorithm
   y := l - (l - b) * exp(-k * x ^ d);
-  annotation(Documentation(info = "<html>
+  annotation(Inline = true, Documentation(info = "<html>
 <p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
 <p>This function models <em>Janoschek's growth curve</em>&nbsp;[<a href=\"modelica://BusinessSimulation.UsersGuide.References\">19</a>] given the real input <strong>x</strong> and the specifying real inputs <strong><code>b, l, k, d</code></strong>. The formula for the real output <strong>y</strong> is:</p>
 <p><code>y := 1 - (l - b) * <strong>exp</strong>(-k * x ^ d);</code></p>
@@ -22,5 +22,9 @@ algorithm
 <br>
 <h4>See also</h4>
 <p><a href=\"modelica://BusinessSimulation.Converters.Lookup.JanoschekPositive\">JanoschekPositive</a>,&nbsp;<a href=\"modelica://BusinessSimulation.Converters.Lookup.JanoschekNegative\">JanoschekNegative</a></p>
-</html>"), Diagram(coordinateSystem(extent = {{-148.5, -105}, {148.5, 105}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})));
+</html>", revisions = "<html>
+<ul>
+<li>Added <code>Inline = true</code> in v2.1.0.</li>
+</ul>
+<html>"), Diagram(coordinateSystem(extent = {{-148.5, -105}, {148.5, 105}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})));
 end janoschek;

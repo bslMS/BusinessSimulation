@@ -1,31 +1,24 @@
 within BusinessSimulation.Interfaces.PartialCLD;
 
 encapsulated partial model SourceOrSink "Partial source or sink for causal loop diagramming"
-  import BusinessSimulation.Interfaces.PartialCLD.FlowPort;
-  import BusinessSimulation.Units.{Time,Rate};
-  import BusinessSimulation.ModelSettings;
-  import BusinessSimulation.Constants.inf;
+  import BusinessSimulation.Units.*;
+  import BusinessSimulation.Constants.*;
   import BusinessSimulation.Interfaces.Connectors.RealInput;
   import BusinessSimulation.InformationSources.{PulseInput,RampInput};
   import BusinessSimulation.Converters.{Product_3,ConstantConverterRate,ConstantConverter};
-  extends FlowPort;
+  import BusinessSimulation.Interfaces.PartialCLD.TimedSource;
+  extends TimedSource;
   RealInput u if hasFactor "Factor input" annotation(Placement(visible = true, transformation(origin = {-145, 60}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-50, -80}, extent = {{-10, -10}, {10, 10}}, rotation = -270)));
   RealInput u_rate if not hasConstantRate "Rate input" annotation(Placement(visible = true, transformation(origin = {-145, 30}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-50, 50}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
-  parameter Rate rate "Constant rate (optional)";
-  parameter TimingChoices tc = TimingChoices.permanent "Selecting an optional timing regime for the change process" annotation(Evaluate = true, Dialog(group = "Timing"));
-  parameter Time startTime = modelSettings.modelStartTime "Start time for the change process" annotation(Dialog(group = "Timing", enable = tc <> TimingChoices.permanent));
-  parameter Time stopTime = modelSettings.modelStopTime "Stop time for the change process" annotation(Dialog(group = "Timing", enable = tc <> TimingChoices.permanent));
+  parameter Rate rate = unspecified "Constant rate (optional)" annotation(Dialog(enable = hasConstantRate));
   parameter Boolean hasConstantRate = true "= true, if rate is a constant parameter" annotation(Evaluate = true, Dialog(group = "Structural Parameters"));
   parameter Boolean hasFactor = false "= true, if rate is to be multiplied with input u" annotation(Evaluate = true, Dialog(group = "Structural Parameters"));
-  outer ModelSettings modelSettings;
-  type TimingChoices = enumeration(permanent "Permanent process", period "On-off timing");
 protected
   ConstantConverter parFactor(value = 1) if not hasFactor annotation(Placement(visible = true, transformation(origin = {-40, 50}, extent = {{10, -10}, {-10, 10}}, rotation = 0)));
-  PulseInput onOff(width = 100, nperiod = 1, startTime = startTime, period = stopTime - startTime, offset = 0, amplitude = 1) if tc == TimingChoices.period annotation(Placement(visible = true, transformation(origin = {-90, -20}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Product_3 actualRate annotation(Placement(visible = true, transformation(origin = {-40, 25}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   ConstantConverterRate parRate(value = rate, timeBaseString = "second") if hasConstantRate annotation(Placement(visible = true, transformation(origin = {-100, 15}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  ConstantConverter permanent(value = 1) if tc == TimingChoices.permanent annotation(Placement(visible = true, transformation(origin = {-90, -40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
 equation
+  assert(not hasConstantRate or rate < inf, "Parameter rate needs to be specified");
   connect(parRate.y, actualRate.u2) annotation(Line(visible = true, origin = {-70, 20}, points = {{-24, -5}, {0, -5}, {0, 5}, {22, 5}}, color = {1, 37, 163}));
   connect(u_rate, actualRate.u2) annotation(Line(visible = true, origin = {-83.25, 25}, points = {{-61.75, 5}, {13.25, 5}, {13.25, 0}, {35.25, 0}}, color = {0, 0, 128}));
   connect(u, actualRate.u1) annotation(Line(visible = true, origin = {-78.25, 45}, points = {{-66.75, 15}, {18.25, 15}, {18.25, -15}, {30.25, -15}}, color = {0, 0, 128}));

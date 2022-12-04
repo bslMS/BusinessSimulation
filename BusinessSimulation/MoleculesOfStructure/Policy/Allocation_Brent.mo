@@ -1,11 +1,12 @@
 within BusinessSimulation.MoleculesOfStructure.Policy;
 
 encapsulated block Allocation_Brent "Allocate an available amount according to priorities and capacity restrictions"
+  import BusinessSimulation.Units.*;
+  import BusinessSimulation.Constants.eps;
   import PP = BusinessSimulation.Types.PriorityProfiles;
   import BusinessSimulation.Functions.allocatedAmounts;
   import Modelica.Math.Nonlinear.solveOneNonlinearEquation;
   import BusinessSimulation.Functions.UtilityFunctions.findClearAttrac;
-  import BusinessSimulation.Constants.eps;
   import BusinessSimulation.Interfaces.Connectors.{RealInput,RealMultiInput};
   import ICON = BusinessSimulation.Interfaces.PartialConverters.Policy_MO;
   extends ICON;
@@ -43,5 +44,5 @@ equation
 <ul>
 <li>Introduced [EXPERIMENTALLY] in v2.0.0.</li>
 </ul>
-</html>"), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10}), graphics = {Text(visible = true, textColor = {0, 0, 128}, extent = {{-96.456, -12}, {96.456, 12}}, textString = "Allocation", fontName = "Lato Black", textStyle = {TextStyle.Bold})}));
+</html>"), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10}), graphics = {Text(visible = true, textColor = {0, 0, 128}, extent = {{-96.456, -12}, {96.456, 12}}, textString = "Allocation", fontName = "Lato", textStyle = {TextStyle.Bold})}));
 end Allocation_Brent;

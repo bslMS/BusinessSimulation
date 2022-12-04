@@ -1,8 +1,9 @@
 within BusinessSimulation.Converters.DiscreteDelay;
 
 block Smooth "First-order exponential smooth"
+  import BusinessSimulation.Units.*;
   import BusinessSimulation.Types.InitializationOptions;
-  import BusinessSimulation.Units.Time;
+  import BusinessSimulation.Constants.{inf,small,eps,e};
   extends Interfaces.PartialConverters.SmoothSISO;
   Interfaces.Connectors.RealInput u_delayTime if not hasConstantDelayTime "Delay time" annotation(Placement(visible = true, transformation(origin = {0, 100}, extent = {{-10, -10}, {10, 10}}, rotation = -90), iconTransformation(origin = {0, 50}, extent = {{-10, 10}, {10, -10}}, rotation = -810)));
   parameter Time delayTime = 1 "Constant delay time (optional)" annotation(Dialog(enable = hasConstantDelayTime));
@@ -54,6 +55,6 @@ equation
 </li>
 </ul>
 <h4>See also</h4>
-<p><a href=\"modelica://BusinessSimulation.Converters.DiscreteDelay.SmoothN\">SmoothN</a>,&nbsp;<a href=\"modelica://BusinessSimulation.Flows.Unidirectional.Decay\">Decay</a></p>
-</html>"), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10}), graphics = {Text(visible = true, textColor = {0, 0, 128}, extent = {{-99.005, -12}, {99.005, 12}}, textString = "SMOOTH", fontName = "Lato Black", textStyle = {TextStyle.Bold})}), Diagram(coordinateSystem(extent = {{-148.5, -105}, {148.5, 105}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})));
+<p><a href=\"modelica://BusinessSimulation.Converters.DiscreteDelay.SmoothN\">SmoothN</a>,&nbsp;<a href=\"modelica://BusinessSimulation.Converters.DiscreteDelay.AsymmetricSmooth\">AsymmetricSmooth</a>,&nbsp;<a href=\"modelica://BusinessSimulation.Flows.Unidirectional.Decay\">Decay</a></p>
+</html>"), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10}), graphics = {Text(visible = true, textColor = {0, 0, 128}, extent = {{-99.005, -12}, {99.005, 12}}, textString = "SMOOTH", fontName = "Lato", textStyle = {TextStyle.Bold})}), Diagram(coordinateSystem(extent = {{-148.5, -105}, {148.5, 105}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})));
 end Smooth;

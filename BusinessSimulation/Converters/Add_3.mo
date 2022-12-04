@@ -1,6 +1,7 @@
 within BusinessSimulation.Converters;
 
 block Add_3 "Total of three inputs"
+  import BusinessSimulation.Units.*;
   extends Interfaces.PartialConverters.SI3SO;
 equation
   y = u1 + u2 + u3;

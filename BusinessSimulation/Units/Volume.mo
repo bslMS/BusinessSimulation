@@ -1,3 +1,5 @@
 within BusinessSimulation.Units;
 
-type Volume = Types.Reals(quantity = "Volume", unit = "m3") "Volume measured in m3";
+type Volume = ExtensiveQuantity(final quantity = "Volume", final unit = "m3") "Volume [m3]" annotation(Documentation(info = "<html>
+<p>Volume measured in m3.</p>
+</html>"));

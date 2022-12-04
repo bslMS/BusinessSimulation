@@ -1,10 +1,10 @@
 within BusinessSimulation.MoleculesOfStructure.Policy;
 
 block FirstOrderStockAdjustment "Maintain a stock at a desired level"
-  import BusinessSimulation.Units.{Time,Rate};
-  import BusinessSimulation.Constants.inf;
+  import BusinessSimulation.Units.*;
+  import BusinessSimulation.Constants.*;
   import Modelica.Blocks.Types.LimiterHomotopy;
-  extends Interfaces.PartialConverters.Policy_SO(redeclare replaceable type OutputType = Units.Rate);
+  extends Interfaces.PartialConverters.Policy_SO(redeclare replaceable type OutputType = Rate);
   Interfaces.Connectors.RealInput u_reference "Desired or reference amount in the stock under control" annotation(Placement(visible = true, transformation(origin = {-145, 5}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-110, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Interfaces.Connectors.RealInput u_current "Current amount in the stock under control" annotation(Placement(visible = true, transformation(origin = {-145, 40}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-50, 110}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
   Interfaces.Connectors.RealInput u_outflow "Current outflow from the stock under control" annotation(Placement(visible = true, transformation(origin = {-145, -70}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {50, 110}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
@@ -14,13 +14,13 @@ block FirstOrderStockAdjustment "Maintain a stock at a desired level"
   parameter Boolean hasConstantAdjTime = true "= true, if adjustment time is to be given by a constant parameter" annotation(Evaluate = true, Dialog(group = "Structural Parameters"));
   parameter Boolean clipOutput = false "= true, if the indicated rate is to clipped to not exceed limitations" annotation(Evaluate = true, Dialog(group = "Structural Parameters"));
   parameter Boolean strict = true "= true, if strict limits with noEvent(..) (constantLimiter.strict) (clip1.strict)" annotation(Evaluate = true, Dialog(tab = "Advanced"));
-  parameter LimiterHomotopy homotopyType = LimiterHomotopy.Linear "Simplified model for homotopy-based initialization (constantLimiter.homotopyType) (clip1.homotopyType)" annotation(Evaluate = true, Dialog(tab = "Advanced"));
-protected
+  parameter LimiterHomotopy homotopyType = LimiterHomotopy.Linear "Simplified model for homotopy-based initialization (clip1.homotopyType)" annotation(Evaluate = true, Dialog(tab = "Advanced"));
   outer ModelSettings modelSettings;
+protected
   Converters.Clip clippedRate(strict = strict, homotopyType = homotopyType, hasConstantLimits = true, minValue = 0, maxValue = maxRate) if clipOutput "Limit rate to feasible values" annotation(Placement(visible = true, transformation(origin = {90, -20}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Converters.PassThrough unchanged if not clipOutput "Leave the indicated rate unchanged" annotation(Placement(visible = true, transformation(origin = {90, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   CloseGap adjustment(hasConstantAdjTime = false, invertOutput = false, clipOutput = false) "Inflow needed to reach desired level of stock" annotation(Placement(visible = true, transformation(origin = {-10, 5}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  Converters.Add_2 totalAdjustment(redeclare replaceable type OutputType = Units.Rate) "Closing gap and compensate for outflow from stock" annotation(Placement(visible = true, transformation(origin = {40, -0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  Converters.Add_2 totalAdjustment(redeclare replaceable type OutputType = Rate) "Closing gap and compensate for outflow from stock" annotation(Placement(visible = true, transformation(origin = {40, -0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Converters.ConstantConverterTime parAdjTime(value = adjTime) if hasConstantAdjTime "Constant time of adjustment (optional)" annotation(Placement(visible = true, transformation(origin = {-120, -40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
 equation
   connect(u_outflow, totalAdjustment.u2) annotation(Line(visible = true, origin = {-21.75, -37.5}, points = {{-123.25, -32.5}, {41.75, -32.5}, {41.75, 32.5}, {53.75, 32.5}}, color = {0, 0, 127}));
@@ -49,5 +49,5 @@ equation
 <h4>See also</h4>
 <p><a href=\"modelica://BusinessSimulation.MoleculesOfStructure.Policy.CloseGap\">CloseGap</a>, <a href=\"modelica://BusinessSimulation.Converters.DiscreteDelay.Smooth\">Smooth</a>,&nbsp;<a href=\"modelica://BusinessSimulation.Converters.DiscreteDelay.SmoothN\">SmoothN</a></p>
 <p>&nbsp;</p>
-</html>"), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10}), graphics = {Text(visible = true, origin = {0, 12.5}, textColor = {0, 0, 128}, extent = {{-77.269, -12}, {77.269, 12}}, textString = "First-Order", fontName = "Lato Black", textStyle = {TextStyle.Bold}), Text(visible = true, origin = {0, -12.5}, textColor = {0, 0, 128}, extent = {{-77.987, -12}, {77.987, 12}}, textString = "Stock Adjustment", fontName = "Lato Black", textStyle = {TextStyle.Bold})}), Diagram(coordinateSystem(extent = {{-148.5, -105}, {148.5, 105}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})));
+</html>"), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10}), graphics = {Text(visible = true, origin = {0, 12.5}, textColor = {0, 0, 128}, extent = {{-77.269, -12}, {77.269, 12}}, textString = "First-Order", fontName = "Lato", textStyle = {TextStyle.Bold}), Text(visible = true, origin = {0, -12.5}, textColor = {0, 0, 128}, extent = {{-77.987, -12}, {77.987, 12}}, textString = "Stock Adjustment", fontName = "Lato", textStyle = {TextStyle.Bold})}), Diagram(coordinateSystem(extent = {{-148.5, -105}, {148.5, 105}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})));
 end FirstOrderStockAdjustment;

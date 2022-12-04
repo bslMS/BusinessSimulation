@@ -1,3 +1,5 @@
 within BusinessSimulation.Units;
 
-type Energy = Types.Reals(quantity = "Energy", unit = "J") "Energy measured in Joule (W.s)";
+type Energy = ExtensiveQuantity(final quantity = "Energy", final unit = "J") "Energy [J]|[W.s]" annotation(Documentation(info = "<html>
+<p>Energy measured in Joule (W.s).</p>
+</html>"));

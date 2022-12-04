@@ -9,7 +9,8 @@ package PartialSubsystems "Partial classes for subsystems with a flexible number
 <p>Copyright &copy; 2021 Guido Wolf Reichert<br>Licensed under the <a href=\"modelica://BusinessSimulation.UsersGuide.Licence\">EUPL-1.2</a>&nbsp;or later</p>
 </html>", revisions = "<html>
 <ul>
-<li>Introduced in v2.0.0.</li>
+<li>Introduced in v2.0.0.</li><br>
+<li>Added restrictions with regard to stock and flow ports depending on subsystem type in v2.1.0.<li>
 </ul>
 </html>"));
 end PartialSubsystems;

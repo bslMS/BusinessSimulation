@@ -1,6 +1,7 @@
 within BusinessSimulation.Converters.Lookup;
 
 block ConcaveLookupPositive "Concave Lookup with positive slope; fixpoints are (0,y0) and (1,1)"
+  import BusinessSimulation.Units.*;
   extends Interfaces.PartialConverters.SISO_Conversion;
   parameter Real s(min = 0, max = 1) = 0.5 "Slope parameter (0< slope <= 1)";
   parameter Real y0(min = 0, max = 1) = 0 "Value of y when input is zero or less (intercept)";

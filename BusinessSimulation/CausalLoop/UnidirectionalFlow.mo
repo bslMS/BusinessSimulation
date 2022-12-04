@@ -1,12 +1,13 @@
 within BusinessSimulation.CausalLoop;
 
 model UnidirectionalFlow "Interaction with linear and nonlinear terms"
-  import BusinessSimulation.Units.Rate;
+  import BusinessSimulation.Units.*;
   extends Interfaces.PartialCLD.Flow;
   parameter Rate rate = 1 "Base rate of flow from A to B";
+protected
   Converters.Product_2 actualRate "Rate of flow" annotation(Placement(visible = true, transformation(origin = {-5, 25}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
   Flows.Unidirectional.Transition flowingFromAToB annotation(Placement(visible = true, transformation(origin = {0, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  Converters.ConstantConverter baseRate(redeclare replaceable type OutputType = Rate, value = 1) "Base rate of flow" annotation(Placement(visible = true, transformation(origin = {40, 60}, extent = {{10, -10}, {-10, 10}}, rotation = 0)));
+  Converters.ConstantConverter baseRate(redeclare type OutputType = Rate, value = rate) "Base rate of flow" annotation(Placement(visible = true, transformation(origin = {40, 60}, extent = {{10, -10}, {-10, 10}}, rotation = 0)));
 equation
   connect(portA, flowingFromAToB.portA) annotation(Line(visible = true, origin = {-80, 0}, points = {{-70, 0}, {70, 0}}, color = {128, 0, 128}));
   connect(flowingFromAToB.portB, portB) annotation(Line(visible = true, origin = {80, 0}, points = {{-70, 0}, {70, 0}}, color = {128, 0, 128}));
@@ -31,7 +32,8 @@ equation
 </p>
 </html>", revisions = "<html>
 <ul>
-<li>Introduced in v2.0.0.</li>
+<li>Introduced in v2.0.0.</li><br>
+<li>Fixed that <code>rate</code> was not used in v2.1.0</li>
 </ul>
 </html>"), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10}), graphics = {Text(visible = true, origin = {0, 25}, textColor = {0, 0, 128}, extent = {{-50, -6}, {50, 6}}, textString = "%rate", fontName = "Lato")}), Diagram(coordinateSystem(extent = {{-150, -90}, {150, 90}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})));
 end UnidirectionalFlow;

@@ -1,7 +1,6 @@
 within BusinessSimulation.Interfaces.Connectors;
 
 connector FlowPort_Special "Used to represent a flow connected to a dynamic stock that will set the rate of flow"
-  import BusinessSimulation.Units.Rate;
   Real data "Flow value to be observed by connected flow element";
   flow Rate rate "Flow that affects the stock";
   annotation(Diagram(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10}), graphics = {Rectangle(visible = true, origin = {-5, 5}, lineColor = {255, 0, 0}, fillColor = {255, 255, 255}, fillPattern = FillPattern.Solid, lineThickness = 4, extent = {{-55, -55}, {55, 55}}), Text(visible = true, origin = {0, 90}, textColor = {128, 128, 128}, extent = {{-100, -12}, {100, 12}}, textString = "%name", fontName = "Lato", textStyle = {TextStyle.Bold})}), Documentation(info = "<html>

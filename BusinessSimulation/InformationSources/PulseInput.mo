@@ -1,13 +1,14 @@
 within BusinessSimulation.InformationSources;
 
 model PulseInput "Generate pulse or pulse-train signal of real input"
-  import BusinessSimulation.Units.Time;
+  import BusinessSimulation.Units.*;
+  import BusinessSimulation.Constants.*;
   extends Interfaces.PartialConverters.InformationSource_SO;
   parameter OutputType offset = 0 "Offset of output signal y";
   parameter Time startTime = 0 "Output y = offset for time < startTime";
   parameter OutputType amplitude = 1 "Amplitude of pulse (with regard to offset)";
-  parameter Real width(final min = Modelica.Constants.small, final max = 100) = 50 "Width of pulse in % of period";
-  parameter Time period(final min = Modelica.Constants.small, start = 1) "Timespan for one period";
+  parameter Real width(final min = small, final max = 100) = 50 "Width of pulse in % of period";
+  parameter Time period(final min = small, start = 1) "Timespan for one period";
   parameter Integer nperiod = -1 "Number of periods (< 0 means infinite number of periods)";
 protected
   Modelica.Blocks.Sources.Pulse pulse(offset = offset, startTime = startTime, amplitude = amplitude, width = width, period = period, nperiod = nperiod) annotation(Placement(visible = true, transformation(origin = {0.863, 0}, extent = {{-55.863, -55.863}, {55.863, 55.863}}, rotation = 0)));

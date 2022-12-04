@@ -1,14 +1,14 @@
 within BusinessSimulation.CausalLoop;
 
 model ElasticityDelayed "Process driven by elasticity and additional exponential delay"
-  import BusinessSimulation.Units.Time;
+  import BusinessSimulation.Units.*;
   extends Interfaces.PartialCLD.StockInfoToFlow(hasRateOutput = false);
   parameter Real elasticity = 1 "Constant elasticity";
   parameter Time delayTime(min = modelSettings.dt) = 1 "Average time of delay";
   parameter Integer ORD(min = 1) = 1 "Order of the exponential delay" annotation(Evaluate = true, Dialog(group = "Structural Parameters"));
   outer ModelSettings modelSettings;
-  Sensors.AbsoluteSensor absoluteSensor if hasRateOutput annotation(Placement(visible = true, transformation(origin = {0, 20}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
 protected
+  Sensors.AbsoluteSensor absoluteSensor if hasRateOutput annotation(Placement(visible = true, transformation(origin = {0, 20}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Elasticity link(hasFactor = false, isCCR = true, coefficient = elasticity) annotation(Placement(visible = true, transformation(origin = {-40, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   ExponentialDelay del(hasFactor = false, hasStockInfoOutput = hasRateOutput, ORD = ORD, delayTime = delayTime) annotation(Placement(visible = true, transformation(origin = {0, -0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
 equation

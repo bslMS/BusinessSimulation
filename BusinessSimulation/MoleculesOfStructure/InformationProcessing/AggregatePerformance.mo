@@ -1,8 +1,9 @@
 within BusinessSimulation.MoleculesOfStructure.InformationProcessing;
 
 model AggregatePerformance "Aggregate the information received from a set of performance indicators"
+  import BusinessSimulation.Units.*;
   import BusinessSimulation.Types.AggregateFunctions;
-  extends Interfaces.PartialConverters.InformationProcessing_SO(redeclare replaceable type OutputType = Units.Dimensionless);
+  extends Interfaces.PartialConverters.InformationProcessing_SO(redeclare replaceable type OutputType = Dimensionless);
   Interfaces.Connectors.RealMultiInput[nin] u "Vector of performance indicator inputs" annotation(Placement(visible = true, transformation(origin = {-145, -0}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-110, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Interfaces.Connectors.RealMultiInput[nin] u_weights if useWeights and not hasConstantWeights "Vector of weights (optional)" annotation(Placement(visible = true, transformation(origin = {-145, 60}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {0, 110}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
   parameter Integer nin(min = 1) = 2 "Number of performance indicator inputs (length of input vector)" annotation(Evaluate = true, Dialog(group = "Structural Parameters"));
@@ -12,10 +13,10 @@ model AggregatePerformance "Aggregate the information received from a set of per
   parameter Boolean hasConstantWeights = true "= true, if the weights are constant" annotation(Dialog(group = "Structural Parameters", enable = useWeights));
 protected
   Converters.Vector.ConstantConverter parWeights(value = weights) if hasConstantWeights and useWeights "Constant weights" annotation(Placement(visible = true, transformation(origin = {-90, 80}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  Converters.Vector.ArithmeticMean arithAvgPerformance(useWeights = useWeights, hasConstantWeights = false, nin = nin, redeclare replaceable type OutputType = Units.Dimensionless) if func == AggregateFunctions.arithmeticMean "(Weighted) arithmetic mean" annotation(Placement(visible = true, transformation(origin = {-20, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  Converters.Vector.GeometricMean geomAvgPerformance(nin = nin, useWeights = useWeights, hasConstantWeights = false, redeclare replaceable type OutputType = Units.Dimensionless) if func == AggregateFunctions.geometricMean "(Weighted) geometric mean" annotation(Placement(visible = true, transformation(origin = {-20, 40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  Converters.Vector.Max maximumPerformance(nin = nin, redeclare replaceable type OutputType = Units.Dimensionless) if func == AggregateFunctions.maximum "Maximum of the performance inputs" annotation(Placement(visible = true, transformation(origin = {-20, -40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  Converters.Vector.Min minimumPerformance(nin = nin, redeclare replaceable type OutputType = Units.Dimensionless) if func == AggregateFunctions.minimum "Minimum of the performance inputs" annotation(Placement(visible = true, transformation(origin = {-20, -80}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  Converters.Vector.ArithmeticMean arithAvgPerformance(useWeights = useWeights, hasConstantWeights = false, nin = nin, redeclare replaceable type OutputType = Dimensionless) if func == AggregateFunctions.arithmeticMean "(Weighted) arithmetic mean" annotation(Placement(visible = true, transformation(origin = {-20, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  Converters.Vector.GeometricMean geomAvgPerformance(nin = nin, useWeights = useWeights, hasConstantWeights = false, redeclare replaceable type OutputType = Dimensionless) if func == AggregateFunctions.geometricMean "(Weighted) geometric mean" annotation(Placement(visible = true, transformation(origin = {-20, 40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  Converters.Vector.Max maximumPerformance(nin = nin, redeclare replaceable type OutputType = Dimensionless) if func == AggregateFunctions.maximum "Maximum of the performance inputs" annotation(Placement(visible = true, transformation(origin = {-20, -40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  Converters.Vector.Min minimumPerformance(nin = nin, redeclare replaceable type OutputType = Dimensionless) if func == AggregateFunctions.minimum "Minimum of the performance inputs" annotation(Placement(visible = true, transformation(origin = {-20, -80}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
 equation
   connect(parWeights.y, geomAvgPerformance.u_weights) annotation(Line(visible = true, origin = {-41.333, 69.333}, points = {{-42.667, 10.667}, {21.333, 10.667}, {21.333, -21.333}}, color = {1, 37, 163}));
   connect(u_weights, geomAvgPerformance.u_weights) annotation(Line(visible = true, origin = {-61.667, 56}, points = {{-83.333, 4}, {41.667, 4}, {41.667, -8}}, color = {0, 0, 128}));
@@ -42,5 +43,5 @@ equation
 <p><a href=\"modelica://BusinessSimulation.MoleculesOfStructure.InformationProcessing.BasicOrientation\">BasicOrientation</a>,
 <a href=\"modelica://BusinessSimulation.Converters.Lookup.PerformanceIndicator\">PerformanceIndicator</a>
 </p>
-</html>"), Diagram(coordinateSystem(extent = {{-148.5, -105}, {148.5, 105}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10}), graphics = {Text(visible = true, origin = {0, -25}, textColor = {0, 0, 128}, extent = {{-96.456, -12}, {96.456, 12}}, textString = "Performance", fontName = "Lato Black", textStyle = {TextStyle.Bold}), Text(visible = true, textColor = {0, 0, 128}, extent = {{-96.456, -12}, {96.456, 12}}, textString = "Aggregate", fontName = "Lato Black", textStyle = {TextStyle.Bold})}));
+</html>"), Diagram(coordinateSystem(extent = {{-148.5, -105}, {148.5, 105}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10}), graphics = {Text(visible = true, origin = {0, -25}, textColor = {0, 0, 128}, extent = {{-96.456, -12}, {96.456, 12}}, textString = "Performance", fontName = "Lato", textStyle = {TextStyle.Bold}), Text(visible = true, textColor = {0, 0, 128}, extent = {{-96.456, -12}, {96.456, 12}}, textString = "Aggregate", fontName = "Lato", textStyle = {TextStyle.Bold})}));
 end AggregatePerformance;

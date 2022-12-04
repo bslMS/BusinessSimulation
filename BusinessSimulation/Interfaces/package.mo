@@ -2,6 +2,9 @@ within BusinessSimulation;
 
 package Interfaces "Connectors and partial models for Business Simulations"
   extends Icons.InterfacesPackage;
+  import BusinessSimulation.Units.*;
+  import BusinessSimulation.Constants.*;
+  import BusinessSimulation.Types.Reals;
   annotation(Documentation(info = "<html>
 <p class=\"aside\">This information is part of the Business Simulation Library (BSL).</p>
 <p>This package contains connectors and partial models (classes).</p>

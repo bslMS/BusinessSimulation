@@ -1,3 +1,5 @@
 within BusinessSimulation.Units;
 
-type Length = Types.Reals(quantity = "Length", unit = "m") "Length (or width/breadth, height/depth) measured in m";
+type Length = ExtensiveQuantity(final quantity = "Length", final unit = "m") "Length [m]" annotation(Documentation(info = "<html>
+<p>Length (or width/breadth, height/depth etc.) measured in m.</p>
+</html>"));

@@ -1,6 +1,7 @@
 within BusinessSimulation.CausalLoop;
 
 model Aggregation "Generalized mean function for multiple stock information inputs"
+  import BusinessSimulation.Units.*;
   import BusinessSimulation.Interfaces.Connectors.{StockInfoMultiInput,StockInfoOutput};
   import BusinessSimulation.Types.AggregateFunctions;
   import BusinessSimulation.Types.StockInformation;
@@ -14,11 +15,11 @@ model Aggregation "Generalized mean function for multiple stock information inpu
 protected
   StockInformation aggregateStockInformation "Aggregate stock information";
   AbsoluteSensor[nin] absoluteSensor annotation(Placement(visible = true, transformation(origin = {-100, 0}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
-  AggregatePerformance aggregateIN(nin = nin, func = func, useWeights = true, hasConstantWeights = true, weights = weights, redeclare replaceable type OutputType = Units.Rate) annotation(Placement(visible = true, transformation(origin = {-0, 70}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  AggregatePerformance aggregateS(nin = nin, func = func, useWeights = true, hasConstantWeights = true, weights = weights, redeclare replaceable type OutputType = Types.Reals) annotation(Placement(visible = true, transformation(origin = {0, 30}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  AggregatePerformance aggregateMRT(nin = nin, func = func, useWeights = true, hasConstantWeights = true, weights = weights, redeclare replaceable type OutputType = Units.Time) annotation(Placement(visible = true, transformation(origin = {0, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  AggregatePerformance aggregateF(nin = nin, func = func, useWeights = true, hasConstantWeights = true, weights = weights, redeclare replaceable type OutputType = Units.Rate) annotation(Placement(visible = true, transformation(origin = {0, -30}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  AggregatePerformance aggregateOUT(nin = nin, func = func, useWeights = true, hasConstantWeights = true, weights = weights, redeclare replaceable type OutputType = Units.Rate) annotation(Placement(visible = true, transformation(origin = {-0, -70}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  AggregatePerformance aggregateIN(nin = nin, func = func, useWeights = true, hasConstantWeights = true, weights = weights, redeclare type OutputType = Rate) annotation(Placement(visible = true, transformation(origin = {-0, 70}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  AggregatePerformance aggregateS(nin = nin, func = func, useWeights = true, hasConstantWeights = true, weights = weights) annotation(Placement(visible = true, transformation(origin = {0, 30}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  AggregatePerformance aggregateMRT(nin = nin, func = func, useWeights = true, hasConstantWeights = true, weights = weights, redeclare type OutputType = Time) annotation(Placement(visible = true, transformation(origin = {0, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  AggregatePerformance aggregateF(nin = nin, func = func, useWeights = true, hasConstantWeights = true, weights = weights, redeclare type OutputType = Rate) annotation(Placement(visible = true, transformation(origin = {0, -30}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  AggregatePerformance aggregateOUT(nin = nin, func = func, useWeights = true, hasConstantWeights = true, weights = weights, redeclare type OutputType = Rate) annotation(Placement(visible = true, transformation(origin = {-0, -70}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
 equation
   connect(stockInfoInput, absoluteSensor.u_stockInfo) annotation(Line(visible = true, origin = {-124.5, 0}, points = {{-20.5, 0}, {20.5, 0}}, color = {128, 0, 128}));
   connect(absoluteSensor.inFlow, aggregateIN.u) annotation(Line(visible = true, origin = {-54.6, 28.607}, points = {{-41.4, -18.607}, {19.6, -18.607}, {19.6, 41.393}, {43.6, 41.393}}, color = {1, 37, 163}));

@@ -1,7 +1,7 @@
 within BusinessSimulation.CausalLoop;
 
 model SplitFlow "Splitting a flow into n flows"
-  import BusinessSimulation.Units.Time;
+  import BusinessSimulation.Units.*;
   Interfaces.Connectors.StockPort portA annotation(Placement(visible = true, transformation(origin = {-150, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-50, -0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Interfaces.Connectors.FlowMultiPort[nout] portB annotation(Placement(visible = true, transformation(origin = {150, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {50, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Interfaces.Connectors.RealMultiOutput[nout] y(each quantity = "Rate", each unit = "1/s") if hasRateOutput "Output of current rate of flow" annotation(Placement(visible = true, transformation(origin = {152.067, 40}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {80, -30}, extent = {{-10, 10}, {10, -10}}, rotation = 270)));
@@ -15,7 +15,7 @@ protected
   Interfaces.Connectors.RealInput one = 1.0 if not hasFactor "Default factor" annotation(Placement(visible = true, transformation(origin = {-145, 40}, extent = {{-10, -10}, {10, 10}}, rotation = -720), iconTransformation(origin = {-42, -58}, extent = {{-10, -10}, {10, 10}}, rotation = -270)));
   MoleculesOfStructure.Transceivers.SplitFlow splitFlow(nout = nout, isSplit = isSplit) annotation(Placement(visible = true, transformation(origin = {0, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Converters.Vector.ConstantConverter parSplitFactors(value = splitFactors) annotation(Placement(visible = true, transformation(origin = {-100, 30}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  Converters.Vector.ScalarMultiplication actualSplitFactors(nin = nout, redeclare replaceable type OutputType = Units.Rate) annotation(Placement(visible = true, transformation(origin = {-50, 35}, extent = {{-10, 10}, {10, -10}}, rotation = 0)));
+  Converters.Vector.ScalarMultiplication actualSplitFactors(nin = nout, redeclare type OutputType = Rate) annotation(Placement(visible = true, transformation(origin = {-50, 35}, extent = {{-10, 10}, {10, -10}}, rotation = 0)));
 equation
   connect(portA, splitFlow.stockPort) annotation(Line(visible = true, origin = {-80, 0}, points = {{-70, 0}, {70, 0}}, color = {128, 0, 128}));
   connect(splitFlow.flowPort, portB) annotation(Line(visible = true, origin = {80, 0}, points = {{-70, 0}, {70, 0}}, color = {128, 0, 128}));

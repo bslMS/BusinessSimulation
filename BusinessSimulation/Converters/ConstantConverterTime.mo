@@ -1,7 +1,7 @@
 within BusinessSimulation.Converters;
 
 block ConstantConverterTime "A constant time value is turned into a constant signal"
-  import BusinessSimulation.Units.Time;
+  import BusinessSimulation.Units.*;
   extends Icons.ConstantConverter;
   extends Interfaces.Basics.OutputTypeChoice_Time;
   RealOutput y "Constant value of time in the time base given" annotation(Placement(visible = true, transformation(origin = {161.795, -0}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {60, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));

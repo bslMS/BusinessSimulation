@@ -34,7 +34,7 @@ encapsulated partial model BaseSubsystem "Partial subsystem with flexible number
 <p>This partial class offers convenient flexible with regard to connectors. It is only used for extension.</p>
 <h4>Notes</h4>
 <ul>
-<li>The class uses structure parameters in the tab <code>Subsystem Specs</code> to allow for fast and flexibel building of susbsytem components in a model.</li><br>
+<li>The class uses structural parameters in the tab <code>Subsystem Specs</code> to allow for fast and flexibel building of susbsytem components in a model.</li><br>
 <li>Use of the switches in the group <code>Array Connectors</code> allows to have array connectors even if the number of connectors has been given as 1.</li><br>
 </ul>
 </html>", revisions = "<html>

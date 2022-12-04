@@ -1,8 +1,7 @@
 within BusinessSimulation.Flows.Unidirectional;
 
 model OutflowDynamicStock "Outflow from a dynamic stock—the rate is set by the stock"
-  import BusinessSimulation.Constants.eps;
-  import BusinessSimulation.Units.Rate;
+  import BusinessSimulation.Units.*;
   extends Interfaces.Basics.GenericFlow_Special;
   extends Icons.Outflow;
   extends Interfaces.Basics.ThreeSO_rate;
@@ -33,5 +32,5 @@ equation
 </ul>
 <h4>See also</h4>
 <p><a href=\"modelica://BusinessSimulation.Flows.Unidirectional.SplitOutflowDynamicStock\">SplitOutflowDynamicStock<br></a></p>
-</html>"), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10}), graphics = {Text(visible = true, origin = {0, 75}, textColor = {0, 128, 0}, extent = {{-100, -12}, {100, 12}}, textString = "Outflow", fontName = "Lato Black", textStyle = {TextStyle.Bold})}), Diagram(coordinateSystem(extent = {{-148.5, -105}, {148.5, 105}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})));
+</html>"), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10}), graphics = {Text(visible = true, origin = {0, 75}, textColor = {0, 128, 0}, extent = {{-100, -12}, {100, 12}}, textString = "Outflow", fontName = "Lato", textStyle = {TextStyle.Bold})}), Diagram(coordinateSystem(extent = {{-148.5, -105}, {148.5, 105}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})));
 end OutflowDynamicStock;

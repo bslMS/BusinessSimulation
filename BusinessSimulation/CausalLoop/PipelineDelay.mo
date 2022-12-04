@@ -1,9 +1,9 @@
 within BusinessSimulation.CausalLoop;
 
 model PipelineDelay "Fixed or pure delay of input flow"
+  import BusinessSimulation.Units.*;
   import BusinessSimulation.Types.InitializationOptions;
   import BusinessSimulation.Constants.small;
-  import BusinessSimulation.Units.Time;
   extends Interfaces.PartialCLD.Delay;
   parameter Time maxDelayTime = 10 "Maximum delay time" annotation(Evaluate = true);
   parameter InitializationOptions init = modelSettings.init "Provide InitializationOptions (Free, FixedValue, SteadyState)" annotation(Evaluate = true, Dialog(tab = "Advanced"));

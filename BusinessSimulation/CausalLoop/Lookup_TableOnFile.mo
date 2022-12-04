@@ -1,7 +1,7 @@
 within BusinessSimulation.CausalLoop;
 
 model Lookup_TableOnFile "Table-based lookup given on file"
-  import BusinessSimulation.Types.Reals;
+  import BusinessSimulation.Units.*;
   import Modelica.Blocks.Types.{Smoothness,Extrapolation};
   extends Interfaces.PartialCLD.Lookup;
   parameter Boolean hasConstantReference = true "= true, if the reference value for the stock is given by a constant parameter" annotation(Evaluate = true, Dialog(group = "Structural Parameters"));
@@ -13,7 +13,7 @@ model Lookup_TableOnFile "Table-based lookup given on file"
   parameter Boolean verboseExtrapolation = false "= true, if warning messages are to be printed if table input is outside the definition range" annotation(Dialog(group = "TableDataInterpretation"));
   outer ModelSettings modelSetting;
 protected
-  Converters.Lookup.TableFunction lookup(redeclare replaceable type OutputType = Units.Dimensionless, convertInput = false, convertOutput = false, tableOnFile = true, table = tableData, smoothness = smoothness, extrapolation = extrapolation, tableName = tableName, fileNameURI = fileNameURI, verboseRead = verboseRead, verboseExtrapolation = verboseExtrapolation) annotation(Placement(visible = true, transformation(origin = {0, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  Converters.Lookup.TableFunction lookup(redeclare type OutputType = Dimensionless, convertInput = false, convertOutput = false, tableOnFile = true, smoothness = smoothness, extrapolation = extrapolation, tableName = tableName, fileNameURI = fileNameURI, verboseRead = verboseRead, verboseExtrapolation = verboseExtrapolation) annotation(Placement(visible = true, transformation(origin = {0, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
 equation
   connect(normalizedStock.y, lookup.u) annotation(Line(visible = true, origin = {-30, 0}, points = {{-22, 0}, {22, 0}}, color = {1, 37, 163}));
   connect(lookup.y, y) annotation(Line(visible = true, origin = {85.043, 0}, points = {{-77.043, 0}, {77.043, 0}}, color = {1, 37, 163}));

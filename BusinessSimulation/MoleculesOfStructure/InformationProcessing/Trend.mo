@@ -1,8 +1,8 @@
 within BusinessSimulation.MoleculesOfStructure.InformationProcessing;
 
 block Trend "Calculating a fractional rate of change to be used in forecasting"
+  import BusinessSimulation.Units.*;
   import BusinessSimulation.Types.InitializationOptions;
-  import BusinessSimulation.Units.{Rate,Time};
   extends Interfaces.PartialConverters.InformationProcessing_SO(redeclare replaceable type OutputType = Rate);
   Interfaces.Connectors.RealInput u "Current value as basis for trend formulation" annotation(Placement(visible = true, transformation(origin = {-145, -0}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-110, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Interfaces.Connectors.RealOutput y_ppc if reportPPC "Report the perceived present condition (optional)" annotation(Placement(visible = true, transformation(origin = {160, -60}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {110, -50}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
@@ -56,5 +56,5 @@ equation
 <a href=\"modelica://BusinessSimulation.MoleculesOfStructure.InformationProcessing.TrendBasedForecast\">TrendBasedForecast</a>,
 <a href=\"modelica://BusinessSimulation.Converters.DiscreteDelay.Smooth\">Smooth</a>
 </p>
-</html>"), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10}), graphics = {Text(visible = true, textColor = {0, 0, 128}, extent = {{-96.456, -12}, {96.456, 12}}, textString = "Trend", fontName = "Lato Black", textStyle = {TextStyle.Bold})}), Diagram(coordinateSystem(extent = {{-148.5, -105}, {148.5, 105}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5}), graphics = {Rectangle(visible = true, origin = {12.357, -32.5}, lineColor = {128, 128, 128}, fillColor = {255, 255, 255}, pattern = LinePattern.Dash, extent = {{-45, -42.5}, {45, 42.5}}), Text(visible = true, origin = {10.611, -80}, textColor = {128, 128, 128}, extent = {{-54.39, -6.559}, {54.39, 6.559}}, textString = "indicatedTrend = ( ppc- rc ) / rc / thrc", fontSize = 16, fontName = "Arial")}));
+</html>"), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10}), graphics = {Text(visible = true, textColor = {0, 0, 128}, extent = {{-96.456, -12}, {96.456, 12}}, textString = "Trend", fontName = "Lato", textStyle = {TextStyle.Bold})}), Diagram(coordinateSystem(extent = {{-148.5, -105}, {148.5, 105}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5}), graphics = {Rectangle(visible = true, origin = {12.357, -32.5}, lineColor = {128, 128, 128}, fillColor = {255, 255, 255}, pattern = LinePattern.Dash, extent = {{-45, -42.5}, {45, 42.5}}), Text(visible = true, origin = {10.611, -80}, textColor = {128, 128, 128}, extent = {{-54.39, -6.559}, {54.39, 6.559}}, textString = "indicatedTrend = ( ppc- rc ) / rc / thrc", fontSize = 16, fontName = "Arial")}));
 end Trend;

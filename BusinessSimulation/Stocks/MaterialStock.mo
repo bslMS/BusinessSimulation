@@ -1,8 +1,9 @@
 within BusinessSimulation.Stocks;
 
 model MaterialStock "Reservoir that cannot be drained below zero"
-  import BusinessSimulation.Constants.{small,zero};
   import BusinessSimulation.Types.InitializationOptions;
+  import BusinessSimulation.Units.*;
+  import BusinessSimulation.Constants.{small,zero,inf,INF};
   extends Interfaces.PartialStocks.BasicStock(initialValue(min = 0), minValue = zero);
   extends Icons.MaterialStockIndicator;
   parameter Boolean reinitializeStock = false "= true, if the stock is to be reinitalized to guarante nonnegativity" annotation(Evaluate = true, Dialog(tab = "Advanced"));

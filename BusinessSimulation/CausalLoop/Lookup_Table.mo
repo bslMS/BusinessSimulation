@@ -1,17 +1,17 @@
 within BusinessSimulation.CausalLoop;
 
 model Lookup_Table "Table-based lookup with manual input of the interpolation table"
-  import BusinessSimulation.Types.Reals;
+  import BusinessSimulation.Units.*;
   import Modelica.Blocks.Types.{Smoothness,Extrapolation};
   extends Interfaces.PartialCLD.Lookup;
   parameter Boolean hasConstantReference = true "= true, if the reference value for the stock is given by a constant parameter" annotation(Evaluate = true, Dialog(group = "Structural Parameters"));
-  parameter Real tableData[:, :] = fill(0.0, 0, 2) "Table matrix (grid = first column; e.g., table=[0,2])";
+  parameter Real tableData[:, :] = fill(0.0, 2, 2) "Table matrix (grid = first column; e.g., table=[0,2])";
   parameter Smoothness smoothness = Smoothness.LinearSegments "Smoothness of table interpolation" annotation(Dialog(group = "TableDataInterpretation"));
   parameter Integer column(min = 2) = 2 "Column of table to be interpolated (default = 2)" annotation(Dialog(group = "TableDataInterpretation"));
   parameter Extrapolation extrapolation = Extrapolation.HoldLastPoint "Extrapolation of data outside the definition range" annotation(Dialog(group = "TableDataInterpretation"));
   parameter Boolean verboseExtrapolation = false "= true, if warning messages are to be printed if table input is outside the definition range" annotation(Dialog(group = "TableDataInterpretation"));
 protected
-  Converters.Lookup.TableFunction lookup(redeclare replaceable type OutputType = Units.Dimensionless, convertInput = false, convertOutput = false, tableOnFile = false, table = tableData, smoothness = smoothness, extrapolation = extrapolation, verboseExtrapolation = verboseExtrapolation, column = column) annotation(Placement(visible = true, transformation(origin = {0, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  Converters.Lookup.TableFunction lookup(redeclare type OutputType = Dimensionless, convertInput = false, convertOutput = false, tableOnFile = false, table = tableData, smoothness = smoothness, extrapolation = extrapolation, verboseExtrapolation = verboseExtrapolation, column = column) annotation(Placement(visible = true, transformation(origin = {0, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
 equation
   connect(normalizedStock.y, lookup.u) annotation(Line(visible = true, origin = {-30, 0}, points = {{-22, 0}, {22, 0}}, color = {1, 37, 163}));
   connect(lookup.y, y) annotation(Line(visible = true, origin = {85.043, 0}, points = {{-77.043, 0}, {77.043, 0}}, color = {1, 37, 163}));

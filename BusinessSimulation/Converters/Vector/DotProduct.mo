@@ -1,6 +1,7 @@
 within BusinessSimulation.Converters.Vector;
 
 block DotProduct "Dot product of two vectors of equal length"
+  import BusinessSimulation.Units.*;
   extends Interfaces.PartialConverters.SO;
   parameter Integer nin(min = 2) = 2 "Elements in the input vectors (length)" annotation(Dialog(group = "Structural Parameters"));
   Interfaces.Connectors.RealMultiInput[nin] u1 "Input vector 1" annotation(Placement(visible = true, transformation(origin = {-145, 40}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-80.378, 50.378}, extent = {{-10.378, -10.378}, {10.378, 10.378}}, rotation = 0)));
@@ -16,5 +17,5 @@ equation
 <p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
 <p>The output <strong>y</strong> is the <em>dot product</em> of the input vectors <strong>u1</strong> and <strong>u2</strong> which have the same length <code>nin</code>.</p>
 <p>The dot product is defined as follows:</p>
-<p><img src=\"modelica://BusinessSimulation/Resources/Images/Converters/Vector/DotProduct/Formula.svg\" alt=\"y = sum_{i=1}^{nin} u1[i]*u2[i]\"></p></html>"), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10}), graphics = {Text(visible = true, textColor = {0, 0, 128}, extent = {{-40.484, -12}, {40.484, 12}}, textString = "Dot", fontName = "Lato Black", textStyle = {TextStyle.Bold})}), Diagram(coordinateSystem(extent = {{-148.5, -105}, {148.5, 105}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})));
+<p><img src=\"modelica://BusinessSimulation/Resources/Images/Converters/Vector/DotProduct/Formula.svg\" alt=\"y = sum_{i=1}^{nin} u1[i]*u2[i]\"></p></html>"), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10}), graphics = {Text(visible = true, textColor = {0, 0, 128}, extent = {{-40.484, -12}, {40.484, 12}}, textString = "Dot", fontName = "Lato", textStyle = {TextStyle.Bold})}), Diagram(coordinateSystem(extent = {{-148.5, -105}, {148.5, 105}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})));
 end DotProduct;

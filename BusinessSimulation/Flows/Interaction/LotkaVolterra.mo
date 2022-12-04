@@ -1,22 +1,25 @@
 within BusinessSimulation.Flows.Interaction;
 
 model LotkaVolterra "The Lotka-Volterra equations to model predator-prey-dynamics"
-  import BusinessSimulation.Units.Rate;
+  import BusinessSimulation.Units.*;
+  import BusinessSimulation.Constants.*;
   extends Interfaces.Basics.GenericFlow;
   extends Interfaces.Basics.Interaction4SO;
   extends Icons.Interaction;
   InputConnector dataIn if not (hasConstantAlpha and hasConstantBeta and hasConstantGamma and hasConstantDelta) "Inputs for predator-prey model" annotation(Placement(visible = true, transformation(origin = {-145, 70}, extent = {{-10, -10}, {10, 10}}, rotation = -360), iconTransformation(origin = {0, 100}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
-  parameter Rate alpha = 0 "Fractional growth rate of prey population (A)" annotation(Dialog(enable = hasConstantAlpha));
-  parameter Rate beta = 0 "Fractional rate of decline for prey population (A) per predator" annotation(Dialog(enable = hasConstantBeta));
-  parameter Rate gamma = 0 "Fractional rate of decline for predator population (B)" annotation(Dialog(enable = hasConstantGamma));
-  parameter Rate delta = 0 "Fractional rate of growth for predator population (B) per prey" annotation(Dialog(enable = hasConstantDelta));
+  parameter Rate alpha = unspecified "Fractional growth rate of prey population (A)" annotation(Dialog(enable = hasConstantAlpha));
+  parameter Rate beta = unspecified "Fractional rate of decline for prey population (A) per predator" annotation(Dialog(enable = hasConstantBeta));
+  parameter Rate gamma = unspecified "Fractional rate of decline for predator population (B)" annotation(Dialog(enable = hasConstantGamma));
+  parameter Rate delta = unspecified "Fractional rate of growth for predator population (B) per prey" annotation(Dialog(enable = hasConstantDelta));
   parameter Boolean hasConstantAlpha = false "= true, if the constant parameter value is to be used instead of the input connector" annotation(Evaluate = true, Dialog(group = "Structural Parameters"));
   parameter Boolean hasConstantBeta = false "= true, if the constant parameter value is to be used instead of the input connector" annotation(Evaluate = true, Dialog(group = "Structural Parameters"));
   parameter Boolean hasConstantGamma = false "= true, if the constant parameter value is to be used instead of the input connector" annotation(Evaluate = true, Dialog(group = "Structural Parameters"));
   parameter Boolean hasConstantDelta = false "= true, if the constant parameter value is to be used instead of the input connector" annotation(Evaluate = true, Dialog(group = "Structural Parameters"));
 
-  expandable connector InputConnector "DataBus for inputs"
-    extends Icons.DataInPort;
+  encapsulated expandable connector InputConnector "DataBus for inputs"
+    import ICON = BusinessSimulation.Icons.DataInPort;
+    import BusinessSimulation.Units.*;
+    extends ICON;
     Rate alpha "Fractional growth rate of prey population (A)";
     Rate beta "Fractional rate of decline for prey population (A) per predator";
     Rate delta "Fractional rate of growth for predator population (B) per prey";
@@ -40,6 +43,10 @@ protected
   Interfaces.Connectors.RealOutput u_delta if not hasConstantDelta annotation(Placement(visible = true, transformation(origin = {90, 55}, extent = {{-10, -10}, {10, 10}}, rotation = -90), iconTransformation(origin = {-50, 66.667}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Interfaces.Connectors.DataBus dataBus annotation(Placement(visible = true, transformation(origin = {-80, 15}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-43.333, 16.667}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
 equation
+  assert(not hasConstantAlpha or alpha < inf, "Parameter alpha needs to be specified");
+  assert(not hasConstantBeta or beta < inf, "Parameter beta needs to be specified");
+  assert(not hasConstantGamma or gamma < inf, "Parameter gamma needs to be specified");
+  assert(not hasConstantDelta or delta < inf, "Parameter delta needs to be specified");
   connect(dataIn.alpha, u_alpha) annotation(Line(visible = true, origin = {-116.667, 63.333}, points = {{-28.333, 6.667}, {21.667, 6.667}, {21.667, -8.333}}, color = {0, 0, 128}));
   connect(dataIn.beta, u_beta) annotation(Line(visible = true, origin = {-73.333, 65}, points = {{-71.667, 5}, {43.333, 5}, {43.333, -10}}, color = {0, 0, 128}));
   connect(dataIn.gamma, u_gamma) annotation(Line(visible = true, origin = {-33.333, 65}, points = {{-111.667, 5}, {63.333, 5}, {63.333, -10}}, color = {0, 0, 128}));
@@ -111,5 +118,10 @@ equation
 </table>
 <h4>See also</h4>
 <p><a href=\"modelica://BusinessSimulation.Flows.Interaction.ComplexInteraction\">ComplexInteraction</a></p>
-</html>"), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10}), graphics = {Text(visible = true, origin = {-35.498, 33.689}, textColor = {128, 128, 128}, extent = {{-34.502, -12}, {34.502, 12}}, textString = "Prey", fontName = "Lato", textStyle = {TextStyle.Bold}), Text(visible = true, origin = {17.887, -46.189}, textColor = {128, 128, 128}, extent = {{-44.005, -12}, {44.005, 12}}, textString = "Predator", fontName = "Lato", textStyle = {TextStyle.Bold}), Text(visible = true, origin = {0, 75}, textColor = {0, 128, 0}, extent = {{-100, -12}, {100, 12}}, textString = "Lotka-Volterra", fontName = "Lato Black", textStyle = {TextStyle.Bold})}), Diagram(coordinateSystem(extent = {{-150, -90}, {150, 90}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5}), graphics = {Text(visible = true, origin = {-123.379, 7.594}, textColor = {192, 192, 192}, extent = {{-16.621, -9.24}, {16.621, 9.24}}, textString = "PREY", fontSize = 18, horizontalAlignment = TextAlignment.Left), Text(visible = true, origin = {119.167, 7.28}, textColor = {192, 192, 192}, extent = {{-20.833, -9.24}, {20.833, 9.24}}, textString = "PREDATOR", fontSize = 18, horizontalAlignment = TextAlignment.Right), Text(visible = true, origin = {-90, -34.24}, textColor = {192, 192, 192}, extent = {{-40, -9.24}, {40, 9.24}}, textString = "a_0 = b_0 = a_B = b_A = 0", fontSize = 18, horizontalAlignment = TextAlignment.Left), Text(visible = true, origin = {-90.879, 75}, textColor = {192, 192, 192}, extent = {{-24.121, -9.24}, {24.121, 9.24}}, textString = "a_A = alpha", fontSize = 18, horizontalAlignment = TextAlignment.Left), Text(visible = true, origin = {-29.121, 75}, textColor = {192, 192, 192}, extent = {{-24.121, -9.24}, {24.121, 9.24}}, textString = "a_AB = - beta", fontSize = 18, horizontalAlignment = TextAlignment.Left), Text(visible = true, origin = {29.121, 75}, textColor = {192, 192, 192}, extent = {{-24.121, -9.24}, {24.121, 9.24}}, textString = "b_B = - gamma", fontSize = 18, horizontalAlignment = TextAlignment.Left), Text(visible = true, origin = {89.121, 75}, textColor = {192, 192, 192}, extent = {{-24.121, -9.24}, {24.121, 9.24}}, textString = "b_AB = delta", fontSize = 18, horizontalAlignment = TextAlignment.Left)}));
+</html>", revisions = "<html>
+<ul>
+<li><code>InputConnector</code> defined as <code>encapsulated expandable connector</code> in v2.1.0.</li><br>
+<li>Values for optional parameters changed to <code>unspecified</code> in v2.1.0.</li><br>
+</ul>
+</html>"), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10}), graphics = {Text(visible = true, origin = {-35.498, 33.689}, textColor = {128, 128, 128}, extent = {{-34.502, -12}, {34.502, 12}}, textString = "Prey", fontName = "Lato", textStyle = {TextStyle.Bold}), Text(visible = true, origin = {17.887, -46.189}, textColor = {128, 128, 128}, extent = {{-44.005, -12}, {44.005, 12}}, textString = "Predator", fontName = "Lato", textStyle = {TextStyle.Bold}), Text(visible = true, origin = {0, 75}, textColor = {0, 128, 0}, extent = {{-100, -12}, {100, 12}}, textString = "Lotka-Volterra", fontName = "Lato", textStyle = {TextStyle.Bold})}), Diagram(coordinateSystem(extent = {{-150, -90}, {150, 90}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5}), graphics = {Text(visible = true, origin = {-123.379, 7.594}, textColor = {192, 192, 192}, extent = {{-16.621, -9.24}, {16.621, 9.24}}, textString = "PREY", fontSize = 18, horizontalAlignment = TextAlignment.Left), Text(visible = true, origin = {119.167, 7.28}, textColor = {192, 192, 192}, extent = {{-20.833, -9.24}, {20.833, 9.24}}, textString = "PREDATOR", fontSize = 18, horizontalAlignment = TextAlignment.Right), Text(visible = true, origin = {-90, -34.24}, textColor = {192, 192, 192}, extent = {{-40, -9.24}, {40, 9.24}}, textString = "a_0 = b_0 = a_B = b_A = 0", fontSize = 18, horizontalAlignment = TextAlignment.Left), Text(visible = true, origin = {-90.879, 75}, textColor = {192, 192, 192}, extent = {{-24.121, -9.24}, {24.121, 9.24}}, textString = "a_A = alpha", fontSize = 18, horizontalAlignment = TextAlignment.Left), Text(visible = true, origin = {-29.121, 75}, textColor = {192, 192, 192}, extent = {{-24.121, -9.24}, {24.121, 9.24}}, textString = "a_AB = - beta", fontSize = 18, horizontalAlignment = TextAlignment.Left), Text(visible = true, origin = {29.121, 75}, textColor = {192, 192, 192}, extent = {{-24.121, -9.24}, {24.121, 9.24}}, textString = "b_B = - gamma", fontSize = 18, horizontalAlignment = TextAlignment.Left), Text(visible = true, origin = {89.121, 75}, textColor = {192, 192, 192}, extent = {{-24.121, -9.24}, {24.121, 9.24}}, textString = "b_AB = delta", fontSize = 18, horizontalAlignment = TextAlignment.Left)}));
 end LotkaVolterra;

@@ -6,7 +6,6 @@ model SimpleProductionChainII "Extending the first example to include replacemen
   inner ModelSettings modelSettings(modelDisplayTimeBase = BusinessSimulation.Types.TimeBases.months, dt(displayUnit = "mo") = 657000, modelTimeHorizon(displayUnit = "mo") = 157680000) annotation(Placement(visible = true, transformation(origin = {-135, -75}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
 
   expandable connector ModelOutput "Main output for the model"
-    import BusinessSimulation.Units.{Amount,Rate};
     extends Icons.DataOutPort;
     Amount inventory "Finished goods inventory";
     Amount installedBase "Installed base for the product";
@@ -15,14 +14,14 @@ model SimpleProductionChainII "Extending the first example to include replacemen
     Rate scrapping "Rate of scrapping at the end of useful life";
   end ModelOutput;
 protected
-  Stocks.MaterialStock inventory(initialValue = 0, redeclare replaceable type OutputType = Units.Amount) "Finished goods inventory" annotation(Placement(visible = true, transformation(origin = {-50, -10}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  Flows.Unidirectional.Transition shipping(hasConstantRate = false, rate(displayUnit = "1/mo") = 3.80517503805175e-06, redeclare replaceable type OutputType = Units.Rate) "Shippment to the customer at an exogenous rate" annotation(Placement(visible = true, transformation(origin = {-10, -10}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  Stocks.MaterialStock inventory(initialValue = 0, redeclare replaceable type OutputType = Amount) "Finished goods inventory" annotation(Placement(visible = true, transformation(origin = {-50, -10}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  Flows.Unidirectional.Transition shipping(hasConstantRate = false, rate(displayUnit = "1/mo") = 3.80517503805175e-06, redeclare replaceable type OutputType = Rate) "Shippment to the customer at an exogenous rate" annotation(Placement(visible = true, transformation(origin = {-10, -10}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   SourcesOrSinks.Growth producing(hasConstantRate = false, rate(displayUnit = "1/mo") = 3.80517503805175e-05) "Production at a constant rate" annotation(Placement(visible = true, transformation(origin = {-90, -10}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  Stocks.DelayN installedBase(hasConstantDelayTime = false, n = 4, delayTime(displayUnit = "yr") = 157680000, initialValue = 0, redeclare replaceable type OutputType = Units.Amount) "Product stays in use for around 5 years" annotation(Placement(visible = true, transformation(origin = {30, -10}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  Stocks.DelayN installedBase(hasConstantDelayTime = false, n = 4, delayTime(displayUnit = "yr") = 157680000, initialValue = 0, redeclare replaceable type OutputType = Amount) "Product stays in use for around 5 years" annotation(Placement(visible = true, transformation(origin = {30, -10}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Flows.Unidirectional.OutflowDynamicStock scrapping "After its useful life has expired, products will be discarded" annotation(Placement(visible = true, transformation(origin = {70, -10}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  InformationSources.RampInput firstTimePurchases(redeclare replaceable type OutputType = Units.Rate, offset(displayUnit = "1/mo") = 3.80517503805175e-06, height(displayUnit = "1/mo") = 3.42465753424658e-05, startTime(displayUnit = "mo") = 15768000, duration(displayUnit = "mo") = 47304000) "Ramping up from 10 to 100 units per month starting at 6 mo for 18 mo" annotation(Placement(visible = true, transformation(origin = {-65, 45}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  InformationSources.RampInput firstTimePurchases(redeclare replaceable type OutputType = Rate, offset(displayUnit = "1/mo") = 3.80517503805175e-06, height(displayUnit = "1/mo") = 3.42465753424658e-05, startTime(displayUnit = "mo") = 15768000, duration(displayUnit = "mo") = 47304000) "Ramping up from 10 to 100 units per month starting at 6 mo for 18 mo" annotation(Placement(visible = true, transformation(origin = {-65, 45}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Converters.ConstantConverterTime usefulLife(value(displayUnit = "yr") = 157680000) "Average time a product remains in use" annotation(Placement(visible = true, transformation(origin = {10, 20}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  Converters.Add_2 shippingRate(redeclare replaceable type OutputType = Units.Rate) "The total rate of material that is being shipped to customers" annotation(Placement(visible = true, transformation(origin = {-15, 22.729}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
+  Converters.Add_2 shippingRate(redeclare replaceable type OutputType = Rate) "The total rate of material that is being shipped to customers" annotation(Placement(visible = true, transformation(origin = {-15, 22.729}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
   MoleculesOfStructure.Policy.FirstOrderStockAdjustment productionRate(adjTime(displayUnit = "mo") = 2628000, hasConstantAdjTime = true) "Policy to determine rate of production" annotation(Placement(visible = true, transformation(origin = {-90, -50}, extent = {{10, -10}, {-10, 10}}, rotation = 0)));
   Converters.ConstantConverter desiredInventory(value = 100) "The constant level of inventory we wich to maintain" annotation(Placement(visible = true, transformation(origin = {-50, -50}, extent = {{10, -10}, {-10, 10}}, rotation = 0)));
   SourcesOrSinks.Cloud cloud1 annotation(Placement(visible = true, transformation(origin = {110, -10}, extent = {{10, -10}, {-10, 10}}, rotation = 0)));
@@ -63,5 +62,5 @@ equation
 <ul>
 <li>Updated plots in v2.0.0.</li>
 </ul>
-</html>"), experiment(StartTime = 0, StopTime = 157680000, __Wolfram_DisplayTimeUnit = "mo"), __Wolfram, Diagram(coordinateSystem(extent = {{-150, -90}, {150, 90}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5}), graphics = {Text(visible = true, origin = {0, 65}, textColor = {76, 112, 136}, extent = {{-140, -6}, {140, 6}}, textString = "Simple Production Chain II", fontName = "Lato Black", textStyle = {TextStyle.Bold})}));
+</html>"), experiment(StartTime = 0, StopTime = 157680000, __Wolfram_DisplayTimeUnit = "mo"), __Wolfram, Diagram(coordinateSystem(extent = {{-150, -90}, {150, 90}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5}), graphics = {Text(visible = true, origin = {0, 65}, textColor = {76, 112, 136}, extent = {{-140, -6}, {140, 6}}, textString = "Simple Production Chain II", fontName = "Lato", textStyle = {TextStyle.Bold})}));
 end SimpleProductionChainII;

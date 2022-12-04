@@ -1,7 +1,8 @@
 within BusinessSimulation.Converters;
 
 block PolynomialFunctionDivisor "Input is divided by polynomial function of lambda"
-  import BusinessSimulation.Constants.inf;
+  import BusinessSimulation.Units.*;
+  import BusinessSimulation.Constants.*;
   extends Interfaces.PartialConverters.SO;
   Interfaces.Connectors.RealInput u "Input to be normalized" annotation(Placement(visible = true, transformation(origin = {-145, 5}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-80, 0}, extent = {{-10, 10}, {10, -10}}, rotation = 0)));
   Interfaces.Connectors.RealInput u_lambda if not hasConstantArgument "Input argument of polynomial function" annotation(Placement(visible = true, transformation(origin = {-145, -40}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {0, 80}, extent = {{-10, 10}, {10, -10}}, rotation = -90)));
@@ -37,5 +38,5 @@ equation
 <ul>
 <li>Introduced in version 2.0.0</li>
 </ul>
-</html>"), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10}), graphics = {Text(visible = true, origin = {20, 0}, textColor = {0, 0, 128}, extent = {{-60, -12}, {60, 12}}, textString = "P(λ)", fontName = "Lato Black", textStyle = {TextStyle.Italic, TextStyle.Bold}), Text(visible = true, origin = {-17.009, 0}, textColor = {0, 0, 128}, extent = {{-60, -12}, {60, 12}}, textString = "· 1 /", fontName = "Lato Black", textStyle = {TextStyle.Bold})}), Diagram(coordinateSystem(extent = {{-148.5, -105}, {148.5, 105}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})));
+</html>"), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10}), graphics = {Text(visible = true, origin = {20, 0}, textColor = {0, 0, 128}, extent = {{-60, -12}, {60, 12}}, textString = "P(λ)", fontName = "Lato", textStyle = {TextStyle.Italic, TextStyle.Bold}), Text(visible = true, origin = {-17.009, 0}, textColor = {0, 0, 128}, extent = {{-60, -12}, {60, 12}}, textString = "· 1 /", fontName = "Lato", textStyle = {TextStyle.Bold})}), Diagram(coordinateSystem(extent = {{-148.5, -105}, {148.5, 105}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})));
 end PolynomialFunctionDivisor;

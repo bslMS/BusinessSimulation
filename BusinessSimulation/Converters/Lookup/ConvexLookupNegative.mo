@@ -1,8 +1,8 @@
 within BusinessSimulation.Converters.Lookup;
 
 block ConvexLookupNegative "Convex Lookup with negative slope usually defined for the range [0,∞) passing through the fixpoint (1,1)"
+  import BusinessSimulation.Units.*;
   extends Interfaces.PartialConverters.SISO_Conversion;
-  import BusinessSimulation.Constants.eps;
   parameter Real y0(min = 1) = 2 "Value of y (intercept) when input is zero or less (y0>1)";
   parameter Boolean strict = true "= true, if strict limits with noEvent(..)" annotation(Evaluate = true, Dialog(tab = "Advanced"));
 equation

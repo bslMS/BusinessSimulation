@@ -1,13 +1,13 @@
 within BusinessSimulation.MoleculesOfStructure.InformationProcessing;
 
 model FinancialReporting "Periodic reporting of a financial flow for the past accounting period"
-  import BusinessSimulation.Units.Time;
+  import BusinessSimulation.Units.*;
   extends Interfaces.PartialConverters.InformationProcessing_SO;
   Interfaces.Connectors.RealInput u "Actual rate of financial flow" annotation(Placement(visible = true, transformation(origin = {-145, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-113.106, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   // parameter
   parameter Time reportingPeriod = 1 "Accounting period";
   parameter Time offsetFirstReporting = reportingPeriod "The first report will be issued at startTime + offsetFirstRporting";
-  parameter Real initialValue = 0 "Initial reported value (value to be reported until the first reporting date)";
+  parameter OutputType initialValue = 0 "Initial reported value (value to be reported until the first reporting date)";
 protected
   Converters.Gap gap annotation(Placement(visible = true, transformation(origin = {70, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Converters.DiscreteDelay.Sampler previousValue(samplingPeriod = reportingPeriod, offsetStartTime = offsetFirstReporting, initialValue = 0) "Reported flow for the previous reporting period" annotation(Placement(visible = true, transformation(origin = {20, -20}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
@@ -32,5 +32,5 @@ equation
 <p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
 <p>In a continuous time simulation financial flows will show their current value at any time. While this is a clear advantage of a simulation&mdash;we will never know the true current rates in reality&mdash;we would often like to show the average flow with regard to a defined accounting period as it is typical for financial reporting (e.g., at the end of an acounting period the Finance Department will report a single value for the average revenue in the past period in monetary units per period).</p>
 <p>The <em>FinancialReporting</em> component will report such an averaged flow by showing the difference between the actual flow and the flow delayed by exactly the length of the accounting period. This difference will be sampled at the end of any accounting period during the simulation time horizon. During the accounting period the last reported value will be kept constant.</p>
-</html>"), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10}), graphics = {Text(visible = true, origin = {0, -25}, textColor = {0, 0, 128}, extent = {{-96.456, -12}, {96.456, 12}}, textString = "Reporting", fontName = "Lato Black", textStyle = {TextStyle.Bold}), Text(visible = true, textColor = {0, 0, 128}, extent = {{-96.456, -12}, {96.456, 12}}, textString = "Financial", fontName = "Lato Black", textStyle = {TextStyle.Bold})}), Diagram(coordinateSystem(extent = {{-148.5, -60}, {148.5, 40}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})));
+</html>"), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10}), graphics = {Text(visible = true, origin = {0, -25}, textColor = {0, 0, 128}, extent = {{-96.456, -12}, {96.456, 12}}, textString = "Reporting", fontName = "Lato", textStyle = {TextStyle.Bold}), Text(visible = true, textColor = {0, 0, 128}, extent = {{-96.456, -12}, {96.456, 12}}, textString = "Financial", fontName = "Lato", textStyle = {TextStyle.Bold})}), Diagram(coordinateSystem(extent = {{-148.5, -60}, {148.5, 40}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})));
 end FinancialReporting;

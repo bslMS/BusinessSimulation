@@ -1,8 +1,8 @@
 within BusinessSimulation.Converters.Vector;
 
 block ConstantConverterRate "A list of constant rates is turned into a vector of rate signals"
+  import BusinessSimulation.Units.*;
   import BusinessSimulation.Types.TimeBases;
-  import BusinessSimulation.Units.{Rate,Dimensionless};
   extends Icons.ConstantConverter;
   extends Interfaces.Basics.OutputTypeChoice_Rate;
   RealMultiOutput[nout] y annotation(Placement(visible = true, transformation(origin = {151.657, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {60, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));

@@ -1,14 +1,16 @@
 within BusinessSimulation.SourcesOrSinks;
 
 model LogisticGrowth "Logistic growth model"
+  import BusinessSimulation.Units.*;
+  import BusinessSimulation.Constants.*;
   extends Interfaces.Basics.GenericSourceOrSink;
   extends Icons.Source;
-  import BusinessSimulation.Units.Rate;
   Interfaces.Connectors.RealMultiInput u[2] if not hasConstantInputs "[1] maximum fractional growth rate [2] carrying capacity" annotation(Placement(visible = true, transformation(origin = {-145, -0}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-50, 100}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
-  parameter OutputType r(min = 0) "Maximum fractional growth rate" annotation(Dialog(enable = hasConstantInputs));
-  parameter Real K(min = 0) "Carrying capacity or maximum sustainable amount for the connected stock (>0)" annotation(Dialog(enable = hasConstantInputs));
+  parameter OutputType r(min = 0) = unspecified "Maximum fractional growth rate" annotation(Dialog(enable = hasConstantInputs));
+  parameter CapacityType K(min = 0) = unspecified "Carrying capacity or maximum sustainable amount for the connected stock (>0)" annotation(Dialog(enable = hasConstantInputs));
   parameter Boolean isCCR = true "= true, if the maximum fractional rate given is assumed to be a continuously compounding rate else the rate will be converted" annotation(Dialog(group = "Structural Parameters"));
   parameter Boolean hasConstantInputs = false "= true, if constant parameters aure to be used instead of the real inputs u[1] and u[2]" annotation(Dialog(group = "Structural Parameters"));
+  replaceable type CapacityType = Amount constrainedby Unspecified "Type for carrying capacity K" annotation(choicesAllMatching = true);
 protected
   Sensors.FlowPortSensor population "Current level of the connected stock" annotation(Placement(visible = true, transformation(origin = {120, 15}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Cloud cloud "System boundary" annotation(Placement(visible = true, transformation(origin = {-30, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
@@ -24,6 +26,7 @@ protected
   Converters.PassThrough identicalRate if isCCR "Use indicated rate if it is continuously compounding" annotation(Placement(visible = true, transformation(origin = {-90, 50}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
 equation
   assert(relativePopulation.u2 > 0, "Carrying capacity must be larger than zero");
+  assert(not hasConstantInputs or r < inf and K < inf, "Parameters r and K need to be specified");
   connect(population.flowPort, massPort) annotation(Line(visible = true, origin = {146.667, 10}, points = {{-26.667, 5}, {1.667, 5}, {1.667, -10}}, color = {128, 0, 128}));
   connect(cloud.massPort, growing.portA) annotation(Line(visible = true, origin = {-10, 0}, points = {{-10, 0}, {10, 0}}, color = {128, 0, 128}));
   connect(growing.y1, y2) annotation(Line(visible = true, origin = {65.125, -27.5}, points = {{-44.625, 22.5}, {-25.125, 22.5}, {-25.125, -22.5}, {94.875, -22.5}}, color = {1, 37, 163}));
@@ -65,5 +68,9 @@ equation
 </ul>
 <h4>Acknowledgements</h4>
 <p>The logistic growth equation is originally due to the Belgian mathematican <em>Pierre-Fran&ccedil;ois Verhulst</em> (1804 - 1849).</p>
-</html>"), __Wolfram(itemFlippingEnabled = true), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10}), graphics = {Text(visible = true, origin = {0, 75}, textColor = {0, 128, 0}, extent = {{-100, -12}, {100, 12}}, textString = "Logistic Growth", fontName = "Lato Black", textStyle = {TextStyle.Bold}), Text(visible = true, origin = {60, -80}, textColor = {0, 0, 128}, extent = {{-16.681, -12}, {16.681, 12}}, textString = "K", fontName = "Lato", textStyle = {TextStyle.Bold}), Text(visible = true, origin = {-40, -68.863}, textColor = {0, 0, 128}, extent = {{-5.153, -12}, {5.153, 12}}, textString = "r", fontName = "Lato", textStyle = {TextStyle.Bold}), Line(visible = true, origin = {63.558, -10.273}, rotation = -5.306, points = {{32.722, 10.515}, {13.878, -30.192}, {-15.693, -37.076}, {-32.22, -15.961}}, color = {0, 0, 128}, thickness = 2.5, arrowSize = 0, smooth = Smooth.Bezier), Line(visible = true, origin = {-42.154, -19.63}, rotation = 5.306, points = {{9.831, -44.191}, {31.025, -33.382}, {47.07, -12.788}}, color = {0, 0, 128}, thickness = 2.5, arrowSize = 0, smooth = Smooth.Bezier), Polygon(visible = true, origin = {31.134, -25.316}, rotation = 30, lineColor = {0, 0, 128}, fillColor = {0, 0, 128}, fillPattern = FillPattern.Solid, points = {{0, 9}, {5, -5}, {-5, -5}}), Polygon(visible = true, origin = {5.5, -27.794}, rotation = -30, lineColor = {0, 0, 128}, fillColor = {0, 0, 128}, fillPattern = FillPattern.Solid, points = {{0, 9}, {-5, -5}, {5, -5}}), Line(visible = true, origin = {-31.891, -23.609}, points = {{77.861, -51.711}, {56.151, -35.748}, {51.602, -8.364}}, color = {0, 0, 128}, thickness = 2.5, arrowSize = 0, smooth = Smooth.Bezier), Polygon(visible = true, origin = {20, -29}, lineColor = {0, 0, 128}, fillColor = {0, 0, 128}, fillPattern = FillPattern.Solid, points = {{0, 9}, {-5, -5}, {5, -5}})}));
+</html>", revisions = "<html>
+<ul>
+<li>Added type choice for <code>K</code> and defaulted optional constant parameters to <code>unspecified</code>.</li><br>
+</ul>
+</html>"), __Wolfram(itemFlippingEnabled = true), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10}), graphics = {Text(visible = true, origin = {0, 75}, textColor = {0, 128, 0}, extent = {{-100, -12}, {100, 12}}, textString = "Logistic Growth", fontName = "Lato", textStyle = {TextStyle.Bold}), Text(visible = true, origin = {60, -80}, textColor = {0, 0, 128}, extent = {{-16.681, -12}, {16.681, 12}}, textString = "K", fontName = "Lato", textStyle = {TextStyle.Bold}), Text(visible = true, origin = {-40, -68.863}, textColor = {0, 0, 128}, extent = {{-5.153, -12}, {5.153, 12}}, textString = "r", fontName = "Lato", textStyle = {TextStyle.Bold}), Line(visible = true, origin = {63.558, -10.273}, rotation = -5.306, points = {{32.722, 10.515}, {13.878, -30.192}, {-15.693, -37.076}, {-32.22, -15.961}}, color = {0, 0, 128}, thickness = 2.5, arrowSize = 0, smooth = Smooth.Bezier), Line(visible = true, origin = {-42.154, -19.63}, rotation = 5.306, points = {{9.831, -44.191}, {31.025, -33.382}, {47.07, -12.788}}, color = {0, 0, 128}, thickness = 2.5, arrowSize = 0, smooth = Smooth.Bezier), Polygon(visible = true, origin = {31.134, -25.316}, rotation = 30, lineColor = {0, 0, 128}, fillColor = {0, 0, 128}, fillPattern = FillPattern.Solid, points = {{0, 9}, {5, -5}, {-5, -5}}), Polygon(visible = true, origin = {5.5, -27.794}, rotation = -30, lineColor = {0, 0, 128}, fillColor = {0, 0, 128}, fillPattern = FillPattern.Solid, points = {{0, 9}, {-5, -5}, {5, -5}}), Line(visible = true, origin = {-31.891, -23.609}, points = {{77.861, -51.711}, {56.151, -35.748}, {51.602, -8.364}}, color = {0, 0, 128}, thickness = 2.5, arrowSize = 0, smooth = Smooth.Bezier), Polygon(visible = true, origin = {20, -29}, lineColor = {0, 0, 128}, fillColor = {0, 0, 128}, fillPattern = FillPattern.Solid, points = {{0, 9}, {-5, -5}, {5, -5}})}));
 end LogisticGrowth;

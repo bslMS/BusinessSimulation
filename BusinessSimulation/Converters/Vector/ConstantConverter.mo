@@ -1,6 +1,7 @@
 within BusinessSimulation.Converters.Vector;
 
 block ConstantConverter "A list of constant values is turned into a constant vector of signals"
+  import BusinessSimulation.Units.*;
   extends Icons.ConstantConverter;
   extends Interfaces.Basics.OutputTypeChoice;
   RealMultiOutput[size(value, 1)] y annotation(Placement(visible = true, transformation(origin = {152.114, -0}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {60, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));

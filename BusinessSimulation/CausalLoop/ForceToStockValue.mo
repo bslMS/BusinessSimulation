@@ -1,13 +1,14 @@
 within BusinessSimulation.CausalLoop;
 
 model ForceToStockValue "Flow is obtained as closing the gap to input stock value"
+  import BusinessSimulation.Units.*;
   extends BusinessSimulation.Interfaces.PartialCLD.StockInfoToFlow;
-  MoleculesOfStructure.Policy.CloseGap rate(adjTime = adjTime) "Rate of Change" annotation(Placement(visible = true, transformation(origin = {-40, 20}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  Sensors.FlowPortSensor currentValue "Current value of connected stock" annotation(Placement(visible = true, transformation(origin = {120, 20}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  SourcesOrSinks.ExogenousChange changing annotation(Placement(visible = true, transformation(origin = {0, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   parameter Units.Time adjTime(min = 0) = modelSettings.dt "Time to close the gap";
   outer ModelSettings modelSettings;
 protected
+  MoleculesOfStructure.Policy.CloseGap rate(adjTime = adjTime) "Rate of Change" annotation(Placement(visible = true, transformation(origin = {-40, 20}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  Sensors.FlowPortSensor currentValue "Current value of connected stock" annotation(Placement(visible = true, transformation(origin = {120, 20}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  SourcesOrSinks.ExogenousChange changing annotation(Placement(visible = true, transformation(origin = {0, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Sensors.AbsoluteSensor absoluteSensor annotation(Placement(visible = true, transformation(origin = {-120, 0}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
 equation
   connect(currentValue.flowPort, flowPort) annotation(Line(visible = true, origin = {130, 6.667}, points = {{-10, 13.333}, {-10, -6.667}, {20, -6.667}}, color = {128, 0, 128}));

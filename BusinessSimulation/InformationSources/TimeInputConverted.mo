@@ -1,10 +1,10 @@
 within BusinessSimulation.InformationSources;
 
 block TimeInputConverted "Clock to provide time-signal in a different time base"
+  import BusinessSimulation.Units.*;
+  import BusinessSimulation.Types.TimeBases;
   extends Icons.InformationSourceIndicator;
   extends Icons.Clockface_white;
-  import BusinessSimulation.Units.Time;
-  import BusinessSimulation.Types.TimeBases;
   Interfaces.Connectors.RealOutput y(final unit = clockTimeBaseUnit, final quantity = "Time") annotation(Placement(visible = true, transformation(origin = {160, -0}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {80, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   parameter Time offset = modelSettings.modelStartTime "Offset of output signal y given in seconds (default = modelStartTime)";
   parameter Time startTime = modelSettings.modelStartTime "Output y = offset for time <= startTime (default = modelStartTime)";

@@ -1,7 +1,8 @@
 within BusinessSimulation.MoleculesOfStructure.Transceivers;
 
 model Reservoir "A single stock drained by an outflow at a given rate"
-  import BusinessSimulation.Constants.inf;
+  import BusinessSimulation.Units.*;
+  import BusinessSimulation.Constants.*;
   import BusinessSimulation.Types.InitializationOptions;
   extends Icons.SubsystemTransceiver;
   extends Interfaces.Basics.OutputTypeChoice;
@@ -43,5 +44,5 @@ equation
 <a href=\"modelica://BusinessSimulation.MoleculesOfStructure.Incubators.Account\">Account</a>,
 <a href=\"modelica://BusinessSimulation.MoleculesOfStructure.Transceivers.Chain\">Chain</a>
 </p>
-</html>"), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10}), graphics = {Line(visible = true, origin = {-4.16, -0.234}, points = {{0, 0}, {28.109, 0}}, color = {0, 128, 0}, thickness = 5), Ellipse(visible = true, origin = {9.978, 0}, lineColor = {0, 128, 0}, fillColor = {255, 255, 255}, fillPattern = FillPattern.Solid, lineThickness = 0.5, extent = {{-4.138, -4.138}, {4.138, 4.138}}), Rectangle(visible = true, origin = {-14.948, 0}, lineColor = {255, 0, 0}, fillColor = {255, 255, 255}, fillPattern = FillPattern.Solid, lineThickness = 3, extent = {{-10, -10}, {10, 10}}), Polygon(visible = true, origin = {24.453, -0.275}, lineColor = {0, 128, 0}, fillColor = {0, 128, 0}, fillPattern = FillPattern.Solid, points = {{-2.773, 3.823}, {-2.773, -3.863}, {5.547, 0.041}}), Text(visible = true, origin = {-0, 75}, textColor = {76, 112, 136}, extent = {{-100, -12}, {100, 12}}, textString = "Reservoir", fontName = "Lato Black", textStyle = {TextStyle.Bold})}));
+</html>"), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10}), graphics = {Line(visible = true, origin = {-4.16, -0.234}, points = {{0, 0}, {28.109, 0}}, color = {0, 128, 0}, thickness = 5), Ellipse(visible = true, origin = {9.978, 0}, lineColor = {0, 128, 0}, fillColor = {255, 255, 255}, fillPattern = FillPattern.Solid, lineThickness = 0.5, extent = {{-4.138, -4.138}, {4.138, 4.138}}), Rectangle(visible = true, origin = {-14.948, 0}, lineColor = {255, 0, 0}, fillColor = {255, 255, 255}, fillPattern = FillPattern.Solid, lineThickness = 3, extent = {{-10, -10}, {10, 10}}), Polygon(visible = true, origin = {24.453, -0.275}, lineColor = {0, 128, 0}, fillColor = {0, 128, 0}, fillPattern = FillPattern.Solid, points = {{-2.773, 3.823}, {-2.773, -3.863}, {5.547, 0.041}}), Text(visible = true, origin = {-0, 75}, textColor = {76, 112, 136}, extent = {{-100, -12}, {100, 12}}, textString = "Reservoir", fontName = "Lato", textStyle = {TextStyle.Bold})}));
 end Reservoir;

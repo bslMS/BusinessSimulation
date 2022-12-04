@@ -1,9 +1,9 @@
 within BusinessSimulation.Converters.DiscreteDelay;
 
 block Sampler "Ideal periodic sampler of input"
-  import BusinessSimulation.Units.Time;
+  import BusinessSimulation.Units.*;
   import BusinessSimulation.Types.InitializationOptions;
-  import BusinessSimulation.Constants.small;
+  import BusinessSimulation.Constants.{inf,small,eps,e};
   extends Interfaces.PartialConverters.SmoothSISO(redeclare discrete RealOutput y);
   extends Icons.DiscreteSmoothLabel;
   parameter Time samplingPeriod(min = small) "Interval at which to sample the input" annotation(Evaluate = true);
@@ -25,7 +25,7 @@ algorithm
     y := u;
   end when;
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation Library (BSL).</p>
 <p>The (discrete) output <strong>y</strong> is obtained by sampling every <code>samplingPeriod</code> starting at <code>modelSettings.modelStartTime + offsetStartTime</code> from the input <strong>u</strong>.</p>
 <h4>Notes</h4>
 <ul>
@@ -41,5 +41,5 @@ algorithm
 <p>
 <a href=\"modelica://BusinessSimulation.Converters.DiscreteDelay.SampleIfTrue\">SampleIfTrue</a>
 </p>
-</html>"), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10}), graphics = {Text(visible = true, textColor = {0, 0, 128}, extent = {{-51.371, -12}, {51.371, 12}}, textString = "SAMPLER", fontName = "Lato Black", textStyle = {TextStyle.Bold})}), Diagram(coordinateSystem(extent = {{-148.5, -105}, {148.5, 105}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})));
+</html>"), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10}), graphics = {Text(visible = true, textColor = {0, 0, 128}, extent = {{-51.371, -12}, {51.371, 12}}, textString = "SAMPLER", fontName = "Lato", textStyle = {TextStyle.Bold})}), Diagram(coordinateSystem(extent = {{-148.5, -105}, {148.5, 105}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})));
 end Sampler;

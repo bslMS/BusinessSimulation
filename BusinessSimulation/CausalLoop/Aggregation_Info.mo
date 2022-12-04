@@ -1,13 +1,14 @@
 within BusinessSimulation.CausalLoop;
 
 model Aggregation_Info "Generalized mean function for multiple information inputs"
+  import BusinessSimulation.Units.*;
   import BusinessSimulation.Types.AggregateFunctions;
   import BusinessSimulation.MoleculesOfStructure.InformationProcessing.AggregatePerformance;
   extends Interfaces.PartialCLD.InfoAggregation;
   parameter AggregateFunctions func = AggregateFunctions.arithmeticMean "Function to apply for aggregation" annotation(Evaluate = true, Dialog(group = "Structural Parameters"));
   parameter Real weights[nin] = ones(nin) "Constant weights to be used for aggregation";
 protected
-  AggregatePerformance aggregateInformation(nin = nin, func = func, useWeights = true, hasConstantWeights = true, weights = weights, redeclare replaceable type OutputType = Units.Dimensionless) annotation(Placement(visible = true, transformation(origin = {0, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  AggregatePerformance aggregateInformation(nin = nin, func = func, useWeights = true, hasConstantWeights = true, weights = weights, redeclare type OutputType = Dimensionless) annotation(Placement(visible = true, transformation(origin = {0, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
 equation
   connect(u, aggregateInformation.u) annotation(Line(visible = true, origin = {-78, 0}, points = {{-67, 0}, {67, 0}}, color = {0, 0, 128}));
   connect(aggregateInformation.y, y) annotation(Line(visible = true, origin = {86.543, 0}, points = {{-75.543, 0}, {75.543, 0}}, color = {1, 37, 163}));

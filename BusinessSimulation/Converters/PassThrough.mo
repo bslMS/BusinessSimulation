@@ -1,6 +1,7 @@
 within BusinessSimulation.Converters;
 
 block PassThrough "Output is identical to input"
+  import BusinessSimulation.Units.*;
   extends Interfaces.PartialConverters.SISO;
 equation
   y = u;

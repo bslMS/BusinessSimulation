@@ -2,7 +2,6 @@ within BusinessSimulation.Examples;
 
 model SoftwareReleaseProject "Causal loop example given by van Zijderveld (MARVEL)"
   extends BusinessSimulation.Icons.Example;
-  import BusinessSimulation.Units.Time;
   inner ModelSettings modelSettings(modelTimeHorizon(displayUnit = "yr") = 315360000, dt(displayUnit = "yr") = 7884000, modelDisplayTimeBase = BusinessSimulation.Types.TimeBases.years, samplingPeriod.displayUnit = "yr") annotation(Placement(visible = true, transformation(origin = {-130, -70}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   parameter Real wCost = 1 "Weigth for cost performance" annotation(Dialog(group = "Performance"));
   parameter Real wQuality = 1 "Weigth for quality performance" annotation(Dialog(group = "Performance"));
@@ -22,12 +21,12 @@ model SoftwareReleaseProject "Causal loop example given by van Zijderveld (MARVE
   Interfaces.Connectors.DataOutPort modelOutput "The model's performance output" annotation(Placement(visible = true, transformation(origin = {152.239, -70}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {90, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
 
   block AccumulatedPerformance "Weighted average performance per period"
-    extends Interfaces.PartialCLD.Converter(nin = 3, redeclare replaceable type OutputType = Units.Dimensionless);
+    extends Interfaces.PartialCLD.Converter(nin = 3, redeclare replaceable type OutputType = Dimensionless);
     parameter Real weights[nin] "Constant weights to be used for aggregation";
     InformationSources.TimeInput modelTime "Time into the simulation" annotation(Placement(visible = true, transformation(origin = {80, -40}, extent = {{10, -10}, {-10, 10}}, rotation = 0)));
     Converters.Division_Guarded avgPerf "Average weighted performance score" annotation(Placement(visible = true, transformation(origin = {60, -0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   protected
-    MoleculesOfStructure.Incubators.Account cumPerf(redeclare replaceable type OutputType = Units.Dimensionless, hasNetRateInput = true) "Accumulated performance" annotation(Placement(visible = true, transformation(origin = {0, -30}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+    MoleculesOfStructure.Incubators.Account cumPerf(redeclare replaceable type OutputType = Dimensionless, hasNetRateInput = true) "Accumulated performance" annotation(Placement(visible = true, transformation(origin = {0, -30}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
     CausalLoop.Aggregation_Info avgWeightedPerformance(nin = nin, weights = weights) annotation(Placement(visible = true, transformation(origin = {-117.5, 0}, extent = {{-7.5, -7.5}, {7.5, 7.5}}, rotation = 0)));
   equation
     connect(u, avgWeightedPerformance.u) annotation(Line(visible = true, origin = {-135, 0}, points = {{-10, 0}, {10, 0}}, color = {0, 0, 128}));
@@ -269,5 +268,5 @@ In section 5 of his paper van Zijderveld gives an illustrative example for the a
 <p>
 <a href=\"modelica://BusinessSimulation.Examples.HealTheWorld\">HealTheWorld</a>
 </p> 
-</html>", figures = {Figure(title = "Performance Evaluation", identifier = "default", preferred = true, plots = {Plot(curves = {Curve(y = modelOutput.costPerformance, legend = "Cost"), Curve(y = modelOutput.qualityPerformance, legend = "Quality"), Curve(y = modelOutput.usagePerformance, legend = "Usage")})}), Figure(title = "Total Performance", identifier = "totalPerformance", plots = {Plot(curves = {Curve(y = modelOutput.totalPerformance, legend = "total perforamcne")})})}), experiment(StopTime = 315360000, __Wolfram_DisplayTimeUnit = "yr", __Wolfram_NumberOfIntervals = -1), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10})), uses(Modelica(version = "3.2.3"), BusinessSimulation(version = "1.1.0-alpha")), Diagram(coordinateSystem(extent = {{-150, -90}, {150, 90}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5}), graphics = {Text(visible = true, origin = {0, 80}, textColor = {76, 112, 136}, extent = {{-140, -6}, {140, 6}}, textString = "Software Release Project", fontName = "Lato Black", textStyle = {TextStyle.Bold}), Text(visible = true, origin = {0, 70}, textColor = {76, 112, 136}, extent = {{-140, -3}, {140, 3}}, textString = "van Zijderveld [24]", fontName = "Lato", textStyle = {TextStyle.Bold})}));
+</html>", figures = {Figure(title = "Performance Evaluation", identifier = "default", preferred = true, plots = {Plot(curves = {Curve(y = modelOutput.costPerformance, legend = "Cost"), Curve(y = modelOutput.qualityPerformance, legend = "Quality"), Curve(y = modelOutput.usagePerformance, legend = "Usage")})}), Figure(title = "Total Performance", identifier = "totalPerformance", plots = {Plot(curves = {Curve(y = modelOutput.totalPerformance, legend = "total perforamcne")})})}), experiment(StopTime = 315360000, __Wolfram_DisplayTimeUnit = "yr", __Wolfram_NumberOfIntervals = -1), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10})), uses(Modelica(version = "3.2.3"), BusinessSimulation(version = "1.1.0-alpha")), Diagram(coordinateSystem(extent = {{-150, -90}, {150, 90}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5}), graphics = {Text(visible = true, origin = {0, 80}, textColor = {76, 112, 136}, extent = {{-140, -6}, {140, 6}}, textString = "Software Release Project", fontName = "Lato", textStyle = {TextStyle.Bold}), Text(visible = true, origin = {0, 70}, textColor = {76, 112, 136}, extent = {{-140, -3}, {140, 3}}, textString = "van Zijderveld [24]", fontName = "Lato", textStyle = {TextStyle.Bold})}));
 end SoftwareReleaseProject;

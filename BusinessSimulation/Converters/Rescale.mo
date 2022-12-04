@@ -1,6 +1,7 @@
 within BusinessSimulation.Converters;
 
 block Rescale "Rescales input to run from y_min to y_max over the range u_min to u_max"
+  import BusinessSimulation.Units.*;
   extends Interfaces.PartialConverters.SISO;
   parameter Real u_min "Minimum value for the original range [u_min, u_max]";
   parameter Real u_max "Maximum value for the original range [u_min, u_max]";
@@ -16,5 +17,5 @@ equation
 <br>
 <pre>y = Functions.rescale( x, {u_min,u_max}, {y_min, y_max});</pre>
 <h4>See also &nbsp;</h4>
-<p><a href=\"modelica://BusinessSimulation.Functions.rescale\">Functions.rescale</a></p></html>", revisions = ""), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10}), graphics = {Text(visible = true, textColor = {0, 0, 128}, extent = {{-40, -12}, {40, 12}}, textString = "RESCALE", fontName = "Lato Black", textStyle = {TextStyle.Bold})}), Diagram(coordinateSystem(extent = {{-148.5, -105}, {148.5, 105}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})));
+<p><a href=\"modelica://BusinessSimulation.Functions.rescale\">Functions.rescale</a></p></html>", revisions = ""), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10}), graphics = {Text(visible = true, textColor = {0, 0, 128}, extent = {{-40, -12}, {40, 12}}, textString = "RESCALE", fontName = "Lato", textStyle = {TextStyle.Bold})}), Diagram(coordinateSystem(extent = {{-148.5, -105}, {148.5, 105}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})));
 end Rescale;

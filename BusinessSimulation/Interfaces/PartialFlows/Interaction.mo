@@ -1,7 +1,6 @@
 within BusinessSimulation.Interfaces.PartialFlows;
 
 partial model Interaction "Describes two separate flows to or from sinks or sources"
-  import BusinessSimulation.Units.Rate;
   extends Basics.GenericFlow;
   extends Basics.Interaction4SO;
   extends Icons.Interaction;

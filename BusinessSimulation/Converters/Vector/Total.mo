@@ -1,6 +1,7 @@
 within BusinessSimulation.Converters.Vector;
 
 block Total "Gives the sum over all components of a vector"
+  import BusinessSimulation.Units.*;
   extends Interfaces.PartialConverters.MISO;
 equation
   y = sum(u);

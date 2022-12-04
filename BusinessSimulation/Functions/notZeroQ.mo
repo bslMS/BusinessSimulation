@@ -6,7 +6,7 @@ function notZeroQ "Yields true if input is different from zero"
   output Boolean y "Boolean output";
 algorithm
   y := x <> 0;
-  annotation(Documentation(info = "<html>
+  annotation(Inline = true, Documentation(info = "<html>
 <p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
 <p>The function returns <code>false</code> if the real input <strong>x</strong> is zero and <code>true</code> in all other cases.</p>
 <h4>Syntax</h4>
@@ -18,5 +18,9 @@ algorithm
 <h4>Notes</h4>
 <p>This functions is somewhat like an \"inverse\" Boole.</p>
 <h4>See also</h4>
-<p><a href=\"modelica://BusinessSimulation.Converters.Logical.Boole\">Boole</a></p></html>"), Diagram(coordinateSystem(extent = {{-148.5, -105}, {148.5, 105}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})));
+<p><a href=\"modelica://BusinessSimulation.Converters.Logical.Boole\">Boole</a></p></html>", revisions = "<html>
+<ul>
+<li>Added <code>Inline = true</code> in v2.1.0.</li>
+</ul>
+<html>"), Diagram(coordinateSystem(extent = {{-148.5, -105}, {148.5, 105}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})));
 end notZeroQ;

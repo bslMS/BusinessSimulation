@@ -1,6 +1,7 @@
 within BusinessSimulation.CausalLoop;
 
 model ExponentialDelay "Exponential delay of input flow"
+  import BusinessSimulation.Units.*;
   import BusinessSimulation.Types.InitializationOptions;
   extends Interfaces.PartialCLD.Delay(hasStockInfoOutput = false);
   parameter Integer ORD(min = 1) = 3 "Order of the exponential delay" annotation(Evaluate = true, Dialog(group = "Structural Parameters"));

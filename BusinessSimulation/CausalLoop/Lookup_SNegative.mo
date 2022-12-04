@@ -1,7 +1,7 @@
 within BusinessSimulation.CausalLoop;
 
 block Lookup_SNegative "Negatively sloping s-shaped lookup (centered at origin)"
-  import BusinessSimulation.Types.Reals;
+  import BusinessSimulation.Units.*;
   extends Interfaces.PartialCLD.Lookup;
   parameter Real upperBound(min = 0) = 1 "Upper asymptote (upperBound > 0)";
   parameter Real slope(min = 1) = 2 "Slope controls gradient of curve (s > 1)";

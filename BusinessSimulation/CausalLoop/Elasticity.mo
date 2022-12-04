@@ -1,6 +1,7 @@
 within BusinessSimulation.CausalLoop;
 
 model Elasticity "Fractional rate of change is proportional to that of the influencing stock"
+  import BusinessSimulation.Units.*;
   extends Interfaces.PartialCLD.CoupledSourceOrSink;
   parameter Boolean isCCR = true "= true, if the factional rate given is assumed to be a continuously compounding rate else the rate will be converted (growing.isCCR)" annotation(Evaluate = true, Dialog(group = "Structural Parameters"));
 protected

@@ -1,7 +1,9 @@
 within BusinessSimulation;
 
-package Units "Typical quantities used in models"
-  extends Icons.UnitsPackage;
+encapsulated package Units "Typical quantities used in models"
+  import ICON = BusinessSimulation.Icons.UnitsPackage;
+  import BusinessSimulation.Types.Reals;
+  extends ICON;
   annotation(Documentation(info = "<html>
 <p class=\"aside\">This information is part of the Business Simulation Library (BSL).</p>
 <p>This package contains types to represent SI-units and (quite often) non-SIunits used in modeling social and ecological systems.</p>

@@ -2,8 +2,8 @@ within BusinessSimulation.Stocks;
 
 model Conveyor "Conveyor delay (aka pipeline ~) with variable delay time"
   import BusinessSimulation.Types.InitializationOptions;
-  import BusinessSimulation.Units.{Rate,Time};
-  import BusinessSimulation.Constants.small;
+  import BusinessSimulation.Units.*;
+  import BusinessSimulation.Constants.{small,zero,inf,INF};
   extends Icons.Conveyor;
   extends Icons.DiscreteStockLabel;
   extends Interfaces.Basics.GenericStock_Special(hasStockInfoOutput = false, init = modelSettings.init);
@@ -57,9 +57,9 @@ initial algorithm
       // constant value
       conveyor[i] := rateToStore;
     else
-      /* 
+      /*
       use initial load profile in future versions
-      conveyor[i] := initialLoad.y[i] / samplingPeriod; 
+      conveyor[i] := initialLoad.y[i] / samplingPeriod;
       */
       conveyor[i] := rateToStore;
     end if;
@@ -146,5 +146,5 @@ end when;
 </ul>
 <h4>See also</h4>
 <p><a href=\"modelica://BusinessSimulation.Stocks.SimpleConveyor\">SimpleConveyor</a>,&nbsp;<a href=\"modelica://BusinessSimulation.Stocks.PureDelay\">PureDelay</a>, <a href=\"modelica://BusinessSimulation.Converters.DiscreteDelay.DelayFixed\">DelayFixed</a>,&nbsp;<a href=\"modelica://BusinessSimulation.Converters.DiscreteDelay.DelayInformation\">DelayInformation</a></p>
-</html>"), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10}), graphics = {Text(visible = true, origin = {0, -80}, textColor = {0, 0, 128}, extent = {{-100, -6}, {100, 6}}, textString = "%initialValue", fontName = "Lato")}), Diagram(coordinateSystem(extent = {{-150, -90}, {150, 140}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})));
+</html>"), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10})), Diagram(coordinateSystem(extent = {{-150, -90}, {150, 140}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})));
 end Conveyor;

@@ -1,8 +1,7 @@
 within BusinessSimulation.Interfaces.Connectors;
 
 connector StockPort "Connector for stock components"
-  import BusinessSimulation.Units.Rate;
-  Real stock "Current amount of 'mass' in the stock";
+  Real stock "Current amount in the stock";
   flow Rate rate "Flow that affects the stock";
   output Boolean stopInflow "= true, if nothing can flow into the stock";
   output Boolean stopOutflow " = true, if nothing can flow out of the stock";

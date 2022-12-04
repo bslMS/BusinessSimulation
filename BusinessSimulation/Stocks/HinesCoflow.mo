@@ -1,6 +1,9 @@
 within BusinessSimulation.Stocks;
 
 model HinesCoflow "Accounting for changes in average quality of a stock as new entries with different characteristic flow in"
+  import BusinessSimulation.Types.InitializationOptions;
+  import BusinessSimulation.Units.*;
+  import BusinessSimulation.Constants.{small,zero,inf,INF};
   extends Interfaces.Basics.GenericStock(hasStockInfoOutput = false, y.start = initialValue);
   extends Icons.Stock;
   extends Icons.FlowIndicators;
@@ -44,5 +47,5 @@ equation
 <p>The Hines Coflow is explicitly named after its creator, James Hines. More information can be found on <a href=\"https://sdmolecules.org/index.htm#MoleculeTopics/CloseGap/FirstOrderSmooth/HinesCoflow/hinesCoflow.htm\">his website</a>.</p>
 <h4>See also</h4>
 <p><a href=\"modelica://BusinessSimulation.Stocks.InformationLevel\">InformationLevel&nbsp;</a></p>
-</html>"), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10}), graphics = {Text(visible = true, origin = {0, 75}, textColor = {255, 0, 0}, extent = {{-100, -12}, {100, 12}}, textString = "Mean Quality", fontName = "Lato Black", textStyle = {TextStyle.Bold}), Text(visible = true, origin = {0, -80}, textColor = {0, 0, 128}, extent = {{-100, -6}, {100, 6}}, textString = "%initialValue", fontName = "Lato")}), Diagram(coordinateSystem(extent = {{-148.5, -105}, {148.5, 105}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})));
+</html>"), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10}), graphics = {Text(visible = true, origin = {0, 75}, textColor = {255, 0, 0}, extent = {{-100, -12}, {100, 12}}, textString = "Mean Quality", fontName = "Lato", textStyle = {TextStyle.Bold})}), Diagram(coordinateSystem(extent = {{-148.5, -105}, {148.5, 105}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})));
 end HinesCoflow;

@@ -1,7 +1,6 @@
 within BusinessSimulation.Examples;
 
 model SimpleProductionChainIII "Further extending the first example to explain new product diffusion"
-  import BusinessSimulation.Units.{Amount,Rate,AmountRate};
   extends Icons.Example;
   ModelOutput modelOutput annotation(Placement(visible = true, transformation(origin = {135, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {90, -0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   inner ModelSettings modelSettings(modelDisplayTimeBase = BusinessSimulation.Types.TimeBases.months, dt(displayUnit = "mo") = 657000, modelTimeHorizon(displayUnit = "mo") = 315360000) annotation(Placement(visible = true, transformation(origin = {-135, -75}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
@@ -20,14 +19,14 @@ model SimpleProductionChainIII "Further extending the first example to explain n
   end ModelOutput;
 protected
   Stocks.MaterialStock inventory(initialValue = 100, hasStockInfoOutput = false) "Finished goods inventory" annotation(Placement(visible = true, transformation(origin = {-50, -30}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  Flows.Unidirectional.Transition shipping(hasConstantRate = false, rate = 0, redeclare replaceable type OutputType = Units.Rate) "Shipments to the customers" annotation(Placement(visible = true, transformation(origin = {-10, -30}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  SourcesOrSinks.Growth producing(hasConstantRate = false, rate = 100, redeclare replaceable type OutputType = Units.Rate) "Production of a durable good" annotation(Placement(visible = true, transformation(origin = {-90, -30}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  Flows.Unidirectional.Transition shipping(hasConstantRate = false, rate = 0, redeclare replaceable type OutputType = Rate) "Shipments to the customers" annotation(Placement(visible = true, transformation(origin = {-10, -30}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  SourcesOrSinks.Growth producing(hasConstantRate = false, rate = 100, redeclare replaceable type OutputType = Rate) "Production of a durable good" annotation(Placement(visible = true, transformation(origin = {-90, -30}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Stocks.DelayN installedBase(hasConstantDelayTime = true, n = 4, delayTime(displayUnit = "mo") = 157680000) "Products in use" annotation(Placement(visible = true, transformation(origin = {30, -30}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  Flows.Unidirectional.OutflowDynamicStock scrapping(redeclare replaceable type OutputType = Units.Rate) "Discarding of products (which will be replaced by new ones)" annotation(Placement(visible = true, transformation(origin = {70, -30}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  Flows.Unidirectional.OutflowDynamicStock scrapping(redeclare replaceable type OutputType = Rate) "Discarding of products (which will be replaced by new ones)" annotation(Placement(visible = true, transformation(origin = {70, -30}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   SourcesOrSinks.Cloud cloud1 annotation(Placement(visible = true, transformation(origin = {110, -30}, extent = {{10, -10}, {-10, 10}}, rotation = 0)));
-  Converters.Add_2 totalOrders(redeclare replaceable type OutputType = Units.Rate) annotation(Placement(visible = true, transformation(origin = {10, 0}, extent = {{-10, -10}, {10, 10}}, rotation = -900)));
-  Stocks.MaterialStock potCustomers(initialValue(displayUnit = "each") = 250000) "Potential customers" annotation(Placement(visible = true, transformation(origin = {-90, 30}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  MoleculesOfStructure.Actuators.Diffusion wordOfMouth(hasConstantOtherAdopters = true, hasConstantOtherPopulation = true, hasConstantContactRate = true, nextStageIsInfluencing = true, hasConstantAdoptionFraction = true, adoptionFraction = 0.02, contactRate(displayUnit = "1/mo") = 3.80517503805175e-06, hasConstantFractionalAdoptionRate = true, fractionalAdoptionRate(unit = "1/mo") = 0) "Bass diffusion model for a word-of-mouth process" annotation(Placement(visible = true, transformation(origin = {-50, 30}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  Converters.Add_2 totalOrders(redeclare replaceable type OutputType = Rate) annotation(Placement(visible = true, transformation(origin = {10, 0}, extent = {{-10, -10}, {10, 10}}, rotation = -900)));
+  Stocks.MaterialStock potCustomers(initialValue = 250000) "Potential customers" annotation(Placement(visible = true, transformation(origin = {-90, 30}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  MoleculesOfStructure.Actuators.Diffusion wordOfMouth(hasConstantOtherAdopters = true, hasConstantOtherPopulation = true, hasConstantContactRate = true, nextStageIsInfluencing = true, hasConstantAdoptionFraction = true, adoptionFraction = 0.02, contactRate(displayUnit = "1/mo") = 3.80517503805175e-06, hasConstantFractionalAdoptionRate = true, fractionalAdoptionRate(unit = "1/mo") = 0, otherAdopters = 0, otherPopulation = 0) "Bass diffusion model for a word-of-mouth process" annotation(Placement(visible = true, transformation(origin = {-50, 30}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Stocks.MaterialStock customers(initialValue = 10) "Initial customers (early adopters)" annotation(Placement(visible = true, transformation(origin = {-10, 30}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   MoleculesOfStructure.Policy.FirstOrderStockAdjustment productionPlanning(hasConstantAdjTime = true, adjTime(displayUnit = "mo") = 2628000) annotation(Placement(visible = true, transformation(origin = {-90, -70}, extent = {{10, -10}, {-10, 10}}, rotation = 0)));
   Converters.ConstantConverter desiredInventory(value = 100) annotation(Placement(visible = true, transformation(origin = {-55, -70}, extent = {{10, -10}, {-10, 10}}, rotation = 0)));
@@ -73,5 +72,5 @@ equation
 <ul>
 <li>Updated plot and chanaged type to <code>AmountRate</code> for reported flows in v2.0.0.</li>
 </ul>
-</html>"), __Wolfram, Diagram(coordinateSystem(extent = {{-150, -90}, {150, 90}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5}), graphics = {Text(visible = true, origin = {0, 65}, textColor = {76, 112, 136}, extent = {{-140, -6}, {140, 6}}, textString = "Simple Production Chain III", fontName = "Lato Black", textStyle = {TextStyle.Bold})}));
+</html>"), __Wolfram, Diagram(coordinateSystem(extent = {{-150, -90}, {150, 90}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5}), graphics = {Text(visible = true, origin = {0, 65}, textColor = {76, 112, 136}, extent = {{-140, -6}, {140, 6}}, textString = "Simple Production Chain III", fontName = "Lato", textStyle = {TextStyle.Bold})}));
 end SimpleProductionChainIII;

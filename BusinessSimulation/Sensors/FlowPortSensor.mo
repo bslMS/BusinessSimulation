@@ -2,7 +2,7 @@ within BusinessSimulation.Sensors;
 
 model FlowPortSensor "Level information for an outside FlowPort"
   Interfaces.Connectors.FlowPort flowPort annotation(Placement(visible = true, transformation(origin = {0, -0}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {0, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  Interfaces.Connectors.RealOutput stock(unit = "1") "Current level of connected stock" annotation(Placement(visible = true, transformation(origin = {160, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {0.488, 110}, extent = {{-10, -10}, {10, 10}}, rotation = -270)));
+  Interfaces.Connectors.RealOutput stock "Current level of connected stock" annotation(Placement(visible = true, transformation(origin = {160, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {0.488, 110}, extent = {{-10, -10}, {10, 10}}, rotation = -270)));
 equation
   flowPort.rate = 0;
   stock = flowPort.stock;

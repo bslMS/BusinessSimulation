@@ -1,6 +1,7 @@
 within BusinessSimulation.Converters;
 
 block Product_2 "Inputs are multiplied"
+  import BusinessSimulation.Units.*;
   extends Interfaces.PartialConverters.SI2SO;
 equation
   y = u1 * u2;

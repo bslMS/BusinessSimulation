@@ -1,13 +1,14 @@
 within BusinessSimulation.Flows.Interaction;
 
 model BrokenTransitionPull "The outflow from A is proportional to the inflow to B"
-  import BusinessSimulation.Units.{Amount,Rate};
+  import BusinessSimulation.Units.*;
+  import BusinessSimulation.Constants.*;
   extends Interfaces.Basics.GenericFlow;
   extends Interfaces.Basics.Interaction4SO;
   extends Icons.Interaction;
   Interfaces.Connectors.RealInput u_rate if not hasConstantRate "Rate of inflow to B" annotation(Placement(visible = true, transformation(origin = {-70, 90}, extent = {{-10, -10}, {10, 10}}, rotation = -90), iconTransformation(origin = {0, 100}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
   Interfaces.Connectors.RealInput u_factor if not hasConstantFactor "Factor of proportionality (amount of A per amount of B)" annotation(Placement(visible = true, transformation(origin = {-20, 90}, extent = {{-10, -10}, {10, 10}}, rotation = -450), iconTransformation(origin = {-100, 50}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  parameter Rate rate(min = 0) = 0 "Constant rate of inflow to the stock B" annotation(Dialog(enable = hasConstantRate));
+  parameter Rate rate(min = 0) = unspecified "Constant rate of inflow to the stock B" annotation(Dialog(enable = hasConstantRate));
   parameter Amount factor = 1 "Constant factor of proportionality to be multiplied with the outflow from A (default = 1 each [per 1 each])" annotation(Dialog(enable = hasConstantFactor));
   parameter Boolean hasConstantFactor = false "= true, if the factor is to be given by the constant parameter" annotation(Evaluate = true, Dialog(group = "Structural Parameters"));
   parameter Boolean hasConstantRate = false "= true, if the outflow rate for A is to be given by the constant parameter" annotation(Evaluate = true, Dialog(group = "Structural Parameters"));
@@ -20,6 +21,7 @@ protected
   Converters.PassThrough u_Factor if not hasConstantFactor "Input for factor of proportionality" annotation(Placement(visible = true, transformation(origin = {-20, 60}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
   Converters.ConstantConverter parFactor(final value = factor) if hasConstantFactor "Constant factor of proportionality" annotation(Placement(visible = true, transformation(origin = {0, 60}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
 equation
+  assert(not hasConstantRate or rate < inf, "Parameter rate needs to be specified");
   connect(portA, flowingOut.massPort) annotation(Line(visible = true, origin = {-140, -0}, points = {{-20, 0}, {20, -0}}, color = {128, 0, 128}));
   connect(flowingIn.massPort, portB) annotation(Line(visible = true, origin = {130, -0}, points = {{-30, -0}, {30, 0}}, color = {128, 0, 128}));
   connect(flowingOut.y, y1_A) annotation(Line(visible = true, origin = {-23.333, 30.133}, points = {{-91.667, -19.733}, {-91.667, 9.867}, {183.333, 9.867}}, color = {1, 37, 163}));
@@ -54,5 +56,9 @@ equation
 <p>Unlike the classical broken flow structure, setting the rate for the stock B might not take into account the availability of material in the stock A; so this has to be taken care of by the modeler explicitly.</p>
 <h4>See also</h4>
 <p><a href=\"modelica://BusinessSimulation.Flows.Interaction.BrokenTransition\">BrokenTransition</a>,&nbsp;<a href=\"modelica://BusinessSimulation.Flows.Unidirectional.Transition\">Transition</a></p>
-</html>"), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10}), graphics = {Text(visible = true, origin = {-2.924, -54.714}, textColor = {0, 0, 128}, extent = {{-19.048, -12}, {19.048, 12}}, textString = "rate", fontName = "Lato", textStyle = {TextStyle.Bold}, horizontalAlignment = TextAlignment.Left), Text(visible = true, origin = {42.118, 50}, textColor = {0, 0, 128}, extent = {{-65, -12}, {65, 12}}, textString = "factor", fontName = "Lato", textStyle = {TextStyle.Bold}, horizontalAlignment = TextAlignment.Left), Text(visible = true, origin = {0, 75}, textColor = {0, 128, 0}, extent = {{-100, -12}, {100, 12}}, textString = "Broken Transition", fontName = "Lato Black", textStyle = {TextStyle.Bold}), Line(visible = true, origin = {33.142, 17.162}, rotation = 5.35, points = {{-56.426, 30.508}, {-66.107, 22.749}, {-75.3, 9.902}}, color = {0, 0, 128}, thickness = 2.5, arrowSize = 0, smooth = Smooth.Bezier), Line(visible = true, origin = {-45.895, -19.209}, rotation = 5.35, points = {{56.426, -30.508}, {66.107, -22.749}, {75.3, -9.902}}, color = {0, 0, 128}, thickness = 2.5, arrowSize = 0, smooth = Smooth.Bezier), Polygon(visible = true, origin = {-41.165, 23.17}, rotation = -30, lineColor = {0, 0, 128}, fillColor = {0, 0, 128}, fillPattern = FillPattern.Solid, points = {{0, -9}, {-5, 5}, {5, 5}}), Polygon(visible = true, origin = {28.979, -23.17}, rotation = -30, lineColor = {0, 0, 128}, fillColor = {0, 0, 128}, fillPattern = FillPattern.Solid, points = {{0, 9}, {5, -5}, {-5, -5}})}), Diagram(coordinateSystem(extent = {{-150, -90}, {150, 90}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})));
+</html>", revisions = "<html>
+<ul>
+<li>Value for the optional parameter <code>rate</code> changed to <code>unspecified</code> in v2.1.0.</li><br>
+</ul>
+</html>"), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10}), graphics = {Text(visible = true, origin = {-2.924, -54.714}, textColor = {0, 0, 128}, extent = {{-19.048, -12}, {19.048, 12}}, textString = "rate", fontName = "Lato", textStyle = {TextStyle.Bold}, horizontalAlignment = TextAlignment.Left), Text(visible = true, origin = {42.118, 50}, textColor = {0, 0, 128}, extent = {{-65, -12}, {65, 12}}, textString = "factor", fontName = "Lato", textStyle = {TextStyle.Bold}, horizontalAlignment = TextAlignment.Left), Text(visible = true, origin = {0, 75}, textColor = {0, 128, 0}, extent = {{-100, -12}, {100, 12}}, textString = "Broken Transition", fontName = "Lato", textStyle = {TextStyle.Bold}), Line(visible = true, origin = {33.142, 17.162}, rotation = 5.35, points = {{-56.426, 30.508}, {-66.107, 22.749}, {-75.3, 9.902}}, color = {0, 0, 128}, thickness = 2.5, arrowSize = 0, smooth = Smooth.Bezier), Line(visible = true, origin = {-45.895, -19.209}, rotation = 5.35, points = {{56.426, -30.508}, {66.107, -22.749}, {75.3, -9.902}}, color = {0, 0, 128}, thickness = 2.5, arrowSize = 0, smooth = Smooth.Bezier), Polygon(visible = true, origin = {-41.165, 23.17}, rotation = -30, lineColor = {0, 0, 128}, fillColor = {0, 0, 128}, fillPattern = FillPattern.Solid, points = {{0, -9}, {-5, 5}, {5, 5}}), Polygon(visible = true, origin = {28.979, -23.17}, rotation = -30, lineColor = {0, 0, 128}, fillColor = {0, 0, 128}, fillPattern = FillPattern.Solid, points = {{0, 9}, {5, -5}, {-5, -5}})}), Diagram(coordinateSystem(extent = {{-150, -90}, {150, 90}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})));
 end BrokenTransitionPull;

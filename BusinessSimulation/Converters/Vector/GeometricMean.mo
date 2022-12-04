@@ -1,6 +1,7 @@
 within BusinessSimulation.Converters.Vector;
 
 block GeometricMean "(Weighted) geometric mean"
+  import BusinessSimulation.Units.*;
   extends Interfaces.PartialConverters.MISO;
   parameter Real[nin] weights = ones(nin) "Weights to be used for inputs" annotation(Dialog(enable = useWeights and hasConstantWeights));
   parameter Boolean useWeights = false "= true, if the output is to be a weighted geometric mean" annotation(Dialog(group = "Structural Parameters"));
@@ -28,5 +29,5 @@ equation
 <p>
 <a href=\"modelica://BusinessSimulation.Functions.geometricMean\">geometricMean</a>,
 <a href=\"modelica://BusinessSimulation.Converters.Vector.ArithmeticMean\">ArithmeticMean</a></p>
-</html>"), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10}), graphics = {Text(visible = true, textColor = {0, 0, 128}, extent = {{-40.484, -12}, {40.484, 12}}, textString = "MEAN", fontName = "Lato Black", textStyle = {TextStyle.Bold}), Text(visible = true, origin = {0, -20}, textColor = {128, 128, 128}, extent = {{-40.484, -9}, {40.484, 9}}, textString = "Geometric", fontName = "Lato Black", textStyle = {TextStyle.Bold})}), Diagram(coordinateSystem(extent = {{-148.5, -105}, {148.5, 105}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})));
+</html>"), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10}), graphics = {Text(visible = true, textColor = {0, 0, 128}, extent = {{-40.484, -12}, {40.484, 12}}, textString = "MEAN", fontName = "Lato", textStyle = {TextStyle.Bold}), Text(visible = true, origin = {0, -20}, textColor = {128, 128, 128}, extent = {{-40.484, -9}, {40.484, 9}}, textString = "Geometric", fontName = "Lato", textStyle = {TextStyle.Bold})}), Diagram(coordinateSystem(extent = {{-148.5, -105}, {148.5, 105}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})));
 end GeometricMean;

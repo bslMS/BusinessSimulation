@@ -1,7 +1,6 @@
 within BusinessSimulation.Interfaces.PartialStocks;
 
 partial model BasicStock "Unrestricted reservoir to store information"
-  import BusinessSimulation.Constants.inf;
   import BusinessSimulation.Types.InitializationOptions;
   extends Icons.Stock;
   extends Interfaces.Basics.GenericStock(hasStockInfoOutput = false, y.start = initialValue, init = modelSettings.init);
@@ -45,5 +44,9 @@ equation
   connect(y, rangeControl.u) annotation(Line(visible = true, origin = {119.6, 54}, points = {{40.4, -24}, {40.4, -4}, {-19.6, -4}, {-19.6, 16}, {-41.6, 16}}, color = {1, 37, 163}));
   annotation(Documentation(info = "<html>
 <p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
-<p>This is the general, <em>unrestricted reservoir</em> of the System Dynamics methodology, it accumulates information transported by flow components connected to the StockPorts.</p></html>"), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10}), graphics = {Text(visible = true, origin = {0, -80}, textColor = {0, 0, 128}, extent = {{-100, -6}, {100, 6}}, textString = "%initialValue", fontName = "Lato")}), Diagram(coordinateSystem(extent = {{-148.5, -105}, {148.5, 105}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})));
+<p>This is the general, <em>unrestricted reservoir</em> of the System Dynamics methodology, it accumulates information transported by flow components connected to the StockPorts.</p></html>", revisions = "<html>
+<ul>
+<li>Display of <code>%initialValue</code> in the Icon removed in v.2.1.0; it is now taken care of in <code>Icons.Stock</code>.</li>
+</ul>
+</html>"), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10})), Diagram(coordinateSystem(extent = {{-148.5, -105}, {148.5, 105}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})));
 end BasicStock;

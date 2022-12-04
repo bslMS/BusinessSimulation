@@ -1,6 +1,7 @@
 within BusinessSimulation.Converters;
 
 block TimeConversion "Converts a time signal from time base A to time base B"
+  import BusinessSimulation.Units.*;
   import BusinessSimulation.Types.TimeBases;
   extends Icons.Converter;
   Interfaces.Connectors.RealInput u annotation(Placement(visible = true, transformation(origin = {-145, -0}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-80, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
@@ -27,5 +28,5 @@ equation
 <ul>
 <li>Slight modification to pass unit checking in v2.0.0.</li><br>
 </ul>
-</html>"), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10}), graphics = {Text(visible = true, origin = {0, 1.656}, textColor = {0, 0, 128}, extent = {{-56.96, -12}, {56.96, 12}}, textString = "TIME BASE", fontName = "Lato Black", textStyle = {TextStyle.Bold}), Text(visible = true, origin = {0, -25}, textColor = {128, 128, 128}, extent = {{-56.96, -9}, {56.96, 9}}, textString = "A → B", fontName = "Lato Black", textStyle = {TextStyle.Bold})}), Diagram(coordinateSystem(extent = {{-148.5, -105}, {148.5, 105}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})));
+</html>"), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10}), graphics = {Text(visible = true, origin = {0, 1.656}, textColor = {0, 0, 128}, extent = {{-56.96, -12}, {56.96, 12}}, textString = "TIME BASE", fontName = "Lato", textStyle = {TextStyle.Bold}), Text(visible = true, origin = {0, -25}, textColor = {128, 128, 128}, extent = {{-56.96, -9}, {56.96, 9}}, textString = "A → B", fontName = "Lato", textStyle = {TextStyle.Bold})}), Diagram(coordinateSystem(extent = {{-148.5, -105}, {148.5, 105}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})));
 end TimeConversion;

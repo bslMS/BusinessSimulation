@@ -1,12 +1,12 @@
 within BusinessSimulation.Interfaces.PartialCLD;
 
 encapsulated partial model CoupledSourceOrSink "Source or sink process driven by stock info output"
-  import BusinessSimulation.Types.Reals;
+  import BusinessSimulation.Units.*;
   import BusinessSimulation.Sensors.AbsoluteSensor;
   import BusinessSimulation.Converters.{ConstantConverter,Product_2};
   import BusinessSimulation.Interfaces.Connectors.RealInput;
   import BusinessSimulation.Interfaces.PartialCLD.StockInfoToFlow;
-  replaceable type InputType = Reals "Type choice for coefficient";
+  replaceable type InputType = Unspecified constrainedby Unspecified "Type choice for coefficient" annotation(choicesAllMatching = true);
   extends StockInfoToFlow;
   RealInput u if hasFactor "Input of factor with regard to coffeficient" annotation(Placement(visible = true, transformation(origin = {-145, 60}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-50, -50}, extent = {{-10, -10}, {10, 10}}, rotation = -270)));
   parameter InputType coefficient = 1 "Constant coefficient";

@@ -1,9 +1,9 @@
 within BusinessSimulation.Converters.DiscreteDelay;
 
 model DelayFixed "Pipeline information delay without awareness"
+  import BusinessSimulation.Units.*;
   import BusinessSimulation.Types.InitializationOptions;
-  import BusinessSimulation.Units.Time;
-  import BusinessSimulation.Constants.inf;
+  import BusinessSimulation.Constants.{inf,small,eps,e};
   extends Interfaces.PartialConverters.SmoothSISO;
   Interfaces.Connectors.RealInput u_history if hasExogenousHistory "Historical input to be used in an initial period (up to maximumDelaytime)" annotation(Placement(visible = true, transformation(origin = {-145, -40}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-50, 50}, extent = {{-10, 10}, {10, -10}}, rotation = -810)));
   Interfaces.Connectors.RealOutput y_lookupTime if hasExogenousHistory "Time for looking up historical input" annotation(Placement(visible = true, transformation(origin = {160, 70}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-80, 30}, extent = {{10, -10}, {-10, 10}}, rotation = -360)));
@@ -57,7 +57,7 @@ equation
   connect(parStartTime.y, historyHorizon.u2) annotation(Line(visible = true, origin = {-12.402, 50}, points = {{-14.402, -0}, {14.402, 0}}, color = {1, 37, 163}));
   connect(clippedDelayTime.y, historyHorizon.u1) annotation(Line(visible = true, origin = {-28.75, 57.5}, points = {{-48.25, 2.5}, {8.75, 2.5}, {8.75, 2.5}, {30.75, 2.5}}, color = {1, 37, 163}));
   connect(historyHorizon.y, historyNeededQ.u2) annotation(Line(visible = true, origin = {42.667, 49.333}, points = {{-24.667, 5.667}, {12.333, 5.667}, {12.333, -11.333}}, color = {1, 37, 163}));
-  annotation(Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10}), graphics = {Text(visible = true, textColor = {0, 0, 128}, extent = {{-99.005, -12}, {99.005, 12}}, textString = "DELAY FIXED", fontName = "Lato Black", textStyle = {TextStyle.Bold})}), Documentation(info = "<html>
+  annotation(Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10}), graphics = {Text(visible = true, textColor = {0, 0, 128}, extent = {{-99.005, -12}, {99.005, 12}}, textString = "DELAY FIXED", fontName = "Lato", textStyle = {TextStyle.Bold})}), Documentation(info = "<html>
 <p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
 <p>The real output <strong>y</strong> is the real input <strong>u&nbsp;</strong>delayed by a <em>fixed delay time</em> which can be constant (<code>delayTime</code>) or variable (<code>u_delayTime</code>) during the simulation.</p>
 <p><code>y[t] = u[t - delayTime]</code></p>

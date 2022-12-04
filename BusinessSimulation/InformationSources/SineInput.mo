@@ -1,13 +1,12 @@
 within BusinessSimulation.InformationSources;
 
 block SineInput "Generate sine wave as input signal"
-  import BusinessSimulation.Units.Time;
-  import Modelica.SIunits.{Frequency,Angle};
+  import BusinessSimulation.Units.*;
   extends Interfaces.PartialConverters.InformationSource_SO;
   parameter OutputType offset = 0 "Offset of output signal y";
   parameter Time startTime = 0 "Output y = offset for time < startTime";
   parameter OutputType amplitude = 1 "Amplitude of sine wave (with regard to offset)";
-  parameter Time period(min = 0.001) = 1 "Period of sine wave (= 1/freqHz)";
+  parameter Time period(min = 0.001) = 1 "Period of sine wave";
   parameter Angle phase = 0 "Phase of sine wave";
 protected
   final Modelica.Blocks.Sources.Sine sine(offset = offset, startTime = startTime, amplitude = amplitude, freqHz = 1 / period, phase = phase) annotation(Placement(visible = true, transformation(origin = {1.413, -0}, extent = {{-46.413, -46.413}, {46.413, 46.413}}, rotation = 0)));

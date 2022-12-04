@@ -1,6 +1,7 @@
 within BusinessSimulation.Converters;
 
 block ConstantConverter "A constant value is turned into a constant signal"
+  import BusinessSimulation.Units.*;
   extends Icons.ConstantConverter;
   extends Interfaces.Basics.OutputTypeChoice;
   RealOutput y "Constant output signal" annotation(Placement(visible = true, transformation(origin = {161.795, -0}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {60, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));

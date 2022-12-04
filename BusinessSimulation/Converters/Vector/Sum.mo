@@ -1,6 +1,7 @@
 within BusinessSimulation.Converters.Vector;
 
 block Sum "Add two vectors of equal length"
+  import BusinessSimulation.Units.*;
   extends Interfaces.Basics.BaseConverter;
   Interfaces.Connectors.RealMultiInput u1[nin] "Input vector 1" annotation(Placement(visible = true, transformation(origin = {-145, 40}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-80, -50}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Interfaces.Connectors.RealMultiInput u2[nin] "Input vector 2" annotation(Placement(visible = true, transformation(origin = {-145, -40}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-80, 50}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));

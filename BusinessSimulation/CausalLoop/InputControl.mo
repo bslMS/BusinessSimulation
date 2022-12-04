@@ -1,12 +1,12 @@
 within BusinessSimulation.CausalLoop;
 
 model InputControl "Directly set information using a ramp input profile"
-  import BusinessSimulation.Units.Time;
+  import BusinessSimulation.Units.*;
   extends BusinessSimulation.Interfaces.Basics.OutputTypeChoice;
   RealOutput y annotation(Placement(visible = true, transformation(origin = {161.666, -0}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {0, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   parameter OutputType initialInput = 1.0 "Information input, i.e., the control's output, until the intervention starts";
   parameter OutputType finalInput "Information input, i.e., the control's output, when the intervention is completed";
-  parameter Time startTime(min = modelSettings.modelStartTime) = modelSettings.modelStartTime "Start time for the intervention";
+  parameter Time startTime = modelSettings.modelStartTime "Start time for the intervention";
   parameter Time duration(min = 0) = 0 "Duration of the intervention";
   outer ModelSettings modelSettings;
 protected

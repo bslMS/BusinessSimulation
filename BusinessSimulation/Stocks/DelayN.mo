@@ -2,13 +2,14 @@ within BusinessSimulation.Stocks;
 
 model DelayN "Material delay of n-th Order"
   import BusinessSimulation.Types.InitializationOptions;
-  import BusinessSimulation.Units.Time;
+  import BusinessSimulation.Units.*;
+  import BusinessSimulation.Constants.{small,zero,inf,INF};
   extends Icons.DelayN;
   extends Interfaces.Basics.GenericStock_Special(hasStockInfoOutput = false, init = modelSettings.init);
   Interfaces.Connectors.RealInput u(quantity = "Time", unit = "s") if not hasConstantDelayTime "Delay time input (optional)" annotation(Placement(visible = true, transformation(origin = {-145, 40}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-50, 100}, extent = {{10, 10}, {-10, -10}}, rotation = -270)));
   parameter Integer n(min = 1) = 3 "Order of the exponential delay" annotation(Evaluate = true, Dialog(group = "Structural Parameters"));
   parameter OutputType initialValue(min = 0) = 0 "Initial stock";
-  parameter Time delayTime(min = BusinessSimulation.Constants.small) = 1 "Constant time of delay (optional)" annotation(Dialog(enable = hasConstantDelayTime));
+  parameter Time delayTime(min = small) = 1 "Constant time of delay (optional)" annotation(Dialog(enable = hasConstantDelayTime));
   parameter Boolean hasConstantDelayTime = true "= true, if DelayTime is to be set by a constant parameter" annotation(Dialog(group = "Structural Parameters"));
   outer ModelSettings modelSettings;
 protected
@@ -81,5 +82,5 @@ equation
 </ul>
 <h4>See also</h4>
 <p><a href=\"modelica://BusinessSimulation.Stocks.MaterialStock\">MaterialStock</a>, <a href=\"modelica://BusinessSimulation.Stocks.PureDelay\">PureDelay</a>, <a href=\"modelica://BusinessSimulation.Converters.DiscreteDelay\">Converters.DiscreteDelay</a></p>
-</html>"), __Wolfram(itemFlippingEnabled = true), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10}), graphics = {Text(visible = true, origin = {62.999, 75}, textColor = {255, 0, 0}, extent = {{-24.503, -12}, {24.503, 12}}, textString = "%n", fontName = "Lato Black", textStyle = {TextStyle.Bold}), Text(visible = true, origin = {0, -80}, textColor = {0, 0, 128}, extent = {{-100, -6}, {100, 6}}, textString = "%initialValue", fontName = "Lato"), Text(visible = true, origin = {0, 75}, textColor = {255, 0, 0}, extent = {{-50, -12}, {50, 12}}, textString = "Delay", fontName = "Lato Black", textStyle = {TextStyle.Bold})}), Diagram(coordinateSystem(extent = {{-148.5, -105}, {148.5, 105}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})));
+</html>"), __Wolfram(itemFlippingEnabled = true), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10}), graphics = {Text(visible = true, origin = {62.999, 75}, textColor = {255, 0, 0}, extent = {{-24.503, -12}, {24.503, 12}}, textString = "%n", fontName = "Lato", textStyle = {TextStyle.Bold}), Text(visible = true, origin = {0, 75}, textColor = {255, 0, 0}, extent = {{-50, -12}, {50, 12}}, textString = "Delay", fontName = "Lato", textStyle = {TextStyle.Bold})}), Diagram(coordinateSystem(extent = {{-148.5, -105}, {148.5, 105}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})));
 end DelayN;

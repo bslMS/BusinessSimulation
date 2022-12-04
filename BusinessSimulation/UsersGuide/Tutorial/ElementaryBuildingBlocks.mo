@@ -260,7 +260,7 @@ final class ElementaryBuildingBlocks "A quick tour introducing the library's mai
 </tr>
 </table>
 <h4><a name = \"MoleculesOfStructure\">Molecules of Structure</a></h4>
-<h5>Information Processingand Decision Making</h5>
+<h5>Information Processing and Decision Making</h5>
 <p>John Morecroft [<a href=\"modelica://BusinessSimulation.UsersGuide.References\">7</a>] suggested that diagrams of dynamic systems would be greatly improved, if we used more aggregate diagramming. In this library we are well advised to follow that advice: We can reduce the diagram for a <em>system under management</em> to show the system itself and its observable information output. We then just need two additional, rather aggregated converters:</p>
 <table width = 600>
 <tbody>

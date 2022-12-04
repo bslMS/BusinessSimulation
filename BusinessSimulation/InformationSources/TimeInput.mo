@@ -1,7 +1,7 @@
 within BusinessSimulation.InformationSources;
 
 block TimeInput "Clock to provide time-signal"
-  import BusinessSimulation.Units.Time;
+  import BusinessSimulation.Units.*;
   extends Interfaces.PartialConverters.InformationSource_SO(redeclare final type OutputType = Time);
   extends Icons.Clockface_white;
   parameter Time offset = modelSettings.modelStartTime "Offset of output signal y (default = modelStartTime)";

@@ -1,6 +1,7 @@
 within BusinessSimulation.CausalLoop;
 
 model SimpleInformationLevel "Information level for CLD-like modeling"
+  import BusinessSimulation.Units.*;
   extends Interfaces.PartialCLD.Stock;
 protected
   Stocks.InformationLevel informationLevel(hasStockInfoOutput = true, initialValue = initialValue) annotation(Placement(visible = true, transformation(origin = {-0, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));

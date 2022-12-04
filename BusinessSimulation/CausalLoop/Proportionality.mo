@@ -1,6 +1,7 @@
 within BusinessSimulation.CausalLoop;
 
 model Proportionality "Rate of change is proportional to that of the influencing stock"
+  import BusinessSimulation.Units.*;
   extends Interfaces.PartialCLD.CoupledSourceOrSink;
 protected
   SourcesOrSinks.ExogenousChange linearilyChanging annotation(Placement(visible = true, transformation(origin = {0, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));

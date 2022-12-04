@@ -1,6 +1,7 @@
 within BusinessSimulation.MoleculesOfStructure.InformationProcessing;
 
 model BasicOrientation "Assessing a system's performance and sustainability according to basic orientors"
+  import BusinessSimulation.Units.*;
   import BusinessSimulation.Types.{BasicOrientors,AggregateFunctions};
   extends Icons.InformationProcessing;
   Interfaces.Connectors.RealMultiInput u_weights[nPerf] if not hasConstantWeights "Weights to be used for performance measurement" annotation(Placement(visible = true, transformation(origin = {-145, 60}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {0, 110}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
@@ -11,15 +12,15 @@ model BasicOrientation "Assessing a system's performance and sustainability acco
   parameter Real[:] weights = ones(nPerf) "Weights for calculating a weighted average performance score (default = equal weights)" annotation(Dialog(enable = hasConstantWeights));
   parameter Boolean hasSentinentBeings = false "= true, if the system comprises sentinent beings with psychological needs" annotation(Evaluate = true, Dialog(group = "Structural Parameters"));
   parameter Boolean hasConstantWeights = true "= true, if constant weights are to be used for performance aggregation" annotation(Evaluate = true, Dialog(group = "Structural Parameters"));
-  parameter AggregateFunctions func = BusinessSimulation.Types.AggregateFunctions.arithmeticMean "Function to apply for aggregation (aggregatePerformance.func)";
+  parameter AggregateFunctions func = AggregateFunctions.arithmeticMean "Function to apply for aggregation (aggregatePerformance.func)";
 protected
   constant Integer nOrientors = size(u, 1) "Number of basic orientors valid for any system";
   parameter Integer nPerf = if hasSentinentBeings then nOrientors + 1 else nOrientors "Number of orientors used for perfomance calculation" annotation(Evaluate = true, Dialog(group = "Initialization", enable = false));
   AggregatePerformance aggregatePerformance(useWeights = true, hasConstantWeights = false, nin = nPerf, func = func) annotation(Placement(visible = true, transformation(origin = {-20, 40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Converters.PassThrough sustainabilityNonSentinent if not hasSentinentBeings "Sustainability score for systems without sentinent beings" annotation(Placement(visible = true, transformation(origin = {10, -40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Converters.Min sustainabilitySentinent if hasSentinentBeings "Sustainability score for systems with sentinent beings" annotation(Placement(visible = true, transformation(origin = {10, -65}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  Converters.Vector.ConstantConverter parWeights(redeclare final type OutputType = Units.Dimensionless, final value = weights) if hasConstantWeights "Weights for performance score" annotation(Placement(visible = true, transformation(origin = {-120, 80}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  Converters.Vector.Min basicSustainability(redeclare final type OutputType = Units.Dimensionless, nin = nOrientors) "Sustainability score according to basic orientors" annotation(Placement(visible = true, transformation(origin = {-50, -40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  Converters.Vector.ConstantConverter parWeights(redeclare final type OutputType = Dimensionless, final value = weights) if hasConstantWeights "Weights for performance score" annotation(Placement(visible = true, transformation(origin = {-120, 80}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  Converters.Vector.Min basicSustainability(redeclare final type OutputType = Dimensionless, nin = nOrientors) "Sustainability score according to basic orientors" annotation(Placement(visible = true, transformation(origin = {-50, -40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
 equation
   connect(u, basicSustainability.u) annotation(Line(visible = true, origin = {-101.5, -40}, points = {{-43.5, 0}, {43.5, 0}}, color = {0, 0, 128}));
   connect(basicSustainability.y, sustainabilityNonSentinent.u) annotation(Line(visible = true, origin = {-20, -40}, points = {{-22, 0}, {22, 0}}, color = {1, 37, 163}));
@@ -79,5 +80,5 @@ equation
 <p>
 <a href=\"modelica://BusinessSimulation.MoleculesOfStructure.InformationProcessing.AggregatePerformance\">AggregatePerformance</a>,
 <a href=\"modelica://BusinessSimulation.Converters.Lookup.PerformanceIndicator\">PerformanceIndicator</a>,&nbsp;<a href=\"modelica://BusinessSimulation.Converters.DmnlInput\">DmnlInput</a></p>
-</html>"), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10}), graphics = {Text(visible = true, textColor = {0, 0, 128}, extent = {{-96.456, -12}, {96.456, 12}}, textString = "Basic", fontName = "Lato Black", textStyle = {TextStyle.Bold}), Text(visible = true, origin = {0, -25}, textColor = {0, 0, 128}, extent = {{-96.456, -12}, {96.456, 12}}, textString = "Orientation", fontName = "Lato Black", textStyle = {TextStyle.Bold})}), Diagram(coordinateSystem(extent = {{-150, -90}, {150, 90}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})));
+</html>"), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10}), graphics = {Text(visible = true, textColor = {0, 0, 128}, extent = {{-96.456, -12}, {96.456, 12}}, textString = "Basic", fontName = "Lato", textStyle = {TextStyle.Bold}), Text(visible = true, origin = {0, -25}, textColor = {0, 0, 128}, extent = {{-96.456, -12}, {96.456, 12}}, textString = "Orientation", fontName = "Lato", textStyle = {TextStyle.Bold})}), Diagram(coordinateSystem(extent = {{-150, -90}, {150, 90}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})));
 end BasicOrientation;

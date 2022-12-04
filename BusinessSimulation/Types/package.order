@@ -2,6 +2,7 @@ AggregateFunctions
 BasicOrientors
 InitializationOptions
 MembershipFunctionTypes
+OutflowPriorities
 PriorityProfiles
 TimeBases
 StockInformation

@@ -3,6 +3,7 @@ within BusinessSimulation.Interfaces.Basics;
 encapsulated partial block BaseConverter "Basic converter class"
   import BusinessSimulation.Icons.Converter;
   import BusinessSimulation.Interfaces.Basics.OutputTypeChoice;
+  import BusinessSimulation.Units.*;
   extends Converter;
   extends OutputTypeChoice;
   annotation(Documentation(info = "<html>

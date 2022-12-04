@@ -1,8 +1,9 @@
 within BusinessSimulation.Converters.Vector;
 
 block ProportionalSplitFactors "Convert a vector of weights to a vector of fractions adding to one"
-  extends Interfaces.PartialConverters.MIMO_nin(redeclare replaceable type OutputType = Units.Fraction);
-  import BusinessSimulation.Constants.inf;
+  import BusinessSimulation.Units.*;
+  import BusinessSimulation.Constants.*;
+  extends Interfaces.PartialConverters.MIMO_nin(redeclare replaceable type OutputType = Fraction);
   parameter Boolean shiftInputs = true "= true, if all values are to be shifted to prevent negative inputs, otherwise negative inputs are simply set to zero";
 protected
   Real shift = if shiftInputs then min(0., min(u)) else 0. "The lowest negative weight or zero";

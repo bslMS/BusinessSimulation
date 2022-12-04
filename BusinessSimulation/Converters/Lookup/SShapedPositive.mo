@@ -1,6 +1,7 @@
 within BusinessSimulation.Converters.Lookup;
 
 block SShapedPositive "Symmettric S-shaped curve with positive slope around origin (0,0)"
+  import BusinessSimulation.Units.*;
   extends Interfaces.PartialConverters.SISO_Conversion;
   parameter Real upperBound(min = 0) = 1 "Upper asymptote (upperBound > 0)";
   parameter Real s(min = 1) = 2 "Slope controls gradient of curve (s > 1)";

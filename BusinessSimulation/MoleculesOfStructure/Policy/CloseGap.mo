@@ -1,10 +1,10 @@
 within BusinessSimulation.MoleculesOfStructure.Policy;
 
 block CloseGap "Determine the rate of flow (action) to close a gap between a quantity and its desired value"
-  import BusinessSimulation.Units.{Time,Rate};
-  import BusinessSimulation.Constants.inf;
+  import BusinessSimulation.Units.*;
+  import BusinessSimulation.Constants.*;
   import Modelica.Blocks.Types.LimiterHomotopy;
-  extends Interfaces.PartialConverters.Policy_SO(redeclare replaceable type OutputType = Units.Rate);
+  extends Interfaces.PartialConverters.Policy_SO(redeclare replaceable type OutputType = Rate);
   Interfaces.Connectors.RealInput u_reference "Desired or reference value for the controlled quantity (i.e., the goal)" annotation(Placement(visible = true, transformation(origin = {-145, 50}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-110, 0}, extent = {{-10, -10}, {10, 10}}, rotation = -360)));
   Interfaces.Connectors.RealInput u_current "Current value of controlled quantity" annotation(Placement(visible = true, transformation(origin = {-145, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {0, 110}, extent = {{-10, -10}, {10, 10}}, rotation = -450)));
   Interfaces.Connectors.RealInput u_adjTime if not hasConstantAdjTime "Time to close the gap" annotation(Placement(visible = true, transformation(origin = {-145, -60}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-110, -50}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
@@ -15,7 +15,7 @@ block CloseGap "Determine the rate of flow (action) to close a gap between a qua
   parameter Boolean invertOutput = false "= true, if the output is to be multiplied with (-1)" annotation(Evaluate = true, Dialog(group = "Structural Parameters"));
   parameter Boolean clipOutput = false "= true, if the indicated rate is to clipped to not exceed limitations" annotation(Evaluate = true, Dialog(group = "Structural Parameters"));
   parameter Boolean strict = true "= true, if strict limits with noEvent(..) (constantLimiter.strict) (clip1.strict)" annotation(Evaluate = true, Dialog(tab = "Advanced"));
-  parameter LimiterHomotopy homotopyType = LimiterHomotopy.Linear "Simplified model for homotopy-based initialization (constantLimiter.homotopyType) (clip1.homotopyType)" annotation(Evaluate = true, Dialog(tab = "Advanced"));
+  parameter LimiterHomotopy homotopyType = LimiterHomotopy.Linear "Simplified model for homotopy-based initialization (clip1.homotopyType)" annotation(Evaluate = true, Dialog(tab = "Advanced"));
   outer ModelSettings modelSettings;
 protected
   Converters.PassThrough unchanged1 if not invertOutput "Use the calculated net rate of flow" annotation(Placement(visible = true, transformation(origin = {40, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
@@ -54,5 +54,5 @@ equation
 <li>The output may be multiplied with (-1) in order to use the output to control an outflow.<br><br></li>
 <li>See [<a href=\"modelica://BusinessSimulation.UsersGuide.References\">6</a>, p. 30] or Jim Hines' <em>Molecules of Structure</em> website (→<a href= \"https://sdmolecules.org/index.htm#MoleculeTopics/CloseGap/closeGap.htm\">Close Gap</a>) for more details on the use of this structure within System Dynamics.</li>
 </ul>
-</html>"), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10}), graphics = {Text(visible = true, origin = {0, -0.409}, textColor = {0, 0, 128}, extent = {{-77.269, -12}, {77.269, 12}}, textString = "Close Gap", fontName = "Lato Black", textStyle = {TextStyle.Bold})}), Diagram(coordinateSystem(extent = {{-148.5, -105}, {148.5, 105}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})));
+</html>"), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10}), graphics = {Text(visible = true, origin = {0, -0.409}, textColor = {0, 0, 128}, extent = {{-77.269, -12}, {77.269, 12}}, textString = "Close Gap", fontName = "Lato", textStyle = {TextStyle.Bold})}), Diagram(coordinateSystem(extent = {{-148.5, -105}, {148.5, 105}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})));
 end CloseGap;

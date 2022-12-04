@@ -1,3 +1,5 @@
 within BusinessSimulation.Units;
 
-type EnergyFlowRate = Rate(quantity = "Power", unit = "W") "Rate of energy transfer (power) usually measured in watt (W) or joule per second (J/s)";
+type EnergyFlowRate = Rate(final quantity = "Power", final unit = "W") "EnergyFlowRate(Power) [W]|[J/s]" annotation(Documentation(info = "<html>
+<p>Rate of energy transfer (power) usually measured in watt (W) or joule per second (J/s).</p>
+</html>"));

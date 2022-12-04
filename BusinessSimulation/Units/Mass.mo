@@ -1,3 +1,5 @@
 within BusinessSimulation.Units;
 
-type Mass = Types.Reals(quantity = "Mass", unit = "kg") "Mass measured in kg";
+type Mass = ExtensiveQuantity(final quantity = "Mass", final unit = "kg") "Mass [kg]" annotation(Documentation(info = "<html>
+<p>Mass measured in kg.</p>
+</html>"));

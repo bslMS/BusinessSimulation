@@ -1,20 +1,23 @@
 within BusinessSimulation.Flows.Interaction;
 
 model NonlinearInteraction "Outflows depend upon the product of the stocks and a factor"
-  import BusinessSimulation.Units.Rate;
+  import BusinessSimulation.Units.*;
+  import BusinessSimulation.Constants.*;
   extends Interfaces.Basics.GenericFlow;
   extends Interfaces.Basics.Interaction4SO;
   extends Icons.Interaction;
   InputConnector dataIn if not (hasConstantFactorA and hasConstantFactorB) annotation(Placement(visible = true, transformation(origin = {-145, 70}, extent = {{-10, -10}, {10, 10}}, rotation = -360), iconTransformation(origin = {0, 100}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
-  parameter Rate a_AB = 0 "Constant fractional rate for the netflow to A per unit of B (nonlinear coupling factor)" annotation(Dialog(enable = hasConstantFactorA));
-  parameter Rate b_AB = 0 "Constant fractional rate for the netflow to B per unit of A (nonlinear coupling factor)" annotation(Dialog(enable = hasConstantFactorB));
+  parameter Rate a_AB = unspecified "Constant fractional rate for the netflow to A per unit of B (nonlinear coupling factor)" annotation(Dialog(enable = hasConstantFactorA));
+  parameter Rate b_AB = unspecified "Constant fractional rate for the netflow to B per unit of A (nonlinear coupling factor)" annotation(Dialog(enable = hasConstantFactorB));
   parameter Boolean hasConstantFactorA = false "= true, if the coupling factor for A is given by the constant parameter" annotation(Evaluate = true, Dialog(group = "Structural Parameters"));
   parameter Boolean hasConstantFactorB = false "= true, if the coupling factor for B is given by the constant parameter" annotation(Evaluate = true, Dialog(group = "Structural Parameters"));
 
-  expandable connector InputConnector "Data bus for inputs"
-    extends Icons.DataInPort;
-    Real a_AB "Fractional rate for the netflow to stock A per amount of B";
-    Real b_AB "Fractional rate for the netflow to stock B per amount of B";
+  encapsulated expandable connector InputConnector "Data bus for inputs"
+    import ICON = BusinessSimulation.Icons.DataInPort;
+    import BusinessSimulation.Units.*;
+    extends ICON;
+    Rate a_AB "Fractional rate for the netflow to stock A per amount of B";
+    Rate b_AB "Fractional rate for the netflow to stock B per amount of B";
     annotation(Diagram(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10})));
   end InputConnector;
 protected
@@ -30,6 +33,8 @@ protected
   Interfaces.Connectors.RealOutput u_a_AB if not hasConstantFactorA "Nonlinear coupling factor for A" annotation(Placement(visible = true, transformation(origin = {-55, 50}, extent = {{-10, -10}, {10, 10}}, rotation = -90), iconTransformation(origin = {-60, 72.222}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Interfaces.Connectors.RealOutput u_b_AB if not hasConstantFactorB "Nonlinear coupling factor for B" annotation(Placement(visible = true, transformation(origin = {50, 50}, extent = {{-10, -10}, {10, 10}}, rotation = -90), iconTransformation(origin = {-60, 72.222}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
 equation
+  assert(not hasConstantFactorA or a_AB < inf, "Parameter a_AB needs to be specified");
+  assert(not hasConstantFactorB or b_AB < inf, "Parameter b_AB needs to be specified");
   connect(portA, netFlowA.massPort) annotation(Line(visible = true, origin = {-135, -0}, points = {{-25, 0}, {25, -0}}, color = {128, 0, 128}));
   connect(netFlowB.massPort, portB) annotation(Line(visible = true, origin = {135, 0}, points = {{-25, 0}, {25, -0}}, color = {128, 0, 128}));
   connect(levelA.flowPort, portA) annotation(Line(visible = true, origin = {-145, 0}, points = {{15, 0}, {-15, 0}}, color = {128, 0, 128}));
@@ -83,5 +88,10 @@ equation
 <p>A nonlinear component is typically found in predator-prey models or models of infectious diseases, where the exponential growth rate for a population depends upon the size of another population (e.g., prey or susceptible population).</p>
 <h4>See also</h4>
 <p><a href=\"modelica://BusinessSimulation.Flows.Interaction.LinearInteraction\">LinearInteraction</a>,&nbsp;<a href=\"modelica://BusinessSimulation.Flows.Interaction.ComplexInteraction\">ComplexInteraction</a></p>
-</html>"), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10}), graphics = {Text(visible = true, origin = {0, 75}, textColor = {0, 128, 0}, extent = {{-100, -12}, {100, 12}}, textString = "Nonlinear", fontName = "Lato Black", textStyle = {TextStyle.Bold})}), Diagram(coordinateSystem(extent = {{-150, -90}, {150, 90}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})));
+</html>", revisions = "<html>
+<ul>
+<li><code>InputConnector</code> defined as <code>encapsulated expandable connector</code> in v2.1.0.</li><br>
+<li>Values for optional parameters changed to <code>unspecified</code> in v2.1.0.</li><br>
+</ul>
+</html>"), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10}), graphics = {Text(visible = true, origin = {0, 75}, textColor = {0, 128, 0}, extent = {{-100, -12}, {100, 12}}, textString = "Nonlinear", fontName = "Lato", textStyle = {TextStyle.Bold})}), Diagram(coordinateSystem(extent = {{-150, -90}, {150, 90}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})));
 end NonlinearInteraction;

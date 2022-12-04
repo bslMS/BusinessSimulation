@@ -13,7 +13,7 @@ protected
   Real y_max = y_range[2];
 algorithm
   y := y_min + (x - x_min) * (y_max - y_min) / (x_max - x_min) annotation(Diagram(coordinateSystem(extent = {{-150, -90}, {150, 90}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})));
-  annotation(Documentation(info = "<html>
+  annotation(Inline = true, Documentation(info = "<html>
 <p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
 <p>The function will <em>rescale</em> the input to run from range <code>y_min</code> to <code>y_max</code> over the range <code>min</code> to <code>max</code>.</p>
 <h4>Syntax</h4>
@@ -25,5 +25,9 @@ algorithm
 <h4>Notes</h4>
 <p>This function is closely modeled to <a href=\"https://reference.wolfram.com/language/ref/Rescale.html\"><code>Rescale</code> </a>in the Wolfram Languag<em>e</em>.</p>
 <h4>See also</h4>
-<p><a href=\"modelica://BusinessSimulation.Functions.rescaleVector\">Functions.rescaleVector</a></p></html>", revisions = ""));
+<p><a href=\"modelica://BusinessSimulation.Functions.rescaleVector\">Functions.rescaleVector</a></p></html>", revisions = "<html>
+<ul>
+<li>Added <code>Inline = true</code> in v2.1.0.</li>
+</ul>
+<html>"));
 end rescale;

@@ -1,3 +1,5 @@
 within BusinessSimulation.Units;
 
-type Probability = Dimensionless(min = 0, max = 1) "Probability between zero and one";
+type Probability = Dimensionless(final min = 0, final max = 1) "Probability [1]" annotation(Documentation(info = "<html>
+<p>A dimensionless probability between zero and one.</p>
+</html>"));

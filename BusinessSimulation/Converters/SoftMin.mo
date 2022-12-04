@@ -1,7 +1,8 @@
 within BusinessSimulation.Converters;
 
 model SoftMin "Gradual approach of a ceiling that cannot be exceeded"
-  import BusinessSimulation.Constants.small;
+  import BusinessSimulation.Units.*;
+  import BusinessSimulation.Constants.*;
   extends Interfaces.PartialConverters.SISO;
   Interfaces.Connectors.RealInput u_max "The ceiling" annotation(Placement(visible = true, transformation(origin = {-145, 45}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {0, 80}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
   parameter Real k(min = small) = 4.7 "Parameter to control the closeness to a hard minimum";
@@ -20,7 +21,7 @@ protected
   Log logSum if not useMinOperator annotation(Placement(visible = true, transformation(origin = {20, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Gain adjustmentFactor(c = -1 / k) if not useMinOperator annotation(Placement(visible = true, transformation(origin = {50, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Product_2 softMin if not useMinOperator annotation(Placement(visible = true, transformation(origin = {80, 20}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  ConstantConverter maxUtilization(value = 1, redeclare replaceable type OutputType = Units.Dimensionless) if not useMinOperator "Maximum utilization" annotation(Placement(visible = true, transformation(origin = {-100, -20}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  ConstantConverter maxUtilization(value = 1, redeclare replaceable type OutputType = Dimensionless) if not useMinOperator "Maximum utilization" annotation(Placement(visible = true, transformation(origin = {-100, -20}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Division_Guarded utilization if not useMinOperator "Fraction of the maximum" annotation(Placement(visible = true, transformation(origin = {-100, 20}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
 equation
   assert(k > small or useMinOperator, "The parameter k must greater than zero");
@@ -44,7 +45,7 @@ equation
   connect(u_max, utilization.u2) annotation(Line(visible = true, origin = {-128.25, 30}, points = {{-16.75, 15}, {-1.75, 15}, {-1.75, -15}, {20.25, -15}}, color = {0, 0, 128}));
   connect(utilization.y, scaledInput.u) annotation(Line(visible = true, origin = {-85, 20}, points = {{-7, 0}, {7, 0}}, color = {1, 37, 163}));
   connect(u, utilization.u1) annotation(Line(visible = true, origin = {-123.25, 12.5}, points = {{-21.75, -12.5}, {3.25, -12.5}, {3.25, 12.5}, {15.25, 12.5}}, color = {0, 0, 128}));
-  annotation(Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10}), graphics = {Text(visible = true, textColor = {0, 0, 128}, extent = {{-60.509, -12}, {60.509, 12}}, textString = "Soft MIN", fontName = "Lato Black", textStyle = {TextStyle.Bold}), Text(visible = true, origin = {0, -20}, textColor = {128, 128, 128}, extent = {{-58.305, -9}, {58.305, 9}}, textString = "Ceiling", fontName = "Lato Black", textStyle = {TextStyle.Bold})}), Documentation(info = "<html>
+  annotation(Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10}), graphics = {Text(visible = true, textColor = {0, 0, 128}, extent = {{-60.509, -12}, {60.509, 12}}, textString = "Soft MIN", fontName = "Lato", textStyle = {TextStyle.Bold}), Text(visible = true, origin = {0, -20}, textColor = {128, 128, 128}, extent = {{-58.305, -9}, {58.305, 9}}, textString = "Ceiling", fontName = "Lato", textStyle = {TextStyle.Bold})}), Documentation(info = "<html>
 <p>The output <strong>y</strong> is obtained by applying a <em>factor</em> in the interval [0,1] to the maximum output <strong>u_max</strong> (the <em>ceiling</em>). It effectively calculates a <em>smooth minimum</em> with regard to the inputs <strong>u</strong> and <strong>u_max</strong>:</p>
 <p><img src = \"modelica://BusinessSimulation/Resources/Images/Converters/SoftMin/Formula.svg\"></p>
 <p>The following graph shows the results for <code>u_max = 1.0</code> and <code>k &isin; {10,5,3,2}</code>:</P>

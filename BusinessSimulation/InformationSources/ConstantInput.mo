@@ -1,10 +1,8 @@
 within BusinessSimulation.InformationSources;
 
 block ConstantInput "Input signal with constant value"
-  extends Icons.Converter;
-  extends Icons.InformationSourceIndicator;
-  extends Interfaces.Basics.OutputTypeChoice;
-  RealOutput y annotation(Placement(visible = true, transformation(origin = {161.841, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {80, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  import BusinessSimulation.Units.*;
+  extends Interfaces.PartialConverters.InformationSource_SO;
   parameter OutputType value "Value of constant output";
 equation
   y = value;

@@ -1,6 +1,7 @@
 within BusinessSimulation.Converters.Lookup;
 
 block JanoschekNegative "Janoschek's (S-shaped) growth curve with negative slope"
+  import BusinessSimulation.Units.*;
   extends Interfaces.PartialConverters.SISO_Conversion;
   parameter Real upperBound = 2 "Upper asymptote for u <= 0 (upperBound > lowerBound)";
   parameter Real lowerBound = 0 "Lower asymptote for u -> infinity";
@@ -16,7 +17,7 @@ equation
   assert(x_ref > 0, "x_ref needs to be greater than zero");
   // parameter k is determined by the constraint: f(x_ref) = y_ref
   // for negative sloping curve upperBound and lowerBound simply need to be switched
-  k = x_ref ^ (-growthRate) * log(((-upperBound) + lowerBound) / (lowerBound - y_ref));
+  k = x_ref ^ (-growthRate) * log((-upperBound + lowerBound) / (lowerBound - y_ref));
   if strict then
     y_c = noEvent(if u_c <= 0 then upperBound else Functions.janoschek(x = u_c, l = lowerBound, b = upperBound, k = k, d = growthRate));
   else

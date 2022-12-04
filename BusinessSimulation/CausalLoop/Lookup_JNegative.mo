@@ -1,7 +1,7 @@
 within BusinessSimulation.CausalLoop;
 
 block Lookup_JNegative "Negatively sloping s-shaped lookup"
-  import BusinessSimulation.Types.Reals;
+  import BusinessSimulation.Units.*;
   extends Interfaces.PartialCLD.Lookup(pol = "–");
   parameter Real lowerBound = 0 "Lower asymptote for u <= 0 (lowerBound < upperBound)";
   parameter Real upperBound = 2 "Upper asymptote for u -> infinity";
@@ -10,7 +10,7 @@ block Lookup_JNegative "Negatively sloping s-shaped lookup"
   parameter Real y_ref = 1 "y-value for point of inflection(lowerBound < y_ref < upperBound)";
   parameter Boolean hasConstantReference = true "= true, if the reference value for the stock is given by a constant parameter" annotation(Evaluate = true, Dialog(group = "Structural Parameters"));
 protected
-  Converters.Lookup.JanoschekNegative lookup(lowerBound = lowerBound, upperBound = upperBound, growthRate = growthRate, x_ref = x_ref, y_ref = y_ref, redeclare replaceable type OutputType = Units.Dimensionless) annotation(Placement(visible = true, transformation(origin = {0, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  Converters.Lookup.JanoschekNegative lookup(lowerBound = lowerBound, upperBound = upperBound, growthRate = growthRate, x_ref = x_ref, y_ref = y_ref, redeclare type OutputType = Units.Dimensionless) annotation(Placement(visible = true, transformation(origin = {0, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
 equation
   connect(lookup.y, y) annotation(Line(visible = true, origin = {85.043, 0}, points = {{-77.043, 0}, {77.043, 0}}, color = {1, 37, 163}));
   connect(normalizedStock.y, lookup.u) annotation(Line(visible = true, origin = {-30, 0}, points = {{-22, 0}, {22, 0}}, color = {1, 37, 163}));

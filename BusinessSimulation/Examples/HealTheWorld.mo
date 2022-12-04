@@ -2,12 +2,11 @@ within BusinessSimulation.Examples;
 
 model HealTheWorld "Causal loop model of world dynamics"
   extends BusinessSimulation.Icons.Example;
-  import BusinessSimulation.Units.Time;
   // parameter Real c = +0.3 "Elasticity coefficient for the impact of environmental load upon societal action (≥0)";
   parameter Real campaignTarget = 1 / 0.3 "Target multiplier for the elasticity coefficient" annotation(Dialog(enable = withIntervention));
-  parameter Time campaignStart(displayUnit = "yr", min = modelSettings.modelStartTime) = 31536000 "Start time for the intervention" annotation(Dialog(enable = withIntervention));
+  parameter Time campaignStart(displayUnit = "yr") = 31536000 "Start time for the intervention" annotation(Dialog(enable = withIntervention));
   parameter Time campaignDuration(displayUnit = "yr", min = modelSettings.dt) = 94608000 "Duration of the intervention" annotation(Dialog(enable = withIntervention));
-  parameter Boolean withIntervention = false "= true, if there is to be a compaign to raise public awareness" annotation(Evaluate = true, Dialog(group = "Structural Parameters"));
+  parameter Boolean withIntervention = true "= true, if there is to be a compaign to raise public awareness" annotation(Evaluate = true, Dialog(group = "Structural Parameters"));
   inner ModelSettings modelSettings(modelDisplayTimeBase = BusinessSimulation.Types.TimeBases.years, modelTimeHorizon(displayUnit = "yr") = 315360000, dt(displayUnit = "yr") = 7884000, samplingPeriod.displayUnit = "yr") annotation(Placement(visible = true, transformation(origin = {-110, -70}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   final Interfaces.Connectors.DataOutPort modelOutput "Index levels for the model's stocks" annotation(Placement(visible = true, transformation(origin = {130, -0}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {90, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
 protected
@@ -60,6 +59,8 @@ equation
   connect(indexInfo[2].y, modelOutput.environmentalLoad) "Index for the environmental load";
   connect(indexInfo[3].y, modelOutput.consumption) "Index for resource consumption";
   connect(indexInfo[4].y, modelOutput.societalAction) "Index for societal action taken";
+  // assertions
+  assert(campaignStart >= modelSettings.modelStartTime, "Campaign should not start before the model's start time", level = AssertionLevel.warning);
   annotation(preferredView = "diagram", Documentation(figures = {Figure(title = "State of the World", identifier = "default", preferred = true, plots = {Plot(curves = {Curve(y = modelOutput.environmentalLoad, legend = "environmentalLoad"), Curve(y = modelOutput.population, legend = "population")}, y = Axis(min = 0, max = 3.5))})}, info = "<html>
 <p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
 <p>Using the classes in the →<a href = \"modelica://BusinessSimulation.CausalLoop\"><code>CausalLoop</code></a> package we can quickly start out with a model that captures the important dynamics in a system. This simplified model of world dynamics is given by Hartmut Bossel [<a href=\"modelica://BusinessSimulation.UsersGuide.References\">25</a>] who reduces the world system to four main variables indicating the <em>state</em> of the world: <em>population, consumption, environmental load, and societal action</em>.</p>
@@ -104,7 +105,8 @@ equation
 </p> 
 </html>", revisions = "<html>
 <ul>
-<li>Added in v2.0.0.</li>
+<li>Added in v2.0.0.</li><br>
+<li>Moved check for <code>campaignStart</code> from <code>min</code> attribute to <code>assert</code> statement to guarantee that attribute values are presented in evaluated form (e.g., as structural parameter values); <code>modelSettings.modelStartTime</code> has <code>fixed = false</code>.</li>
 </ul>
-</html>"), experiment(StartTime = 0, StopTime = 315360000, __Wolfram_DisplayTimeUnit = "yr"), Diagram(coordinateSystem(extent = {{-148.5, -105}, {148.5, 105}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5}), graphics = {Text(visible = true, origin = {0, 80}, textColor = {76, 112, 136}, extent = {{-140, -6}, {140, 6}}, textString = "World Model", fontName = "Lato Black"), Text(visible = true, origin = {0, 70}, textColor = {76, 112, 136}, extent = {{-140, -3}, {140, 3}}, textString = "Hartmut Bossel [25]", fontName = "Lato", textStyle = {TextStyle.Bold})}));
+</html>"), experiment(StartTime = 0, StopTime = 315360000, __Wolfram_DisplayTimeUnit = "yr"), Diagram(coordinateSystem(extent = {{-148.5, -105}, {148.5, 105}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5}), graphics = {Text(visible = true, origin = {0, 80}, textColor = {76, 112, 136}, extent = {{-140, -6}, {140, 6}}, textString = "World Model", fontName = "Lato"), Text(visible = true, origin = {0, 70}, textColor = {76, 112, 136}, extent = {{-140, -3}, {140, 3}}, textString = "Hartmut Bossel [25]", fontName = "Lato", textStyle = {TextStyle.Bold})}));
 end HealTheWorld;

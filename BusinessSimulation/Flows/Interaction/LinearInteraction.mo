@@ -1,7 +1,8 @@
 within BusinessSimulation.Flows.Interaction;
 
 model LinearInteraction "Linear model of interaction between two stocks"
-  import BusinessSimulation.Units.Rate;
+  import BusinessSimulation.Units.*;
+  import BusinessSimulation.Constants.*;
   extends Interfaces.Basics.GenericFlow;
   extends Interfaces.Basics.Interaction4SO;
   extends Icons.Interaction;
@@ -9,21 +10,23 @@ model LinearInteraction "Linear model of interaction between two stocks"
   parameter Boolean hasConstantGrowthRates = false "= true, if the linear growth rates are given by constant parameters" annotation(Evaluate = true, Dialog(group = "Structural Parameters"));
   parameter Boolean hasConstantFractionalGrowthRates = false "= true, if the fractional growth rates are given by constant parameters" annotation(Evaluate = true, Dialog(group = "Structural Parameters"));
   parameter Boolean hasConstantCouplingCoefficients = false "= true, if the induced growth rates are given by constant parameters" annotation(Evaluate = true, Dialog(group = "Structural Parameters"));
-  parameter Rate a_0 = 0 "Constant rate of growth for stock A" annotation(Dialog(enable = hasConstantGrowthRates));
-  parameter Rate b_0 = 0 "Constant rate of growth for stock B" annotation(Dialog(enable = hasConstantGrowthRates));
-  parameter Rate a_A = 0 "Constant fractional rate of growth for stock A (self-coupling)" annotation(Dialog(enable = hasConstantFractionalGrowthRates));
-  parameter Rate b_B = 0 "Constant fractional rate of growth for stock B (self-coupling)" annotation(Dialog(enable = hasConstantFractionalGrowthRates));
-  parameter Rate a_B = 0 "Constant Rate of growth for stock A per unit of B (coupling B to A)" annotation(Dialog(enable = hasConstantCouplingCoefficients));
-  parameter Rate b_A = 0 "Constant cross-fractional rate of growth for stock B per stock A (coupling A to B)" annotation(Dialog(enable = hasConstantCouplingCoefficients));
+  parameter Rate a_0 = unspecified "Constant rate of growth for stock A" annotation(Dialog(enable = hasConstantGrowthRates));
+  parameter Rate b_0 = unspecified "Constant rate of growth for stock B" annotation(Dialog(enable = hasConstantGrowthRates));
+  parameter Rate a_A = unspecified "Constant fractional rate of growth for stock A (self-coupling)" annotation(Dialog(enable = hasConstantFractionalGrowthRates));
+  parameter Rate b_B = unspecified "Constant fractional rate of growth for stock B (self-coupling)" annotation(Dialog(enable = hasConstantFractionalGrowthRates));
+  parameter Rate a_B = unspecified "Constant Rate of growth for stock A per unit of B (coupling B to A)" annotation(Dialog(enable = hasConstantCouplingCoefficients));
+  parameter Rate b_A = unspecified "Constant cross-fractional rate of growth for stock B per stock A (coupling A to B)" annotation(Dialog(enable = hasConstantCouplingCoefficients));
 
-  expandable connector Input_Connector "Data bus for inputs"
-    extends Interfaces.Connectors.DataInPort;
-    Real a_0 "Rate of growth for stock A (independent growth)";
-    Real b_0 "Rate of growth for stock B (independent growth)";
-    Real a_A "Fractional rate of growth for stock A (self-coupling)";
-    Real b_B "Fractional rate of growth for stock B (sefl-coupling)";
-    Real a_B "Rate of growth for stock A per unit of B (coupling of B to A)";
-    Real b_A "Rate of growth for stock B per unit of A (coupling of A to B)";
+  encapsulated expandable connector Input_Connector "Data bus for inputs"
+    import BusinessSimulation.Units.*;
+    import ICON = BusinessSimulation.Icons.DataInPort;
+    extends ICON;
+    Rate a_0 "Rate of growth for stock A (independent growth)";
+    Rate b_0 "Rate of growth for stock B (independent growth)";
+    Rate a_A "Fractional rate of growth for stock A (self-coupling)";
+    Rate b_B "Fractional rate of growth for stock B (sefl-coupling)";
+    Rate a_B "Rate of growth for stock A per unit of B (coupling of B to A)";
+    Rate b_A "Rate of growth for stock B per unit of A (coupling of A to B)";
   end Input_Connector;
 protected
   Converters.ConstantConverterRate parGrowthRateA(value = a_0) if hasConstantGrowthRates "Constant growth rate for A (optional)" annotation(Placement(visible = true, transformation(origin = {-130, 70}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
@@ -51,6 +54,9 @@ protected
   Converters.Product_2 inducedGrowthB "Rate of growth induced by stock A" annotation(Placement(visible = true, transformation(origin = {70, -25}, extent = {{10, -10}, {-10, 10}}, rotation = 540)));
   Converters.Add_3 totalRateB annotation(Placement(visible = true, transformation(origin = {40, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
 equation
+  assert(not hasConstantGrowthRates or a_0 < inf and b_0 < inf, "Parameters a_0 and b_0 need to be specified");
+  assert(not hasConstantFractionalGrowthRates or a_A < inf and b_B < inf, "Parameters a_A and b_B need to be specified");
+  assert(not hasConstantCouplingCoefficients or a_B < inf and b_A < inf, "Parameters a_B and b_A need to be specified");
   connect(growingA1.massPort, portA) annotation(Line(visible = true, origin = {-135, 15}, points = {{15, 15}, {5, 15}, {5, -15}, {-25, -15}}, color = {128, 0, 128}));
   connect(parGrowthRateA.y, growingA1.u) annotation(Line(visible = true, origin = {-117.5, 51.25}, points = {{-12.5, 13.75}, {-12.5, -1.25}, {12.5, -1.25}, {12.5, -11.25}}, color = {1, 37, 163}));
   connect(growingA2.massPort, portA) annotation(Line(visible = true, origin = {-135, -5}, points = {{15, -5}, {5, -5}, {5, 5}, {-25, 5}}, color = {128, 0, 128}));
@@ -175,5 +181,10 @@ equation
 <p>The<em> Linear Interaction</em> can be used to model Strogatz' famous model for the dynamics of a love affair (conspicuously between \"Romeo\" and \"Juliet\") as shown in →<a href=\"modelica://BusinessSimulation.Examples.LoveHateDynamics\">LoveHateDynamics</a> [<a href=\"modelica://BusinessSimulation.UsersGuide.References\">16</a>].</p>
 <h4>See also</h4>
 <p><a href=\"modelica://BusinessSimulation.Flows.Interaction.NonlinearInteraction\">NonlinearInteraction</a>,&nbsp;<a href=\"modelica://BusinessSimulation.Flows.Interaction.ComplexInteraction\">ComplexInteraction</a></p>
-</html>"), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10}), graphics = {Text(visible = true, origin = {0, 75}, textColor = {0, 128, 0}, extent = {{-100, -12}, {100, 12}}, textString = "Linear", fontName = "Lato Black", textStyle = {TextStyle.Bold})}), Diagram(coordinateSystem(extent = {{-150, -90}, {150, 90}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})));
+</html>", revisions = "<html>
+<ul>
+<li><code>Input_Connector</code> defined as <code>encapsulated expandable connector</code> in v2.1.0.</li><br>
+<li>Values for optional parameters changed to <code>unspecified</code> in v2.1.0.</li><br>
+</ul>
+</html>"), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10}), graphics = {Text(visible = true, origin = {0, 75}, textColor = {0, 128, 0}, extent = {{-100, -12}, {100, 12}}, textString = "Linear", fontName = "Lato", textStyle = {TextStyle.Bold})}), Diagram(coordinateSystem(extent = {{-150, -90}, {150, 90}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})));
 end LinearInteraction;
