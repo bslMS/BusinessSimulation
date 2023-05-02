@@ -22,7 +22,7 @@ equation
   annotation(Documentation(info = "<html>
 <p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
 <p><em>ExponentialDecay</em>&nbsp;is identical to&nbsp;&rarr;<a href=\"modelica://BusinessSimulation.SourcesOrSinks.ExponentialDecline\">ExponentialDecline</a>, e.g., the connected stock is drained at a rate proportional to its content into a sink with infinite capacity outside the border of the system in focus. Instead of using a fractional rate <em>&lambda;</em>&nbsp;to describe the process, we are using the mean <em>residence time&nbsp;&tau;</em> (aka mean <em>lifetime </em>or the exponential <em>time constant</em>) to parameterize the process:</p>
-<p><img src=\"modelica://BusinessSimulation/Resources/Images/SourcesOrSInks/ExponentialDecay/FormulaResidenceTime.svg\" alt=\"tau = 1/lambda\"></p>
+<p><img src=\"modelica://BusinessSimulation/Resources/Images/SourcesOrSinks/ExponentialDecay/FormulaResidenceTime.svg\" alt=\"tau = 1/lambda\"></p>
 <p>The mean residence time can be given either as a constant parameter (residenceTime) or as a continuous time input <strong>u</strong>.</p>
 <p>The effective rate of decay with respect to a connected stock <em>x</em> at any time will be given by</p>
 <p><img src=\"modelica://BusinessSimulation/Resources/Images/SourcesOrSinks/ExponentialDecay/FormulaRate.svg\" alt=\"dx/dt = -x/tau\"></p>

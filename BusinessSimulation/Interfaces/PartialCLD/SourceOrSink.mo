@@ -10,7 +10,7 @@ encapsulated partial model SourceOrSink "Partial source or sink for causal loop 
   extends TimedSource;
   RealInput u if hasFactor "Factor input" annotation(Placement(visible = true, transformation(origin = {-145, 60}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-50, -80}, extent = {{-10, -10}, {10, 10}}, rotation = -270)));
   RealInput u_rate if not hasConstantRate "Rate input" annotation(Placement(visible = true, transformation(origin = {-145, 30}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-50, 50}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
-  parameter Rate rate = unspecified "Constant rate (optional)" annotation(Dialog(enable = hasConstantRate));
+  parameter OutputType rate = unspecified "Constant rate (optional)" annotation(Dialog(enable = hasConstantRate));
   parameter Boolean hasConstantRate = true "= true, if rate is a constant parameter" annotation(Evaluate = true, Dialog(group = "Structural Parameters"));
   parameter Boolean hasFactor = false "= true, if rate is to be multiplied with input u" annotation(Evaluate = true, Dialog(group = "Structural Parameters"));
 protected

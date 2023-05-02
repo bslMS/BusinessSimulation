@@ -1,5 +1,5 @@
 package BusinessSimulation "A library for modeling & simulation of dynamical systems in the social sciences, e.g., business, economics, and ecology using the System Dynamics metaphor"
-  annotation(version = "2.2.0-alpha", versionDate = "$versiondate", revisionId = "", uses(Modelica(version = "3.2.3")), Documentation(info = "<html>
+  annotation(version = "2.1.1", versionDate = "2023-05-02", revisionId = "", uses(Modelica(version = "3.2.3")), Documentation(info = "<html>
 <p class=\"aside\">This information is part of the Business Simulation Library (BSL).</p>
 <p>The <span style=\"color: #000080;\"><strong>BUSINESS SIMULATION LIBRARY (BSL)</strong></span> supports modeling &amp; simulation in the social sciences and ecology. Following John Sterman&nbsp;[<a href=\"modelica://BusinessSimulation.UsersGuide.References\">3</a>] the name \"Busines Simulation\" was chosen in a rather broad sense since ultimately modeling in these domains is concerned with \"control\", \"decision making\", and \"management\".</p>
 <p>The <span style=\"color: #000080;\"><strong>BSL</strong> </span>follows the widespread <span style=\"color: #000080;\"><strong>System Dynamics</strong></span> metaphor and modeling approach introduced by Jay W. Forrester [<a href=\"modelica://BusinessSimulation.UsersGuide.References\">1</a>], [<a href=\"modelica://BusinessSimulation.UsersGuide.References\">2</a>].&nbsp;System Dynamics offers a very general, low-level modeling paradigm, that lends itself perfectly to model, simulate, and analyze strategic business or public policy issues.</p>
@@ -19,7 +19,7 @@ package BusinessSimulation "A library for modeling & simulation of dynamical sys
 <hr>
 <h4><span style=\"color: #000080;\">Releases</span></h4>
 <ul>
-<li><span style=\"color: #000080;\"><a href=\"modelica://BusinessSimulation.UsersGuide.ReleaseNotes.Version_2_2_0\">Version 2.2.0 &nbsp;($versiondate)</a></span></li>
+<li><span style=\"color: #000080;\"><a href=\"modelica://BusinessSimulation.UsersGuide.ReleaseNotes.Version_2_1_1\">Version 2.1.1 &nbsp;(2022-05-02)</a></span></li>
 <li><span style=\"color: #000080;\"><a href=\"modelica://BusinessSimulation.UsersGuide.ReleaseNotes.Version_2_1_0\">Version 2.1.0 &nbsp;(2022-12-03)</a></span></li>
 <li><span style=\"color: #000080;\"><a href=\"modelica://BusinessSimulation.UsersGuide.ReleaseNotes.Version_2_0_0\">Version 2.0.0 &nbsp;(2021-12-06)</a></span></li>
 <li><span style=\"color: #000080;\"><a href=\"modelica://BusinessSimulation.UsersGuide.ReleaseNotes.Version_1_0_1\">Version 1.0.1 &nbsp;(2021-02-02)</a></span></li>
