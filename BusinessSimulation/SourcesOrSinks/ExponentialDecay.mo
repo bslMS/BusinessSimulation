@@ -20,7 +20,7 @@ equation
   connect(decaying.y2, y2) annotation(Line(visible = true, origin = {52.625, -27.5}, points = {{-42.125, 22.5}, {-32.625, 22.5}, {-32.625, -22.5}, {107.375, -22.5}}, color = {1, 37, 163}));
   connect(parResidenceTime.y, decaying.u) annotation(Line(visible = true, origin = {-35, 30}, points = {{-80, 10}, {40, 10}, {40, -20}}, color = {1, 37, 163}));
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p><em>ExponentialDecay</em>&nbsp;is identical to&nbsp;&rarr;<a href=\"modelica://BusinessSimulation.SourcesOrSinks.ExponentialDecline\">ExponentialDecline</a>, e.g., the connected stock is drained at a rate proportional to its content into a sink with infinite capacity outside the border of the system in focus. Instead of using a fractional rate <em>&lambda;</em>&nbsp;to describe the process, we are using the mean <em>residence time&nbsp;&tau;</em> (aka mean <em>lifetime </em>or the exponential <em>time constant</em>) to parameterize the process:</p>
 <p><img src=\"modelica://BusinessSimulation/Resources/Images/SourcesOrSinks/ExponentialDecay/FormulaResidenceTime.svg\" alt=\"tau = 1/lambda\"></p>
 <p>The mean residence time can be given either as a constant parameter (residenceTime) or as a continuous time input <strong>u</strong>.</p>

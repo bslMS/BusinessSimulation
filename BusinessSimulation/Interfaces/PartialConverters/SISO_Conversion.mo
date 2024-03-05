@@ -3,11 +3,13 @@ within BusinessSimulation.Interfaces.PartialConverters;
 encapsulated partial block SISO_Conversion "Partial SISO converter class with input and output conversions for lookup functions"
   import BusinessSimulation.Interfaces.Connectors;
   import Modelica.Utilities.Files.loadResource;
-  import BusinessSimulation.Converters.{RateConversion,PassThrough,TimeConversion};
+  import BusinessSimulation.Converters.{RateConversion, PassThrough, TimeConversion};
   import BusinessSimulation.Types.TimeBases;
   import BusinessSimulation.ModelSettings;
   import BusinessSimulation.Interfaces.PartialConverters.SISO;
+  import BusinessSimulation.Units.*;
   extends SISO;
+  replaceable type InputType = Unspecified "The type of the input" annotation(choicesAllMatching = true);
   parameter Boolean convertInput = false "= true, if the input value is a rate or time variable that needs to be converted" annotation(Dialog(group = "Time Conversion"));
   parameter Boolean inputIsRate = false "= true, if the input is given in units of time, otherwise it is assumed to be a rate" annotation(Dialog(group = "Time Conversion", enable = convertInput));
   parameter Boolean convertOutput = false "= true, if the output value is a rate or time variable that needs to be converted" annotation(Dialog(group = "Time Conversion"));
@@ -40,10 +42,11 @@ equation
   connect(y_c, rateConversionOut.u) annotation(Line(visible = true, origin = {45.5, 13.531}, points = {{-5.5, -13.531}, {-0.5, -13.531}, {-0.5, 16.469}, {6.5, 16.469}}, color = {1, 37, 163}));
   connect(y_c, timeConversionOut.u) annotation(Line(visible = true, origin = {45.5, -15}, points = {{-5.5, 15}, {-0.5, 15}, {-0.5, -15}, {6.5, -15}}, color = {1, 37, 163}));
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>This partial class is intended for a more convenient development of <em>lookup</em> functions as users can choose to convert input and output using →<a href=\"modelica://BusinessSimulation.Converters.RateConversion\"><code>RateConversion</code></a> and →<a href=\"modelica://BusinessSimulation.Converters.TimeConversion\"><code>TimeConversion</code></a>.</p></html>", revisions = "<html>
 <ul>
-<li>Introduced in v2.0.0.</li>
+<li>Introduced in v2.0.0.</li><br>
+<li>Added type choice for <code>type InputType</code> in v2.2.</li><br>
 </ul>
 </html>"), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10})), Diagram(coordinateSystem(extent = {{-148.5, -105}, {148.5, 105}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})));
 end SISO_Conversion;

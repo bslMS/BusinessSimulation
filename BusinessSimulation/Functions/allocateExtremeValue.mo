@@ -10,7 +10,7 @@ encapsulated function allocateExtremeValue "Allocate a scarce resoure using an e
 algorithm
   y := if w <= 0.0 then 0.0 else 1.0 - exp(-exp(8.12447 * (a - x) / w));
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>The function returns the <em>fraction of capacity or demand</em> that matches the allocated amount of a scarce resource given the clearing attractiveness <code>x</code>, the attractiveness <code>a</code> (e.g., utility), and the width <code>w</code> of an extreme value distribution function that describes the priority profile for the recipient.</p>
 <p>The parameter <code>w</code> defines a highest density interval (HDI) with a probability of about 0.997 (i.e., the equivalent of a 6&sigma; HDI for a normal probability distribution) that is located around the location parameter <code>a</code>, which in this case denotes the location of the <em>mode</em> of the extreme value distribution. The interval boundaries shown in the graph below are only approximations, but they are close enough for application purposes.</p>
 <br>

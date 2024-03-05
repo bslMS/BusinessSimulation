@@ -40,7 +40,7 @@ equation
 <li>Introduced in v2.0.0.</li>
 </ul>
 </html>", info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>This is a fairly elaborate class serving as a building block for <em>delay</em> components. Since inflows to and outflows from a stock should be modeled using the same component, the class provides machinery to either deduct outflowing material at once or after it has left the stock (at the end of the delay process).</p>
 <p>The <code>delayTime</code> is given by a parameter, that is (optionally) multiplied by an exogenous input <strong>u</strong> as to enable exogenous input of delay times (e.g., <code>delayTime = 1</code> and <code>hasFactor = true</code>) or have the time of delay be modified by other variables.</p>
 <p>The stock value reported at the stock port <code>portA</code> is  determined from the choices made with regard to outflowing material (deducted or not), while the flags are immediately copied from the flow port <code>portB</code>.

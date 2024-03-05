@@ -3,7 +3,7 @@ within BusinessSimulation.Stocks;
 model PureDelay "Delay the flow of material for a fixed (but variable) delay time"
   import BusinessSimulation.Types.InitializationOptions;
   import BusinessSimulation.Units.*;
-  import BusinessSimulation.Constants.{small,zero,inf,INF};
+  import BusinessSimulation.Constants.{small, zero, inf, INF};
   extends Icons.DelayN;
   extends Icons.DiscreteStockLabel;
   extends Interfaces.Basics.GenericStock_Special(hasStockInfoOutput = false, init = modelSettings.init);
@@ -107,7 +107,7 @@ equation
   assert(samplingPeriod > small, "Sampling period must be larger than zero");
   assert(samplingPeriod < modelSettings.dt, "Sampling period should be significantly smaller than det", level = AssertionLevel.warning);
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>At any given time, the <em>inflow</em> to the <em>PureDelay</em> is delayed by an exact amount of time given either by the parameter <code>delayTime</code> or the continuous&nbsp;input <code>u</code>. Changes in the delay time will only affect the current or later inflow, i.e., whatever is already in the process of being delayed will not be affected.</p>
 <h4>Implementation</h4>
 <p>The <em>PureDelay</em>&nbsp; will work at <em>discrete</em> time intervals:</p>

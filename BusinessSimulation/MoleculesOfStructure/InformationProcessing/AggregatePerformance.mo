@@ -31,7 +31,7 @@ equation
   connect(parWeights.y, arithAvgPerformance.u_weights) annotation(Line(visible = true, origin = {-40.8, 41.6}, points = {{-43.2, 38.4}, {0.8, 38.4}, {0.8, -21.6}, {20.8, -21.6}, {20.8, -33.6}}, color = {1, 37, 163}));
   connect(u_weights, arithAvgPerformance.u_weights) annotation(Line(visible = true, origin = {-47, 33.6}, points = {{-98, 26.4}, {7, 26.4}, {7, -13.6}, {27, -13.6}, {27, -25.6}}, color = {0, 0, 128}));
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>The output <strong>y</strong> is given by applying an <em>aggregate function</em> (e.g., →<a href=\"modelica://BusinessSimulation.Converters.Vector.Min\">Min</a>, →<a href=\"modelica://BusinessSimulation.Converters.Vector.GeometricMean\">GeometricMean</a>, →<a href=\"modelica://BusinessSimulation.Converters.Vector.ArithmeticMean\">ArithmeticMean</a>, →<a href=\"modelica://BusinessSimulation.Converters.Vector.Max\">Max</a>) to a set of performance indicator inputs <strong>u</strong>. Optionally a vector of weights can be given as constant <code>weights</code> or external input <code>u_weights</code>, so that <em>weighted averages</em> can be used.</p>
 <h4>Notes</h4>
 <ul>

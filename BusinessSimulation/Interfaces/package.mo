@@ -6,7 +6,7 @@ package Interfaces "Connectors and partial models for Business Simulations"
   import BusinessSimulation.Constants.*;
   import BusinessSimulation.Types.Reals;
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>This package contains connectors and partial models (classes).</p>
 <br>
 <hr>

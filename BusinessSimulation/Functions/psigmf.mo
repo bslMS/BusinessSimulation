@@ -12,7 +12,7 @@ function psigmf "Product of two sigmoidal membership functions"
 algorithm
   y := sigmf(x, a = a, c = b) * sigmf(x, a = -c, c = d);
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>The function returns the degree of membership using the product of two <em>sigmoidal</em> functions given the real input <strong>x</strong> and the parameters <em>shape parameter for the s-shaped transition area</em> <code>a</code>, <em>center of the s-shaped transition area</em> <code>b</code>, <em>shape parameter of the z-shaped transition area</em> <code>c</code>, and <em>center of the z-shaped transition area</em> <code>d</code> of the function.</p>
 <h4>Implementation</h4>
 <br>

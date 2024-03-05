@@ -3,7 +3,7 @@ within BusinessSimulation.Converters;
 package Special "Special converters - often used as utility functions"
   extends Icons.Package;
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>This package contains converters that are more or less technical.</p>
 <br>
 <hr>

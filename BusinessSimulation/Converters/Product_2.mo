@@ -6,7 +6,7 @@ block Product_2 "Inputs are multiplied"
 equation
   y = u1 * u2;
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>The output <strong>y</strong> is the <em>product</em> of inputs <strong>u1</strong> and <strong>u2</strong>.</p>
 <h4>See also</h4>
 <p><a href=\"modelica://BusinessSimulation.Converters.Product_3\">Product_3</a>,&nbsp;<a href=\"modelica://BusinessSimulation.Converters.Vector.Product\">Vector.Product</a></p>

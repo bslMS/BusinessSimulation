@@ -11,7 +11,7 @@ function janoschek "Janoschek's Growth Curve"
 algorithm
   y := l - (l - b) * exp(-k * x ^ d);
   annotation(Inline = true, Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>This function models <em>Janoschek's growth curve</em>&nbsp;[<a href=\"modelica://BusinessSimulation.UsersGuide.References\">19</a>] given the real input <strong>x</strong> and the specifying real inputs <strong><code>b, l, k, d</code></strong>. The formula for the real output <strong>y</strong> is:</p>
 <p><code>y := 1 - (l - b) * <strong>exp</strong>(-k * x ^ d);</code></p>
 <h4>Syntax</h4>

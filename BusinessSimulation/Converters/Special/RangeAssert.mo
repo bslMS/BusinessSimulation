@@ -16,7 +16,7 @@ equation
     assert(u >= minValue, "Value out of range (too low)", level = AssertionLevel.warning);
   end if;
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>The component will set up the following <code>assert</code> functions:</p>
 <pre>assert(u &lt;= maxValue, \"Value out of range (too high)\", level = AssertionLevel.error);<br>assert(u &gt;= minValue, \"Value out of range (too low)\", level = AssertionLevel.error);</pre>
 <br>

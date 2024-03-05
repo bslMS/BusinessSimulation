@@ -7,7 +7,7 @@ encapsulated block Allocation_Brent "Allocate an available amount according to p
   import BusinessSimulation.Functions.allocatedAmounts;
   import Modelica.Math.Nonlinear.solveOneNonlinearEquation;
   import BusinessSimulation.Functions.UtilityFunctions.findClearAttrac;
-  import BusinessSimulation.Interfaces.Connectors.{RealInput,RealMultiInput};
+  import BusinessSimulation.Interfaces.Connectors.{RealInput, RealMultiInput};
   import ICON = BusinessSimulation.Interfaces.PartialConverters.Policy_MO;
   extends ICON;
   RealInput u "Available amount to be allocated" annotation(Placement(visible = true, transformation(origin = {-145, 80}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {0, 110}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
@@ -29,11 +29,11 @@ equation
   clearing = solveOneNonlinearEquation(function findClearAttrac(amount = u, vecA = u_p, vecC = u_c, vecW = u_w, pp = pp), u_min = u_min, u_max = u_max, tolerance = tolerance);
   y = if u <= 0 then zeros(nout) elseif u >= totalCap then u_c else allocatedAmounts(x = clearing, vecA = u_p, vecC = u_c, vecW = u_w, pp = pp);
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>The output vector <strong>y</strong> gives an <em>allocation</em> of the single input <strong>u</strong>, which may be a <em>rate</em> or simply an <em>available amount</em> of entities. The allocation is done according to the  <em>priorities</em> associated with the repicients (e.g., suppliers or buyers) and their individual <em>capacities</em>, so that even the most attractive recipient will never get more than the maximum amount offered or demanded.</p>
 <h4>Notes</h4>
 <p>
-<Code>Allocation_Brent</code> has the same functionality as <code>Allocation</code>, but while the latter uses the DAE solver, the former uses <a href=\"modelica://Modelica.Math.Nonlinear.solveOneNonlinearEquation\">Modelica.Math.Nonlinear.solveOneNonlinearEquation</a> to find the allocated amounts. The class has not been tested thoroughly, yet, and is added <strong>[EXPERIMENTALLY]</strong> here.
+<Code>Allocation_Brent</code> has the same functionality as <code>Allocation</code>, but while the latter uses the DAE solver, the former uses <a href=\"modelica:/Modelica.Math.Nonlinear.solveOneNonlinearEquation\">Modelica.Math.Nonlinear.solveOneNonlinearEquation</a> to find the allocated amounts. The class has not been tested thoroughly, yet, and is added <strong>[EXPERIMENTALLY]</strong> here.
 </p> 
 <h4>See also</h4>
 <p>

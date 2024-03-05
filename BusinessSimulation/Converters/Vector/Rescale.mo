@@ -12,7 +12,7 @@ block Rescale "Rescales the components of input vector u to run from y_min to y_
 equation
   y = if enterInputRange then Functions.rescaleVector(u, {u_min, u_max}, {y_min, y_max}) else Functions.rescaleVector(u, {min(u), max(u)}, {y_min, y_max});
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>The vector output <strong>y</strong> is obtained by <em>rescaling </em>all components of the input vector <strong>u</strong> to run from <code>y_min</code> to <code>y_max</code> over the range <code>min</code> to <code>max</code>.</p>
 <h4>Notes</h4>
 <p>Care has to be taken if <code>enterInputRange = false</code>, as then a vector of identical values will cause division by zero.</p>

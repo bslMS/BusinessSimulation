@@ -43,8 +43,8 @@ equation
   // issue warnings if values out of range
   connect(y, rangeControl.u) annotation(Line(visible = true, origin = {119.6, 54}, points = {{40.4, -24}, {40.4, -4}, {-19.6, -4}, {-19.6, 16}, {-41.6, 16}}, color = {1, 37, 163}));
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
-<p>This is the general, <em>unrestricted reservoir</em> of the System Dynamics methodology, it accumulates information transported by flow components connected to the StockPorts.</p></html>", revisions = "<html>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
+<p>This is the general, <em>unrestricted reservoir</em> of the system dynamics methodology, it accumulates information transported by flow components connected to the StockPorts.</p></html>", revisions = "<html>
 <ul>
 <li>Display of <code>%initialValue</code> in the Icon removed in v.2.1.0; it is now taken care of in <code>Icons.Stock</code>.</li>
 </ul>

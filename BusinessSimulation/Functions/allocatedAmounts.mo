@@ -3,7 +3,7 @@ within BusinessSimulation.Functions;
 encapsulated function allocatedAmounts "Allocate a scarce resoure using priority profiles given by distributions"
   import PP = BusinessSimulation.Types.PriorityProfiles;
   import ICON = BusinessSimulation.Icons.Function;
-  import BusinessSimulation.Functions.{allocateUniform,allocateTriangular,allocateNormal,allocateExtremeValue};
+  import BusinessSimulation.Functions.{allocateUniform, allocateTriangular, allocateNormal, allocateExtremeValue};
   extends ICON;
   input Real x "Clearing attractiveness";
   input Real[:] vecA "Vector of attractiveness (i.e., priority) scores for recipients";
@@ -19,7 +19,7 @@ algorithm
    elseif pp == PP.extremeValue then array(allocateExtremeValue(x, vecA[i], vecW[i]) for i in 1:n) else array(allocateUniform(x, vecA[i], vecW[i]) for i in 1:n);
   y := vecAllocFrac .* vecC;
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>The function returns the <em>allocated amounts</em> of a scarce resource given the clearing attractiveness <code>x</code>, the vector of attractiveness scores <code>vecA</code> (i.e., utilities/priorities), the vector of available capacities or demand saturation levels <code>vecC</code>, the vector of widths <code>vecW</code>, and the type of priority distribution used for allocation <code>pp</code> (<code>default = PriorityProfiles.uniform</code>).</p>
 <h4>Syntax</h4>
 <br>

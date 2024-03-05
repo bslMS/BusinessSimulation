@@ -8,7 +8,7 @@ encapsulated function areaLineSegment "Calculate the area under a line segment"
 algorithm
   y := abs((p2[1] - p1[1]) * (p1[2] + p2[2]) / 2);
   annotation(Inline = true, Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>The output <strong>y</strong> is the <em>area</em> under a line given by two points <strong>p1, p2</strong> which are assumed to be either both above or both below the abscissa, i.e., the ordinates of the points have the same sign.</p>
 <h4>Syntax</h4>
 <p><code>Functions.<strong>areaLineSegment</strong>(p1, p2);</code></p>

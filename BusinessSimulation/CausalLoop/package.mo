@@ -3,7 +3,7 @@ within BusinessSimulation;
 package CausalLoop "Agile system dynamics modeling with quantitative causal loop diagrams (CLD+)"
   extends Icons.CausalLoopPackage;
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>This package contains high-level classes (i.e., wrappers) that allow to quickly set up dynamic models in a Causal Loop Diagram (CLD) fashion. Unlike conventional CLD such models can immediately be simulated and analyzed.</p>
 <p>A typical workflow in an \"Agile Dynamic Modeling\" setup would be to quickly establish a first working model using the most relevant variables as starting points and consider them to be stocks/levels. Exogenous processes of <em>change</em> and/or <em>control</em> next to simplified relations between the variables&mdash;defined by <em>elasticities or proportionalities</em>&mdash;will then give rise to dynamic behavior.</p>
 <p>Such a preliminary model can be made more expressive by introducing lookups to modify constant coefficients (e.g., factors of proportionality) thus making the models more nonlinear. As van Zijderveld [<a href=\"modelica://BusinessSimulation.UsersGuide.References\">24</a>] has shown, such models may even suffice in situations of tight budgets or lower stakes.</p>

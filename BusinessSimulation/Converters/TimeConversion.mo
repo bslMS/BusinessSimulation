@@ -17,7 +17,7 @@ protected
 equation
   y / oneOutput = u / oneInput * BusinessSimulation.Constants.timeBaseConversionFactors[timeBaseA, timeBaseB];
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>The output <em><strong>y</strong></em> is derived from converting the input <strong><em>u</em></strong> assumed to be given in units of <code>timeBaseA</code> to <code>timeBaseB</code>.&nbsp;</p>
 <h4>Notes</h4>
 <p>The best way to work with time in Modelica is to use the SIunit [<code>s</code>] for all internal representations and calculations while making use of <code>displayUnit</code> to convert input and output to and from <code>s</code> to another unit of time preferred by the modeler. That way models will be compatible with models from other domains.</p>

@@ -3,7 +3,7 @@ within BusinessSimulation.Stocks;
 model HinesCoflow "Accounting for changes in average quality of a stock as new entries with different characteristic flow in"
   import BusinessSimulation.Types.InitializationOptions;
   import BusinessSimulation.Units.*;
-  import BusinessSimulation.Constants.{small,zero,inf,INF};
+  import BusinessSimulation.Constants.{small, zero, inf, INF};
   extends Interfaces.Basics.GenericStock(hasStockInfoOutput = false, y.start = initialValue);
   extends Icons.Stock;
   extends Icons.FlowIndicators;
@@ -32,8 +32,8 @@ equation
   connect(avgCharacteristic.y, rateOfChange.u_current) annotation(Line(visible = true, origin = {22.5, 49.1}, points = {{32.5, -38.7}, {32.5, 15.9}, {-32.5, 15.9}, {-32.5, 6.9}}, color = {1, 37, 163}));
   connect(absoluteSensor.inFlow, dilutionTime.u_rate) annotation(Line(visible = true, origin = {-107.342, 24.433}, points = {{-12.658, 9.432}, {-12.658, -9.433}, {46.319, -9.433}}, color = {1, 37, 163}));
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
-<p>The <em>HinesCoflow</em> is a modification of the classical coflow structure used in System Dynamics [<a href=\"modelica://BusinessSimulation.UsersGuide.References\">6</a>, pp. 50f.]. The traditional coflow is a model of a stock's average quality (e.g., age, weight, price, income etc.) changing, as new entities with different characteristics <strong><code>u</code></strong> flow in while older entities flow out—in which case we assume, that the outflowing entities have an average quality [<a href=\"modelica://BusinessSimulation.UsersGuide.References\">3</a>, pp. 497-511].</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
+<p>The <em>HinesCoflow</em> is a modification of the classical coflow structure used in system dynamics [<a href=\"modelica://BusinessSimulation.UsersGuide.References\">6</a>, pp. 50f.]. The traditional coflow is a model of a stock's average quality (e.g., age, weight, price, income etc.) changing, as new entities with different characteristics <strong><code>u</code></strong> flow in while older entities flow out—in which case we assume, that the outflowing entities have an average quality [<a href=\"modelica://BusinessSimulation.UsersGuide.References\">3</a>, pp. 497-511].</p>
 <p>The <em>HinesCoflow</em> makes use of the fact, that the average quality of the entities in the stock is <em>diluted</em> by inflowing entities of different quality, i.e., the process is a <em>smooth</em> with a variable time constant. The benefit of this formulation is, that the average quality of the stock is directly modeled by a stock, so that processes that change the average (e.g., gaining experience over the time of residence for a stock of workers) can be directly modeled as in- or outflows to the <em>HinesCoflow</em>.</p>
 <h4>Notes</h4>
 <ul>

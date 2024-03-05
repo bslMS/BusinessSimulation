@@ -5,7 +5,7 @@ model InfoFlowIndicator "Directional indicator for information flows in a diagra
   extends ICON;
   /* label */
   annotation(defaultComponentName = "lab", Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>The <em>information flow indicator</em> can be used to clarify direction of information flows where appropriate in more complex diagrams. The component will not introduce any equations and is intended for diagramming purposes only.</p>
 <h4>See also</h4>
 <p>

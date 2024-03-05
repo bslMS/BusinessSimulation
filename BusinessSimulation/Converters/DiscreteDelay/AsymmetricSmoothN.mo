@@ -30,7 +30,7 @@ equation
     connect(partialNegDelayTime.y, smooth[i].u_negDelayTime);
   end for;
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>This converter behaves like a conventional <a href=\"modelica://BusinessSimulation.Converters.DiscreteDelay.SmoothN\">→SmoothN</a> but allows to give separate <em>delay times</em> for <em>positive</em> and <em>negative</em> information changes.</p>
 <h4>Notes</h4>
 <ul>

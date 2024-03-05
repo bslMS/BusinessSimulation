@@ -14,7 +14,7 @@ equation
   connect(times.y, total.u) annotation(Line(visible = true, origin = {-0.006, 0}, points = {{-20.24, 0}, {20.24, 0}}, color = {0, 0, 127}));
   connect(y, total.y) annotation(Line(visible = true, origin = {97.486, 0}, points = {{62.514, 0}, {-62.514, 0}}, color = {0, 0, 127}));
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>The output <strong>y</strong> is the <em>dot product</em> of the input vectors <strong>u1</strong> and <strong>u2</strong> which have the same length <code>nin</code>.</p>
 <p>The dot product is defined as follows:</p>
 <p><img src=\"modelica://BusinessSimulation/Resources/Images/Converters/Vector/DotProduct/Formula.svg\" alt=\"y = sum_{i=1}^{nin} u1[i]*u2[i]\"></p></html>"), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10}), graphics = {Text(visible = true, textColor = {0, 0, 128}, extent = {{-40.484, -12}, {40.484, 12}}, textString = "Dot", fontName = "Lato", textStyle = {TextStyle.Bold})}), Diagram(coordinateSystem(extent = {{-148.5, -105}, {148.5, 105}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})));

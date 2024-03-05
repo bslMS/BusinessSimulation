@@ -12,8 +12,8 @@ protected
 equation
   connect(ramp.y, y) annotation(Line(visible = true, origin = {107.432, -0}, points = {{-52.568, -0}, {52.568, 0}}, color = {0, 0, 127}));
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
-<p>The Real <em>output</em> <strong>y</strong> is a <em>ramp</em> signal&nbsp;&rarr; <a href=\"modelica://Modelica.Blocks.Sources.Ramp\">Modelica.Blocks.Sources.Ramp</a>.</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
+<p>The Real <em>output</em> <strong>y</strong> is a <em>ramp</em> signal&nbsp;&rarr; <a href=\"modelica:/Modelica.Blocks.Sources.Ramp\">Modelica.Blocks.Sources.Ramp</a>.</p>
 <h4>Notes</h4>
 <p>If parameter duration is set to zero,&nbsp;the output will be a step signal.</p>
 <h4>See also</h4>

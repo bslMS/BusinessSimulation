@@ -14,7 +14,7 @@ algorithm
   w := BusinessSimulation.Functions.clip(weights, {0, inf});
   y := sum(x[i] * w[i] for i in 1:n) / sum(w);
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>The output <strong>y</strong> is the <em>arithmetic mean</em> of the components of the input vector <strong>x</strong>. As a second argument a vector of positive weights (default = 1 for each weight) can be given to calculate the weighted arithmetic mean.</p>
 <h4>Syntax</h4>
 <p><code>Functions.<strong>arithmeticMean</strong>(x);</code><br>

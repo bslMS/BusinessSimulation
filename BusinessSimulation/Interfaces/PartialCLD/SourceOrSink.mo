@@ -4,8 +4,8 @@ encapsulated partial model SourceOrSink "Partial source or sink for causal loop 
   import BusinessSimulation.Units.*;
   import BusinessSimulation.Constants.*;
   import BusinessSimulation.Interfaces.Connectors.RealInput;
-  import BusinessSimulation.InformationSources.{PulseInput,RampInput};
-  import BusinessSimulation.Converters.{Product_3,ConstantConverterRate,ConstantConverter};
+  import BusinessSimulation.InformationSources.{PulseInput, RampInput};
+  import BusinessSimulation.Converters.{Product_3, ConstantConverterRate, ConstantConverter};
   import BusinessSimulation.Interfaces.PartialCLD.TimedSource;
   extends TimedSource;
   RealInput u if hasFactor "Factor input" annotation(Placement(visible = true, transformation(origin = {-145, 60}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-50, -80}, extent = {{-10, -10}, {10, 10}}, rotation = -270)));
@@ -16,7 +16,7 @@ encapsulated partial model SourceOrSink "Partial source or sink for causal loop 
 protected
   ConstantConverter parFactor(value = 1) if not hasFactor annotation(Placement(visible = true, transformation(origin = {-40, 50}, extent = {{10, -10}, {-10, 10}}, rotation = 0)));
   Product_3 actualRate annotation(Placement(visible = true, transformation(origin = {-40, 25}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  ConstantConverterRate parRate(value = rate, timeBaseString = "second") if hasConstantRate annotation(Placement(visible = true, transformation(origin = {-100, 15}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  ConstantConverter parRate(value = rate) if hasConstantRate annotation(Placement(visible = true, transformation(origin = {-100, 15}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
 equation
   assert(not hasConstantRate or rate < inf, "Parameter rate needs to be specified");
   connect(parRate.y, actualRate.u2) annotation(Line(visible = true, origin = {-70, 20}, points = {{-24, -5}, {0, -5}, {0, 5}, {22, 5}}, color = {1, 37, 163}));
@@ -30,7 +30,7 @@ equation
 <li>Introduced in v2.0.0.</li>
 </ul>
 </html>", info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>Partial class extending →<a href=\"modelica://BusinessSimulation.Interfaces.PartialCLD.FlowPort\"><code>FlowPort</code></a> to build processes of growth or decline at the system's border.</p>
 <h4>Implementation</h4>
 <p>

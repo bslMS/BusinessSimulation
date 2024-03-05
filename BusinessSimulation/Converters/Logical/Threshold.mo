@@ -6,7 +6,7 @@ block Threshold "True, if u is greater than the given threshold"
 equation
   y = u > threshold;
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>The boolean output <strong>y</strong> is <code>true</code>, if the real&nbsp;input&nbsp;<strong>u</strong>&nbsp;is <em>greather than</em> <code>threshold</code>, and <code>false</code>&nbsp;otherwise.&nbsp;</p>
 <h4>See also</h4>
 <p><a href=\"modelica://BusinessSimulation.Converters.Logical.NotZero\">NotZero</a>,&nbsp;<a href=\"modelica://BusinessSimulation.Converters.Logical.Boole\">Boole</a></p>

@@ -1,9 +1,10 @@
 Unspecified
-Information
-Fraction
 Dimensionless
 Ratio
+PositiveRatio
+Fraction
 Probability
+Information
 ExtensiveQuantity
 Amount
 Population
@@ -20,10 +21,12 @@ Money_USD
 Money_EUR
 Money_JPY
 Money_GBP
+Money_CNY
 Volume
 Mass
 Energy
 ElectricCharge
+DataCapacity
 Entropy
 Momentum
 AngularMomentum
@@ -37,6 +40,13 @@ Temperature
 TemperatureDifference
 Rate
 AmountRate
+LaborGrowthRate
+MonetaryFlow
+MonetaryFlow_EUR
+MonetaryFlow_USD
+MonetaryFlow_GBP
+MonetaryFlow_JPY
+MonetaryFlow_CNY
 VolumeFlowRate
 MassFlowRate
 EnergyFlowRate
@@ -44,6 +54,7 @@ MomentumFlowRate
 AngularMomentumFlowRate
 Velocity
 EntropyFlowRate
+DataTransferRate
 ElectricCurrent
 Time
 Time_minutes

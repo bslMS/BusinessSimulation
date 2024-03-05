@@ -10,7 +10,7 @@ function gbellmf "Generalized bell-shaped membership function"
 algorithm
   y := 1 / (1 + abs((x - c) / a) ^ (2 * b));
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>The function returns the degree of membership using a <em>generalized bell-shaped</em> function given the real input <strong>x</strong> and the parameters <em>width of core</em> <code>a</code>, <em>shape parameter</em> <code>b</code>, and the <em>center value</em> <code>c</code>.</p>
 <h4>Implementation</h4>
 <br>

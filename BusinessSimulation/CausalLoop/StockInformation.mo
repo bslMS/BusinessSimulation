@@ -12,7 +12,7 @@ equation
   connect(absoluteSensor.stock, y) annotation(Line(visible = true, origin = {16.405, 2.476}, points = {{-112.405, 2.475}, {-16.405, 2.476}, {-16.405, -2.476}, {145.214, -2.476}}, color = {1, 37, 163}));
   /* block,  information processing */
   annotation(defaultComponentName = "b", Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>The output <strong>y</strong> is the current amount in the stock whose <code>stockInfoOutput</code> is connected to the component's <code>stockInfoInput</code> connector.</p>
 <h4>See also</h4>
 <p>

@@ -51,7 +51,7 @@ equation
   connect(complexInteraction.y1_A, y_A) annotation(Line(visible = true, origin = {-63.354, -22.5}, points = {{52.854, 17.5}, {23.354, 17.5}, {23.354, -17.5}, {-99.563, -17.5}}, color = {1, 37, 163}));
   /* flow */
   annotation(defaultComponentName = "f", Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>Using →<a href = \"modelica://BusinessSimulation.Flows.Interaction.ComplexInteraction\"><code>ComplexInteraction</code></a> this component allows to logically connect two flows influencing two stocks <strong>A</strong> (connected to <code>portA</code>) and <strong>B</strong> (connected to <code>portB</code>). The formula for the resulting flows (using <a href=\"https://wiki2.org/en/Newton%27s_notation+Brights.4#Newton's_notation\">Newton's dot notation</a>) has <em>linear</em> and <em>nonlinear</em> terms:</p>
 <p><img src=\"modelica://BusinessSimulation/Resources/Images/Flows/Interaction/ComplexInteraction/Formula.svg\" alt=\"Formula.svg\"></p>
 <p>The coefficients are given by parameters, which are multiplied either with 1 (<code>hasFactor = false</code>) or an exogenous factor <strong>u</strong> (<code>hasFactor = true</code>). Upon setting <code>hasRateOutput = true</code> the component will report the current rate of flows via output connectors (<code>y_A, y_B</code>).</p>

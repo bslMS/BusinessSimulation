@@ -15,7 +15,7 @@ equation
   connect(linearilyChanging.y1, y1) annotation(Line(visible = true, origin = {63.146, -22.5}, points = {{-52.646, 17.5}, {-23.146, 17.5}, {-23.146, -17.5}, {98.937, -17.5}}, color = {1, 37, 163}));
   /* relation */
   annotation(defaultComponentName = "r", Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p><em>Proportionality</em> expresses the fact that the rate of change for an influenced stock <strong>B</strong> is proportional to the net rate of change for an influencing stock <strong>A</strong>, which is connected via the <code>stockInfoInput</code>. The factor of proportionality <em>k</em> is given by the parameter <code>coefficient</code>. The rate of change for the stock <strong>B</strong> that is connected to the <code>flowPort</code> accordingly is given by the following equation, which uses Newton's dot notation for rates:
 <p><img src=\"modelica://BusinessSimulation/Resources/Images/CausalLoop/Proportionality/Formula.svg\" alt=\"Ḃ = k · Ȧ \"></p>
 <h4>Implementation</h4>

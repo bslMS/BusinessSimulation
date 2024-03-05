@@ -3,7 +3,7 @@ within BusinessSimulation.Stocks;
 model Conveyor "Conveyor delay (aka pipeline ~) with variable delay time"
   import BusinessSimulation.Types.InitializationOptions;
   import BusinessSimulation.Units.*;
-  import BusinessSimulation.Constants.{small,zero,inf,INF};
+  import BusinessSimulation.Constants.{small, zero, inf, INF};
   extends Icons.Conveyor;
   extends Icons.DiscreteStockLabel;
   extends Interfaces.Basics.GenericStock_Special(hasStockInfoOutput = false, init = modelSettings.init);
@@ -120,7 +120,7 @@ equation
   assert(samplingPeriod < modelSettings.dt, "Sampling period should be significantly smaller than dt", level = AssertionLevel.warning);
   assert(samplingPeriod > small, "Sampling period must be greater than zero", level = AssertionLevel.error);
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>The <em>Conveyor</em> (aka <em>pipeline</em> <em>delay</em>) bevhaves as one would expect a conveyor belt to work: What <em>flows</em> <em>into</em> the Conveyor will <em>flow out</em> after a period given by  <code>delayTime</code> or the variable input <code>u</code> has passed. The order of outflow will preserve the order of inflow, i.e., when the delay time increases or decreases during the simulation, then it will affect everything that is currently \"loaded\" on the conveyor in the same way. Therefore, material&nbsp;might come out at the same time as material that had entered before, but it can never <em>overtake</em> older entries (this would be possible in a <em>PureDelay</em>).</p>
 <h4>Implementation</h4>
 <p>The <em>Conveyor</em>&nbsp; will work at <em>discrete</em> time intervals:</p>

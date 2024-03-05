@@ -15,7 +15,7 @@ equation
   connect(u_weights, w);
   y = Functions.arithmeticMean(u, w);
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>The scalar output <strong>y</strong> is obtained as a <em>convex combination</em> of the components of the input vector <strong>u</strong>:</p>
 <p><img src=\"modelica://BusinessSimulation/Resources/Images/Converters/Vector/ArithmeticMean/Formula.svg\" alt=\"y = sum_i u[i] w[i]\"></p>
 <h4>Notes</h4>

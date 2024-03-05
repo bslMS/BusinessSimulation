@@ -14,7 +14,7 @@ equation
   connect(aggregateInformation.y, y) annotation(Line(visible = true, origin = {86.543, 0}, points = {{-75.543, 0}, {75.543, 0}}, color = {1, 37, 163}));
   /* block,  information processing */
   annotation(ddefaultComponentName = "b", Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>The output <strong>y</strong> is obtained by applying the selected aggregation function <code>func</code> with constant weights to <code>nin</code> inputs <strong>u</strong><code>[nin]</code>.</p>
 <h4>See also</h4>
 <p>

@@ -8,7 +8,7 @@ partial class SubsystemTransceiver "Icon for subsystems with mixed ports"
 <li><code>iconLabel</code> added in v2.0.0.</li><br>
 </ul>
 </html>", info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>By modifying <code>constant String iconLabel = \"\";</code> an icon label will show in the Icon View with a matching color.</p>
 <h4>Notes</h4>
 <p>In Wolfram SystemModeler the value given for <code>Font size</code> in the menu <em>Tools > Options... > Model Center > Graphical Class Views > General > Component Text</em> will override any local settings for the display of <code>iconLabel</code>.</p>

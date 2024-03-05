@@ -19,7 +19,7 @@ equation
   connect(parReference.y, polynomial.u) annotation(Line(visible = true, origin = {-91, -5}, points = {{-23, 0}, {23, 0}}, color = {1, 37, 163}));
   connect(u_lambda, polynomial.u) annotation(Line(visible = true, origin = {-93.25, -22.5}, points = {{-51.75, -17.5}, {13.25, -17.5}, {13.25, 17.5}, {25.25, 17.5}}, color = {0, 0, 128}));
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>The output <strong>y</strong> is obtained by <em>multiplication</em> of the input <strong>u</strong> with a <a href=\"modelica://BusinessSimulation.Converters.PolynomialFunction\">→<em>polynomial function</em></a> of an argument (<code>u_lamdba</code> or <code>lambda</code>).</p>
 <h4>Examples</h4>
 <br>

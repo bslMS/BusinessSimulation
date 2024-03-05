@@ -26,7 +26,7 @@ algorithm
     shiftedList := if nAbs < length then cat(1, zeros(nAbs), list[1:end - nAbs]) else zeros(nAbs);
   end if;
   annotation(Inline = true, Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>The function will return a list shifted by <code>n</code> places (<code>n &lt; 0</code> &rArr; shift to the left), where the elements \"pushed\" out of range are added up and reported as <code>carry</code>. The gaps will be shifted with the real value <code>fill</code>, which by default is set to 0.</p>
 <h4>Syntax</h4>
 <br>

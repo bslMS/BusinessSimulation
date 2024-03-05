@@ -11,7 +11,7 @@ block ResidenceTime "Calculate average time of residence or time needed for comp
 protected
   Converters.Division_Guarded residenceTime(outputIfZero = durationAtZeroRate, redeclare replaceable type OutputType = Time) "Average time of residence in a stock that is being depleted" annotation(Placement(visible = true, transformation(origin = {0, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Converters.ZeroIfNegative currentLevel "Current amount that is being depleted" annotation(Placement(visible = true, transformation(origin = {-50, 20}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  Converters.ZeroIfNegative rateOfDepletion(redeclare replaceable type OutputType = Rate) "Rate of Depletion" annotation(Placement(visible = true, transformation(origin = {-50, -20}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  Converters.ZeroIfNegative rateOfDepletion(redeclare replaceable type OutputType = Unspecified) "Rate of Depletion" annotation(Placement(visible = true, transformation(origin = {-50, -20}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
 equation
   connect(residenceTime.y, y) annotation(Line(visible = true, origin = {84, 0}, points = {{-76, 0}, {76, 0}}, color = {0, 0, 127}));
   connect(u_level, currentLevel.u) annotation(Line(visible = true, origin = {-101.5, 20}, points = {{-43.5, 0}, {43.5, 0}}, color = {0, 0, 127}));
@@ -19,7 +19,7 @@ equation
   connect(u_rate, rateOfDepletion.u) annotation(Line(visible = true, origin = {-101.5, -20}, points = {{-43.5, 0}, {43.5, 0}}, color = {0, 0, 127}));
   connect(rateOfDepletion.y, residenceTime.u2) annotation(Line(visible = true, origin = {-21.909, -12.5}, points = {{-20.091, -7.5}, {1.909, -7.5}, {1.909, 7.5}, {13.909, 7.5}}, color = {0, 0, 127}));
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>The Real output <strong>y</strong> is obtained by dividing the current amount in a material stock<code>u_level</code> by the (positive) rate of its outflow <code>u_rate</code>. According to Little's Law—a famous result from queueing theory—the output <strong>y</strong> will be equal to the <em>mean time of residence</em> in the stock if the system is in equilibrium.</p>
 <h4>Notes</h4>
 <ul>
@@ -32,5 +32,9 @@ equation
 <p>
 <a href=\"modelica://BusinessSimulation.Flows.Unidirectional.Decay\">Decay<br></a>
 </p>
+</html>", revisions = "<html>
+<ul>
+<li>Changed type for <code>rateOfDepletion</code> to <code>Unspecified</code> in v2.2.</li><br>
+</ul>
 </html>"), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10}), graphics = {Text(visible = true, textColor = {0, 0, 128}, extent = {{-96.456, -12}, {96.456, 12}}, textString = "Residence or", fontName = "Lato", textStyle = {TextStyle.Bold}), Text(visible = true, origin = {0, -25}, textColor = {0, 0, 128}, extent = {{-96.456, -12}, {96.456, 12}}, textString = "Completion Time", fontName = "Lato", textStyle = {TextStyle.Bold})}), Diagram(coordinateSystem(extent = {{-148.5, -105}, {148.5, 105}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})));
 end ResidenceTime;

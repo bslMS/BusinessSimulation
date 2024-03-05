@@ -40,15 +40,15 @@ equation
   connect(infected.y1, modelOutput.infected) annotation(Line(visible = true, origin = {37.248, -47.5}, points = {{-36.748, 12.5}, {-32.248, 12.5}, {-32.248, -12.5}, {92.752, -12.5}}, color = {192, 192, 192}));
   connect(removed.y1, modelOutput.removed) annotation(Line(visible = true, origin = {102.203, -47.5}, points = {{-21.703, 12.5}, {-17.203, 12.5}, {-17.203, -12.5}, {27.797, -12.5}}, color = {192, 192, 192}));
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>The SIR model is a classical approach in mathematical epidemiology to study the spread of infectious diseases. The model goes back to William Ogilvy Kermack and Anderson Gray McKendrick [<a href=\"modelica://BusinessSimulation.UsersGuide.References\">23</a>] and is also called Kermack-McKendrick-Model.</p>
 <p>The whole population is separated into three stocks(→<strong>modelOutput</strong>):</p>
 <ul>
-<li>The <strong>Susceptible (S)</strong> population that is not immune and may be infected.</li><br>
-<li>The <strong>Infected (I)</strong> population that is infected and <em>infectious</em>.</li><br>
+<li>The <strong>Susceptible (S)</strong> population is not immune and may be infected.</li><br>
+<li>The <strong>Infected (I)</strong> population has been infected and is <em>contagious</em>.</li><br>
 <li>The <strong>Removed (R)</strong> population can neither be infected nor spread the disease.</li>
 </ul>
-<p>As in the example →<a href=\"modelica://BusinessSimulation.Examples.SimpleProductionChainIII\">SimpleProductionChainIII</a> we are using the →<a href=\"modelica://BusinessSimulation.MoleculesOfStructure.Actuators.Diffusion\">Diffusion</a> component to model <em>social diffusion</em>, e.g., spread by contact. The <code>transmissionRate</code> (&beta; in the mathematical literature) is also sometimes called the <em>effective contact rate</em> which helps to understand why we have set the <code>adoptionFraction</code> to <code>1</code>in the <code>Diffusion</code> component.</p>
+<p>As in the example →<a href=\"modelica://BusinessSimulation.Examples.SimpleProductionChainIII\">SimpleProductionChainIII</a> we are using the →<a href=\"modelica://BusinessSimulation.MoleculesOfStructure.Actuators.Diffusion\">Diffusion</a> component to model <em>social diffusion</em>, e.g., transmission by close contact. The <code>transmissionRate</code> (&beta; in the mathematical literature) is also sometimes called the <em>effective contact rate</em> which helps to understand why we have set the <code>adoptionFraction</code> to <code>1</code>in the <code>Diffusion</code> component.</p>
 <table cellspacing=\"0\" cellpadding=\"2\" style=\"margin-left: auto; margin-right: auto;\"><caption align=\"bottom\">Simulation Results</caption>
 <tbody>
 <tr>

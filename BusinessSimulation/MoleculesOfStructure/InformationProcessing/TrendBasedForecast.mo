@@ -32,7 +32,7 @@ equation
   connect(fracGrowthRate.y_ppc, extrapolPC.u2) annotation(Line(visible = true, origin = {-12.282, 5}, points = {{-24.14, -10}, {12.282, -10}, {12.282, 10}, {55.943, 10}}, color = {1, 37, 163}));
   connect(fracGrowthRate.y, fractionalGrowth.u2) annotation(Line(visible = true, origin = {-26.593, 17.477}, points = {{-9.829, -17.477}, {-3.407, -17.523}, {-3.407, 17.523}, {11.171, 17.57}}, color = {1, 37, 163}));
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>The trend-based forecast makes use of a perceived present condition and a fractional growth rate computed by a &rarr;<a href=\"modelica://BusinessSimulation.MoleculesOfStructure.InformationProcessing.Trend\">Trend</a> block that follows the model proposed by Sterman [<a href=\"modelica://BusinessSimulation.UsersGuide.References\">3</a>, pp. 34 - 38].</p>
 <p>The perceived present condition (PPC) will be \"brought forward\" to the actual time using linear extrapolation:</p>
 <p><code>Extrapolated&nbsp;Present Condition = Perceived Present Condition &middot; ( 1 + fractional growth rate &middot; time to perceive present condition)</code></p>

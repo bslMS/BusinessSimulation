@@ -18,7 +18,7 @@ equation
   0 = u - sum(allocatedAmounts(x = clearing, vecA = u_p, vecC = u_c, vecW = u_w, pp = pp));
   y = if u <= 0 then zeros(nout) elseif u >= totalCap then u_c else allocatedAmounts(x = clearing, vecA = u_p, vecC = u_c, vecW = u_w, pp = pp);
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>The output vector <strong>y</strong> gives an <em>allocation</em> of the single input <strong>u</strong>, which may be a <em>rate</em> or simply an <em>available amount</em> of entities. The allocation is done according to the <em>priorities</em> associated with the repicients (e.g., suppliers or buyers) and their individual <em>capacities</em>, so that even the most attractive recipient will never get more than the maximum amount offered or demanded.</p>
 <h4>Notes</h4>
 <ul>

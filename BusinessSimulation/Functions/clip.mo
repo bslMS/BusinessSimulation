@@ -12,7 +12,7 @@ algorithm
     y[i] := if x[i] < interval[1] then interval[1] elseif x[i] > interval[2] then interval[2] else x[i];
   end for;
   annotation(Inline = true, Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>The function will <em>clip</em> a list of input values <code>x</code> so that any component <code>x_i</code> of <code>x</code> will be <code>x_i</code> for <code>min &le; x_i &le; max</code>, <code>min</code> for <code>x_i &lt; min</code>, and <code>max</code> for <code>x_i &gt; max</code>.&nbsp;</p>
 <h4>Syntax</h4>
 <br>

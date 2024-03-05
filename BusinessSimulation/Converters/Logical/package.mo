@@ -3,7 +3,7 @@ within BusinessSimulation.Converters;
 package Logical "Converters with boolean output and/or input"
   extends Icons.Package;
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>This package contains converters where at least input or output signals are Boolean variables.</p>
 <br>
 <hr>

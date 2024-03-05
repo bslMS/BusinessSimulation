@@ -1,10 +1,12 @@
 <p align = "left"><img src = "./BusinessSimulation/Resources/Images/BusinessSimulation.svg" width = 150></p>
 
 # Business Simulation Library (BSL)
-A Modelica library for modeling &amp; simulation of dynamical systems in the social sciences, e.g., business, economics, and ecology using the System Dynamics metaphor.
+A Modelica library for modeling and simulation of dynamical systems in the social sciences, such as business, economics, and ecology, using the system dynamics approach. The term "Business Simulation" is used in a broad sense, as modeling in these domains is concerned with control, decision making, and management of resources.
 
 ## Library Description
-System Dynamics offers a very general, low-level modeling paradigm, that lends itself perfectly to model, simulate, and analyze strategic business and policy issues in any kind of organization. Unlike existing aproaches the __BSL__ makes use of Modelica's acausal connectors to better distinguish _material/mass_ flows from instantaneous _information_ signal flows (causal connections). The approach has the additional benefit of allowing the modeler to build more compact models in a fast and reliable fashion.
+The __BSL__ adopts the widely recognized __System Dynamics__ approach and modeling paradigm introduced by Jay W. Forrester. System dynamics provides a versatile, foundational modeling framework, ideally suited for modeling, simulating, and analyzing strategic business or public policy issues. 
+
+Unlike existing aproaches, the __BSL__ utilizes Modelica's acausal connectors to accurately model the flow of _conserved quantities_ such as matter, energy, or information, as well as to represent instantaneous _information signal flows_ through causal connections. Using pre-built components and hierarchical modeling, even complex models can be developed in a fast and reliable manner with the added benefits of embedded documentation and compact presentation.
 
 #### Overview of the Main Packages
 
@@ -16,9 +18,7 @@ System Dynamics offers a very general, low-level modeling paradigm, that lends i
 | <img src = "./BusinessSimulation/Resources/Images/SourcesOrSinks.svg" width = "70"> | __SourcesOrSinks__ | Flows into or out of a stock with infinite capacity at a system's boundary |
 | <img src = "./BusinessSimulation/Resources/Images/Converters.svg" width = "70"> | __Converters__ | Information processing (blocks) |
 | <img src = "./BusinessSimulation/Resources/Images/InformationSources.svg" width = "70"> | __InformationSources__ | External information input |
-| <img src = "./BusinessSimulation/Resources/Images/MoleculesOfStructure.svg" width = "70"> | __MoleculesOfStructure__ | Pre-built components to model _information processing_, _decision making_ and _subsystems_ in general (blocks, incubators, transceivers, and actuators)  |
-
-Using the pre-built components modelers can start to build their own components to eventually arrive at an appropriate representation of the system in focus in a hierarchical fashion.
+| <img src = "./BusinessSimulation/Resources/Images/MoleculesOfStructure.svg" width = "70"> | __MoleculesOfStructure__ | Pre-built components to model _information processing_, _decision making_, and _subsystems_ in general |
 
 ## Documentation and Release Notes
 You can read the documentation for the library online at:<br>

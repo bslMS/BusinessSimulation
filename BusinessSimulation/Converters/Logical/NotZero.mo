@@ -7,7 +7,7 @@ block NotZero "True, if u is not zero"
 equation
   y = abs(u) > tolerance;
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>The boolean output <strong>y</strong> is <code>true</code>, if the real&nbsp;input&nbsp;<strong>u</strong>&nbsp;is <em>not equal to zero</em>, and <code>false</code> else.&nbsp;</p>
 <h4>Notes</h4>
 <p>If the inputs are restricted to either 0 or 1, then <em>NotZero</em> can be seen as an <em>inverse Boole</em>.</p>

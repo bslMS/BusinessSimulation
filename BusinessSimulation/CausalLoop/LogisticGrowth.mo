@@ -20,7 +20,7 @@ equation
   connect(logisticallyGrowing.y1, y1) annotation(Line(visible = true, origin = {63.146, -22.5}, points = {{-52.646, 17.5}, {-23.146, 17.5}, {-23.146, -17.5}, {98.937, -17.5}}, color = {1, 37, 163}));
   /* process */
   annotation(defaultComponentName = "p", Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>Using the →<a href=\"modelica://BusinessSimulation.SourcesOrSinks.LogisticGrowth\"><code>LogisticGrowth</code></a> component from the <code>SourcesOrSinks</code> package, this component allows to model a process of s-shaped growth given a constant maximum fractional growth rate <code>rate</code> and a constant carrying capacity (<code>carryingCapacity</code>). Instead of using constant parameters, it is also possible to use variable inputs (<code>u_rate, u_K</code>).</p>
 <p>The process by default is active over the whole simulation run, but can be restricted to an <em>on-off period</em> using <code>tc = TimingChoices.period</code> and the parameters <code>startTime</code> and <code>stopTime</code>. Any given rate—<code>rate</code> or <code>u_rate</code>—can be <em>modified</em> by multiplication with an optionally given input <strong>u</strong>.</p>
 <h4>Implementation</h4>

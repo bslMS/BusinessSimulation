@@ -24,7 +24,7 @@ equation
   connect(futureValueFactor.y, discountedStream.u2) annotation(Line(visible = true, origin = {-25, 47.5}, points = {{-27, -27.5}, {-5, -27.5}, {-5, 27.5}, {17, 27.5}}, color = {1, 37, 163}));
   connect(discountedStream.y, increasingPV.u) annotation(Line(visible = true, origin = {32.667, 58.333}, points = {{-24.667, 21.667}, {12.333, 21.667}, {12.333, -43.333}}, color = {1, 37, 163}));
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>The <em>PresentValue</em> component will <em>accumulate a discounted cash flow stream</em>. The discount factor at any time is given by the <em>accumulation function a(t)</em> for a given interest rate, that may be either a constant (<code>rate</code>) or a variable input (<code>u_r</code>).</p><h4>Acknowledgements</h4>
 <p>Additional information can be found on Jim Hines' <em>Molecules of Structure</em> website: →<a href = \"https://sdmolecules.org/index.htm#MoleculeTopics/CloseGap/GoToZero/Decay/PresentValue/presentValue.htm\">Present Value</a>.</p>
 <h4>See also</h4>

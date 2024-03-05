@@ -21,7 +21,7 @@ equation
   connect(polynomial.y, scaledInput.u2) annotation(Line(visible = true, origin = {-30, -5}, points = {{-22, 0}, {22, 0}}, color = {1, 37, 163}));
   connect(scaledInput.y, y) annotation(Line(visible = true, origin = {84.134, 0}, points = {{-76.134, 0}, {76.134, -0}}, color = {1, 37, 163}));
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>The output <strong>y</strong> is obtained by <em>division</em> of the input <strong>u</strong> by a <a href=\"modelica://BusinessSimulation.Converters.PolynomialFunction\">→<em>polynomial function</em></a> of an argument (<code>u_lamdba</code> or <code>lambda</code>). The division is <em>guarded</em> against division by zero.</p>
 <h4>Examples</h4>
 <br>

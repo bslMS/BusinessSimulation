@@ -2,7 +2,7 @@ within BusinessSimulation.Functions;
 
 encapsulated function plCDF "Generate a piecewise linear cumulative distribution function from a piecewise linear density function"
   import BusinessSimulation.Icons.Function;
-  import BusinessSimulation.Functions.{normalizePLpdf,areaLineSegment};
+  import BusinessSimulation.Functions.{normalizePLpdf, areaLineSegment};
   extends Function;
   input Real[:, 2] tuples "Piecewise linear function, i.e., { {x1,f(x1), {x2,f(x2)}, ... }";
   input Boolean rescaleQ = true "= true, if the support is to be rescaled to the unit interval";
@@ -20,7 +20,7 @@ algorithm
     cdf[i] := {pdf[i, 1], cdf[i - 1, 2] + areaLineSegment(pdf[i - 1], pdf[i])};
   end for;
   annotation(Documentation(info = "<html><div>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 </div>
 <div>
 <p>The output <strong>cdf</strong> is piecewise linear cumulative distribution function specified by a list of points <code>{{x1,F(x1)}, {x2,F(x2}}, ... ,{xn, F(xn)}</code>. The input <strong>tuples</strong> is assumed to be a piecewise linear function that by default (<code>rescaleQ= true</code>) will be normalized using <code>normalizePLpdf()</code> to come up with a piecewise linear density function that has the unit interval as its support.</p>

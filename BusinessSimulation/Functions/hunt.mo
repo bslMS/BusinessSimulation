@@ -82,7 +82,7 @@ algorithm
   // return jl
   res := jl;
   annotation(Inline = true, Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>The output <strong>res</strong> is an index value for the ordered (either ascending or descending) list <strong>xVals</strong> so that for any <strong>x</strong> with <code>min(xVals) <= max(xVals)</code> the condition <code>xVals[res] <= x <= xVals[res+1]</code>.</p>
 <h4>Syntax</h4>
 <br>

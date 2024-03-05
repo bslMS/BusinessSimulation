@@ -4,7 +4,7 @@ package Examples "Example models showing basic and advanced functionality"
   extends Icons.ExamplesPackage;
   import BusinessSimulation.Units.*;
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>This package&nbsp;contains examples for the use of library elements in simulation models.</p>
 <h4>See also</h4>
 <p>

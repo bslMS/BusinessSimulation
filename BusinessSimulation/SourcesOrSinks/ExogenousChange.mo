@@ -16,7 +16,7 @@ equation
   connect(switching.y1, y2) annotation(Line(visible = true, origin = {69.237, -28.5}, points = {{-58.737, 23.5}, {30.763, 23.5}, {30.763, -21.5}, {90.763, -21.5}}, color = {0, 0, 127}));
   connect(u, switching.u) annotation(Line(visible = true, origin = {-50, 30}, points = {{-90, 10}, {45, 10}, {45, -20}}, color = {0, 0, 127}));
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p><em>ExogenousChange</em> can be used to model an inflow to a stock from a source or an outflow from a stock to a sink. In either case it is assumed, that the source or sink has infinite capacity and thus lies outside the border of the system in focus. By convention, a positive rate will fill the connected stock, while a negative rate will drain it. The rate of flow is determined by the real input <strong>u</strong>.</p>
 <h4>See also</h4>
 <p><a href=\"modelica://BusinessSimulation.SourcesOrSinks.Growth\">Growth</a>,&nbsp;<a href=\"modelica://BusinessSimulation.SourcesOrSinks.Decline\">Decline</a></p>

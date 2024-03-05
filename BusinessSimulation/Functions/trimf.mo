@@ -10,7 +10,7 @@ function trimf "Triangular membership function"
 algorithm
   y := max(min((x - a) / (b - a), (c - x) / (c - b)), 0);
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>The function returns the degree of membership using a <em>triangular</em> function given the real input <strong>x</strong> and the parameters <em>lower bound of the support</em> <code>a</code>, the <em>upper bound of the support</em> <code>c</code> and the <em>peak or core value</em> <code>b</code>.</p>
 <h4>Implementation</h4>
 <br>

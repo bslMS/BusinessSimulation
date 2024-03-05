@@ -16,7 +16,7 @@ equation
   assert(portA.rate >= 0, "Rate of outflow must never be negative", AssertionLevel.warning);
   assert(not portB.stopInflow, "There must not be capacity restrictions (stopInflow) for the stock at portB");
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p><em>OutflowDynamicStock</em> can be used to model the outflow from a stock with inherent dynamic behavior (e.g., a conveyor or a higher-order delay). In these cases, the stock will set the flow and \"signal\" it via its &rarr;<a href=\"modelica://BusinessSimulation.Interfaces.Connectors.StockPort_Special\">StockPort_Special</a>.
 &nbsp;</p>
 <h4>Implementation</h4>
@@ -24,7 +24,7 @@ equation
 <pre>assert(portA.rate &gt;= 0, \"Rate of outflow must never be negative\");<br>assert(not portB.stopInflow, \"There must not be capacity restrictions (stopInflow) for the stock at portB\");</pre>
 <h4>Notes</h4>
 <ul>
-<li>The <code>OutflowDynamicStock</code> flow will not observe the <code>stopInflow</code> flag of a stock connected to the B-side port. This means that the receiving stock must have sufficient capacity for the mass flowing out and capacity restrictions have to be imposed by an explicit control structure.</li>
+<li>The <code>OutflowDynamicStock</code> flow will not observe the <code>stopInflow</code> flag of a stock connected to the B-side port. This means that the receiving stock must have sufficient capacity for the matter flowing out and capacity restrictions have to be imposed by an explicit control structure.</li>
 </ul>
 <ul>
 <li>To model a fractional outflow from a dynamic stock, <code>SplitOutflowDynamicStock</code> should be used.</li><br>

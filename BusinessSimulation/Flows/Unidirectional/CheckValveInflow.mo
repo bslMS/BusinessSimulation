@@ -19,7 +19,7 @@ equation
   y1 = y;
   y2 = y;
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>The <em>CheckValveInflow </em>is actually a <em>transceiver</em> that simply passes on a connected flow if that flow fills the&nbsp;connected stock (<code>portB</code>). This will most often be relevant for more complex subsystems where the flows being connected may not be clear in advance and where this element allows to avoid unwanted draining.</p>
 <h4>Implementation</h4>
 <ul>

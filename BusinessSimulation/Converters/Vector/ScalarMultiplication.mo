@@ -10,7 +10,7 @@ block ScalarMultiplication "Multiplication of a vector with a scalar"
 equation
   y = u1 * u2;
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>The output vector <strong>y</strong> is obtained by <em>multiplying</em> the input vector <strong>u1</strong> with the scalar input <strong>u2</strong>:</p>
 <p><img src=\"modelica://BusinessSimulation/Resources/Images/Converters/Vector/ScalarMultiplication/Formula.svg\" alt=\"y_i = u2 * u1[i]\"></p>
 <p>The vectors <strong>y</strong> and <strong>u1</strong> will have the same length <code>nin</code>.</p>

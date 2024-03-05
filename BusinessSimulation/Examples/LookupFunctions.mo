@@ -52,7 +52,7 @@ equation
   connect(sShapedNegative_origin.y, modelOutput.sShapedNegative) annotation(Line(visible = true, origin = {99.5, -5}, points = {{-21.5, 35}, {0.5, 35}, {0.5, -35}, {20.5, -35}}, color = {192, 192, 192}));
   connect(sShapedPositive_origin.y, modelOutput.sShapedPositive) annotation(Line(visible = true, origin = {99.5, -25}, points = {{-21.5, 15}, {0.5, 15}, {0.5, -15}, {20.5, -15}}, color = {192, 192, 192}));
   annotation(preferredView = "diagram", __Wolfram, Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>This example demonstrates the use of parametric lookup and table functions in models and may serve as a showcase. While table functions are still frequently used, the advantage of parametric functions is their <em>smoothness</em>—at least in the relevant range—and the better calibration/identification options.</p>
 <h4>See also</h4>
 <p>

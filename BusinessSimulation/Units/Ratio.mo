@@ -1,5 +1,5 @@
 within BusinessSimulation.Units;
 
-type Ratio = Dimensionless(final min = 0) "Ratio (positive) [1]" annotation(Documentation(info = "<html>
-<p>A dimensionless number that is typically positive.</p>
+type Ratio = Dimensionless "Ratio [1]" annotation(Documentation(info = "<html>
+<p>A dimensionless ratio, e.g., dividing two quantities with the same units like mass/mass.</p>
 </html>"));

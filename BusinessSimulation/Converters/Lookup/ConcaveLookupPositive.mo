@@ -15,7 +15,7 @@ equation
     y_c = if u_c <= 0 then y0 else y0 + (1 - y0) * u_c ^ s;
   end if;
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>The output <strong><em>y</em></strong> is derived using the formula:</p>
 <p><img src=\"modelica://BusinessSimulation/Resources/Images/Converters/Lookup/ConcaveLookupPositive/Formula.svg\" alt=\"y = y0 + (1 - y0) * u^s\"></p>
 <p>The function will go through the points (1,1) and (0,<em>y0</em>). The output will be <em>y0</em> for <em>u</em>&nbsp;&le;&nbsp;0.</p>

@@ -3,7 +3,7 @@ within BusinessSimulation.Converters.DiscreteDelay;
 block Sampler "Ideal periodic sampler of input"
   import BusinessSimulation.Units.*;
   import BusinessSimulation.Types.InitializationOptions;
-  import BusinessSimulation.Constants.{inf,small,eps,e};
+  import BusinessSimulation.Constants.{inf, small, eps, e};
   extends Interfaces.PartialConverters.SmoothSISO(redeclare discrete RealOutput y);
   extends Icons.DiscreteSmoothLabel;
   parameter Time samplingPeriod(min = small) "Interval at which to sample the input" annotation(Evaluate = true);
@@ -25,7 +25,7 @@ algorithm
     y := u;
   end when;
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>The (discrete) output <strong>y</strong> is obtained by sampling every <code>samplingPeriod</code> starting at <code>modelSettings.modelStartTime + offsetStartTime</code> from the input <strong>u</strong>.</p>
 <h4>Notes</h4>
 <ul>

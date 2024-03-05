@@ -20,7 +20,7 @@ equation
   // assertions
   assert(offTime >= onTime, "The offTime should not be smaller than the onTime", level = AssertionLevel.warning);
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>This is the basic class for <em>control</em> components, which typically set a flow to a stock under control, whose current level is measured by a sensor <code>currentValue.y</code>.</p>
 <p>The class allows to use either a <code>RampInput</code> or an optional input connector <strong>u</strong> to provide <em>setpoint</em> information.</p>
 <p>Timing choices can be given, which determin whether a <code>PulseInput</code> or a <code>ConstantConverter</code> is active.</p>

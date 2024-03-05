@@ -1,8 +1,10 @@
 within BusinessSimulation.UsersGuide.ReleaseNotes;
 
 final class Version_1_0_1 "Version 1.0.1 (2021-02-02)"
+  extends Modelica.Icons.ReleaseNotes;
+  extends Icons.DocumentationInfo;
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>This release contains fixes to the first release:</p>
 <ul>
 <li>Broken links due to recent updates on the website of the System Dynamics Society in the <a href = \"modelica://BusinessSimulation.UsersGuide.References\">References</a> have been fixed.</li><br>
@@ -20,5 +22,5 @@ final class Version_1_0_1 "Version 1.0.1 (2021-02-02)"
 <li><code>OutputType</code> which is defined as a <code>replaceable type</code> has been made <code>encapsulated</code> as <code>type</code> cannot be looked up in classes that are not <code>packages</code> unless they are encapsulated.</li><br>
 <li>The modification for <code>BasicStock</code> within the class <code>Stocks.CapacityRestrictedStock</code> contained <code>hasVariableAdmissableRange</code> which is not included in the class.</li><br>
 </ul>
-</html>"), Diagram(coordinateSystem(extent = {{-150, -90}, {150, 90}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})), Icon(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}}, initialScale = 0.1, grid = {10, 10}), graphics = {Polygon(visible = true, lineColor = {56, 56, 56}, fillColor = {246, 246, 246}, fillPattern = FillPattern.Solid, points = {{-80, -100}, {-80, 100}, {20, 100}, {20, 40}, {80, 40}, {80, -100}, {-80, -100}}), Polygon(visible = true, lineColor = {56, 56, 56}, fillColor = {230, 230, 230}, fillPattern = FillPattern.Solid, points = {{20, 100}, {80, 40}, {20, 40}, {20, 100}}), Line(visible = true, points = {{2, -12}, {50, -12}}, color = {56, 56, 56}), Line(visible = true, points = {{2, -60}, {50, -60}}, color = {56, 56, 56}), Ellipse(visible = true, origin = {-35, -60}, lineColor = {56, 56, 56}, fillColor = {160, 160, 164}, fillPattern = FillPattern.Solid, extent = {{-12.5, -12.5}, {12.5, 12.5}}), Ellipse(visible = true, origin = {-35, -12.5}, lineColor = {56, 56, 56}, fillColor = {160, 160, 164}, fillPattern = FillPattern.Solid, extent = {{-12.5, -12.5}, {12.5, 12.5}})}));
+</html>"), Diagram(coordinateSystem(extent = {{-150, -90}, {150, 90}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})), Icon(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}}, initialScale = 0.1, grid = {10, 10})));
 end Version_1_0_1;

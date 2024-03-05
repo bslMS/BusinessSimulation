@@ -1,14 +1,14 @@
 within BusinessSimulation.Types;
 
 record StockInformation "Record of information that can be collectecd from a stock"
-  import BusinessSimulation.Units.{Time,Rate};
+  import BusinessSimulation.Units.{Time, Rate};
   Real infoLevel "Current Level of stock";
-  Rate infoInflow(min = 0) "Current rate of inflow";
-  Rate infoOutflow(min = 0) "Current rate of outflow";
-  Rate infoNetFlow(min = 0) "Net-rate of flow";
+  Real infoInflow(min = 0) "Current rate of inflow";
+  Real infoOutflow(min = 0) "Current rate of outflow";
+  Real infoNetFlow(min = 0) "Net-rate of flow";
   Time infoMeanResidenceTime "Mean time of residence for elements in the stock (-1 indicates infinite time for zero outflow)";
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>A <em>record</em> of stock-related information. It groups that following variables:</p>
 <table>
 <tbody>

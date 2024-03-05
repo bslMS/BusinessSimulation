@@ -51,7 +51,7 @@ equation
   connect(actualCosts.y, floor.u) annotation(Line(visible = true, origin = {95, -15}, points = {{-7, 15}, {0, 15}, {0, -15}, {7, -15}}, color = {1, 37, 163}));
   connect(floor.y, y) annotation(Line(visible = true, origin = {132, -15}, points = {{-14, -15}, {-7, -15}, {-7, 15}, {28, 15}}, color = {1, 37, 163}));
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p> The output <strong>y</strong> describes the input that is needed to produce one unit. The <a href = \"https://wiki2.org/en/Experience_curve_effects+Brights.4\">experience curve</a> describes the often observed empirical trend, that with every doubling in cumulated production, the effort or cost needed per unit (e.g., unit cost) will shrink by a constant percentage (<code>learningRate</code>), see Louwen and Subtil Lacerda [<a href=\"modelica://BusinessSimulation.UsersGuide.References\">27</a>] for an introduction.</p>
 <p>The output <strong>y</strong> is obtained by the following formula:</p>
 <p><img src = \"modelica://BusinessSimulation/Resources/Images/MoleculesOfStructure/Blocks/ExperienceCurve/Formula.svg\" alt = \"Formula.svg\"></p>

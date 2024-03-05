@@ -9,7 +9,7 @@ function sigmf "Sigmoidal membership function"
 algorithm
   y := 1 / (1 + exp(-a * (x - c)));
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>The function returns the degree of membership using a <em>sigmoid function</em> function given the real input <strong>x</strong> and the parameters <em>shape parameter to control width of transition area</em> <code>a</code> and <em>center of transition area</em> <code>c</code>.</p>
 <p>The sigmoid function will increase from 0 to 1 for positive values of <code>a</code>, while negative values will give rise to a z-shaped transition.</p>
 <h4>Implementation</h4>

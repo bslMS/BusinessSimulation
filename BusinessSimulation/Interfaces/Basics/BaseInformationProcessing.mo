@@ -4,7 +4,7 @@ partial block BaseInformationProcessing "Basic information processing class"
   extends Icons.InformationProcessing;
   extends OutputTypeChoice;
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>Partial block extending from Icons.InformationProcessing and &rarr;<a href=\"modelica://BusinessSimulation.Interfaces.Basics.OutputTypeChoice\">OutputTypeChoice</a>. This is the base class for InformationProcessing-related components.</p>
 <h4>See also</h4>
 <p><a href=\"modelica://BusinessSimulation.MoleculesOfStructure.InformationProcessing\">MoleculesOfStructure.InformationProcessing</a></p>

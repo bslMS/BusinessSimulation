@@ -15,7 +15,7 @@ equation
     y_c = if u_c <= 0 then y0 elseif u_c < 1 then y0 * (1 - u_c ^ s) else 0;
   end if;
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>The output <strong><em>y</em></strong> is derived using the formula:</p>
 <p><img src=\"modelica://BusinessSimulation/Resources/Images/Converters/Lookup/ConcaveLookupNegative/Formula.svg\" alt=\"y = y0 * (1 - u^s)\"></p>
 <p>The function will go through the point (0,y0) and the output will be 0 for <strong><em>u</em></strong>&nbsp;&ge;&nbsp;1 and <em>y0</em> for <strong>u</strong>&nbsp;&le;&nbsp;0. The input <strong><em>u </em></strong>should thus be in the range [0,1]. The following graph shows plots for the function for different slopes:</p>

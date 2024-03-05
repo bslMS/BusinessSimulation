@@ -15,7 +15,7 @@ equation
   connect(rampInput.y, y) annotation(Line(visible = true, origin = {64.833, 0}, points = {{-96.833, 0}, {96.833, 0}}, color = {1, 37, 163}));
   /* control */
   annotation(defaultComponentName = "c", Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p><em>InputControl</em> is an InformationSource, whose output <strong>y</strong> is given by a →<a href=\"modelica://BusinessSimulation.InformationSources.RampInput\"><code>RampInput</code></a>. It  can be used to model some kind of intervention that changes an information input, which the component is connected to, from <code>initialInput</code> to <code>finalInput</code> in a linear fashion over a time span set by the parameter <code>duration</code> starting at <code>startTime</code>.</p>
 <h4>Notes</h4>
 <p>This component can be used to indicate interventions that set or change rates of processes (using optional input connectors) or goals, i.e., setpoints.</p>

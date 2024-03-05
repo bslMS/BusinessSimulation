@@ -6,7 +6,7 @@ model Elasticity "Fractional rate of change is proportional to that of the influ
   parameter Boolean isCCR = true "= true, if the factional rate given is assumed to be a continuously compounding rate else the rate will be converted (growing.isCCR)" annotation(Evaluate = true, Dialog(group = "Structural Parameters"));
 protected
   SourcesOrSinks.ExponentialChange exponentiallyChanging(isCCR = isCCR) annotation(Placement(visible = true, transformation(origin = {0, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  Converters.Division_Guarded fracGrowthRateStock(redeclare final type OutputType = Units.Rate) "Zero if divided by zero" annotation(Placement(visible = true, transformation(origin = {-80, 10}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  Converters.Division_Guarded fracGrowthRateStock "Zero if divided by zero" annotation(Placement(visible = true, transformation(origin = {-80, 10}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Converters.Product_2 fracGrowthRate annotation(Placement(visible = true, transformation(origin = {-30, 25}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
 equation
   connect(absoluteSensor1.stock, fracGrowthRateStock.u2) annotation(Line(visible = true, origin = {-103.5, 4.976}, points = {{-12.5, -0.024}, {-1.5, -0.024}, {-1.5, 0.024}, {15.5, 0.024}}, color = {1, 37, 163}));
@@ -19,7 +19,7 @@ equation
   connect(exponentiallyChanging.y1, y1) annotation(Line(visible = true, origin = {63.146, -22.5}, points = {{-52.646, 17.5}, {-23.146, 17.5}, {-23.146, -17.5}, {98.937, -17.5}}, color = {1, 37, 163}));
   /* relation */
   annotation(defaultComponentName = "r", Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>In a dynamic relation, a given <em>elasticity coefficient</em> (<code>coefficient</code>) implies that the fractional rate of change for an influenced stock <strong>B</strong> is proportional to the fractional rate of change for the influencing stock <strong>A</strong>, which is connected via the <code>stockInfoInput</code>. The factor of proportionality in this case is called the <a href=\"https://wiki2.org/en/Elasticity_(economics)+Brights.4\"><em>A-elasticity of B</em></a>. The rate of change for the stock <strong>B</strong> that is connected to the <code>flowPort</code> accordingly is given by the following equation, which uses <a href=\"https://wiki2.org/en/Newton%27s_notation+Brights.4#Newton's_notation\">Newton's dot notation</a> for rates:
 <p><img src=\"modelica://BusinessSimulation/Resources/Images/CausalLoop/Elasticity/Formula.svg\" alt=\"Ḃ = ... \"></p>
 <h4>Implementation</h4>

@@ -3,7 +3,7 @@ within BusinessSimulation.Stocks;
 model InformationLevel "Unrestricted reservoir to store information"
   import BusinessSimulation.Types.InitializationOptions;
   import BusinessSimulation.Units.*;
-  import BusinessSimulation.Constants.{small,zero,inf,INF};
+  import BusinessSimulation.Constants.{small, zero, inf, INF};
   extends Interfaces.PartialStocks.BasicStock;
 initial equation
   // properly initialize discrete vars with fixed = false
@@ -18,8 +18,8 @@ equation
   inflow.stopOutflow = false;
   outflow.stopOutflow = false;
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
-<p>This is the general, <em>unrestricted reservoir</em> of the System Dynamics methodology, it accumulates information transported by flow components connected to the StockPorts. The&nbsp;<em>InformationLevel</em>&nbsp;can become negative.</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
+<p>This is the general, <em>unrestricted reservoir</em> of the system dynamics methodology, it accumulates information transported by flow components connected to the StockPorts. The&nbsp;<em>InformationLevel</em>&nbsp;can become negative.</p>
 <h4>Notes</h4>
 <ul>
 <li>The <code>inflow</code> and <code>outflow</code> &rarr;<a href=\"modelica://BusinessSimulation.Interfaces.Connectors.StockPort\">StockPorts </a>are only indicative; in general the reservoir may be filled or drained by flows connected to either port.</li><br>

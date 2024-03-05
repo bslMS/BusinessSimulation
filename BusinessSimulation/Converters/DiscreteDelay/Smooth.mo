@@ -3,7 +3,7 @@ within BusinessSimulation.Converters.DiscreteDelay;
 block Smooth "First-order exponential smooth"
   import BusinessSimulation.Units.*;
   import BusinessSimulation.Types.InitializationOptions;
-  import BusinessSimulation.Constants.{inf,small,eps,e};
+  import BusinessSimulation.Constants.{inf, small, eps, e};
   extends Interfaces.PartialConverters.SmoothSISO;
   Interfaces.Connectors.RealInput u_delayTime if not hasConstantDelayTime "Delay time" annotation(Placement(visible = true, transformation(origin = {0, 100}, extent = {{-10, -10}, {10, 10}}, rotation = -90), iconTransformation(origin = {0, 50}, extent = {{-10, 10}, {10, -10}}, rotation = -810)));
   parameter Time delayTime = 1 "Constant delay time (optional)" annotation(Dialog(enable = hasConstantDelayTime));
@@ -36,7 +36,7 @@ equation
   connect(parDelayTime.y, positiveDelayTime.u) annotation(Line(visible = true, origin = {-44, 83}, points = {{9, 6}, {9, -3}, {-18, -3}}, color = {1, 37, 163}));
   connect(u_delayTime, positiveDelayTime.u) annotation(Line(visible = true, origin = {-20.667, 86.667}, points = {{20.667, 13.333}, {20.667, -6.667}, {-41.333, -6.667}}, color = {1, 37, 163}));
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>A smooth is a <em>first-order exponential information delay</em>. It is typically used to model time lags in forming an expectation or in perceiving some information.</p>
 <p>Inside the converter there actually is a stock <em>x</em> that stores the perceived or expected value of the information input <strong><em>u</em></strong>. The output <strong><em>y</em></strong> is derived immediately from <em>x </em>as can be seen<em>&nbsp;</em>from these equations where&nbsp;<em>&tau;</em> denotes the <code>delayTime</code>:</p>
 <p><img src=\"modelica://BusinessSimulation/Resources/Images/Converters/DiscreteDelay/Smooth/Formula.svg\" alt=\"y=x\"></p>
@@ -45,7 +45,7 @@ equation
 <li>The <code>delayTime</code> given (either as constant parameter or continuous signal) will be clipped to a minimum value of <code>modelSettings.dt</code>, which denotes the smallest possible process time anywhere in the model. The time of delay for the process of information perception or expectation formation can thus never be zero or negative.</li>
 </ul>
 <ul>
-<li>In&nbsp;the System Dynamics community a <em>smooth</em> is an <em>information delay</em> (as opposed to a <em>material delay</em>) [<a href=\"modelica://BusinessSimulation.UsersGuide.References\">1</a>, Appendices E and H]. Information delays model the process of updating information to the actual value. Since the technical procedure is called <em>exponential smoothing</em>, the name smooth has prevailed.</li><br>
+<li>In&nbsp;the system dynamics community a <em>smooth</em> is an <em>information delay</em> (as opposed to a <em>material delay</em>) [<a href=\"modelica://BusinessSimulation.UsersGuide.References\">1</a>, Appendices E and H]. Information delays model the process of updating information to the actual value. Since the technical procedure is called <em>exponential smoothing</em>, the name smooth has prevailed.</li><br>
 <li>The parameter <code>init</code> in the Advanced tab allows to select &rarr;<a href=\"modelica://BusinessSimulation.Types.InitializationOptions\">InitializationOptions</a>:<br>
 <ul>
 <li><em>FixedValue</em> (default) will use the parameter <code>initialValue</code> to determine the initial output <strong>y</strong>.</li><br>

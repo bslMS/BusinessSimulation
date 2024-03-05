@@ -7,7 +7,7 @@ equation
   flowPort.rate = 0;
   stock = flowPort.stock;
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>This component is typically used to build submodels where the information regarding the amount in a connected stock needs to be extracted from an outside <code>FlowPort</code>.</p>
 <p>For example, the <em>FlowPortSensor</em> is used inside the <em>SourceOrSink</em> component <a href=\"modelica://BusinessSimulation.SourcesOrSinks.ExponentialGrowth#diagram\">ExponentialGrowth</a>, where the level information is needed for the stock as it will be multiplied with a fractional rate to obtain the actual rate for the component's flow into the stock.</p>
 <h4>See also</h4>

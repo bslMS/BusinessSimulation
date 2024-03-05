@@ -5,7 +5,7 @@ package FlexTypeSignals "Package providing input and output connectors with repl
   extends ICON;
   replaceable type BaseType = Reals "Base type used by causal connectors" annotation(choicesAllMatching = true);
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>Package that provides output and input connector classes, which use the <code>replaceable type BaseType</code>.</p>
 <h4>See also</h4>
 <p>

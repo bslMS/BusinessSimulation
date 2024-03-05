@@ -33,7 +33,7 @@ equation
   connect(u_T, rate_x_T.u2) annotation(Line(visible = true, origin = {-63.25, -5}, points = {{-81.75, -35}, {23.25, -35}, {23.25, 35}, {35.25, 35}}, color = {0, 0, 128}));
   connect(parT.y, rate_x_T.u2) annotation(Line(visible = true, origin = {-55.5, -15}, points = {{-58.5, -45}, {15.5, -45}, {15.5, 45}, {27.5, 45}}, color = {1, 37, 163}));
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>The Real output <strong>y</strong> indicates the <em>nominal</em> value of the input <strong>u</strong> at the end (Future Value) or the beginning (Present Value) of a horizon of length <code>u_T</code> using the interest rate <code>u_r</code> according to the formula:</p>
 <p><img src=\"modelica://BusinessSimulation/Resources/Images/MoleculesOfStructure/InformationProcessing/TimeValueOfMoney/Formula.svg\" alt=\"y = u^(u_r * u_T)\"></p>
 <p>The given rate is assumed to be a <em>continuously compounding rate</em> (aka <em>force of interest</em>). Using the switch <code>isCCR</code> automatic conversion of a discrete rate can be activated.</p>

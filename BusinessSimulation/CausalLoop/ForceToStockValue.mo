@@ -21,7 +21,7 @@ equation
   connect(changing.y1, y1) annotation(Line(visible = true, origin = {63.146, -22.5}, points = {{-52.646, 17.5}, {-23.146, 17.5}, {-23.146, -17.5}, {98.937, -17.5}}, color = {1, 37, 163}));
   /* control */
   annotation(defaultComponentName = "c", Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>The <em>force to stock value notation</em> follows the one proposed by van Zijderveld [<a href=\"modelica://BusinessSimulation.UsersGuide.References\">24</a>]. It indicates some form of <em>control</em> as the influencing stock's value—connected to the <code>stockInfoInput</code>—provides the setpoint for a process of \"<em>closing the gap</em>\" adjustment (<a href = \"modelica://BusinessSimulation.MoleculesOfStructure.Policy.CloseGap\"><code>CloseGap</code></a>) with regard to the influenced stock connected to the component's <code>flowPort</code>.</p>
 <h4>Implementation</h4>
 <p>

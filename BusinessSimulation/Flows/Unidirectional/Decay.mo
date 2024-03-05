@@ -29,7 +29,7 @@ equation
   connect(draining.y, y) annotation(Line(visible = true, origin = {56.667, 23.467}, points = {{-51.667, -13.067}, {-51.667, 6.533}, {103.333, 6.533}}, color = {1, 37, 163}));
   connect(draining.y1, y2) annotation(Line(visible = true, origin = {52.625, -27.5}, points = {{-42.125, 22.5}, {-32.625, 22.5}, {-32.625, -22.5}, {107.375, -22.5}}, color = {1, 37, 163}));
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>The stock connected to port A (stockA) will be gradually drained at a rate determined by the<em> average time of residence </em>(<code>residenceTime</code>)&nbsp;in the stock. The rate which drains the stock (<code>draining</code>) is given by:</p>
 <p><code>draining = stockA.y / residenceTime</code></p>
 <h4>Implementation</h4>

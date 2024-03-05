@@ -18,7 +18,7 @@ algorithm
    elseif c < x and x <= midpointZ then 1 - 2 * ((x - c) / (d - c)) ^ 2
    elseif midpointZ < x and x <= d then 2 * ((x - d) / (d - c)) ^ 2 else 1;
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>The function returns the degree of membership using a <em>Pi-shaped</em> function given the real input <strong>x</strong> and the parameters <em>foot of the s-shaped part</em> <code>a</code>, <em>shoulder of the s-shaped part</em> <code>b</code>, <em>shoulder of the z-shaped part</em> <code>c</code>, and <em>foot of the z-shaped part</em> <code>d</code> of the function.</p>
 <h4>Implementation</h4>
 <br>

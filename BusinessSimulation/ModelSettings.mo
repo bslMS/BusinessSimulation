@@ -14,7 +14,7 @@ model ModelSettings "Setting important global variables within a model"
   parameter Time modelStartTime(fixed = false) "Start time of the model (will be automatically determined)" annotation(Dialog(tab = "Initialization", enable = false));
   parameter Time modelStopTime(fixed = false) "Stop time of the model (will be determined from startTime and modelTimeHorizon)" annotation(Dialog(tab = "Initialization", enable = false));
   // inner constant String modelDisplayTimeUnit = BusinessSimulation.Constants.timeBaseUnits[modelDisplayTimeBase] "The global setting for 'displayUnit' of time vars" annotation(Evaluate = true);
-  parameter Time dt(min = 0) = 0.25 "Smallest possible interval of time for compatibility with conventional fixed-step System Dynamics models" annotation(Evaluate = true, Dialog(group = "Model Time Settings"));
+  parameter Time dt(min = 0) = 0.25 "Smallest possible interval of time for compatibility with conventional fixed-step system dynamics models" annotation(Evaluate = true, Dialog(group = "Model Time Settings"));
   parameter Time samplingPeriod(min = 0) = dt / 4 "Default sampling period for discrete model components (should be ≤ dt/4)" annotation(Evaluate = true, Dialog(group = "Model Time Settings"));
   constant Boolean gaming = false "= true, if gaming mode is to be activated" annotation(Dialog(group = "Model Input Settings"));
   // file names for exogenous data
@@ -31,8 +31,8 @@ equation
   assert(dt > small, "dt must be greater than zero");
   assert(samplingPeriod > small, "samplingPeriod must be greater than zero");
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
-<p><strong>This class should be placed in the top level scope of any simulation model.</strong> It will automatically be assigned the prefex <code>inner</code> as it provides global parameters for the model.</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
+<p><strong>This class should be placed in the top level scope of any simulation model.</strong> It will automatically be assigned the prefix <code>inner</code> as it provides global parameters for the model.</p>
 </html>", revisions = "<html>
 <ul>
 <li>Structural parameters, e.g., <code>modelDisplayTimeBase</code>, changed to constant variability in v2.0.0.</li><br>

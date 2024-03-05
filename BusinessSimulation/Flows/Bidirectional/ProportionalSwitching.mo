@@ -11,7 +11,7 @@ protected
 equation
   A_rate = if u >= 0 then levelA * u else levelB * u;
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p><em>ProportionalSwitching</em> models the exchange of \"mass\" (conserved matter or information) between two stocks as a bi-directional flow. The rate of flow will be <em>proportional</em> to the amount in the connected levels times the<em> fractional rate of flow</em> given by the input <em>u</em>:</p>
 <table>
 <tbody>

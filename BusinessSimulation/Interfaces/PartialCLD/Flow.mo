@@ -16,7 +16,7 @@ protected
 <li>Introduced in v2.0.0.</li>
 </ul>
 </html>", info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>This class has two flow ports and is intended to work like regular <em>unidirectional</em> flow components. There is an output connector <code>one</code> to provide a constant <em>factor</em> of 1 and an optional input connector <strong>u</strong> for exogenous factor input.</p>
 <p>Upon <code>hasRateOutput = true</code> the component will activate two optional outputs <code>(y, y1)</code> for rate information reporting.</p>
 </html>"), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10}), graphics = {Polygon(visible = true, origin = {38.72, 0}, rotation = -90, lineColor = {0, 128, 0}, fillColor = {0, 128, 0}, fillPattern = FillPattern.Solid, points = {{-10, -7.744}, {10, -7.744}, {0, 1.28}}), Line(visible = true, origin = {-6.667, 0}, points = {{-33.333, 0}, {40.667, 0}}, color = {0, 128, 0}, thickness = 1)}), Diagram(coordinateSystem(extent = {{-150, -90}, {150, 90}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})));

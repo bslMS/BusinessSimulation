@@ -3,27 +3,27 @@ within BusinessSimulation.Examples;
 model SimpleProductionChainII "Extending the first example to include replacement purchases"
   extends Icons.Example;
   ModelOutput modelOutput "Main output for the model" annotation(Placement(visible = true, transformation(origin = {130, -40}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {90, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  inner ModelSettings modelSettings(modelDisplayTimeBase = BusinessSimulation.Types.TimeBases.months, dt(displayUnit = "mo") = 657000, modelTimeHorizon(displayUnit = "mo") = 157680000) annotation(Placement(visible = true, transformation(origin = {-135, -75}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  inner ModelSettings modelSettings(modelDisplayTimeBase = BusinessSimulation.Types.TimeBases.months, dt(displayUnit = "mo") = 657436.5, modelTimeHorizon(displayUnit = "mo") = 157784760) annotation(Placement(visible = true, transformation(origin = {-135, -75}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
 
   expandable connector ModelOutput "Main output for the model"
     extends Icons.DataOutPort;
     Amount inventory "Finished goods inventory";
     Amount installedBase "Installed base for the product";
-    Rate producing "Rate of production";
-    Rate shipping "Rate of shipping to customers";
-    Rate scrapping "Rate of scrapping at the end of useful life";
+    AmountRate producing "Rate of production";
+    AmountRate shipping "Rate of shipping to customers";
+    AmountRate scrapping "Rate of scrapping at the end of useful life";
   end ModelOutput;
 protected
   Stocks.MaterialStock inventory(initialValue = 0, redeclare replaceable type OutputType = Amount) "Finished goods inventory" annotation(Placement(visible = true, transformation(origin = {-50, -10}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  Flows.Unidirectional.Transition shipping(hasConstantRate = false, rate(displayUnit = "1/mo") = 3.80517503805175e-06, redeclare replaceable type OutputType = Rate) "Shippment to the customer at an exogenous rate" annotation(Placement(visible = true, transformation(origin = {-10, -10}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  Flows.Unidirectional.Transition shipping(hasConstantRate = false, rate(displayUnit = "1/mo") = 3.80517503805175e-06) "Shippment to the customer at an exogenous rate" annotation(Placement(visible = true, transformation(origin = {-10, -10}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   SourcesOrSinks.Growth producing(hasConstantRate = false, rate(displayUnit = "1/mo") = 3.80517503805175e-05) "Production at a constant rate" annotation(Placement(visible = true, transformation(origin = {-90, -10}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  Stocks.DelayN installedBase(hasConstantDelayTime = false, n = 4, delayTime(displayUnit = "yr") = 157680000, initialValue = 0, redeclare replaceable type OutputType = Amount) "Product stays in use for around 5 years" annotation(Placement(visible = true, transformation(origin = {30, -10}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  Stocks.DelayN installedBase(hasConstantDelayTime = false, n = 4, delayTime(displayUnit = "yrCal") = 157784760, initialValue = 0, redeclare replaceable type OutputType = Amount) "Product stays in use for around 5 years" annotation(Placement(visible = true, transformation(origin = {30, -10}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Flows.Unidirectional.OutflowDynamicStock scrapping "After its useful life has expired, products will be discarded" annotation(Placement(visible = true, transformation(origin = {70, -10}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  InformationSources.RampInput firstTimePurchases(redeclare replaceable type OutputType = Rate, offset(displayUnit = "1/mo") = 3.80517503805175e-06, height(displayUnit = "1/mo") = 3.42465753424658e-05, startTime(displayUnit = "mo") = 15768000, duration(displayUnit = "mo") = 47304000) "Ramping up from 10 to 100 units per month starting at 6 mo for 18 mo" annotation(Placement(visible = true, transformation(origin = {-65, 45}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  Converters.ConstantConverterTime usefulLife(value(displayUnit = "yr") = 157680000) "Average time a product remains in use" annotation(Placement(visible = true, transformation(origin = {10, 20}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  Converters.Add_2 shippingRate(redeclare replaceable type OutputType = Rate) "The total rate of material that is being shipped to customers" annotation(Placement(visible = true, transformation(origin = {-15, 22.729}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
-  MoleculesOfStructure.Policy.FirstOrderStockAdjustment productionRate(adjTime(displayUnit = "mo") = 2628000, hasConstantAdjTime = true) "Policy to determine rate of production" annotation(Placement(visible = true, transformation(origin = {-90, -50}, extent = {{10, -10}, {-10, 10}}, rotation = 0)));
-  Converters.ConstantConverter desiredInventory(value = 100) "The constant level of inventory we wich to maintain" annotation(Placement(visible = true, transformation(origin = {-50, -50}, extent = {{10, -10}, {-10, 10}}, rotation = 0)));
+  InformationSources.RampInput firstTimePurchases(offset(displayUnit = "each/mo") = 3.80264862081737e-06, height(displayUnit = "each/mo") = 3.42238375873563e-05, startTime(displayUnit = "mo") = 15778476, duration(displayUnit = "mo") = 47335428, redeclare replaceable type OutputType = AmountRate) "Ramping up from 10 to 100 units per month starting at 6 mo for 18 mo" annotation(Placement(visible = true, transformation(origin = {-65, 45}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  Converters.ConstantConverterTime usefulLife(value(displayUnit = "yrCal") = 157784760) "Average time a product remains in use" annotation(Placement(visible = true, transformation(origin = {10, 20}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  Converters.Add_2 shippingRate "The total rate of material that is being shipped to customers" annotation(Placement(visible = true, transformation(origin = {-15, 22.729}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
+  MoleculesOfStructure.Policy.FirstOrderStockAdjustment productionRate(adjTime(displayUnit = "mo") = 2629746, hasConstantAdjTime = true, redeclare replaceable type OutputType = AmountRate) "Policy to determine rate of production" annotation(Placement(visible = true, transformation(origin = {-90, -50}, extent = {{10, -10}, {-10, 10}}, rotation = 0)));
+  Converters.ConstantConverter desiredInventory(value = 100, redeclare replaceable type OutputType = Amount) "The constant level of inventory we wich to maintain" annotation(Placement(visible = true, transformation(origin = {-50, -50}, extent = {{10, -10}, {-10, 10}}, rotation = 0)));
   SourcesOrSinks.Cloud cloud1 annotation(Placement(visible = true, transformation(origin = {110, -10}, extent = {{10, -10}, {-10, 10}}, rotation = 0)));
 equation
   connect(inventory.outflow, shipping.portA) annotation(Line(visible = true, origin = {-30, -10}, points = {{-10, 0}, {10, 0}}, color = {128, 0, 128}));
@@ -45,10 +45,10 @@ equation
   connect(scrapping.y1, modelOutput.scrapping) annotation(Line(visible = true, origin = {95.125, -27.5}, points = {{-14.625, 12.5}, {-10.125, 12.5}, {-10.125, -12.5}, {34.875, -12.5}}, color = {192, 192, 192}));
   connect(installedBase.y1, modelOutput.installedBase) annotation(Line(visible = true, origin = {65.125, -27.5}, points = {{-24.625, 12.5}, {-20.125, 12.5}, {-20.125, -12.5}, {64.875, -12.5}}, color = {192, 192, 192}));
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
-<p>In this model we extend the introductory example &rarr;<a href=\"modelica://BusinessSimulation.Examples.SimpleProductionChain\">SimpleProductionChain</a>&nbsp;by including the rate of scrapping in determining the rate of shipping. We simply assume, that whatever is scrapped will immediately be replaced by a new product.</p>
-<p>Since this introduces some variation in the rate of shipping, we need to have an adequate <em>policy</em> to determine the production rate. In this case we make use of a policy component called &rarr;<a href=\"modelica://BusinessSimulation.MoleculesOfStructure.Policy.FirstOrderStockAdjustment\">FirstOrderStockAdjustment</a> that can be found in the <code<MoleculesOfStructure</code> package. It simply determines the rate of inflow needed to keep a stock at a desired level, given the current amount in the stock and the (perceived) rate of outflow from the stock.</p>
-<p>Here we would like to keep the inventory at a desired level of 100 units.&nbsp;</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
+<p>In this model we extend the introductory example &rarr;<a href=\"modelica://BusinessSimulation.Examples.SimpleProductionChain\">SimpleProductionChain</a>&nbsp;by letting the rate of scrapping \"inform\" our chosen rate of shipping. We simply assume, that whatever is scrapped will immediately be replaced by a new product.</p>
+<p>Since this introduces some variation in the rate of shipping, we need to have an adequate <em>policy</em> to determine the production rate. In this case we make use of a policy component called &rarr;<a href=\"modelica://BusinessSimulation.MoleculesOfStructure.Policy.FirstOrderStockAdjustment\">FirstOrderStockAdjustment</a> that can be found in the <code<MoleculesOfStructure</code> package. It sets the rate of inflow as required to keep a stock at the desired level, given the current amount in the stock and the (perceived) rate of outflow from that stock.</p>
+<p>Here we would like to keep the inventory at a desired level of 100 units by setting our production rate accordingly.&nbsp;</p>
 <h6>Model Output</h6>
 <ul>
 <li>The current <strong>inventory</strong> and the <strong>installed base</strong>.</li><br>
@@ -58,7 +58,7 @@ equation
 <p>
 <a href=\"modelica://BusinessSimulation.UsersGuide.Tutorial.StrategicBusinessSimulation\">Tutorial.StrategicBusinessSimulation</a>,
 <a href=\"modelica://BusinessSimulation.Examples.SimpleProductionChain\">SimpleProductionChain</a>,&nbsp;<a href=\"modelica://BusinessSimulation.Examples.SimpleProductionChainIII\">SimpleProductionChainIII</a></p>
-</html>", figures = {Figure(title = "Stocks", identifier = "stocks", plots = {Plot(curves = {Curve(y = modelOutput.inventory, legend = "inventory"), Curve(y = modelOutput.installedBase, legend = "installedBase")})}), Figure(title = "Flows", identifier = "flows", preferred = true, plots = {Plot(curves = {Curve(y = modelOutput.producing, legend = "producing"), Curve(y = modelOutput.scrapping, legend = "scrapping"), Curve(y = modelOutput.shipping, legend = "shipping")}, y = Axis(unit = "1/mo"))}, caption = "The production rate quickly tracks the shipping rate once inventory is filled to 100 units. Two years into the simulation shipping is \"moulded\" by replacement purchases.")}, revisions = "<html>
+</html>", figures = {Figure(title = "Stocks", identifier = "stocks", plots = {Plot(curves = {Curve(y = modelOutput.inventory, legend = "inventory"), Curve(y = modelOutput.installedBase, legend = "installedBase")})}), Figure(title = "Flows", identifier = "flows", preferred = true, plots = {Plot(curves = {Curve(y = modelOutput.producing, legend = "producing"), Curve(y = modelOutput.scrapping, legend = "scrapping"), Curve(y = modelOutput.shipping, legend = "shipping")}, y = Axis(unit = "each/mo"))}, caption = "The production rate quickly tracks the shipping rate once inventory is filled to 100 units. Two years into the simulation shipping is \"moulded\" by replacement purchases.")}, revisions = "<html>
 <ul>
 <li>Updated plots in v2.0.0.</li>
 </ul>

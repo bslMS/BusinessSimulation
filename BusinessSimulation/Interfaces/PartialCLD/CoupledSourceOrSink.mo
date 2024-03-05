@@ -3,7 +3,7 @@ within BusinessSimulation.Interfaces.PartialCLD;
 encapsulated partial model CoupledSourceOrSink "Source or sink process driven by stock info output"
   import BusinessSimulation.Units.*;
   import BusinessSimulation.Sensors.AbsoluteSensor;
-  import BusinessSimulation.Converters.{ConstantConverter,Product_2};
+  import BusinessSimulation.Converters.{ConstantConverter, Product_2};
   import BusinessSimulation.Interfaces.Connectors.RealInput;
   import BusinessSimulation.Interfaces.PartialCLD.StockInfoToFlow;
   replaceable type InputType = Unspecified constrainedby Unspecified "Type choice for coefficient" annotation(choicesAllMatching = true);
@@ -26,7 +26,7 @@ equation
 <li>Introduced in v2.0.0.</li>
 </ul>
 </html>", info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>This class extends →<a href=\"modelica://BusinessSimulation.Interfaces.PartialCLD.StockInfoToFlow\"><code>StockInfoToFlow</code></a> and adds components to enable flexible definitions of <em>source or sink</em> classes.</p>
 <h4>Implementation</h4>
 <p>

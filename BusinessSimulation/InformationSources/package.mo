@@ -3,7 +3,7 @@ within BusinessSimulation;
 package InformationSources "External information input"
   extends Icons.InformationSources;
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>This package contains sources that provide continuous information (signals). Next to a <code>ConstantInput</code> there are typical <em>test inputs</em> (<code>StepInput, RampInput, PulseInput, SineInput</code>), inputs of <em>time</em> (<code>TimeInput, ConvertedTimeInput</code>), and <em>interpolation tables</em> (<code>LinearTimeTable, ExogenousData</code>).</p>
 <br><hr>
 <p>Copyright &copy; 2020 Guido Wolf Reichert<br>Licensed under the <a href=\"modelica://BusinessSimulation.UsersGuide.Licence\">EUPL-1.2</a>&nbsp;or later</p>

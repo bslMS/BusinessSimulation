@@ -6,8 +6,8 @@ partial model UnidirectionalFlow "Flow from Stock A to Stock B"
   extends Basics.ThreeSO_rate;
 protected
   // positive rates will drain the conected stock (e.g., flow from A to B)
-  Rate A_rate(min = 0) "Indicted rate for portA";
-  Rate B_rate(max = 0) "Indicted rate for portB";
+  Real A_rate(min = 0) "Indicted rate for portA";
+  Real B_rate(max = 0) "Indicted rate for portB";
   Boolean useA_rate "= true, if indicated rate for portA meets constraints";
   Boolean useB_rate "= true, if indicated rate for portB meets constraints";
 initial equation
@@ -29,7 +29,7 @@ equation
   y1 = portA.rate;
   y2 = portA.rate;
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>Partial model extending from the &rarr;<a href=\"modelica://BusinessSimulation.Interfaces.Basics.GenericFlow\">GenericFlow</a> base class. This is a generic class for <em>unidirectional</em> flow components where the value for the rate at port A (<code>A_rate</code>) can be set by an equation. The rate has to be positive; negative values will cause a warning.</p>
 <h4>Notes</h4>
 <ul>

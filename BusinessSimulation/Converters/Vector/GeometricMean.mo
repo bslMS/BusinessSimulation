@@ -15,7 +15,7 @@ equation
   connect(u_weights, w);
   y = Functions.geometricMean(u, w);
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>The scalar output <strong>y</strong> is obtained as the <em>geometric  mean</em> of the components of the input vector <strong>u</strong>. Optionally weights can be given, either as constants (<code>weights</code>) or as variable inputs (<code>u_weights</code>).</p>
 <p><img src=\"modelica://BusinessSimulation/Resources/Images/Converters/Vector/GeometricMean/Formula.svg\" alt=\"y = (sum_i x_i^w_i)^(1/sum_i w_i)\"></p>
 <h4>Notes</h4>

@@ -10,7 +10,7 @@ equation
   // as division by zero is to be avoided at all cases event checking has to be turned off
   y = if noEvent(u2 < 0 or u2 > 0) then u1 / u2 else outputIfZero;
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>The output <strong>y</strong> is obtained by <em>guarded&nbsp;division</em> of the <strong>nominator</strong> input <strong>u1</strong> and the <strong>denominator</strong> input <strong>u2:</strong></p>
 <p><code>y = u1/u2<br><br></code>If <strong>u2</strong> is equal to zero, then <code>outputIfZero</code> is returned.</p>
 <h4>Implementation</h4>

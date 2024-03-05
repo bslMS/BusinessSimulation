@@ -8,7 +8,7 @@ block Disruption "Output is the disturbed input"
 equation
   y = if isAdditive then u + u_dis else u * (1 + u_dis);
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>The output <strong>y</strong> is given by the input <strong>u</strong> that may possibly be distorted by an <em>additive</em> or <em>multiplicative</em> term:</p>
 <br>
 <pre>
