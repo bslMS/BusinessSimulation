@@ -9,7 +9,7 @@ package BusinessSimulation "Dynamic modeling for business, economics, and ecolog
 <p><span style=\"color:orange;\">&#9658;</span><strong><a href=\"modelica://BusinessSimulation.Examples\">&nbsp;Examples</a></strong></p>
 <p>For information regarding <strong style=\"color: #000080;\">further support options</strong>, <strong style=\"color: #000080;\">error reporting</strong>, and <strong style=\"color: #000080;\">feature suggestions</strong> click <a href=\"modelica://BusinessSimulation.UsersGuide.Contact\">here</a><br><br>
 The main repository for this library can be found at <a href=\"https://github.com/bslMS/BusinessSimulation\">https://github.com/bslMS/BusinessSimulation</a>.<br>
-A dedicated Wolfram System Modeler version can be obtained from <a href=\"https://www.wolfram.com/system-modeler/libraries/business-simulation/\">System Modeler Modelica Library Store.</p>
+A dedicated Wolfram System Modeler version can be obtained from <a href=\"https://www.wolfram.com/system-modeler/libraries/business-simulation/\">System Modeler Modelica Library Store.</a></p>
 <br>
 <hr>
 <h4 style=\"color: #000080;\">Principal Author and Support</h4>
