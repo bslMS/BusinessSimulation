@@ -129,6 +129,7 @@ protected
   CausalLoop.Performance quality(pol = "+", a = 0, b = 1) annotation(Placement(visible = true, transformation(origin = {135, -35}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
   CausalLoop.Performance cost(pol = "+", a = 0, b = 1) annotation(Placement(visible = true, transformation(origin = {80, 50}, extent = {{-10, 10}, {10, -10}}, rotation = 540)));
   AccumulatedPerformance totalPerformance(nin = 3, weights = {wCost, wQuality, wUsage}) "Mean weighted-average performance from startTime to currentTime" annotation(Placement(visible = true, transformation(origin = {127.5, -80}, extent = {{-7.5, -7.5}, {7.5, 7.5}}, rotation = 0)));
+public
 equation
   connect(externalResources.stockInfoOutput, r1.stockInfoInput) annotation(Line(visible = true, origin = {-117.5, 25}, points = {{20.516, 0}, {20.516, 5}, {-17.5, 5}, {-17.5, -10}}, color = {128, 0, 128}));
   connect(externalResources.stockInfoOutput, r2.stockInfoInput) annotation(Line(visible = true, origin = {-93, 17}, points = {{-3.984, 8}, {-3.984, 13}, {8, 13}, {8, -10}, {19, -10}}, color = {128, 0, 128}));
@@ -206,7 +207,10 @@ equation
   connect(usage.y, modelOutput.usagePerformance) annotation(Line(visible = true, origin = {117.413, -67}, points = {{-17.413, 6}, {-17.413, -3}, {34.826, -3}}, color = {192, 192, 192}));
   connect(cost.y, modelOutput.costPerformance) annotation(Line(visible = true, origin = {108.807, 18.333}, points = {{-29.807, 31.667}, {-43.807, 31.667}, {-43.807, 56.667}, {36.193, 56.667}, {36.193, -88.333}, {43.432, -88.333}}, color = {192, 192, 192}));
   connect(quality.y, modelOutput.qualityPerformance) annotation(Line(visible = true, origin = {140.746, -58.667}, points = {{-5.746, 22.667}, {-5.746, -11.333}, {11.493, -11.333}}, color = {192, 192, 192}));
-  annotation(preferredView = "diagram", experiment(StopTime = 10, StartTime = 0, Tolerance = 1e-06, Interval = 0.02), Documentation(revisions = "<html>
+  annotation(
+    preferredView = "diagram",
+    experiment(StopTime = 10, StartTime = 0, Tolerance = 1e-06, Interval = 0.02),
+    Documentation(revisions = "<html>
 <ul>
 <li>Added in v2.0.0.</li>
 </ul>
@@ -270,5 +274,7 @@ In section 5 of his paper van Zijderveld gives an illustrative example for the a
 <p>
 <a href=\"modelica://BusinessSimulation.Examples.HealTheWorld\">HealTheWorld</a>
 </p> 
-</html>", figures = {Figure(title = "Performance Evaluation", identifier = "default", preferred = true, plots = {Plot(curves = {Curve(y = modelOutput.costPerformance, legend = "Cost"), Curve(y = modelOutput.qualityPerformance, legend = "Quality"), Curve(y = modelOutput.usagePerformance, legend = "Usage")})}), Figure(title = "Total Performance", identifier = "totalPerformance", plots = {Plot(curves = {Curve(y = modelOutput.totalPerformance, legend = "total perforamcne")})})}), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10})), Diagram(coordinateSystem(extent = {{-150, -90}, {150, 90}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5}), graphics = {Text(visible = true, origin = {0, 80}, textColor = {76, 112, 136}, extent = {{-140, -6}, {140, 6}}, textString = "Software Release Project", fontName = "Lato", textStyle = {TextStyle.Bold}), Text(visible = true, origin = {0, 70}, textColor = {76, 112, 136}, extent = {{-140, -3}, {140, 3}}, textString = "van Zijderveld [24]", fontName = "Lato", textStyle = {TextStyle.Bold})}));
+</html>", figures = {Figure(title = "Performance Evaluation", identifier = "default", preferred = true, plots = {Plot(curves = {Curve(y = modelOutput.costPerformance, legend = "Cost"), Curve(y = modelOutput.qualityPerformance, legend = "Quality"), Curve(y = modelOutput.usagePerformance, legend = "Usage")})}), Figure(title = "Total Performance", identifier = "totalPerformance", plots = {Plot(curves = {Curve(y = modelOutput.totalPerformance, legend = "total perforamcne")})})}),
+    Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10})),
+    Diagram(graphics = {Text(origin = {0, 63}, textColor = {255, 0, 0}, extent = {{-140, -3}, {140, 3}}, textString = "1 s === 1 y", fontName = "Lato")}));
 end SoftwareReleaseProject;
