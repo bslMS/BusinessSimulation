@@ -22,10 +22,10 @@ protected
 initial equation
   // set up in steady state or use fixed value
   if init == InitializationOptions.FixedValue then
-    x_hidden[1:n] = array(initialValue / n for i in 1:n);
+    x_hidden = fill(initialValue/n, n);
   elseif init == InitializationOptions.SteadyState then
     // make use of Little's Law
-    x_hidden[1:n] = array(inflow.rate * (actualDelayTime.y / n) for i in 1:n);
+    x_hidden = fill(inflow.rate * (actualDelayTime.y / n), n);
   end if;
   // properly initialize discrete vars with fixed = false
   // inflow to stock is restricted to inflow port; no draining allowed
