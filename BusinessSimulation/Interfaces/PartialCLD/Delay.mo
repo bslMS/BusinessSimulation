@@ -9,8 +9,8 @@ partial model Delay "Partial model of a delay for CLD+ modeling"
   parameter Boolean subtractDelayedOutflow = true "= true, if a delayed outflow is to be deducted before it actually leaves the stock" annotation(Enable = true, Dialog(group = "Structural Parameters"));
   parameter Boolean hasFactor = false "= true, if coefficients are to be multiplied with input u" annotation(Evaluate = true, Dialog(group = "Structural Parameters"));
   parameter Boolean hasStockInfoOutput = false "= true, if information from the internal 'in process' stock is to be made accessible" annotation(Evaluate = true, Dialog(group = "Structural Parameters"));
-  parameter MaterialType IDI = 0 "Initial material in the process of flowing into the connected stock" annotation(Dialog(tab = Initialization));
-  parameter MaterialType IDO = 0 "Initial material in the process of flowing into the connected stock" annotation(Dialog(tab = Initialization));
+  parameter MaterialType IDI = 0 "Initial material in the process of flowing into the connected stock" annotation(Dialog(tab = "Initialization"));
+  parameter MaterialType IDO = 0 "Initial material in the process of flowing into the connected stock" annotation(Dialog(tab = "Initialization"));
   replaceable type MaterialType = Unspecified constrainedby Unspecified "Type choice for material flowing in and out of the connected stock" annotation(choicesAllMatching = true);
 protected
   parameter Real k2 = if subtractDelayedOutflow then -1 else 0 "Gain of outflowing elements of stock B being delayed" annotation(Evaluate = true, Dialog(enable = false, tab = "Initialization"));

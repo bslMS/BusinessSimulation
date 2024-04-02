@@ -51,7 +51,7 @@ equation
   connect(tableFunction.y, modelOutput.tableFunction) annotation(Line(visible = true, origin = {9.5, -65}, points = {{-51.5, -25}, {-29.5, -25}, {-29.5, 25}, {110.5, 25}}, color = {192, 192, 192}));
   connect(sShapedNegative_origin.y, modelOutput.sShapedNegative) annotation(Line(visible = true, origin = {99.5, -5}, points = {{-21.5, 35}, {0.5, 35}, {0.5, -35}, {20.5, -35}}, color = {192, 192, 192}));
   connect(sShapedPositive_origin.y, modelOutput.sShapedPositive) annotation(Line(visible = true, origin = {99.5, -25}, points = {{-21.5, 15}, {0.5, 15}, {0.5, -15}, {20.5, -15}}, color = {192, 192, 192}));
-  annotation(preferredView = "diagram", __Wolfram, Documentation(info = "<html>
+  annotation(preferredView = "diagram", Documentation(info = "<html>
 <p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>This example demonstrates the use of parametric lookup and table functions in models and may serve as a showcase. While table functions are still frequently used, the advantage of parametric functions is their <em>smoothness</em>—at least in the relevant range—and the better calibration/identification options.</p>
 <h4>See also</h4>
@@ -62,5 +62,5 @@ equation
 <ul>
 <li>Modified simulation plots in v2.0.0.</li>
 </ul>
-</html>"), experiment(StartTime = 0, StopTime = 10, NumberOfIntervals = 10000, __Wolfram_Algorithm = "dassl", __Wolfram_SynchronizeWithRealTime = false), Diagram(coordinateSystem(extent = {{-148.5, -105}, {148.5, 105}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5}), graphics = {Text(visible = true, origin = {60, 80}, textColor = {76, 112, 136}, extent = {{-50, -6}, {50, 6}}, textString = "Lookup Converters", fontName = "Lato", textStyle = {TextStyle.Bold}, horizontalAlignment = TextAlignment.Left), Text(visible = true, origin = {60, 70}, textColor = {128, 128, 128}, extent = {{-50, -3}, {50, 3}}, textString = "Parametric- and Interpolating-Functions", fontName = "Lato", textStyle = {TextStyle.Bold}, horizontalAlignment = TextAlignment.Left)}));
+</html>"), experiment(StartTime = 0, StopTime = 10, Tolerance = 1e-06, Interval = 0.001), Diagram(coordinateSystem(extent = {{-148.5, -105}, {148.5, 105}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5}), graphics = {Text(visible = true, origin = {60, 80}, textColor = {76, 112, 136}, extent = {{-50, -6}, {50, 6}}, textString = "Lookup Converters", fontName = "Lato", textStyle = {TextStyle.Bold}, horizontalAlignment = TextAlignment.Left), Text(visible = true, origin = {60, 70}, textColor = {128, 128, 128}, extent = {{-50, -3}, {50, 3}}, textString = "Parametric- and Interpolating-Functions", fontName = "Lato", textStyle = {TextStyle.Bold}, horizontalAlignment = TextAlignment.Left)}));
 end LookupFunctions;

@@ -9,7 +9,7 @@ model Conveyor "Conveyor delay (aka pipeline ~) with variable delay time"
   extends Interfaces.Basics.GenericStock_Special(hasStockInfoOutput = false, init = modelSettings.init);
   Interfaces.Connectors.RealInput u(quantity = "Time") if not hasConstantDelayTime "Delay time input (optional)" annotation(Placement(visible = true, transformation(origin = {-145, 60}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-50, 100}, extent = {{-10, 10}, {10, -10}}, rotation = 270)));
   parameter OutputType initialValue(min = 0) = 0 "Initial load";
-  parameter Time delayTime(min = 0, max = maxDelayTime) "Constant delay time (optional)" annotation(Dialog(enable = hasConstantDelayTime));
+  parameter Time delayTime(min = 0, max = maxDelayTime) = 1 "Constant delay time (optional)" annotation(Dialog(enable = hasConstantDelayTime));
   parameter Time maxDelayTime(min = 0) = 10 "Maximum delay time (to restrict memory usage)" annotation(Evaluate = true);
   parameter Time samplingPeriod(min = small, max = modelSettings.dt) = modelSettings.samplingPeriod "Sampling period for discrete behavior (should be smaller than dt/2)" annotation(Evaluate = true, Dialog(tab = "Advanced"));
   parameter Boolean hasConstantDelayTime = true "= true, if the delay time is to be given by a constant parameter" annotation(Evaluate = true, Dialog(group = "Structural Parameters"));

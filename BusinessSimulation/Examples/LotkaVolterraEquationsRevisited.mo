@@ -3,8 +3,8 @@ within BusinessSimulation.Examples;
 model LotkaVolterraEquationsRevisited "Predator-prey dynamics with an additional predator"
   extends Icons.Example;
   ModelOutput modelOutput "Main output for the model" annotation(Placement(visible = true, transformation(origin = {130, -60}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {90, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  inner ModelSettings modelSettings(init = BusinessSimulation.Types.InitializationOptions.FixedValue, modelTimeHorizon(displayUnit = "yrCal") = 4417973280, dt(displayUnit = "yrCal") = 7889238) annotation(Placement(visible = true, transformation(origin = {-130, -90}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  Theta theta(foxRabbit_beta(displayUnit = "1/yrCal") = 6.33774770136229e-10, foxRabbit_delta = 6.33774770136229e-10, foxesDeathRate = 1.26754954027246e-08, rabbitsReproRate = 3.16887385068114e-09, wolfRabbit_beta = 6.33774770136229e-10, wolfRabbit_delta = 3.16887385068114e-10, wolvesDeathRate = 1.26754954027246e-08, wolfFox_beta = 1.26754954027246e-09, wolfFox_delta = 2.53509908054491e-09) annotation(Placement(visible = true, transformation(origin = {-110, -90}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  inner ModelSettings modelSettings(init = BusinessSimulation.Types.InitializationOptions.FixedValue, modelTimeHorizon = 140, dt = 0.25) annotation(Placement(visible = true, transformation(origin = {-130, -90}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  Theta theta annotation(Placement(visible = true, transformation(origin = {-110, -90}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
 
   expandable connector ModelOutput "Main output of the model"
     extends Icons.DataOutPort;
@@ -20,15 +20,15 @@ model LotkaVolterraEquationsRevisited "Predator-prey dynamics with an additional
     parameter Population IFO = 2 "Initial fox population";
     parameter Population IWO = 4 "Initial wolf population";
     // rates
-    parameter Rate foxRabbit_beta(displayUnit = "1/yrCal") = 6.34195839675292e-10 "Rabbit fractional death rate per fox";
-    parameter Rate foxRabbit_delta(displayUnit = "1/yrCal") = 6.34195839675292e-10 "Fox fractional reproduction rate per rabbit";
-    parameter Rate foxesDeathRate(displayUnit = "1/yrCal") = 1.26839167935058e-08 "Fractional death rate for fox popultion";
-    parameter Rate rabbitsReproRate(displayUnit = "1/yrCal") = 3.17097919837646e-09 "Fractional reproduction rate for rabbit population";
-    parameter Rate wolfRabbit_beta(displayUnit = "1/yrCal") = 6.34195839675292e-10 "Rabbit fractional death rate per wolf";
-    parameter Rate wolfRabbit_delta(displayUnit = "1/yrCal") = 3.17097919837646e-10 "Wolf fractional reproduction rate per rabbit";
-    parameter Rate wolvesDeathRate(displayUnit = "1/yrCal") = 1.26839167935058e-08 "Fractopmaö death rate for wolf population";
-    parameter Rate wolfFox_beta(displayUnit = "1/yrCal") = 1.26839167935058e-09 "Fox fractional death rate per wolf";
-    parameter Rate wolfFox_delta(displayUnit = "1/yrCal") = 2.53678335870117e-09 "Wolf fractional reproduction rate per fox";
+    parameter Rate foxRabbit_beta = 0.02 "Rabbit fractional death rate per fox";
+    parameter Rate foxRabbit_delta = 0.02 "Fox fractional reproduction rate per rabbit";
+    parameter Rate foxesDeathRate = 0.4 "Fractional death rate for fox popultion";
+    parameter Rate rabbitsReproRate = 0.1 "Fractional reproduction rate for rabbit population";
+    parameter Rate wolfRabbit_beta = 0.02 "Rabbit fractional death rate per wolf";
+    parameter Rate wolfRabbit_delta = 0.01 "Wolf fractional reproduction rate per rabbit";
+    parameter Rate wolvesDeathRate = 0.4 "Fractional death rate for wolf population";
+    parameter Rate wolfFox_beta = 0.04 "Fox fractional death rate per wolf";
+    parameter Rate wolfFox_delta = 0.08 "Wolf fractional reproduction rate per fox";
   end Theta;
 protected
   Stocks.MaterialStock rabbits(initialValue = theta.IRA, redeclare replaceable type OutputType = Population) "Population of rabbits" annotation(Placement(visible = true, transformation(origin = {-70, -30}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
@@ -40,6 +40,7 @@ protected
   Flows.Interaction.NonlinearInteraction wolf_rabbit_predation(hasConstantFactorA = true, hasConstantFactorB = true, a_AB = -theta.wolfRabbit_beta, b_AB = theta.wolfRabbit_delta) "Wolves predating on rabbits" annotation(Placement(visible = true, transformation(origin = {-50, 5}, extent = {{-10, -10}, {10, 10}}, rotation = -270)));
   Flows.Interaction.NonlinearInteraction wolf_fox_predation(hasConstantFactorA = true, hasConstantFactorB = true, a_AB = -theta.wolfFox_beta, b_AB = theta.wolfFox_delta) "Wolves predating on foxes" annotation(Placement(visible = true, transformation(origin = {30, 5}, extent = {{-10, -10}, {10, 10}}, rotation = -270)));
   SourcesOrSinks.ExponentialDecline wolvesStarving(hasConstantRate = true, fractionalRate = theta.wolvesDeathRate) "Mortality for foxes" annotation(Placement(visible = true, transformation(origin = {100, 30}, extent = {{10, -10}, {-10, 10}}, rotation = 0)));
+public
 equation
   connect(reproduction.massPort, rabbits.inflow) annotation(Line(visible = true, origin = {-90, -30}, points = {{-10, 0}, {10, 0}}, color = {128, 0, 128}));
   connect(rabbits.outflow, fox_rabbit_predation.portA) annotation(Line(visible = true, origin = {-50, -30}, points = {{-10, 0}, {10, 0}}, color = {128, 0, 128}));
@@ -53,7 +54,11 @@ equation
   connect(rabbits.y1, modelOutput.rabbits) annotation(Line(visible = true, origin = {-7.375, -47.5}, points = {{-52.125, 12.5}, {-42.625, 12.5}, {-42.625, -12.5}, {137.375, -12.5}}, color = {192, 192, 192}));
   connect(foxes.y1, modelOutput.foxes) annotation(Line(visible = true, origin = {52.625, -47.5}, points = {{-32.125, 12.5}, {-22.625, 12.5}, {-22.625, -12.5}, {77.375, -12.5}}, color = {192, 192, 192}));
   connect(wolves.y1, modelOutput.wolves) annotation(Line(visible = true, origin = {90.125, -17.5}, points = {{-19.625, 42.5}, {-10.125, 42.5}, {-10.125, -42.5}, {39.875, -42.5}}, color = {192, 192, 192}));
-  annotation(experiment(StartTime = 0, StopTime = 4423845687.76382, __Wolfram_DisplayTimeUnit = "yrCal"), __Wolfram(itemFlippingEnabled = true), Diagram(coordinateSystem(extent = {{-148.5, -105}, {148.5, 105}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5}), graphics = {Text(visible = true, origin = {0, 80}, textColor = {76, 112, 136}, extent = {{-140, -6}, {140, 6}}, textString = "Lotka-Volterra Equations Revisited", fontName = "Lato"), Text(visible = true, origin = {0, 70}, textColor = {76, 112, 136}, extent = {{-140, -3}, {140, 3}}, textString = "Example given by Michael Tiller in 'Modelica by Example'", fontName = "Lato", textStyle = {TextStyle.Bold}), Bitmap(visible = true, origin = {-80, -53.493}, fileName = "modelica://BusinessSimulation/Resources/Images/Examples/LotkaVolterraSystems/Rabbit.svg", imageSource = "", extent = {{-16.933, -13.493}, {16.933, 13.493}}), Bitmap(visible = true, origin = {49.395, 46.418}, fileName = "modelica://BusinessSimulation/Resources/Images/Examples/LotkaVolterraEquationsRevisited/Wolf.svg", imageSource = "", extent = {{20.605, -16.418}, {-20.605, 16.418}}), Bitmap(visible = true, origin = {10.605, -51.418}, fileName = "modelica://BusinessSimulation/Resources/Images/Examples/LotkaVolterraSystems/Fox.svg", imageSource = "", extent = {{20.605, -16.418}, {-20.605, 16.418}})}), Documentation(info = "<html>
+  annotation(
+    experiment(StartTime = 0, StopTime = 140, Tolerance = 1e-06, Interval = 0.28),
+    __Wolfram(itemFlippingEnabled = true),
+    Diagram(graphics = {Text(origin = {0, 55}, textColor = {255, 0, 0}, extent = {{-140, -3}, {140, 3}}, textString = "1 s === 1 y", fontName = "Lato")}),
+    Documentation(info = "<html>
 <p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>This model extends the two species model given in the example →<a href=\"modelica://BusinessSimulation.Examples.LotkaVolterraSystems\">LotkaVolterraSystems</a> by introducing a third species: wolves. Wolves predate on both, rabbits and foxes.</p>
 <p>We can immediately extend the model for two species by introducing another material stock for wolves. As predators <code>wolves</code> will also be connected to a process of <em>exponential decline</em> (e.g., starvation in absence of prey). Since <code>wolves</code> predate on <code>rabbits</code> and <code>foxes</code>, there will be two nonlinear interactions between the stock of <code>wolves</code> and the other stocks. As before, the predator side (<code>portB</code>) of the <code>NonlinearInteraction</code> flow will be connected to the <code>inflow</code> port for <code>wolves</code>, while the prey side (<code>portA</code>) will be connected to the <code>outflow</code> port of <code>rabbits</code> and <code>foxes</code>.</p>
