@@ -27,6 +27,7 @@ protected
   InformationSources.RampInput experienceNewEmployees(redeclare type OutputType = BusinessSimulation.Units.Time, offset = 5, startTime = 1, height = -3, duration = 4) "The prior experience of new employees given in years" annotation(
     Placement(visible = true, transformation(origin = {-117.141, -30}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   InformationSources.RampInput desiredWorkforce(offset = 750, startTime= 1, height = 450, duration= 6, redeclare replaceable type OutputType = Labor) "The desired Workforce given in FTE" annotation(Placement(visible = true, transformation(origin = {-118.276, 30}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+public
 equation
   connect(hiring.massPort, workforce.inflow) annotation(
     Line(visible = true, origin = {-10, -10}, points = {{-10, 0}, {10, 0}}, color = {128, 0, 128}));
@@ -50,8 +51,6 @@ equation
     Line(visible = true, origin = {-30.1, 22.2}, points = {{29.6, -37.2}, {20.1, -37.2}, {20.1, 27.8}, {-34.9, 27.8}, {-34.9, 18.8}}, color = {1, 37, 163}));
   connect(experienceNewEmployees.y, expertise.u) annotation(
     Line(visible = true, origin = {-33.047, -33.333}, points = {{-76.094, 3.333}, {38.047, 3.333}, {38.047, -6.667}}, color = {1, 37, 163}));
-  connect(desiredWorkforce.y, recruitingPolicy.u_reference) annotation(
-    Line(visible = true, origin = {-90.638, 30}, points = {{-19.638, 0}, {19.638, 0}}, color = {1, 37, 163}));
   connect(workforce.y1, modelOutput.workforce) annotation(
     Line(visible = true, origin = {47.625, -27.5}, points = {{-27.125, 12.5}, {-22.625, 12.5}, {-22.625, -7.5}, {72.375, -7.5}}, color = {192, 192, 192}));
   connect(desiredWorkforce.y, modelOutput.desiredWorkforce) annotation(
@@ -60,6 +59,8 @@ equation
     Line(visible = true, origin = {50, -36.533}, points = {{-35, -3.067}, {-35, 1.533}, {70, 1.533}}, color = {192, 192, 192}));
   connect(gainingExperienceRate.y, gainingExperience.u) annotation(
     Line(points = {{-65, -75}, {-35, -75}, {-35, -60}}, color = {1, 37, 163}));
+  connect(desiredWorkforce.y, recruitingPolicy.u_reference) annotation(
+    Line(points = {{-110, 30}, {-70, 30}}, color = {1, 37, 163}));
   annotation(
     experiment(StartTime = 0, StopTime = 10, Tolerance = 1e-06, Interval = 0.02),
     Diagram(graphics = {Text(origin = {0, 80}, textColor = {76, 112, 136}, extent = {{-140, -6}, {140, 6}}, textString = "Managing Employment", fontName = "Lato"), Text(origin = {0, 71}, textColor = {255, 0, 0}, extent = {{-140, -3}, {140, 3}}, textString = "1 s === 1 y", fontName = "Lato")}),

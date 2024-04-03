@@ -25,6 +25,7 @@ protected
   MoleculesOfStructure.Policy.FirstOrderStockAdjustment productionRate(adjTime= 1, hasConstantAdjTime = true, redeclare replaceable type OutputType = AmountRate) "Policy to determine rate of production" annotation(Placement(visible = true, transformation(origin = {-90, -50}, extent = {{10, -10}, {-10, 10}}, rotation = 0)));
   Converters.ConstantConverter desiredInventory(value = 100, redeclare replaceable type OutputType = Amount) "The constant level of inventory we wich to maintain" annotation(Placement(visible = true, transformation(origin = {-50, -50}, extent = {{10, -10}, {-10, 10}}, rotation = 0)));
   SourcesOrSinks.Cloud cloud1 annotation(Placement(visible = true, transformation(origin = {110, -10}, extent = {{10, -10}, {-10, 10}}, rotation = 0)));
+public
 equation
   connect(inventory.outflow, shipping.portA) annotation(Line(visible = true, origin = {-30, -10}, points = {{-10, 0}, {10, 0}}, color = {128, 0, 128}));
   connect(shipping.portB, installedBase.inflow) annotation(Line(visible = true, origin = {10, -10}, points = {{-10, 0}, {10, 0}}, color = {128, 0, 128}));

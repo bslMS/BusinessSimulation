@@ -31,6 +31,7 @@ protected
   MoleculesOfStructure.Policy.FirstOrderStockAdjustment productionPlanning(hasConstantAdjTime = true, adjTime= 1) annotation(Placement(visible = true, transformation(origin = {-90, -70}, extent = {{10, -10}, {-10, 10}}, rotation = 0)));
   Converters.ConstantConverter desiredInventory(value = 100, redeclare replaceable type OutputType = Amount) annotation(Placement(visible = true, transformation(origin = {-55, -70}, extent = {{10, -10}, {-10, 10}}, rotation = 0)));
   Interfaces.Connectors.DataBus bus annotation(Placement(visible = true, transformation(origin = {110, 50}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {73.333, 77.778}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+public
 equation
   connect(inventory.outflow, shipping.portA) annotation(Line(visible = true, origin = {-30, -30}, points = {{-10, 0}, {10, 0}}, color = {128, 0, 128}));
   connect(shipping.portB, installedBase.inflow) annotation(Line(visible = true, origin = {10, -30}, points = {{-10, 0}, {10, 0}}, color = {128, 0, 128}));
@@ -76,6 +77,5 @@ equation
 <li>Unit modification for <code>wordOfMouth.fractionalAdoptionRate</code> should have been a modification of <code>displayUnit</code>; fixed in v2.2.</li><br>
 </ul>
 </html>"),
-    __Wolfram,
-    Diagram(graphics = {Text(origin = {0, 55}, textColor = {255, 0, 0}, extent = {{-140, -3}, {140, 3}}, textString = "1 s === 1 mo", fontName = "Lato")}));
+     Diagram(graphics = {Text(origin = {0, 55}, textColor = {255, 0, 0}, extent = {{-140, -3}, {140, 3}}, textString = "1 s === 1 mo", fontName = "Lato")}));
 end SimpleProductionChainIII;

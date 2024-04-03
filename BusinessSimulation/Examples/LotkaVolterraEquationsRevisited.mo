@@ -57,7 +57,7 @@ equation
   annotation(
     experiment(StartTime = 0, StopTime = 140, Tolerance = 1e-06, Interval = 0.28),
     __Wolfram(itemFlippingEnabled = true),
-    Diagram(graphics = {Text(origin = {0, 55}, textColor = {255, 0, 0}, extent = {{-140, -3}, {140, 3}}, textString = "1 s === 1 y", fontName = "Lato")}),
+    Diagram(graphics = {Text(origin = {0, 57}, textColor = {255, 0, 0}, extent = {{-140, -3}, {140, 3}}, textString = "1 s === 1 y", fontName = "Lato")}),
     Documentation(info = "<html>
 <p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>This model extends the two species model given in the example →<a href=\"modelica://BusinessSimulation.Examples.LotkaVolterraSystems\">LotkaVolterraSystems</a> by introducing a third species: wolves. Wolves predate on both, rabbits and foxes.</p>
