@@ -22,7 +22,7 @@ equation
   connect(u, decreasing.u) annotation(Line(visible = true, origin = {-43.333, 30}, points = {{-96.667, 10}, {48.333, 10}, {48.333, -20}}, color = {1, 37, 163}));
   connect(decreasing.portB, cloud.massPort) annotation(Line(visible = true, origin = {-25, 0}, points = {{15, 0}, {-15, 0}}, color = {128, 0, 128}));
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p><em>Decline</em> can be used to model&nbsp;an outflow from a stock into a sink with infinite capacity outside the border of the system in focus. The rate of flow can either be set by the real input <strong>u</strong> (<code>hasConstantRate = false</code>) or by the parameter <code>rate</code> (<code>hasConstantRate = true</code>).</p>
 <h4>Notes</h4>
 <ul>

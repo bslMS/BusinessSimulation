@@ -13,7 +13,7 @@ equation
   // assume uniform split if weights add up to zero
   y = if totalWeight > 0 then u_adj / totalWeight else fill(1 / nin, nin);
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>Given a vector <strong>u<em>&nbsp;</em></strong>of weights, the converter will give an output vector <strong>y</strong> of fractions so that:</p>
 <p><img src=\"modelica://BusinessSimulation/Resources/Images/Converters/Vector/ProportionalSplitFactors/Formula.svg\" alt=\"y_i = u_i/sum(u_i)\"></p>
 <p>If the weights do add up to zero equal proportions are assumed:</p>

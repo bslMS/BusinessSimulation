@@ -6,8 +6,8 @@ partial model BidirectionalFlow "Generic bi-directional flow between two stocks"
   extends Basics.ThreeSO_rate;
 protected
   // indicated rates; positive rates will drain the conected stock
-  Rate A_rate "Indicated rate for portA";
-  Rate B_rate "Indicated rate for portB";
+  Real A_rate "Indicated rate for portA";
+  Real B_rate "Indicated rate for portB";
   Boolean useA_rate "= true, if indicated rate for portA meets restrictions";
   Boolean useB_rate "= true, if indicated rate for portB meets restrictions";
 initial equation
@@ -28,13 +28,17 @@ equation
   y1 = portA.rate;
   y2 = portA.rate;
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>Partial model extending from the &rarr;<a href=\"modelica://BusinessSimulation.Interfaces.Basics.GenericFlow\">GenericFlow</a> base class. This is a generic class for <em>bi-directional</em> flow components where the value for the rate at port A (<code>A_rate</code>) can be set by an equation.</p>
 <h4>Notes</h4>
 <ul>
 <li>A positive rate is associated with a flow from the stock connected to port A (portA) to the one connected to port B, while a negative rate will indicate a flow from B to A.</li><br>
 <li>The rate of flow at port B is given by the equation <code>B_rate = - A_rate</code>.</li><br>
 <li>The flow-element will observe the stock-signals (e.g., <em>stopOutflow</em> or <em>stopInflow</em>) on both ports which may override the intended rate to give zero flow.</li>
+</ul>
+</html>", revisions = "<html>
+<ul>
+<li>Changed type for <code>A_rate, B_rate</code> to <code>Real</code> in v2.2</li><br>
 </ul>
 </html>"), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10})), Diagram(coordinateSystem(extent = {{-148.5, -105}, {148.5, 105}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})));
 end BidirectionalFlow;

@@ -2,7 +2,7 @@ within BusinessSimulation.Functions;
 
 encapsulated function interpolate "Interpolate in an ordered list of tuples"
   import BusinessSimulation.Icons.Function;
-  import BusinessSimulation.Functions.{rawInterpolate,hunt,locate};
+  import BusinessSimulation.Functions.{rawInterpolate, hunt, locate};
   extends Function;
   input Real x "Value to locate in a list";
   input Real[:, 2] tuples "Ordered list of values";
@@ -23,7 +23,7 @@ algorithm
   end if;
   y := rawInterpolate(x, tuples, jsav);
   annotation(Inline = true, Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>The output <strong>y</strong> is the interpolated value given a list of tuples (<code>tuples = { {x1,y1}, {x2,y2}, ...}</code>) and an index value <code>jlo (default = 1)</code> to guide the search. The function will also return the actual index value <strong>jsav</strong> used for the interpolation.</p>
 <h4>Syntax</h4>
 <br>

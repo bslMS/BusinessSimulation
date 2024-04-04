@@ -10,7 +10,7 @@ model Growth "A stock is filled at a given rate"
   parameter Boolean hasConstantRate = false "= true, if the constant rate is used instead of an exogenous input u" annotation(Evaluate = true, Dialog(group = "Structural Parameters"));
 protected
   Converters.ConstantConverter parConstantRate(value = rate) if hasConstantRate "Constante rate of growth (optional)" annotation(Placement(visible = true, transformation(origin = {-110, 70}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  Flows.Unidirectional.Transition growing(hasConstantRate = false) annotation(Placement(visible = true, transformation(origin = {0, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  Flows.Unidirectional.Transition growing(hasConstantRate = false, redeclare replaceable type OutputType = OutputType) annotation(Placement(visible = true, transformation(origin = {0, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Cloud cloud annotation(Placement(visible = true, transformation(origin = {-50, 0}, extent = {{-10, 10}, {10, -10}}, rotation = 0)));
 equation
   assert(not hasConstantRate or rate < inf, "Parameter rate needs to be specified");
@@ -22,7 +22,7 @@ equation
   connect(parConstantRate.y, growing.u) annotation(Line(visible = true, origin = {-38.333, 50}, points = {{-66.667, 20}, {33.333, 20}, {33.333, -40}}, color = {1, 37, 163}));
   connect(u, growing.u) annotation(Line(visible = true, origin = {-50, 30}, points = {{-90, 10}, {45, 10}, {45, -20}}, color = {1, 37, 163}));
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p><em>Growth</em> can be used to model&nbsp;an inflow to a stock from a source with infinite capacity outside the border of the system in focus. The rate of flow can either be set by the real input <strong>u</strong> (<code>hasConstantRate = false</code>) or by the parameter <code>rate</code> (<code>hasConstantRate = true</code>).</p>
 <h4>Notes</h4>
 <ul>

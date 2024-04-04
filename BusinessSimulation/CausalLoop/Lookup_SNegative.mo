@@ -13,7 +13,7 @@ protected
   Converters.Lookup.SShapedNegative lookup(upperBound = upperBound, s = slope) annotation(Placement(visible = true, transformation(origin = {0, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   /* block,  information processing */
   annotation(defaultComponentName = "b", Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>Using the lookup converter →<a href =\"modelica://BusinessSimulation.Converters.Lookup.SShapedNegative\"><code>SShapedNegative</code></a> the normalized current value of the stock, which is connected via the <code>StockInfoInput</code> connector, is used as input to the s-shaped lookup function (negatively sloping) to obtain the output <strong>y</strong>.</p>
 <p>The value used for the normalization is a constant by default (<code>referenceValue = 1</code>); if <code>hasConstantReference = false</code> the optional input <strong>u</strong> is used instead.</p>
 <h4>Notes</h4>

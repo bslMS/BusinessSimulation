@@ -3,7 +3,7 @@ within BusinessSimulation.Converters.DiscreteDelay;
 block SmoothN "N-th order exponential smooth with constant averaging time"
   import BusinessSimulation.Units.*;
   import BusinessSimulation.Types.InitializationOptions;
-  import BusinessSimulation.Constants.{inf,small,eps,e};
+  import BusinessSimulation.Constants.{inf, small, eps, e};
   extends Interfaces.PartialConverters.SmoothSISO;
   Interfaces.Connectors.RealInput u_delayTime if not hasConstantDelayTime "Delay time input" annotation(Placement(visible = true, transformation(origin = {-145, 45}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {0, 50}, extent = {{-10, 10}, {10, -10}}, rotation = -810)));
   parameter Integer n(min = 1) = 3 "Order of the smooth" annotation(Evaluate = true, Dialog(group = "Structural Parameters"));
@@ -29,12 +29,12 @@ equation
   end for;
   connect(firstOrderSmooth[n].y, y) "Output signal" annotation(Line(visible = true, origin = {84.767, 0}, points = {{-75.233, 0}, {75.233, 0}}, color = {1, 37, 163}));
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>A smooth is an&nbsp;<em>exponential information delay</em>. It is typically used to model time lags in forming an expectation or in perceiving some information. A smooth of order <code>n</code> is modeled as a cascade of <code>n</code> first-order exponential smooth components, where the output of a preceding component is the input for its successor. The delay time for each smooth in the cascade will be <code>delayTime/n</code>.</p>
 <h4>Notes</h4>
 <ul>
 <li>The <code>delayTime</code> given (either as constant parameter or continuous signal) will effectively be clipped to a minimum value of <code>n × modelSettings.dt</code>. The delay time for any first-order smooth in the cascade can thus never become smalle than <code>dt</code>, which denotes the minimum process time anywhere in the model.</li><br>
-<li>In&nbsp;the System Dynamics community a <em>smooth</em> is an <em>information delay</em> (as opposed to a <em>material delay</em>) [<a href=\"modelica://BusinessSimulation.UsersGuide.References\">1</a>, Appendices E and H]. Information delays model the process of updating information to the actual value. Since the technical procedure is called <em>exponential smoothing</em>, the name smooth has prevailed.</li><br>
+<li>In&nbsp;the system dynamics community a <em>smooth</em> is an <em>information delay</em> (as opposed to a <em>material delay</em>) [<a href=\"modelica://BusinessSimulation.UsersGuide.References\">1</a>, Appendices E and H]. Information delays model the process of updating information to the actual value. Since the technical procedure is called <em>exponential smoothing</em>, the name smooth has prevailed.</li><br>
 <li>Mathematically a cascade of first-order exponential delays can be modeled as a convolution of exponential delays giving an Erlang distribution; see Sterman [<a href=\"modelica://BusinessSimulation.UsersGuide.References\">3</a>, pp. 462-476] for more details.</li><br>
 <li>The parameter <code>init</code> in the Advanced tab allows to select &rarr;<a href=\"modelica://BusinessSimulation.Types.InitializationOptions\">InitializationOptions</a>:<br>
 <ul>

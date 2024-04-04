@@ -45,7 +45,7 @@ equation
   connect(parWeights.y, unchangedInput.u) annotation(Line(visible = true, origin = {-116.75, 87.5}, points = {{-12.25, 7.5}, {-3.25, 7.5}, {-3.25, -7.5}, {18.75, -7.5}}, color = {1, 37, 163}));
   connect(parWeights.y, proportionalSplitFactors.u) annotation(Line(visible = true, origin = {-116.75, 77.5}, points = {{-12.25, 17.5}, {-3.25, 17.5}, {-3.25, -17.5}, {18.75, -17.5}}, color = {1, 37, 163}));
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>The flow connected to the stock port (<code>stockPort</code>) will be split or broken into <em>n</em> = <code>nout</code> flows. This is a rather generic component, so that the input vector <strong>u</strong>&nbsp;of weights or factors may add up to 1 (the flow is split into <em>n</em> components that in sum will match the aggregate flow) or not.</p>
 <p>When the factors do not add up to 1, the structure can be used to describe some kind of multiple-production from one main effort, e.g., the flow of work hours per period may be used to produce n products according to a productivity ratio ( products per work hour ).</p>
 <h4>Notes</h4>

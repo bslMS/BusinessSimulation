@@ -1,8 +1,10 @@
 within BusinessSimulation.UsersGuide;
 
 final class References "Bibliography"
+  extends Modelica.Icons.References;
+  extends Icons.DocumentationInfo;
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <table>
 <tbody>
 <tr>
@@ -164,10 +166,20 @@ final class References "Bibliography"
 <tr>
 <td>[28]</td>
 <td>
-<p>G.W. Reichert, \"Hierarchical, Component-Based Modeling Using the Cyber-Physical Modeling Language Modelica\", <em>Conference Record of the 2022 System Dynamics Conference</em>, Frankfurt, Germany, 2022. Available:&nbsp;<a href = \"https://proceedings.systemdynamics.org/2022/papers/P1332.pdf\">https://proceedings.systemdynamics.org/2022/papers/P1332.pdf</a></p>
+<p>G.W. Reichert, \"Hierarchical, Component-Based Modeling Using the Cyber-Physical Modeling Language Modelica,\" <em>Conference Record of the 2022 System Dynamics Conference</em>, Frankfurt, Germany, 2022. Available:&nbsp;<a href = \"https://proceedings.systemdynamics.org/2022/papers/P1332.pdf\">https://proceedings.systemdynamics.org/2022/papers/P1332.pdf</a></p>
+</td>
+</tr>
+<tr>
+<td>[29]</td>
+<td>
+<p>D. Flater, \"Architecture for software-assisted quantity calculus,\" <em>National Institute of Standards and Technology</em>, Dec. 2016. Available:&nbsp;<a href = \"https://nvlpubs.nist.gov/nistpubs/TechnicalNotes/NIST.TN.1943.pdf\">doi:10.6028/nist.tn.1943</a></p>
 </td>
 </tr>
 </tbody>
 </table>
-</html>"), Diagram(coordinateSystem(extent = {{-150, -90}, {150, 90}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})), Icon(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}}, initialScale = 0.1, grid = {10, 10}), graphics = {Polygon(visible = true, origin = {-20, -28}, lineColor = {56, 56, 56}, fillColor = {128, 128, 128}, fillPattern = FillPattern.Solid, points = {{-70, 108}, {-80, 98}, {-80, -72}, {110, -72}, {120, -62}}), Polygon(visible = true, origin = {-60, -5}, lineColor = {56, 56, 56}, fillColor = {179, 179, 179}, fillPattern = FillPattern.Solid, points = {{0, 85}, {-30, 85}, {-30, -85}, {60, -85}}), Rectangle(visible = true, origin = {50, -5}, lineColor = {56, 56, 56}, fillColor = {244, 244, 244}, fillPattern = FillPattern.Solid, extent = {{-50, -85}, {50, 85}}), Polygon(visible = true, origin = {-20.603, -3.83}, lineColor = {56, 56, 56}, fillColor = {230, 230, 230}, fillPattern = FillPattern.Solid, points = {{20.603, 83.83}, {0.603, 103.83}, {-59.397, 103.83}, {-59.397, 103.83}, {-59.397, -66.17}, {-59.397, -66.17}, {0.603, -66.17}, {20.603, -86.17}, {20.603, -86.17}, {20.603, 83.83}}, smooth = Smooth.Bezier), Line(visible = true, origin = {50, 15}, points = {{-35, 0}, {35, 0}}, color = {56, 56, 56}), Line(visible = true, origin = {50, -20}, points = {{-35, 0}, {35, 0}}, color = {56, 56, 56}), Line(visible = true, origin = {50, -55}, points = {{-35, 0}, {35, 0}}, color = {56, 56, 56}), Line(visible = true, origin = {50, 50}, points = {{-35, 0}, {35, 0}}, color = {56, 56, 56})}));
+<br>
+<hr>
+<p>Copyright &copy; 2020 Guido Wolf Reichert<br>Licensed under the <a href=\"modelica://BusinessSimulation.UsersGuide.Licence\">EUPL-1.2</a>&nbsp;or later</p>
+</html>
+</html>"), Diagram(coordinateSystem(extent = {{-150, -90}, {150, 90}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})), Icon(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}}, initialScale = 0.1, grid = {10, 10})));
 end References;

@@ -16,8 +16,8 @@ equation
   connect(u, actualRate);
   A_rate = actualRate;
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
-<p>This is the prototypical unidirectional flow of mass&nbsp;from stock A to stock B at a given rate. The rate can be either constant (<code>rate</code>) or given by the continuous input <strong>u</strong>.</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
+<p>This is the prototypical unidirectional flow of matter&nbsp;from stock A to stock B at a given rate. The rate can be either constant (<code>rate</code>) or given by the continuous input <strong>u</strong>.</p>
 <h4>Notes</h4>
 <p>Since this is a <em>unidirectional</em> flow the rate of flow will always be set to zero (causing an event) if the given rate of transition is a negative value.</p>
 <p><strong>See also</strong></p>

@@ -1,28 +1,34 @@
 within BusinessSimulation.Examples;
 
 model SIR "Classical epidemic model by Kermack and McKendrick"
+  import BusinessSimulation.Units.*;
   extends Icons.Example;
-  inner ModelSettings modelSettings(modelDisplayTimeBase = BusinessSimulation.Types.TimeBases.days, modelTimeHorizon(displayUnit = "d") = 8640000, dt(displayUnit = "d") = 21600) annotation(Placement(visible = true, transformation(origin = {-115, -75}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  inner ModelSettings modelSettings(modelDisplayTimeBase = BusinessSimulation.Types.TimeBases.seconds, modelTimeHorizon = 100, dt = 0.25) annotation(Placement(visible = true, transformation(origin = {-115, -75}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
 
   expandable connector ModelOutput "The model's main output"
     extends Icons.DataOutPort;
-    Amount infected(displayUnit = "million") "Infected population";
-    Amount susceptible(displayUnit = "million") "Susceptible population";
-    Amount removed(displayUnit = "million") "Removed population";
+    Amount infected "Infected population";
+    Amount susceptible "Susceptible population";
+    Amount removed "Removed population";
   end ModelOutput;
 
+  model Theta "Parameter definitions for the Base Case"
+    extends Icons.Theta;
+    parameter Dimensionless baseReproductionNumber = 2.5 "Base reproduction number (R0)";
+    parameter Time infPeriod = 5 "Length of the infectious period";
+    parameter Integer n(min = 1) = 3 "Order of the exponential delay for infected" annotation(Evaluate = true, Dialog(group = "Structural Parameters"));
+  end Theta;
+
   ModelOutput modelOutput "The model's main output" annotation(Placement(visible = true, transformation(origin = {130, -60}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {90, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  parameter Dimensionless baseReproductionNumber = 2.5 "Value of constant output (R0.value)";
-  parameter Time infPeriod(displayUnit = "d") = 432000 "Length of the infectious perid (infectiousPeriod.value)";
-  parameter Integer n(min = 1) = 3 "Order of the exponential delay (infected.n)";
+  Theta theta annotation(Placement(visible = true, transformation(origin = {-115, -55}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
 protected
-  Stocks.MaterialStock susceptible(initialValue(displayUnit = "million") = 1e6, redeclare replaceable type OutputType = Amount) "Population in the susceptible stage of the disease" annotation(Placement(visible = true, transformation(origin = {-90, -30}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  Stocks.MaterialStock susceptible(initialValue = 1e6, redeclare replaceable type OutputType = Amount) "Population in the susceptible stage of the disease" annotation(Placement(visible = true, transformation(origin = {-90, -30}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Stocks.MaterialStock removed(redeclare replaceable type OutputType = Amount) annotation(Placement(visible = true, transformation(origin = {70, -30}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  Stocks.DelayN infected(n = n, initialValue = 1, hasConstantDelayTime = false, redeclare replaceable type OutputType = Amount) "Population in the infectious stage of the disease" annotation(Placement(visible = true, transformation(origin = {-10, -30}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  Stocks.DelayN infected(n = theta.n, initialValue = 1, hasConstantDelayTime = false, redeclare replaceable type OutputType = Amount) "Population in the infectious stage of the disease" annotation(Placement(visible = true, transformation(origin = {-10, -30}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   MoleculesOfStructure.Actuators.Diffusion becoming_infected(hasConstantOtherAdopters = true, hasConstantOtherPopulation = false, hasConstantFractionalAdoptionRate = true, hasConstantAdoptionFraction = true, nextStageIsInfluencing = true, fractionalAdoptionRate = 0, adoptionFraction = 1, otherAdopters = 0) "The infection is spread by a process of social diffusion" annotation(Placement(visible = true, transformation(origin = {-50, -30}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Flows.Unidirectional.OutflowDynamicStock being_removed annotation(Placement(visible = true, transformation(origin = {30, -30}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  Converters.ConstantConverterTime infectiousPeriod(value = infPeriod) "Time interval during which an individual is infectious" annotation(Placement(visible = true, transformation(origin = {20, 0}, extent = {{10, -10}, {-10, 10}}, rotation = 0)));
-  Converters.ConstantConverter R0(value = baseReproductionNumber) "Basic reproduction number for the infectious disease" annotation(Placement(visible = true, transformation(origin = {20, 25}, extent = {{10, -10}, {-10, 10}}, rotation = 0)));
+  Converters.ConstantConverterTime infectiousPeriod(value = theta.infPeriod) "Time interval during which an individual is infectious" annotation(Placement(visible = true, transformation(origin = {20, 0}, extent = {{10, -10}, {-10, 10}}, rotation = 0)));
+  Converters.ConstantConverter R0(value = theta.baseReproductionNumber) "Basic reproduction number for the infectious disease" annotation(Placement(visible = true, transformation(origin = {20, 25}, extent = {{10, -10}, {-10, 10}}, rotation = 0)));
   Converters.Division transmissionRate "Effective contact rate" annotation(Placement(visible = true, transformation(origin = {-30, 20}, extent = {{10, -10}, {-10, 10}}, rotation = 0)));
   Interfaces.Connectors.DataInPort inputDiffusion "Collected (named) input for the infection process" annotation(Placement(visible = true, transformation(origin = {-90, 5}, extent = {{-10, -10}, {10, 10}}, rotation = -810), iconTransformation(origin = {-63.333, 35.643}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
 equation
@@ -40,15 +46,15 @@ equation
   connect(infected.y1, modelOutput.infected) annotation(Line(visible = true, origin = {37.248, -47.5}, points = {{-36.748, 12.5}, {-32.248, 12.5}, {-32.248, -12.5}, {92.752, -12.5}}, color = {192, 192, 192}));
   connect(removed.y1, modelOutput.removed) annotation(Line(visible = true, origin = {102.203, -47.5}, points = {{-21.703, 12.5}, {-17.203, 12.5}, {-17.203, -12.5}, {27.797, -12.5}}, color = {192, 192, 192}));
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>The SIR model is a classical approach in mathematical epidemiology to study the spread of infectious diseases. The model goes back to William Ogilvy Kermack and Anderson Gray McKendrick [<a href=\"modelica://BusinessSimulation.UsersGuide.References\">23</a>] and is also called Kermack-McKendrick-Model.</p>
 <p>The whole population is separated into three stocks(→<strong>modelOutput</strong>):</p>
 <ul>
-<li>The <strong>Susceptible (S)</strong> population that is not immune and may be infected.</li><br>
-<li>The <strong>Infected (I)</strong> population that is infected and <em>infectious</em>.</li><br>
+<li>The <strong>Susceptible (S)</strong> population is not immune and may be infected.</li><br>
+<li>The <strong>Infected (I)</strong> population has been infected and is <em>contagious</em>.</li><br>
 <li>The <strong>Removed (R)</strong> population can neither be infected nor spread the disease.</li>
 </ul>
-<p>As in the example →<a href=\"modelica://BusinessSimulation.Examples.SimpleProductionChainIII\">SimpleProductionChainIII</a> we are using the →<a href=\"modelica://BusinessSimulation.MoleculesOfStructure.Actuators.Diffusion\">Diffusion</a> component to model <em>social diffusion</em>, e.g., spread by contact. The <code>transmissionRate</code> (&beta; in the mathematical literature) is also sometimes called the <em>effective contact rate</em> which helps to understand why we have set the <code>adoptionFraction</code> to <code>1</code>in the <code>Diffusion</code> component.</p>
+<p>As in the example →<a href=\"modelica://BusinessSimulation.Examples.SimpleProductionChainIII\">SimpleProductionChainIII</a> we are using the →<a href=\"modelica://BusinessSimulation.MoleculesOfStructure.Actuators.Diffusion\">Diffusion</a> component to model <em>social diffusion</em>, e.g., transmission by close contact. The <code>transmissionRate</code> (&beta; in the mathematical literature) is also sometimes called the <em>effective contact rate</em> which helps to understand why we have set the <code>adoptionFraction</code> to <code>1</code>in the <code>Diffusion</code> component.</p>
 <table cellspacing=\"0\" cellpadding=\"2\" style=\"margin-left: auto; margin-right: auto;\"><caption align=\"bottom\">Simulation Results</caption>
 <tbody>
 <tr>
@@ -64,5 +70,5 @@ equation
 <ul>
 <li>Adjusted <code>modelSettings</code> and modified plot in v2.0.0.</li>
 </ul>
-</html>", figures = {Figure(title = "SIR", identifier = "stocks", preferred = true, plots = {Plot(curves = {Curve(y = modelOutput.susceptible, legend = "Susceptible"), Curve(y = modelOutput.infected, legend = "Infected"), Curve(y = modelOutput.removed, legend = "Removed")})}, caption = "Susceptible, infected, and removed population.")}), experiment(StartTime = 0, StopTime = 8640000, __Wolfram_DisplayTimeUnit = "d"), __Wolfram, Diagram(coordinateSystem(extent = {{-150, -90}, {150, 90}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5}), graphics = {Text(visible = true, origin = {0, 75}, textColor = {76, 112, 136}, extent = {{-140, -6}, {140, 6}}, textString = "SIR Model of an Epidemic", fontName = "Lato", textStyle = {TextStyle.Bold}), Text(visible = true, origin = {0, 65}, textColor = {76, 112, 136}, extent = {{-140, -3}, {140, 3}}, textString = DynamicSelect("Kermack and McKendrick", "Kermack and McKendrick"), fontName = "Lato", textStyle = {TextStyle.Bold}), Text(visible = true, origin = {-90, -60}, textColor = {128, 128, 128}, extent = {{-11.512, -12.439}, {11.512, 12.439}}, textString = "S", fontSize = 72, textStyle = {TextStyle.Bold}), Text(visible = true, origin = {-10, -60}, textColor = {128, 128, 128}, extent = {{-11.512, -12.439}, {11.512, 12.439}}, textString = "I", fontSize = 72, textStyle = {TextStyle.Bold}), Text(visible = true, origin = {70, -60}, textColor = {128, 128, 128}, extent = {{-11.512, -12.439}, {11.512, 12.439}}, textString = "R", fontSize = 72, textStyle = {TextStyle.Bold}), Bitmap(visible = true, origin = {-38.467, -7.49}, fileName = "modelica://BusinessSimulation/Resources/Images/Examples/SIR/Virus.svg", imageSource = "", extent = {{-13.467, -10.731}, {13.467, 10.731}})}));
+</html>", figures = {Figure(title = "SIR", identifier = "stocks", preferred = true, plots = {Plot(curves = {Curve(y = modelOutput.susceptible, legend = "Susceptible"), Curve(y = modelOutput.infected, legend = "Infected"), Curve(y = modelOutput.removed, legend = "Removed")})}, caption = "Susceptible, infected, and removed population.")}), experiment(StartTime = 0, StopTime = 100, Tolerance = 1e-06, Interval = 0.2), Diagram(coordinateSystem(extent = {{-150, -90}, {150, 90}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5}), graphics = {Text(visible = true, origin = {0, 75}, textColor = {76, 112, 136}, extent = {{-140, -6}, {140, 6}}, textString = "SIR Model of an Epidemic", fontName = "Lato", textStyle = {TextStyle.Bold}), Text(visible = true, origin = {0, 65}, textColor = {76, 112, 136}, extent = {{-140, -3}, {140, 3}}, textString = DynamicSelect("Kermack and McKendrick", "Kermack and McKendrick"), fontName = "Lato", textStyle = {TextStyle.Bold}), Text(visible = true, origin = {-90, -60}, textColor = {128, 128, 128}, extent = {{-11.512, -12.439}, {11.512, 12.439}}, textString = "S", fontSize = 72, textStyle = {TextStyle.Bold}), Text(visible = true, origin = {-10, -60}, textColor = {128, 128, 128}, extent = {{-11.512, -12.439}, {11.512, 12.439}}, textString = "I", fontSize = 72, textStyle = {TextStyle.Bold}), Text(visible = true, origin = {70, -60}, textColor = {128, 128, 128}, extent = {{-11.512, -12.439}, {11.512, 12.439}}, textString = "R", fontSize = 72, textStyle = {TextStyle.Bold}), Bitmap(visible = true, origin = {-38.467, -7.49}, fileName = "modelica://BusinessSimulation/Resources/Images/Examples/SIR/Virus.svg", imageSource = "", extent = {{-13.467, -10.731}, {13.467, 10.731}}), Text(visible = true, origin = {0, 57}, textColor = {255, 0, 0}, extent = {{-140, -3}, {140, 3}}, textString = "1 s === 1 d", fontName = "Lato")}));
 end SIR;

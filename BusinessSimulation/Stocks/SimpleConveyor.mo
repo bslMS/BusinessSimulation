@@ -3,7 +3,7 @@ within BusinessSimulation.Stocks;
 model SimpleConveyor "Conveyor (aka pipeline delay) with constant delay time and no leakage"
   import BusinessSimulation.Types.InitializationOptions;
   import BusinessSimulation.Units.*;
-  import BusinessSimulation.Constants.{small,zero,inf,INF};
+  import BusinessSimulation.Constants.{small, zero, inf, INF};
   extends Icons.Conveyor;
   extends Interfaces.Basics.GenericStock_Special(hasStockInfoOutput = false, init = modelSettings.init);
   parameter OutputType initialValue(min = 0) = 0 "Initial load";
@@ -11,7 +11,7 @@ model SimpleConveyor "Conveyor (aka pipeline delay) with constant delay time and
 protected
   outer ModelSettings modelSettings;
   parameter Time clippedDelayTime = max(modelSettings.dt, delayTime) "Delay time should not be less than dt" annotation(Dialog(tab = "Initialization", enable = false));
-  parameter Rate initialFlow(fixed = false) "Constant initial outflow" annotation(Dialog(tab = "Initialization", enable = false));
+  parameter Real initialFlow(fixed = false) "Constant initial outflow" annotation(Dialog(tab = "Initialization", enable = false));
   Real x(start = initialValue, min = 0) "Initial load" annotation(Dialog(tab = "Initialization", enable = false));
   Real delayedFlow "Shifted inflow";
   Sensors.DynamicStockInfo dynamicStockInfo if hasStockInfoOutput "Generate stock information data" annotation(Placement(visible = true, transformation(origin = {0, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
@@ -52,7 +52,7 @@ equation
   connect(reportedDelayTime.y, dynamicStockInfo.residenceTimeInfo) annotation(Line(visible = true, origin = {18.333, -22}, points = {{26.667, -8}, {-13.333, -8}, {-13.333, 16}}, color = {1, 37, 163}));
   // assert statements
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>The <em>SimpleConveyor</em> (aka <em>pipeline</em> <em>delay</em>) bevhaves as one would expect a conveyor belt to work: &nbsp;What <em>flows</em> <em>into</em> the SimpleConveyor will <em>flow out</em> after a period given by the parameter  <code>delayTime</code> has elapsed. The <code>delayTime</code> will be <em>clipped</em>, so that it can never be smaller than the global parameter <code>modelSettings.dt</code>.</p>
 <h4>Implementation</h4>
 <p>The <em>Conveyor</em> internally uses Modelica's <code>delay()</code> function with a constant time of delay to delay the rate of inflow.</p>

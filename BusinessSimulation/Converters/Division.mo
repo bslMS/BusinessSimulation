@@ -8,7 +8,7 @@ block Division "Division without protection against division by zero"
 equation
   y = u1 / u2;
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>The output <strong>y</strong> is obtained by <em>unguarded division</em> of the <strong>nominator</strong> input <strong>u1</strong> and the <strong>denominator</strong> input <strong>u2</strong>:</p>
 <pre>y = u1/u2;<br><br></pre>
 <h4>See also</h4>

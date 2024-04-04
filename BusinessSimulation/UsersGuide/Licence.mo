@@ -2,6 +2,7 @@ within BusinessSimulation.UsersGuide;
 
 class Licence "European Union Public Licence v. 1.2 (EUPL-1.2)"
   extends Icons.Info;
+  extends Icons.DocumentationInfo;
   annotation(Diagram(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10})), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10})), Documentation(info = "<html>
 <h4 style=\"padding-left: 60px;\">EUROPEAN UNION PUBLIC LICENCE v. 1.2</h4>
 <p>&nbsp;</p>

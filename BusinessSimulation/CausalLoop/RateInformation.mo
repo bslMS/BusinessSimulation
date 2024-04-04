@@ -12,7 +12,7 @@ equation
   /* block,  information processing */
   connect(absoluteSensor.netFlow, y) annotation(Line(visible = true, origin = {5.934, -2.512}, points = {{-101.934, -2.512}, {-85.934, -2.488}, {-85.934, 2.512}, {155.685, 2.512}}, color = {1, 37, 163}));
   annotation(defaultComponentName = "b", Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>The output <strong>y</strong> is the current rate of net flow to the stock whose <code>stockInfoOutput</code> is connected to the component's <code>stockInfoInput</code> connector.</p>
 <h4>See also</h4>
 <p>

@@ -11,7 +11,7 @@ equation
     y = smooth(0, if u < 0 then 0 else u);
   end if;
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>The output <strong><em>y</em></strong> will be identical with the input <strong><em>u</em></strong> whenever <strong><em>u</em></strong> is greater than or equal to zero. It will be zero in all other cases.</p>
 <h4>Implementation</h4>
 <p>In the default setting (<code>strict = false</code>) in the Advanced tab, nonnegativity will be strictly ovserved:</p>

@@ -11,7 +11,7 @@ encapsulated function allocateNormal "Allocate a scarce resoure using a normal p
 algorithm
   y := if w <= 0.0 then 0.0 else 0.5 * (1.0 + erf(3.0 * sqrt(2) * (a - x) / w));
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>The function returns the <em>fraction of capacity or demand</em> that matches the allocated amount of a scarce resource given the clearing attractiveness <code>x</code>, the attractiveness <code>a</code> (e.g., utility), and the width <code>w = 6&sigma;</code> of a normal distribution function that describes the priority profile for the recipient.</p>
 <br>
 <table cellspacing=\"0\" cellpadding=\"2\"><caption align=\"bottom\">Graph of the allocateNormal Function (Distribution Shown Scaled for Clarity)</caption>

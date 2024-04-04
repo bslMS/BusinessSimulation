@@ -2,146 +2,135 @@ within BusinessSimulation.UsersGuide.Tutorial;
 
 final class UnitsInBusinessSimulations "How to make use of the unit framework"
   extends Icons.Info;
+  extends Icons.DocumentationInfo;
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
-<h4>Units in Business Simulations</h4>
-<p>Units and unit checking are central to most modelers in System Dynamics and there are good reasons for this:  It is all too easy to come up with nonsensical equations and mixing \"apples and oranges\". Modelica as a <em>cyber-physical modeling language</em> clearly encourages modelers to make use of its rather elaborate unit framework that provides the attributes <code>quantity, unit</code>, and <code>displayUnit</code> for any real valued variable in models:</p>
+<p class=\"aside\">This information is part of the Business Simulation Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
+<h4>Understanding Units in Business Simulations</h4>
+<p>In business simulations, unit consistency is crucial for model verification. Modelica, being a <em>cyber-physical modeling language</em>, offers the attributes <code>quantity</code>, <code>unit</code>, and <code>displayUnit</code> to ensure accurate unit application in your models:</p>
 <ul>
-<li><code>quantity</code> tells us about what a measurement <em>means</em>: The same unit (say <code>N.m</code>) may be used for <em>energy</em> as well as for <em>torque</em>—so the quantity is important and the method of measurement will also be similar for identical quantities.</li><br>
-<li><code>unit</code> tells us how to compare values obtained in measurements for identical quantities: 10 <code>g</code> are simply a different magnitude than 10 <code>kg</code>.</li><br>
-<li><code>displayUnit</code> finally solves the issue of using a <em>standard unit</em> (typically SI-units), while allowing <em>compatible</em> units for value input and output. SystemModeler allows to enter custom unit conversions in the <code>Preferences>Global</code> menu.</li>
+<li><code>quantity</code> specifies what the measurement signifies. For instance, the unit <code>N.m</code> could represent either <em>energy</em> or <em>torque</em>. Understanding the quantity provides context and guides measurement methods.</li><br>
+<li><code>unit</code> is the scale for measurement comparison. For example, comparing 10 <code>g</code> and 10 <code>kg</code> demonstrates different magnitudes, while seconds [<code>s</code>] and meters [<code>m</code>] are incompatible units.</li><br>
+<li><code>displayUnit</code> allows using <em>compatible</em> units for ease of value input and output, while the internal calculations use a standard <em>base unit</em> (often SI units).</li>
 </ul>
-<p>While the rigor of physical models cannot be fully transfered to modeling in the social sciences and ecology, there is maybe some middle ground:</p>
+<p>While the strict SI unit adherence in physical models might not fully translate to the \"softer\" sciences, adopting a balanced approach can be beneficial:</p>
 <ul>
-<li>We realize, that <em>meaning and measurement procedures</em> (e.g., quantity) are very important and here we might strive for a bit of pragmatism, e.g., Forrester [<a href = \"modelica://BusinessSimulation.UsersGuide.References\">2</a>] just distinguished <em>personnel, material, money, capital equipment, orders, and information</em>.</li><br>
-<li>While we may have <code>types</code> with a fixed (e.g., <code>final</code>) unit, there are too many possibilities and preferences in social science modeling. Ultimately, for most non-SI units the ultimate choice of unit resides with the modeler.</li><br>
-<li>Nevertheless, <strong>we should make use of <code>displayUnit</code> whenever possible, as using a standard or <em>canonical unit</em> for internal calculations avoids ambiguity and errors.</strong> We should, after all, remember that larger models are typically build in separate chunks by different teams and that—by using the functional mockup interface standard—models from different sources may be combined.</li>
+<li>The significance of <em>meaning and measurement procedures</em> (like quantity) cannot be overstated. For instance, Forrester [<a href = \"modelica://BusinessSimulation.UsersGuide.References\">2</a>] identified the following six main quantities <em>personnel, material, money, capital equipment, orders, and information</em>.</li><br>
+<li>In social science modeling, where preferences and possibilities are numerous, modelers often have the final say in non-SI unit choices.</li><br>
+<li>However, employing <code>displayUnit</code> is highly recommended for clarity and error minimization. Remember, in large-scale models developed by different teams, consistent unit use is essential for accurate integration of various model components.</li>
 </ul>
-<h4>Units in the Business Simulation Library</h4>
-<p>Currently, units are not used for <em>acausal</em> connectors, i.e., the variables <code>stock</code> and <code>rate</code> in a →<a href=\"modelica://BusinessSimulation.Interfaces.Connectors.StockPort\">StockPort</a> or in a →<a href=\"modelica://BusinessSimulation.Interfaces.Connectors.FlowPort\">FlowPort</a> are simply of the predefined type <code>Real</code> and <code>Units.Rate</code>, making them <em>unitless</em> and <em>dimensionless</em>, respectively.</p>
-<p>Quantities and units are used for <em>information outputs</em> of components. In most elementary classes, there is a <code>replaceable type OutputType</code>, which can be conveniently set using a drop down list in SystemModeler; this behavior is also explicitly triggered using <code>annotation(choicesAllMatching = true)</code>. In general, the default will be one of the following types: <code>Units.Unspecified, Units.Rate</code>, or <code>Units.Time</code>.</p>
-<p>Essentially, a modeler may simply stick with <code>Units.Unspecified</code>, which is identical to Modelica's predefined type <code>Real</code>, for a stock called \"personnel\" and then use the editor to <em>modify</em> the <code>quantity</code> and <code>unit</code> attributes:</p>
-<pre><span style = \"background-color : lightgray\">Unspecified<strong>(quantity = \"HumanPopulation\", unit = \"people\")</strong></span></pre>
-<p>Doing so would correspond with what most dedicated System Dynamics packages allow. Nevertheless, the Business Simulation Library is designed with the following recommendations:</p>
-<h5>Units of Time</h5>
-<p>Modelica does not allow to change the unit for the built-in variable <code>time</code>. Accordingly, the following types all have <code>unit = \"s\"</code> and all models will run in <em>seconds</em> so that there can never be any doubt when different models are coupled:</p>
-<pre>Time, Time_minutes, Time_hours, Time_days, Time_weeks, Time_months, Time_quarters, Time_years</pre>
-<p>The type <code>Time_years</code>, for example, has <code>displayUnit = \"yr\"</code> and allows to conveniently enter <code>5 yr</code> in setting the →<a href=\"modelica://BusinessSimulation.Converters.ConstantConverterTime\">ConstantConverterTime</a> <code>usefulLife</code> in the model <a href=\"modelica://BusinessSimulation.Examples.SimpleProductionChain\">Examples.SimpleProductionChain</a>.</p>
-<p>Note, that we need to add <em>custom unit conversions</em> for the units <code>wk</code>, <code>mo</code>, <code>qtr</code>, and <code>yr</code> as shown in Figure&nbsp;1. In SystemModeler, the library will automatically add these conversions.</p>
-<table cellspacing=\"0\" cellpadding=\"2\"><caption align=\"top\">Figure 1: Custom Conversions for Time</caption>
-<tbody>
-<tr>
-<td><img src=\"modelica://BusinessSimulation/Resources/Images/UsersGuide/Tutorial/UnitsInBusinessSimulations/CustomConversions_Time.png\" alt=\"CustomConversions_Time.png\" width=\"400\"></td>
-</tr>
-</tbody>
-</table>
-<h5>Cybernetic Units</h5>
-<p>In cybernetics or control, <em>units</em> and even <em>quantities</em> will not matter, e.g., controllers are often designed to operate using dimensionless variables.</p>
-<h6>Information-related Types</h6>
-<p>All cybernetic types can be seen as extensions of the basic quantity <code>Information</code></em>. While <code>Information</code> has <code>unit = \"1\"</code>, making it <em>dimensionless</em>, this choice of unit is not <code>final</code> and can be modified.</p>
-<pre>
-  type Information = Unspecified(quantity = \"Information\", unit = \"1\");
-  type Fraction = Information(min = -1, max = 1);
-  type Dimensionless = Information(final unit = \"1\");
-  type Ratio = Dimensionless(final min = 0);
-  type Probability = Dimensionless(final min = 0, final max = 1);
-</pre>
-<br>
-<h5>Extensive Quantities (Physical Properties I)</h5>
-<p>In the physical world, quantities and units are important. In the library, <em>extensive quantities</em> are distinguished from <em>intensive quantities</em>. Extensive properties of a system vary with the <em>size</em> of the system and all of these quantities are typically collected in <em>stocks</em> (conserved quantities).</p>
+   <h4>Unit Application in the Business Simulation Library</h4>
+    <p>In the BSL, assigning units to a variable, like <code>x</code>, automatically applies these units to related variables (e.g., <code>y</code>) in equations such as <code>x = y</code>. This principle ensures consistency in unit determination, akin to the numerical value derivation from known values and equations. A well-constructed model will systematically derive the units of output variables from the input units, guaranteeing a coherent unit system and enhancing model reliability. An output with incorrect units is an indicator of potential equation errors.</p>
+    <p>Most elementary classes in our library include a <code>replaceable type OutputType</code>. This can be set easily via a dropdown in SystemModeler, facilitating user-friendly selection of <code>displayUnit</code> or <code>unit</code> next to a predefined <code>quantity</code>. This early setup aids in quick identification and resolution of any unit discrepancies. In some components <code>OutputType</code> is also used to define parameters.</p>
+    <p>Modelers might still simply opt for <code>Units.Unspecified</code>, equivalent to Modelica's <code>Real</code>, and customize the <code>quantity</code> and <code>unit</code> attributes as needed. Nevertheless, we recommend to follow some guidelines for using the Business Simulation Library effectively.</p>
+<p>In the following, we will categorize predefined <code>types</code> into four separate categories: Time units, cybernetic- and information-related quantities, extensive and intensive properties of systems, and finally rates of change with regard to the before mentioned quantities.</p>
+<h5>Time Units in the Library</h5>
+<p>Modelica's <code>time</code> variable is unchangeable and <em>always in seconds</em>, ensuring unambiguity across different model integrations. Consequently, all time-related types in the BSL use <code>unit = \"s\"</code>.</p>
+    <p>For convenient input and output, we define time units like <a href = \"modelica://BusinessSimulation.Units.Time_years\"><code>yrCal</code></a> (the mean <a href = \"https://en.wikipedia.org/wiki/Gregorian_calendar\">Gregorian calendar year</a> will display as <code>y</code> in System Modeler), <a href=\"modelica://BusinessSimulation.Units.Time_months\"><code>mo</code></a> (Gregorian month), and <a href =\"modelica://BusinessSimulation.Units.Time_quarters\"><code>qtr</code></a> (Gregorian quarter year), which will minimize deviations in long-term simulations (see Notes below). Other units of time are less ambiguous and also available, e.g., <a href=\"modelica://BusinessSimulation.Units.Time_weeks\"><code>wk</code></a> (week), <a href=\"modelica://BusinessSimulation.Units.Time_days\"><code>d</code></a> (day), <a href=\"modelica://BusinessSimulation.Units.Time_hours\"><code>h</code></a> (hour), and <a href=\"modelica://BusinessSimulation.Units.Time_minutes\"><code>min</code></a> (minutes). These exact units of time can be used, should this kind of precision really be required in a simulation.</p>
+<h5>Cybernetic and Information-related Units</h5>
+    <p>In <a href=\"https://www.britannica.com/science/cybernetics\">cybernetics</a>, units and quantities often become irrelevant, with many controllers using dimensionless variables—typically normalizing values so that the units in the resulting ratio cancel out. The following types can be understood in this fashion:</p>
+<ul>
+<li><a href = \"modelica://BusinessSimulation.Units.Dimensionless\"><code>Dimensionless</code></a>
+<li><a href = \"modelica://BusinessSimulation.Units.Ratio\"><code>Ratio</code></a>
+<li><a href = \"modelica://BusinessSimulation.Units.PositiveRatio\"><code>PositiveRatio</code></a>
+<li><a href = \"modelica://BusinessSimulation.Units.Fraction\"><code>Fraction</code></a>
+<li><a href = \"modelica://BusinessSimulation.Units.Probability\"><code>Probability</code></a>
+<li><a href = \"modelica://BusinessSimulation.Units.Information\"><code>Information</code></a>
+</ul>
+<p>Modelers can adapt these types to a wide range of cybernetic and control applications. Note that only <code>Information</code> will have a non-empty quantity attribute, all other types in this section are purely numeric quantities (<code>quantity = \"\"</code>).</p>
+<h5>Extensive Properties of Systems</h5>
+<p>While we will be modeling at a much higher level of abstraction, it seems helpful to observe thermodynamic reasoning in making a distinction between <em>extensive quantities</em> and <em>intensive quantities</em>. Extensive properties of a system vary with its <em>size</em> and all of these quantities are typically collected in <em>stocks</em>, which earns them the label \"conserved quantities.\" In the library, we will have all conserved quantities known to physics next to some extensions all of which extend from the basic type <a href = \"modelica://BusinessSimulation.Units.ExtensiveQuantity\"><code>ExtensiveQuantity</code></a>.</p>
+<h6>Conserved Physical Quantities (SI units)</h6>
+<p>Humanity and its economic system are tightly embedded within a biological and physical environment. Therefore  <em>physical</em> stocks and their in- and outflows should be accounted for properly [<a href = \"modelica://BusinessSimulation.UsersGuide.References\">21</a>]. The library follows the Modelica Standard Library in explicity accounting for these important conserved physical quantities as defined by the <a href = \"https://www.britannica.com/science/International-System-of-Units\">International System of Units</a> (SI):</p>
+<ul>
+<li><a href = \"modelica://BusinessSimulation.Units.AmountOfSubstance\"><code>AmountOfSubstance</code></a>
+<li><a href = \"modelica://BusinessSimulation.Units.Volume\"><code>Volume</code></a>
+<li><a href = \"modelica://BusinessSimulation.Units.Length\"><code>Length</code></a>
+<li><a href = \"modelica://BusinessSimulation.Units.Area\"><code>Area</code></a>
+<li><a href = \"modelica://BusinessSimulation.Units.Mass\"><code>Mass</code></a>
+<li><a href = \"modelica://BusinessSimulation.Units.Energy\"><code>Energy</code></a>
+<li><a href = \"modelica://BusinessSimulation.Units.Entropy\"><code>Entropy</code></a>
+<li><a href = \"modelica://BusinessSimulation.Units.Momentum\"><code>Momentum</code></a>
+<li><a href = \"modelica://BusinessSimulation.Units.AngularMomentum\"><code>AngularMomentum</code></a>
+</ul>
+<p>Unfortunately, as far as SI is concerned everything that is \"counted\" is considered to be <em>dimensionless</em>, i.e., the base unit is simply <code>1</code>. This fails to distinguish <em>integer-valued counts</em> of elementary entities from <em>real-valued ratios</em> like <code>rad, m/m</code> etc. Following Flater's recommendations [<a href = \"modelica://BusinessSimulation.UsersGuide.References\">29</a>], we will distinguish <em>counts</em> from dimensionless <em>ratios</em> by introducing <strong>new base units</strong> for counts of elementary quantities, data capacity, labor, and monetary value.</p>
 <h6>Amounts—Counting Entities</h6>
-<p>In a model of chemical reactions we will not find <code>unit = \"H2O\"</code> or other <em>molecule names</em>—which could be seen as the analogy to what is common practice in System Dynamics. It may not seem totally implausible to approach modeling in the social sciences a bit like a chemist and use <em>counting</em> units for some <em>amount</em> of similar entities contained in stocks, whose <em>instance name</em> very likely will reflect what is counted or measured. As the compatible units for <code>type Amount</code> below show, we may even include a chemist's <code>mol</code>:</p>
-<pre>
-  type Amount = ExtensiveQuantity(quantity = \"Amount\", unit = \"each\");
-</pre>
-<p>Using the custom unit conversions shown in Figure&nbsp;3 we can use <code>displayUnit</code> have large values be shown as <code>2 million</code> or enter small values as <code>2.5 percent</code>. The resulting value will always be a <em>pure number</em> since <code>1&nbsp;each&nbsp;=&nbsp;1</code>.</p>
-<table cellspacing=\"0\" cellpadding=\"2\"><caption align=\"top\">Figure 3: Custom Conversions for Amount</caption>
-<tbody>
-<tr>
-<td><img src=\"modelica://BusinessSimulation/Resources/Images/UsersGuide/Tutorial/UnitsInBusinessSimulations/CustomConversions_Amount.png\" alt=\"CustomConversions_Amount.png\" width=\"400\"></td>
-</tr>
-</tbody>
-</table>
+<p>In the Business Simulation library, we will take the liberty to introduce a new base unit <a href = \"wsm:/units/BusinessSimulation#each\"><code>each</code></a> for counting the number <code>N</code> of \"elementary entities, individuals, or systems.\" The type <a href = \"modelica://BusinessSimulation.Units.Amount\"><code>Amount</code></a> thus is an immediate analogue to the way a chemist uses <code>mol</code> to <em>count</em> amount of substance.</p>
+<p>The base unit <code>each</code> will be represented by <code>#</code> in System Modeler to clearly distinguish a count from ratios and other dimensionless quantities. It has the following derived units: <code>pair</code>, <code>dozen(doz)</code>, <code>score</code>, <code>gross</code>, <code>ream</code>, <code>thousand(k)</code>, <code>million(M)</code>, <code>billion(B)</code>, and <code>trillion(T)</code>. Since the SI prefixes <code>k</code>, <code>M</code>, and <code>T</code> cannot be used for dimensionless quantities with unit <code>1</code>, there will be no ambiguity regarding their use as counting units.</p>
+<h6>Ecological and Economical Quantities</h6>
+<p>The chemist's mole is a <em>parametric</em> quantity. Unless we are told what is being counted, e.g., certain molecules, atoms or particles, the given amount is useless information. Since Modelica does not know parametric quantities, we should either use a variable's (or component's) <em>name</em> or its <code>quantity</code> attribute to clearly indicate what we are counting. In the latter case, it seems reasonable to distinguish the following essential quantites in economic and ecological models:</p>
+<ul>
+<li><a href = \"modelica://BusinessSimulation.Units.Population\"><code>Population</code></a>
+<li><a href = \"modelica://BusinessSimulation.Units.People\"><code>People</code></a>
+<li><a href = \"modelica://BusinessSimulation.Units.Labor\"><code>Labor</code></a>
+<li><a href = \"modelica://BusinessSimulation.Units.TangibleAssets\"><code>TangibleAssets</code></a>
+<li><a href = \"modelica://BusinessSimulation.Units.Material\"><code>Material</code></a>
+<li><a href = \"modelica://BusinessSimulation.Units.Goods\"><code>Goods</code></a>
+<li><a href = \"modelica://BusinessSimulation.Units.IntangibleAssets\"><code>IntangibleAssets</code></a>
+<li><a href = \"modelica://BusinessSimulation.Units.Orders\"><code>Orders</code></a>
+<li><a href = \"modelica://BusinessSimulation.Units.UnitScaleIntangibles\"><code>UnitScaleIntangibles</code></a>
+</ul>
+<p>All of these quantities will have <code>unit = \"each\"</code> with two notable exceptions. <em>Labor</em> will be accounted for using the newly defined base unit <a href=\"wsm:/units/BusinessSimulation#FTE\"><code>FTE</code></a>, while <em>UnitScaleIntangibles</em> are a special kind of intangible assets normalized to the unit range.</p>
+<h6>Data Capacity</h6>
+<p>Above, we already introduced cybernetic and information-related quantities, which are essentially dimensionless. In some lose analogy, we might talk about \"weighing\" whatever information we have. This naturally leads to the new base unit <a href=\"wsm:/units/BusinessSimulation#bit\"><code>bit</code></a> and its derived unit <a href=\"wsm:/units/BusinessSimulation#byte\"><code>byte</code></a>—both of which can be used with SI prefixes to measure <a href = \"modelica://BusinessSimulation.Units.DataCapacity\"><code>DataCapacity</code></a>.<p>
 <h6>Monetary Value</h6>
 <p>Value in economic models may be either expressed as (dimensionless) <em>utility</em> or in <em>monetary</em> terms. For the latter, the following <code>types</code> are defined in the <code>Units</code> package:
-<pre>
-  type Money = Amount(final quantity = \"Money\", unit = \"CU\");
-  type Money_USD = Money(final unit = \"USD\");
-  type Money_EUR = Money(final unit = \"EUR\");
-  type Money_JPY = Money(final unit = \"JPY\");
-  type Money_GBP = Money(final unit = \"GBP\");
-</pre>
-<br>
-<h6>Ecological and Economical Quantities</h6>
-<p>Even though, we may exclusively use counting units (see <code>Amount</code> above), it seems reasonable to distinguish some essential quantites and their interconnected networks of stocks and flows—similar to the way Forrester did, as mentioned before. In economic and ecological models, the following definitions may suffice for a lot of use cases:</p>
-<pre> 
-  type Population = Amount(quantity = \"Population\");
-  type People = Population;
-  type Labor = Amount(quantity = \"Labor\", unit = \"FTE\");
-  type TangibleAssets = Amount(quantity = \"TangibleAssets\");
-  type Material = TangibleAssets(quantity = \"Material\");
-  type Goods = Material;
-  type IntangibleAssets = Amount(quantity = \"IntangibleAssets\");
-  type Orders = IntangibelAssets(quantity = \"Orders\");
-  type UnitScaleIntangibles = IntangibleAssets(min = 0.0, max = 1.0, displayUnit = \"percent\");
-</pre>
-<br>
-<h6>Conserved Physical Quantities</h6>
-<p>In times of climate change and other global sustainability issues, the need to combine <em>ecological</em> and <em>economical</em> thinking has led to the realization that humanity and its economic system are tightly embedded within a biological and physical environment. Therefore  <em>physical</em> stocks and their in- and outflows have to be accounted for properly [<a href = \"modelica://BusinessSimulation.UsersGuide.References\">21</a>]. It thus seems appropriate to at least introduce some important conserved physical quantities:</p>
-<pre>
-  type AmountOfSubstance = ExtensiveQuantity(final quantity = \"AmountOfSubstance\", final unit = \"mol\");
-  type Volume = ExtensiveQuantity(final quantity = \"Volume\", final unit = \"m3\");
-  type Length = ExtensiveQuantity(final quantity = \"Length\", final unit = \"m\");
-  type Area = ExtensiveQuantity(final quantity = \"Area\", final unit = \"m2\");
-  type Mass = ExtensiveQuantity(final quantity = \"Mass\", final unit = \"kg\");
-  type Energy = ExtensiveQuantity(final quantity = \"Energy\", final unit = \"J\");
-  type ElectricCharge = ExtensiveQuantity(final quantity = \"ElectricCharge, final unit = \"C\");
-  type Entropy = ExtensiveQuantity(final quantity = \"Entropy\", final unit = \"J/K\");
-  type Momentum = ExtensiveQuantity(final quantity = \"Momentum\", final unit = \"kg.m/s\");
-  type AngularMomentum = ExtensiveQuantity(final quantity = \"AngularMomentum\", final unit = \"kg.m2/s\");
-</pre>
-<br>
-<h5>Intensive Quantities (Physical Properties II)</h5>
-<p>Contrary to extensive quantities, intensive properties of a system do not change with its size. A typical example is temperature. After dividing a certain volume of hot liquid into two identical ones, the amount of <em>entropy</em> in each half will be half that contained in the former volume, while the temperature—neglecting the cooling during the process—will have remained identical for both volumes. The library contains the following intensive quantities:</p>
-<pre>
-  type Density = IntensiveQuantity(final quantity = \"Density\", final unit = \"kg/m3\", displayUnit = \"g/cm3\", min = 0.0);
-  type Angle = IntensiveQuantity(final quantity = \"Angle\", final unit = \"rad\", displayUnit = \"deg\");
-  type Temperature = IntensiveQuantity(final quantity = \"ThermodynamicTemperature\", final unit = \"K\", start = 288.15, nominal = 300, min = 0.0, displayUnit = \"degC\");
-  type TemperatureDifference = IntensiveQuantity(final quantity = \"ThermodynamicTemperature\", final unit = \"K\", displayUnit = \"degC\") annotation(absoluteValue = false);
-</pre>
-<br>
-<h6>Rates</h6>
-<p>In system dynamics, the most important intensive quantities certainly are <em>rates of flow</em>. Unlike <code>time</code>, the use of <code>displayUnit</code>—with its convenient unit conversions—is much harder to establish for arbitrary rates: We would need to have lots of unit conversions say one for <code>million FTE/yr</code> and another one for <code>million EUR/yr</code>.</p>
-<p>Given that we are most of the time simply <em>counting</em> some entities, it should suffice to enter <em>dimensionless rates</em> (→<a href=\"modelica://BusinessSimulation.Units.Rate\">Units.Rate</a>) as we then only need to add custom unit conversions for for the following time reciprocals in SystemModeler: <code>1/wk, 1/mo, 1/qtr, 1/yr</code> (the ones for <code>1/min, 1/h, 1/d</code> are available by default). The unit conversions for these dimensionless rates are shown in Figure&nbsp;2.</p>
-<table cellspacing=\"0\" cellpadding=\"2\"><caption align=\"top\">Figure 2: Custom Conversions for Rate</caption>
-<tbody>
-<tr>
-<td><img src=\"modelica://BusinessSimulation/Resources/Images/UsersGuide/Tutorial/UnitsInBusinessSimulations/CustomConversions_Rate.png\" alt=\"CustomConversions_Rate.png\" width=\"400\"></td>
-</tr>
-</tbody>
-</table>
-<p>In the example <a href=\"modelica://BusinessSimulation.Examples.SimpleProductionChain\">Examples.SimpleProductionChain</a> we can set the <code>productionRate</code> in the ConstantConverter by leaving <code>ValueType = Unspecified</code> (default) and using <code>timeBaseString</code> to select \"month\", so that <code>value = 100</code> is then correctly shown as a dimensionless rate of <code>100 per month</code>. Remember, that the value used in any internal calculation will be the corresponding rate <em>per second</em>.</p>
-<p>Next to dimensionless rates we can also work with <code>AmountRate</code> and correct rates for elementary physical flows, e.g., <code>VolumeFlowRate, MassFlowRate, EnergyFlowRate, MomentumFlowRate, AngularMomentumFlowRate, Velocity, EntropyFlowRate, ElectricCurrent</code>, which are defined as follows:</p>
-<pre>
-  type Rate = IntensiveQuantities(quantity = \"Rate\", unit = \"1/s\") \"Dimensionless rate of flow\";
-  type AmountRate = Rate(quantity = \"AmountRate\", unit = \"each/s\"); 
-  type VolumeFlowRate = Rate(final quantity = \"VolumeFlowRate\", final unit = \"m3/s\");
-  type MassFlowRate = Rate(final quantity = \"MassFlowRate\", final unit = \"kg/s\");
-  type EnergyFlowRate = Rate(final quantity = \"Power\", final unit = \"W\");
-  type MomentumFlowRate = Rate(final quantity = \"MomentumFlowRate\", final unit = \"kg.m/s2\");
-  type AngularMomentumFlowRate = Rate(final quantity = \"AngularMomentumFlowRate\", final unit = \"kg.m2/s2\");
-  type Velocity = Rate(final quantity = \"Velocity\", final unit = \"m/s\");
-  type EntropyFlowRate = Rate(final quantity = \"EntropyFlowRate\", final unit = \"J/(K.s)\");
-  type ElectricCurrent = Rate(final quantity = \"ElectricCurrent\", final unit = \"A\");	
-</pre> 
-<br>
-<p>Refer to the documentation for <a href=\"modelica://BusinessSimulation.Converters.ConstantConverterRate\">ConstantConverterRate</a> for more detail.</p>
-<br>
+<ul>
+<li><a href = \"modelica://BusinessSimulation.Units.Money\"><code>Money</code></a>
+<li><a href = \"modelica://BusinessSimulation.Units.Money_USD\"><code>Money_USD</code></a>
+<li><a href = \"modelica://BusinessSimulation.Units.Money_EUR\"><code>Money_EUR</code></a>
+<li><a href = \"modelica://BusinessSimulation.Units.Money_JPY\"><code>Money_JPY</code></a>
+<li><a href = \"modelica://BusinessSimulation.Units.Money_GBP\"><code>Money_GBP</code></a>
+<li><a href = \"modelica://BusinessSimulation.Units.Money_CNY\"><code>Money_CNY</code></a>
+</ul>
+<p>All of these monetary units are defined as <em>base units</em> using three letter codes according to ISO 4217 as unit names: <a href=\"wsm:/units/BusinessSimulation#XXX\"><code>XXX</code></a>, <a href=\"wsm:/units/BusinessSimulation#USD\"><code>USD</code></a>, <a href=\"wsm:/units/BusinessSimulation#EUR\"><code>EUR</code></a>, <a href=\"wsm:/units/BusinessSimulation#GBP\"><code>GBP</code></a>, <a href=\"wsm:/units/BusinessSimulation#JPY\"><code>JPY</code></a>, <a href=\"wsm:/units/BusinessSimulation#CNY\"><code>CNY</code></a>. While all monetary units use <code>quantity = \"Money\"</code>, a modeler needs to specify how different currencies are to be exchanged—there is obviously no static conversion factor.</p>
+<h5>Intensive Properties of Systems</h5>
+<p>Contrary to extensive quantities, intensive properties of a system (base type: <a href = \"modelica://BusinessSimulation.Units.IntensiveQuantity\"><code>IntensiveQuantity</code></a>) do not change with its size. A typical example is temperature. After dividing a certain volume of hot liquid into two identical ones, the amount of <em>entropy</em> in each half will be half that contained in the original volume, while the temperature—neglecting the cooling during the process—will have remained identical for both volumes.</p>
+<p>The library contains the following intensive (physical) quantities:</p>
+<ul>
+<li><a href = \"modelica://BusinessSimulation.Units.Density\"><code>Density</code></a>
+<li><a href = \"modelica://BusinessSimulation.Units.Angle\"><code>Angle</code></a>
+<li><a href = \"modelica://BusinessSimulation.Units.Temperature\"><code>Temperature</code></a>
+<li><a href = \"modelica://BusinessSimulation.Units.TemperatureDifference\"><code>TemperatureDifference</code></a>
+</ul>
+<h5>Process Quantities</h5>
+<p>With the exception of <code>time</code> we have so far talked about properties of systems—either accounted for by its states or functions thereof. To specify flows in system dynamics we need to introduce <em>process quantities</em> pertaining to processes changing the states of a system.</p>
+<p>In correspondence with the main physical quantities that are conserved, the following physical flows are defined in the library:</p>
+<ul>
+<li><a href = \"modelica://BusinessSimulation.Units.VolumeFlowRate\"><code>VolumeFlowRate</code></a>
+<li><a href = \"modelica://BusinessSimulation.Units.MassFlowRate\"><code>MassFlowRate</code></a>
+<li><a href = \"modelica://BusinessSimulation.Units.EnergyFlowRate\"><code>EnergyFlowRate</code></a>
+<li><a href = \"modelica://BusinessSimulation.Units.MomentumFlowRate\"><code>MomentumFlowRate</code></a>
+<li><a href = \"modelica://BusinessSimulation.Units.AngularMomentumFlowRate\"><code>AngularMomentumFlowRate</code></a>
+<li><a href = \"modelica://BusinessSimulation.Units.Velocity\"><code>Velocity</code></a>
+<li><a href = \"modelica://BusinessSimulation.Units.EntropyFlowRate\"><code>EntropyFlowRate</code></a>
+<li><a href = \"modelica://BusinessSimulation.Units.ElectricCurrent\"><code>ElectricCurrent</code></a>
+</ul>
+<p>Our non-physical extensions necessitate the definition of corresponding flows as well:</p>
+<ul>
+<li><a href = \"modelica://BusinessSimulation.Units.Rate\"><code>Rate</code></a>
+<li><a href = \"modelica://BusinessSimulation.Units.AmountRate\"><code>AmountRate (quantity = \"Throughput\")</code></a> 
+<li><a href = \"modelica://BusinessSimulation.Units.LaborGrowthRate\"><code>LaborGrowthRate</code></a>
+<li><a href = \"modelica://BusinessSimulation.Units.DataTransferRate\"><code>DataTransferRate</code></a>
+<li><a href = \"modelica://BusinessSimulation.Units.MonetaryFlow\"><code>MonetaryFlow</code></a>
+<li><a href = \"modelica://BusinessSimulation.Units.MonetaryFlow_USD\"><code>MonetaryFlow_USD</code></a>
+<li> ... 
+</ul>
+<h4>Notes</h4>
+<ul>
+<li>Some links provided for base units, derived units, and quantity-related display unit definitions of the library will only work \"in product\", i.e., for users having Wolfram System Modeler (WSM) and the Business Simulation Library (BSL) installed.</li><br>
+<li>The use of non-SI units requires definition of custom <em>derived</em> and <em>base units</em>. Presently, only Wolfram System Modeler 14 is tested to allow this flexibility and convenience. Modelers may always take recourse to using standard SI units with the BSL, which are supported by all Modelica tools. Examples have been adapted accordingly by defining <code>s === model's standard unit of time</code> thus forfeiting the use of <code>displayUnit</code>.</li><br>
+<li>Whenever we speak about \"years\" within the BSL, we will always mean <em>average calendar years</em> (365.2425 days). The reason for this choice is that in Modelica time will always be accounted for in seconds; we might accordingly want to use the amount of seconds that most closely represents an average year over arbitrary time spans. Using average calendar years will thus maximize the chance that adding the amount of seconds to an actual start date will result in the correct end date for a simulation that spans several years—the mean absolute error for using <code>yrCal</code> will typically be less than 0.5 days.</li>
+</ul>
+<h4>See also</h4>
+<p>
+<a href=\"modelica://BusinessSimulation.Units\">Units</a>
+</p>
+<br> 
 <hr>
 <p>Copyright &copy; 2020 Guido Wolf Reichert<br>Licensed under the <a href=\"modelica://BusinessSimulation.UsersGuide.Licence\">EUPL-1.2</a>&nbsp;or later</p>
 </html>", revisions = "<html>
 <ul>
-<li>Changes in unit hierarchy and type definitions in v2.1.0.</li>
+<li>Changes in unit hierarchy and type definitions in v2.1.0 and v2.2.</li>
 </ul> 
 </html>"));
 end UnitsInBusinessSimulations;

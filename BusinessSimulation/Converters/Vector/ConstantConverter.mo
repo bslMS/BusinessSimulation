@@ -9,7 +9,7 @@ block ConstantConverter "A list of constant values is turned into a constant vec
 equation
   y = value;
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>The parameter <code>value</code>&nbsp;(a vector) is used to set the continous output <strong>y </strong>making it a vector of&nbsp;<em>constant-valued signals</em>.</p>
 <h4>Notes</h4>
 <ul>

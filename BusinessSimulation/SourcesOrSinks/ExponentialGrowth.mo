@@ -6,7 +6,7 @@ model ExponentialGrowth "Exponential growth of connected stock"
   extends Interfaces.Basics.GenericSourceOrSink;
   extends Icons.Source;
   Interfaces.Connectors.RealInput u if not hasConstantRate "Fractional rate given as exogenous input" annotation(Placement(visible = true, transformation(origin = {-145, 40}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-50, 100}, extent = {{-10, 10}, {10, -10}}, rotation = 270)));
-  parameter OutputType fractionalRate(min = 0) = unspecified "Constant fractional rate to be used if chosen" annotation(Dialog(enable = hasConstantRate));
+  parameter Rate fractionalRate(min = 0) = unspecified "Constant fractional rate to be used if chosen" annotation(Dialog(enable = hasConstantRate));
   parameter Boolean isCCR = true "= true, if the factional rate given is assumed to be a continuously compounding rate else the rate will be converted" annotation(Evaluate = true, Dialog(group = "Structural Parameters"));
   parameter Boolean hasConstantRate = false "= true, if the constant fractional rate is used instead of the real input u" annotation(Evaluate = true, Dialog(group = "Structural Parameters"));
 protected
@@ -35,7 +35,7 @@ equation
   connect(u, ccRate.u) annotation(Line(visible = true, origin = {-107, 45}, points = {{-38, -5}, {7, -5}, {7, 5}, {49, 5}}, color = {1, 37, 163}));
   connect(u, indicatedFractionalRate.u) annotation(Line(visible = true, origin = {-97.43, 55}, points = {{-47.57, -15}, {-2.57, -15}, {-2.57, 15}, {39.43, 15}}, color = {1, 37, 163}));
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p><em>ExponentialGrowth</em> will fill the connected stock from a source with infinite capacity at a rate that is determined at any time as the product of the current amount in the connected stock and the fractional rate given. The rate can either be given as a constant parameter&nbsp;<code>fractionalRate</code> or as a real input&nbsp;<strong>u</strong>, making it variable in time.</p>
 <h4>Notes</h4>
 <ul>

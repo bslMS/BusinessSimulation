@@ -30,7 +30,7 @@ algorithm
     end if;
   end if;
   annotation(Inline = true, Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>The output <strong>y</strong> is the interpolated value given a list of tuples (<code>tuples = { {x1,y1}, {x2,y2}, ...}</code>) and the index value <code>jlo</code> as a result from the functions <code>hunt()</code> or <code>locate()</code>.</p>
 <h4>Syntax</h4>
 <br>

@@ -5,7 +5,7 @@ model Account "Basic model of an account with optional interest"
   import BusinessSimulation.Units.*;
   import BusinessSimulation.Constants.*;
   extends Icons.SubsystemIncubator;
-  extends Interfaces.Basics.OutputTypeChoice(redeclare replaceable type OutputType = Money);
+  extends Interfaces.Basics.OutputTypeChoice;
   Interfaces.Connectors.StockPort inflow "Increasing the balance of the account" annotation(Placement(visible = true, transformation(origin = {-150, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-100, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Interfaces.Connectors.StockPort outflow "Decreasing the balance of the account" annotation(Placement(visible = true, transformation(origin = {150, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {100, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Interfaces.Connectors.RealInput u_plus if hasRateInputs "Rate of inflow increasing the account (or net rate of flow)" annotation(Placement(visible = true, transformation(origin = {-145, 60}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-50, 100}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
@@ -29,10 +29,10 @@ protected
   Stocks.InformationLevel accountBalance(hasStockInfoOutput = false, useAssert = false, causeError = false, initialValue = initialBalance, init = init) "Balance of the account" annotation(Placement(visible = true, transformation(origin = {-0, 20}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   SourcesOrSinks.ExogenousChange netFlow if hasRateInputs "Net flow to or from the account" annotation(Placement(visible = true, transformation(origin = {-50, 20}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Converters.Gain negativeRate(c = -1) if not hasNetRateInput and hasRateInputs "The rate of decrease is turned into a negative rate" annotation(Placement(visible = true, transformation(origin = {-110, 40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  Converters.Add_2 netRate if not hasNetRateInput and hasRateInputs "Net rate of flow" annotation(Placement(visible = true, transformation(origin = {-80, 45}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  Converters.Add_2 netRate(redeclare replaceable type OutputType = Unspecified) if not hasNetRateInput and hasRateInputs "Net rate of flow" annotation(Placement(visible = true, transformation(origin = {-80, 45}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Converters.PassThrough netRateInput if hasNetRateInput and hasRateInputs "Input u_plus net rate of flow" annotation(Placement(visible = true, transformation(origin = {-80, 80}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  Converters.ConstantConverterRate interestPlus(value = interestRatePlus) if withInterest and hasConstantInterest "Constant rate of interest for positive balances" annotation(Placement(visible = true, transformation(origin = {-120, -50}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  Converters.ConstantConverterRate interestMinus(value = interestRateMinus) if withInterest and hasConstantInterest "Constant rate of interest for negative balances" annotation(Placement(visible = true, transformation(origin = {-120, -80}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  Converters.ConstantConverter interestPlus(value = interestRatePlus) if withInterest and hasConstantInterest "Constant rate of interest for positive balances" annotation(Placement(visible = true, transformation(origin = {-120, -50}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  Converters.ConstantConverter interestMinus(value = interestRateMinus) if withInterest and hasConstantInterest "Constant rate of interest for negative balances" annotation(Placement(visible = true, transformation(origin = {-120, -80}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Converters.ZeroIfNegative positiveBalance(strict = strict) if withInterest "Positive balance or zero" annotation(Placement(visible = true, transformation(origin = {-50, -10}, extent = {{10, -10}, {-10, 10}}, rotation = 0)));
   Converters.ZeroIfNegative negativeBalance(strict = strict) if withInterest "Negative balance or zero" annotation(Placement(visible = true, transformation(origin = {60, 15}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Converters.Gain invertedBalance(c = -1) if withInterest annotation(Placement(visible = true, transformation(origin = {30, 15}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
@@ -71,7 +71,7 @@ equation
   connect(interestPaid.y2, y_intPaid) annotation(Line(visible = true, origin = {106.121, -35}, points = {{-55.621, 0}, {55.621, 0}}, color = {1, 37, 163}));
   connect(interestEarned.y1, y_intEarned) annotation(Line(visible = true, origin = {67.912, -50}, points = {{-94.061, 0}, {94.061, 0}}, color = {1, 37, 163}));
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>The output <strong>y</strong> reports the balance of an <em>account</em> that is increased or decreased by flows connected to the stock ports or at given rates (<code>u_plus</code> and <code>u_minus</code> respectively) if <code>hasRateInputs = true</code>. When there are interest payments (<code>withInterest = true</code>) positive and negative balances of the account will lead to <em>interest earned</em> and <em>interest paid</em>, respectively. The associated fractional rates can be given either as constants or as variable inputs.</p> 
 <h4>Notes</h4>
 <ul>

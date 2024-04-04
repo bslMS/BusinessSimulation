@@ -6,25 +6,28 @@ model ComplexInteraction "Combined linear and nonlinear interaction"
   extends Interfaces.Basics.GenericFlow;
   extends Interfaces.Basics.Interaction4SO;
   InputConnector dataIn "Expandable connector for continuous input" annotation(Placement(visible = true, transformation(origin = {-150, 40}, extent = {{-10, -10}, {10, 10}}, rotation = -360), iconTransformation(origin = {0, 100}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
+  replaceable type TypeA = Unspecified "Type selector for stock A" annotation(choicesAllMatching = true);
+  replaceable type TypeB = Unspecified "Type selector for stock B" annotation(choicesAllMatching = true);
+  parameter TypeA refA(min = 0) = 1 "Reference value, i.e., divisor, for the couplings b_A, b_AB";
+  parameter TypeB refB(min = 0) = 1 "Refrence value, i.e., divisor, for the couplings a_B, a_AB";
 
   encapsulated expandable connector InputConnector "Data bus for inputs"
     import ICON = BusinessSimulation.Icons.DataInPort;
-    import BusinessSimulation.Units.*;
     extends ICON;
     // coefficients for net flow equations A
-    Rate a_0 "Growth rate for A (independent)";
-    Rate a_A "Fractional rate of growth for A (self-coupling A)";
-    Rate a_B "Rate of growth for A per unit of B (coupling of B to A)";
-    Rate a_AB "Fractional rate of growth for A per unit of B (nonlinear coupling)";
+    Real a_0 "Growth rate for A (independent)";
+    Real a_A "Fractional rate of growth for A (self-coupling A)";
+    Real a_B "Rate of growth for A per unit of B (coupling of B to A)";
+    Real a_AB "Fractional rate of growth for A per unit of B (nonlinear coupling)";
     // coefficients for net flow equation B
-    Rate b_0 "Growth rate for B (independent)";
-    Rate b_B "Fractional growth rate for B (self-coupling)";
-    Rate b_A "Rate of growth for B per unit of A (coupling of A to B)";
-    Rate b_AB "Fractional growth rate for B per unit of A (nonlinear coupling)";
+    Real b_0 "Growth rate for B (independent)";
+    Real b_B "Fractional growth rate for B (self-coupling)";
+    Real b_A "Rate of growth for B per unit of A (coupling of A to B)";
+    Real b_AB "Fractional growth rate for B per unit of A (nonlinear coupling)";
   end InputConnector;
 protected
-  LinearInteraction linearInteraction "Linear interaction between A and B" annotation(Placement(visible = true, transformation(origin = {0, 40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  NonlinearInteraction nonlinearInteraction "Nonlinear interaction between A and B" annotation(Placement(visible = true, transformation(origin = {0, -40}, extent = {{-10, 10}, {10, -10}}, rotation = 0)));
+  LinearInteraction linearInteraction(refB = refB, refA = refA) "Linear interaction between A and B" annotation(Placement(visible = true, transformation(origin = {0, 40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  NonlinearInteraction nonlinearInteraction(refB = refB, refA = refA) "Nonlinear interaction between A and B" annotation(Placement(visible = true, transformation(origin = {0, -40}, extent = {{-10, 10}, {10, -10}}, rotation = 0)));
   Converters.Add_2 netRate_B annotation(Placement(visible = true, transformation(origin = {80, -60}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Converters.Add_2 netRate_A annotation(Placement(visible = true, transformation(origin = {80, 60}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Interfaces.Connectors.RealOutput a_0 "Growth rate for A (independent)" annotation(Placement(visible = true, transformation(origin = {-120, 90}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-80.808, 87.354}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
@@ -37,6 +40,8 @@ protected
   Interfaces.Connectors.RealOutput b_AB "Fractional growth rate for B per unit of A (nonlinear coupling)" annotation(Placement(visible = true, transformation(origin = {-120, -50}, extent = {{-10, -10}, {10, 10}}, rotation = -360), iconTransformation(origin = {-80.808, 87.354}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Interfaces.Connectors.DataBus dataBus annotation(Placement(visible = true, transformation(origin = {-90, 70}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-60.606, 49.959}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
 equation
+  assert(refA > 0, "Reference value for A must be greater than zero");
+  assert(refB > 0, "Reference value for B must be greater than zero");
   connect(portA, linearInteraction.portA) annotation(Line(visible = true, origin = {-62.5, 20}, points = {{-97.5, -20}, {22.5, -20}, {22.5, 20}, {52.5, 20}}, color = {128, 0, 128}));
   connect(linearInteraction.portB, portB) annotation(Line(visible = true, origin = {62.5, 20}, points = {{-52.5, 20}, {-22.5, 20}, {-22.5, -20}, {97.5, -20}}, color = {128, 0, 128}));
   connect(portA, nonlinearInteraction.portA) annotation(Line(visible = true, origin = {-62.5, -20}, points = {{-97.5, 20}, {22.5, 20}, {22.5, -20}, {52.5, -20}}, color = {128, 0, 128}));
@@ -71,7 +76,7 @@ equation
   connect(linearInteraction.dataIn, dataBus) annotation(Line(visible = true, origin = {-30, 63.333}, points = {{30, -13.333}, {30, 6.667}, {-60, 6.667}}, color = {0, 0, 128}));
   connect(nonlinearInteraction.dataIn, dataBus) annotation(Line(visible = true, origin = {-45, -25}, points = {{45, -25}, {45, -35}, {-45, -35}, {-45, 95}}, color = {0, 0, 128}));
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>The <em>ComplexInteraction</em> component combines <em>linear </em>and <em>nonlinear</em> interaction between two stocks <strong>A</strong> (<code>portA</code>) and <strong>B</strong> (<code>portB</code>):</p>
 <p><img src=\"modelica://BusinessSimulation/Resources/Images/Flows/Interaction/ComplexInteraction/Formula.svg\" alt=\"Formula.svg\"></p>
 <p class=\"aside\">Note: Capital letters were chosen to represent the stocks (state variables) connected at <code>portA</code> and <code>portB</code> in the formula above. Also dot notation is used for a stock's rate of flow—its first derivative with respect to time.</p>
@@ -88,7 +93,7 @@ equation
 <tr>
 <td><code>a_0</code></td>
 <td>
-<p>amount of A per second</p>
+<p>base unit of flow to A (<code>OutputType_A</code>)</p>
 </td>
 <td>
 <p>Rate of growth for stock A</p>
@@ -99,7 +104,7 @@ equation
 <p><code>b_0</code></p>
 </td>
 <td>
-<p>amount of B per second</p>
+<p>base unit of flow to B (<code>OutputType_B</code>)</p>
 </td>
 <td>
 <p>Rate of growth for stock B</p>
@@ -113,7 +118,7 @@ equation
 <p>1/s</p>
 </td>
 <td>
-<p>Fractional rate of growth for stock A<br>(e.g., the self-coupling coefficient for A)</p>
+<p>fractional rate of growth for stock A<br>(e.g., the self-coupling coefficient for A)</p>
 </td>
 </tr>
 <tr>
@@ -124,7 +129,7 @@ equation
 <p>1/s</p>
 </td>
 <td>
-<p>Fractional rate of growth for stock B<br>(e.g., the self-coupling coefficient for B)</p>
+<p>fractional rate of growth for stock B<br>(e.g., the self-coupling coefficient for B)</p>
 </td>
 </tr>
 <tr>
@@ -132,7 +137,7 @@ equation
 <p><code>a_B</code></p>
 </td>
 <td>
-<p>amount of A per amount of B per second</p>
+<p>base unit of flow to A (<code>OutputType_A</code>)<br>per base unit of B (<code>TypeB</code>)</p>
 </td>
 <td>
 <p>Rate of growth for stock A per stock B<br>(e.g., the coupling-cofficient for B towards A)</p>
@@ -143,7 +148,7 @@ equation
 <p><code>b_A</code></p>
 </td>
 <td>
-<p>amount of B per amount of A per second</p>
+<p>base unit of flow to B (<code>OutputType_B</code>)<br>per base unit of A (<code>TypeA</code>)</p>
 </td>
 <td>
 <p>Rate of growth for stock B per stock A<br>(e.g., the coupling-coefficient for A towards B)</p>
@@ -151,14 +156,14 @@ equation
 </tr>
 <tr>
 <td><code>a_AB</code></td>
-<td>1 per second per amount of B</td>
+<td>1 per second<br>per base unit of B (<code>TypeB</code>)</td>
 <td>
 <p>Factor used to determine the net flow to A<br>(e.g., nonlinear coupling factor for A)</p>
 </td>
 </tr>
 <tr>
 <td><code>b_AB</code></td>
-<td>1 per second per amount of A</td>
+<td>1 per second<br>per base unit of A <code>TypeA</code>)</td>
 <td>
 <p>Factor used to determine the net flow to B<br>(e.g., nonlinear coupling factor for B)</p>
 </td>
@@ -169,11 +174,17 @@ equation
 <h4>Examples</h4>
 <p>The classical <a href=\"modelica://BusinessSimulation.Flows.Interaction.LotkaVolterra\">Lotka-Volterra-Model</a>&nbsp;of predator-prey-dynamics can be derived from this model using the following parameterization:</p>
 <p style=\"padding-left: 30px;\"><code>a_0 = 0, a_A =&nbsp;&alpha;, a_B = 0, a_AB = -&beta;, b_0 = 0, b_B = -&gamma;, b_A = 0, b_AB =&nbsp;&delta;</code></p>
+<h4>Notes</h4>
+<ul>
+<li>Within the components <code>LinearInteraction</code> and <code>NonlinearInteraction</code> the rates passed for <code>a_B, a_AB, b_A, b_AB</code> call for divison by a reference level of the connected stocks. In many cases, modelers can leave the type selectors <code>TypeA, TypeB</code> at their default value of <code>Unspecified</code> so that no conversion will take place.</li><br>
+<li>Should unit conversion be needed, modeleres may wish to select appropriate type values and corresponding <code>displayUnit</code> settings to enter convenient reference levels <code>refA, refB</code>.</li><br>
+</ul>
 <h4>See also</h4>
 <p><a href=\"modelica://BusinessSimulation.Flows.Interaction.LinearInteraction\">LinearInteraction</a>, <a href=\"modelica://BusinessSimulation.Flows.Interaction.ComplexInteraction\">ComplexInteraction</a>,&nbsp;<a href=\"modelica://BusinessSimulation.Flows.Interaction.LotkaVolterra\">LotkaVolterra</a></p>
 </html>", revisions = "<html>
 <ul>
 <li><code>InputConnector</code> defined as <code>encapsulated expandable connector</code> in v2.1.0.</li><br>
+<li><code>TypeA, TypeB</code> and corresponding reference levels <code>refA, refB</code> introduced to support unit checking and unit conversions in v2.2.</li><br>
 </ul>
 </html>"), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10}), graphics = {Text(visible = true, origin = {0, 75}, textColor = {0, 128, 0}, extent = {{-100, -12}, {100, 12}}, textString = "Linear & Nonlinear", fontName = "Lato", textStyle = {TextStyle.Bold})}));
 end ComplexInteraction;

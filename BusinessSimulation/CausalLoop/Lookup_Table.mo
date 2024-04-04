@@ -2,7 +2,7 @@ within BusinessSimulation.CausalLoop;
 
 model Lookup_Table "Table-based lookup with manual input of the interpolation table"
   import BusinessSimulation.Units.*;
-  import Modelica.Blocks.Types.{Smoothness,Extrapolation};
+  import Modelica.Blocks.Types.{Smoothness, Extrapolation};
   extends Interfaces.PartialCLD.Lookup;
   parameter Boolean hasConstantReference = true "= true, if the reference value for the stock is given by a constant parameter" annotation(Evaluate = true, Dialog(group = "Structural Parameters"));
   parameter Real tableData[:, :] = fill(0.0, 2, 2) "Table matrix (grid = first column; e.g., table=[0,2])";
@@ -17,7 +17,7 @@ equation
   connect(lookup.y, y) annotation(Line(visible = true, origin = {85.043, 0}, points = {{-77.043, 0}, {77.043, 0}}, color = {1, 37, 163}));
   /* block,  information processing */
   annotation(defaultComponentName = "b", Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>Using the lookup converter →<a href =\"modelica://BusinessSimulation.Converters.Lookup.TableFunction\"><code>TableFunction</code></a> the normalized current value of the stock, which is connected via the <code>StockInfoInput</code> connector, is used as input to an interpolation table (manual input) to obtain the output <strong>y</strong>.</p>
 <p>The value used for the normalization is a constant by default (<code>referenceValue = 1</code>); if <code>hasConstantReference = false</code> the optional input <strong>u</strong> is used instead.</p>
 <h4>Notes</h4>

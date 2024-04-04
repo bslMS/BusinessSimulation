@@ -18,7 +18,7 @@ equation
   y_stockInfo.infoNetFlow = totalFlow;
   y_stockInfo.infoMeanResidenceTime = if noEvent(y_stockInfo.infoOutflow > 0) then levelInfo / y_stockInfo.infoOutflow else -1;
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>The <em>StockInfo</em> is used inside stock components and will be connected to the matching&nbsp;outside connectors of a component to collect basic &rarr;<a href=\"modelica://BusinessSimulation.Types.StockInformation\">stock-related information </a>which will be passed as a record to the StockInfoOutput connector.</p>
 <h4>Notes</h4>
 <ul>

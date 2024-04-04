@@ -11,14 +11,17 @@ block ConstantInputRate "Input signal with constant rate information"
   parameter ValueType value "Constant rate given in unit and displayUnit pertaining to ValueType per time base";
   constant String timeBaseString = "second" "Time base of the rate entered (default = second)" annotation(Dialog(group = "Parameters"), choices(choice = "second", choice = "minute", choice = "hour", choice = "day", choice = "week", choice = "month", choice = "quarter", choice = "year"));
 protected
+  constant ValueType unitValue = 1 "Multiplicative identity with the same units as ValueType";
+  constant Real unitBaseRate(unit = rateUnitInput) = 1;
+  constant String rateUnitInput = BusinessSimulation.Constants.timeBaseRateUnits[timeBase] "Dimensionless rate units according to the time base entered" annotation(Evaluate = true, Dialog(tab = "Initialization", enable = false));
   constant TimeBases timeBase = Functions.stringToTimeBase(timeBaseString) "Element of the enumeration TimeBases corresponding to the timeBase given as string" annotation(Dialog(tab = "Initialization", enable = false));
-  Converters.ConstantConverter rateInTimeBase(value = value) annotation(Placement(visible = true, transformation(origin = {0, -0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  Converters.ConstantConverter rateInTimeBase(value = value / unitValue * unitBaseRate) annotation(Placement(visible = true, transformation(origin = {0, -0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Converters.RateConversion convertRate(timeBaseA = timeBase, timeBaseB = TimeBases.seconds) "Convert the rate input to a rate per seconds" annotation(Placement(visible = true, transformation(origin = {70, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
 equation
-  connect(convertRate.y, y) annotation(Line(visible = true, origin = {119.897, 0}, points = {{-41.897, 0}, {41.898, 0}}, color = {1, 37, 163}));
+  y = convertRate.y * unitValue;
   connect(rateInTimeBase.y, convertRate.u) annotation(Line(visible = true, origin = {34, 0}, points = {{-28, -0}, {28, 0}}, color = {1, 37, 163}));
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>The parameter <code>value</code>&nbsp;is used to set the continous output <strong>y </strong>making it a <em>constant-valued signal</em>. The output will always&nbsp;give rates <em>per second</em>, but rates can be entered in non-SI-units of time using the parameter <code>timeBaseString</code>.</p>
 <h4>Notes</h4>
 <ul>

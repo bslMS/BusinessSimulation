@@ -5,10 +5,10 @@ block Performance "Evaluation of a stock on a [0,1] scale"
   import BusinessSimulation.Constants.*;
   import MFT = BusinessSimulation.Types.MembershipFunctionTypes;
   extends BusinessSimulation.Interfaces.PartialCLD.Performance;
-  parameter Amount a "Parameter to control shape of membership function" annotation(Dialog(enable = true));
-  parameter Amount b = unspecified "Parameter to control shape of membership function" annotation(Dialog(enable = not (mft == MFT.sigmoidal or mft == MFT.gaussian)));
-  parameter Amount c = unspecified "Parameter to control shape of membership function" annotation(Dialog(enable = not (mft == MFT.ramp or mft == MFT.sshaped)));
-  parameter Amount d = unspecified "Parameter to control shape of membership function" annotation(Dialog(enable = mft == MFT.trapezoidal or mft == MFT.pishaped or mft == MFT.psigmoidal));
+  parameter Ratio a "Parameter to control shape of membership function" annotation(Dialog(enable = true));
+  parameter Ratio b = unspecified "Parameter to control shape of membership function" annotation(Dialog(enable = not (mft == MFT.sigmoidal or mft == MFT.gaussian)));
+  parameter Ratio c = unspecified "Parameter to control shape of membership function" annotation(Dialog(enable = not (mft == MFT.ramp or mft == MFT.sshaped)));
+  parameter Ratio d = unspecified "Parameter to control shape of membership function" annotation(Dialog(enable = mft == MFT.trapezoidal or mft == MFT.pishaped or mft == MFT.psigmoidal));
   parameter MFT mft = MFT.ramp "Membership function type to use" annotation(Evaluate = true, Dialog(group = "Structural Parameters"));
   parameter Boolean invertResult = false "= true, if the degree of membership is to be inverted (i.e., y = 1 - mf(u))" annotation(Dialog(group = "Structural Parameters"));
 protected
@@ -20,10 +20,10 @@ equation
   connect(normalizedStock.y, performanceIndicator.u) annotation(Line(visible = true, origin = {-30, 0}, points = {{-22, 0}, {22, 0}}, color = {1, 37, 163}));
   connect(performanceIndicator.y, y) annotation(Line(visible = true, origin = {85.043, 0}, points = {{-77.043, 0}, {77.043, 0}}, color = {1, 37, 163}));
   assert(not b_enabled or b < inf, "The parameter b should be specified");
-  assert(not c_enabled or c < inf, "The parameter b should be specified");
-  assert(not d_enabled or d < inf, "The parameter b should be specified");
+  assert(not c_enabled or c < inf, "The parameter c should be specified");
+  assert(not d_enabled or d < inf, "The parameter d should be specified");
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>The output <strong>y</strong> is the dimensionless <em>degree of membership</em> to the set of \"good performances\" or \"good outcomes\" according to a chosen type of membership function. Using the PerformanceIndicator allows to quickly grasp how a system is currently performing with regard to some criterion with a value of 1 indicating <em>best possible performance</em> and a value of 0 indicating <em>worst possible (and possbily unsustainable) performance</em>.</p>
 <p>The following grid displays all available membership function types without inversion (<code>invertResults = false</code>):</p>
 <p>

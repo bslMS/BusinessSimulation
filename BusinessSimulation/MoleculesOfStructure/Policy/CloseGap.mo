@@ -4,13 +4,13 @@ block CloseGap "Determine the rate of flow (action) to close a gap between a qua
   import BusinessSimulation.Units.*;
   import BusinessSimulation.Constants.*;
   import Modelica.Blocks.Types.LimiterHomotopy;
-  extends Interfaces.PartialConverters.Policy_SO(redeclare replaceable type OutputType = Rate);
+  extends Interfaces.PartialConverters.Policy_SO;
   Interfaces.Connectors.RealInput u_reference "Desired or reference value for the controlled quantity (i.e., the goal)" annotation(Placement(visible = true, transformation(origin = {-145, 50}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-110, 0}, extent = {{-10, -10}, {10, 10}}, rotation = -360)));
   Interfaces.Connectors.RealInput u_current "Current value of controlled quantity" annotation(Placement(visible = true, transformation(origin = {-145, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {0, 110}, extent = {{-10, -10}, {10, 10}}, rotation = -450)));
   Interfaces.Connectors.RealInput u_adjTime if not hasConstantAdjTime "Time to close the gap" annotation(Placement(visible = true, transformation(origin = {-145, -60}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-110, -50}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   parameter Time adjTime(min = 0) = 1 "Time to close the gap" annotation(Dialog(enable = hasConstantAdjTime));
-  parameter Rate maxRate = inf "Maximum rate feasible" annotation(Dialog(enable = clipOutput));
-  parameter Rate minRate = 0 "Minimum rate feasible" annotation(Dialog(enable = clipOutput));
+  parameter OutputType maxRate = inf "Maximum rate feasible" annotation(Dialog(enable = clipOutput));
+  parameter OutputType minRate = 0 "Minimum rate feasible" annotation(Dialog(enable = clipOutput));
   parameter Boolean hasConstantAdjTime = true "= true, if the time to close the gap is a constant paramater" annotation(Evaluate = true, Dialog(group = "Structural Parameters"));
   parameter Boolean invertOutput = false "= true, if the output is to be multiplied with (-1)" annotation(Evaluate = true, Dialog(group = "Structural Parameters"));
   parameter Boolean clipOutput = false "= true, if the indicated rate is to clipped to not exceed limitations" annotation(Evaluate = true, Dialog(group = "Structural Parameters"));
@@ -40,7 +40,7 @@ equation
   connect(invertedAction.y, clip1.u) annotation(Line(visible = true, origin = {65, -20}, points = {{-17, 0}, {17, 0}}, color = {1, 37, 163}));
   connect(clip1.y, y) annotation(Line(visible = true, origin = {124.5, -10}, points = {{-26.5, -10}, {-4.5, -10}, {-4.5, 10}, {35.5, 10}}, color = {1, 37, 163}));
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>The output <strong>y</strong> is given by the expression:</p>
 <p><code>y = (u_reference - u_current) / u_adjTime</code></p>
 <p>where the <em>time to close the gap</em> (<code>u_adjTime</code>) can alternatively be a constant (<code>adjTime</code>). If the <em>adjustement time</em> is zero, then the output <strong>y</strong> will be zero as well.</p>
@@ -52,7 +52,7 @@ equation
 <h4>Notes</h4>
 <ul>
 <li>The output may be multiplied with (-1) in order to use the output to control an outflow.<br><br></li>
-<li>See [<a href=\"modelica://BusinessSimulation.UsersGuide.References\">6</a>, p. 30] or Jim Hines' <em>Molecules of Structure</em> website (→<a href= \"https://sdmolecules.org/index.htm#MoleculeTopics/CloseGap/closeGap.htm\">Close Gap</a>) for more details on the use of this structure within System Dynamics.</li>
+<li>See [<a href=\"modelica://BusinessSimulation.UsersGuide.References\">6</a>, p. 30] or Jim Hines' <em>Molecules of Structure</em> website (→<a href= \"https://sdmolecules.org/index.htm#MoleculeTopics/CloseGap/closeGap.htm\">Close Gap</a>) for more details on the use of this structure within system dynamics.</li>
 </ul>
 </html>"), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10}), graphics = {Text(visible = true, origin = {0, -0.409}, textColor = {0, 0, 128}, extent = {{-77.269, -12}, {77.269, 12}}, textString = "Close Gap", fontName = "Lato", textStyle = {TextStyle.Bold})}), Diagram(coordinateSystem(extent = {{-148.5, -105}, {148.5, 105}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})));
 end CloseGap;

@@ -10,7 +10,7 @@ partial model Stock "Partial stock forCLD+ modeling"
 <li>Introduced in v2.0.0.</li>
 </ul>
 </html>", info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>Partial class for reservoir classes with a single <code>StockPort</code> and a single <code>StockInoOutput</code>.</p>
 </html>"), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10}), graphics = {Text(visible = true, origin = {160, -52}, textColor = {64, 64, 64}, extent = {{-150, -12}, {150, 12}}, textString = "%name", fontName = "Lato", horizontalAlignment = TextAlignment.Left), Rectangle(visible = true, lineColor = {255, 0, 0}, fillColor = {255, 255, 255}, fillPattern = FillPattern.Solid, lineThickness = 4, extent = {{-30, -30}, {30, 30}})}), Diagram(coordinateSystem(extent = {{-150, -90}, {150, 90}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})));
 end Stock;

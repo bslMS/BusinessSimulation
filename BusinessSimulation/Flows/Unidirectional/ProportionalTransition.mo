@@ -7,7 +7,7 @@ model ProportionalTransition "Rate of transition is proportional to the amount i
   extends Interfaces.Basics.GenericFlow;
   extends Interfaces.Basics.ThreeSO_rate;
   Interfaces.Connectors.RealInput u if not hasConstantRate "Fractional rate input" annotation(Placement(visible = true, transformation(origin = {-145, 60}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-50, 100}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
-  parameter OutputType fractionalRate(min = 0) = unspecified "Constant fractional rate of transition (optional)" annotation(Dialog(enable = hasConstantRate));
+  parameter Rate fractionalRate(min = 0) = unspecified "Constant fractional rate of transition (optional)" annotation(Dialog(enable = hasConstantRate));
   parameter Boolean hasConstantRate = false "= true, if the parameter fractionalRate is to be used instead of the continuous input u" annotation(Evaluate = true, Dialog(group = "Structural Parameters"));
 protected
   Transition flowing "Flow from A to B" annotation(Placement(visible = true, transformation(origin = {0, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
@@ -27,7 +27,7 @@ equation
   connect(u, netRate.u1) annotation(Line(visible = true, origin = {-92, 52.5}, points = {{-53, 7.5}, {12, 7.5}, {12, -7.5}, {24, -7.5}}, color = {1, 37, 163}));
   connect(netRate.y, flowing.u) annotation(Line(visible = true, origin = {-20.667, 30}, points = {{-31.333, 10}, {15.667, 10}, {15.667, -20}}, color = {1, 37, 163}));
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>The rate of transition from stock A to stock B will be <em>propotional</em> to the amount in stock A:</p><p><code>rate = fractionalRate &sdot; stockA.y</code></p><h4>Notes</h4><p>Since this is a <em>unidirectional</em> flow, the rate of flow will automatically be set to zero (causing an event), if the given rate of transition is a negative value.</p>
 <h4>See also</h4>
 <p><a href=\"modelica://BusinessSimulation.Flows.Unidirectional.Decay\">Decay</a>,&nbsp;<a href=\"modelica://BusinessSimulation.Flows.Bidirectional.ProportionalSwitching\">ProportionalSwitching</a></p>

@@ -12,7 +12,7 @@ equation
   connect(u_prod, flowFromResource.u2) annotation(Line(visible = true, origin = {-51.75, -12.5}, points = {{-93.25, -7.5}, {31.75, -7.5}, {31.75, 7.5}, {43.75, 7.5}}, color = {0, 0, 127}));
   connect(flowFromResource.y, y) annotation(Line(visible = true, origin = {84, 0}, points = {{-76, 0}, {76, 0}}, color = {0, 0, 127}));
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>The output <strong>y</strong> is the <em>product</em> of the amount of some resource (<code>u_res</code>) and its ability to generate a flow/action (i.e., its productivity <code>u_prod</code>).</p>
 <p><code>y[1/s] = u_res[1] &middot; u_prod[1/s] </code></p>
 <h4>Acknowledgements</h4>

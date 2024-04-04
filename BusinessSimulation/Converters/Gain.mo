@@ -8,7 +8,7 @@ block Gain "Input is multiplied by constant parameter"
 equation
   y = u * c;
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>The output <strong>y</strong> is obtained by multiplying the input <strong>u</strong> with a constant gain factor <strong>c</strong>:</p>
 <pre>y = c * u;</pre>
 <br>

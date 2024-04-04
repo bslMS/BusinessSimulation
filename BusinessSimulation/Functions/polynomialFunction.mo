@@ -14,7 +14,7 @@ algorithm
     y := y + a[i] * x ^ (i - 1);
   end for;
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>The function returns the value of the n-th degree polynomial given the real input <strong>x</strong> and the real vector of coefficients <code><strong>a</strong>[:] = {a_0, a_1, ..., a_n}</code> where the degree of the polynomial is <code>n = size(a,1) - 1</code>.</p>
 <h4>Syntax</h4>
 <p><code>Functions.<strong>polynomialFunction</strong>(x,a);</code></p>

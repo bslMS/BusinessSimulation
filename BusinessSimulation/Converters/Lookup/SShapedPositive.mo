@@ -8,7 +8,7 @@ block SShapedPositive "Symmettric S-shaped curve with positive slope around orig
 equation
   y_c = upperBound * (s ^ u_c - 1) / (s ^ u_c + 1);
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>The <code>SShapedPositive</code> lookup-function is a point symmetric, s-shaped growth function with respect to the origin (0,0) that has a positive slope. The curve has two parameters: An <code>upperBound</code> (lowerBound = -<code>upperBound</code>) and a <em>slope</em> <code>s</code> which is given as a positive number.</p>
 <p>The output <strong>y</strong> is obtained by the following formula:</p>
 <p><img src=\"modelica://BusinessSimulation/Resources/Images/Converters/Lookup/SShapedPositive/Formula.svg\" alt=\"y = upperBound * (s^u - 1)/(s^u +1)\"></p>

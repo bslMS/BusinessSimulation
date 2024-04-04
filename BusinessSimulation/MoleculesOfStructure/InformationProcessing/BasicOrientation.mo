@@ -2,7 +2,7 @@ within BusinessSimulation.MoleculesOfStructure.InformationProcessing;
 
 model BasicOrientation "Assessing a system's performance and sustainability according to basic orientors"
   import BusinessSimulation.Units.*;
-  import BusinessSimulation.Types.{BasicOrientors,AggregateFunctions};
+  import BusinessSimulation.Types.{BasicOrientors, AggregateFunctions};
   extends Icons.InformationProcessing;
   Interfaces.Connectors.RealMultiInput u_weights[nPerf] if not hasConstantWeights "Weights to be used for performance measurement" annotation(Placement(visible = true, transformation(origin = {-145, 60}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {0, 110}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
   Interfaces.Connectors.RealMultiInput u[BasicOrientors] "Basic orientors to monitor a system's sustainability" annotation(Placement(visible = true, transformation(origin = {-145, -40}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-110, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
@@ -34,7 +34,7 @@ equation
   connect(aggregatePerformance.y, y_perf) annotation(Line(visible = true, origin = {75.5, 40}, points = {{-84.5, 0}, {84.5, 0}}, color = {1, 37, 163}));
   connect(u_weights, aggregatePerformance.u_weights) annotation(Line(visible = true, origin = {-61.667, 57}, points = {{-83.333, 3}, {41.667, 3}, {41.667, -6}}, color = {0, 0, 128}));
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>Basic Orientation will provide two outputs: an aggregate performance score (<code>y_perf</code>) and a score indicating the <em>minimum sustainability</em> (<code>y_sus</code>) according to a set of basic orientor inputs <code>u</code>.</p>
 <p>While a system is free to emphasize certain orientors over others (i.e., freedom in the choice of weights according to preferences/strategies), no system can excape the pressures put upon it from its environment and other systems therein. In a much cited report to the Balaton Group Hartmut Bossel [<a href=\"modelica://BusinessSimulation.UsersGuide.References\">22</a>] identified <em>six basic orientors</em> that will guide a (living) systems' evolution in order to maintain viability [<a href=\"modelica://BusinessSimulation.UsersGuide.References\">10</a>, p. 185]:</p>
 <table>

@@ -2,22 +2,31 @@ within BusinessSimulation.Examples;
 
 model SoftwareReleaseProject "Causal loop example given by van Zijderveld (MARVEL)"
   extends BusinessSimulation.Icons.Example;
-  inner ModelSettings modelSettings(modelTimeHorizon(displayUnit = "yr") = 315360000, dt(displayUnit = "yr") = 7884000, modelDisplayTimeBase = BusinessSimulation.Types.TimeBases.years, samplingPeriod.displayUnit = "yr") annotation(Placement(visible = true, transformation(origin = {-130, -70}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  parameter Real wCost = 1 "Weigth for cost performance" annotation(Dialog(group = "Performance"));
-  parameter Real wQuality = 1 "Weigth for quality performance" annotation(Dialog(group = "Performance"));
-  parameter Real wUsage = 1 "Weigth for usage performance" annotation(Dialog(group = "Performance"));
-  parameter Real wk = 0.2 "Weak influence" annotation(Dialog(group = "Strength of Influence"));
-  parameter Real av = 0.5 "Average influence" annotation(Dialog(group = "Strength of Influence"));
-  parameter Real st = 1 "Strong influence" annotation(Dialog(group = "Strength of Influence"));
-  parameter Real vs = 1.2 "Very strong influence" annotation(Dialog(group = "Strength of Influence"));
-  parameter Time v4(displayUnit = "yr") = 7884000 "Very high speed" annotation(Dialog(group = "Speed of Influence"));
-  parameter Time v3(displayUnit = "yr") = 15768000 "High speed" annotation(Dialog(group = "Speed of Influence"));
-  parameter Time v2(displayUnit = "yr") = 31536000 "Average speed" annotation(Dialog(group = "Speed of Influence"));
-  parameter Time v1(displayUnit = "yr") = 94608000 "Low speed" annotation(Dialog(group = "Speed of Influence"));
-  parameter Boolean c1ActiveQ = true "= true, to activate the budget control" annotation(Evaluate = true, Dialog(group = "Structural Parameters"));
-  parameter Boolean c2ActiveQ = false "= true, to activate the clear mandate control" annotation(Evaluate = true, Dialog(group = "Structural Parameters"));
-  parameter Boolean c3ActiveQ = false "= true, to activate the management knowledge level control" annotation(Evaluate = true, Dialog(group = "Structural Parameters"));
-  parameter Boolean c4ActiveQ = false "= true, to activate the management quality control" annotation(Evaluate = true, Dialog(group = "Structural Parameters"));
+  // Performance
+  parameter Ratio wCost = 1 "Weigth for cost performance" annotation(Dialog(group = "Performance"));
+  parameter Ratio wQuality = 1 "Weigth for quality performance" annotation(Dialog(group = "Performance"));
+  parameter Ratio wUsage = 1 "Weigth for usage performance" annotation(Dialog(group = "Performance"));
+  // Strength of Influence
+  parameter Ratio wk = 0.2 "Weak influence" annotation(Dialog(group = "Strength of Influence"));
+  parameter Ratio av = 0.5 "Average influence" annotation(Dialog(group = "Strength of Influence"));
+  parameter Ratio st = 1 "Strong influence" annotation(Dialog(group = "Strength of Influence"));
+  parameter Ratio vs = 1.2 "Very strong influence" annotation(Dialog(group = "Strength of Influence"));
+  // Speed of Influence
+  parameter Time v4 = 0.25 "Very high speed" annotation(Dialog(group = "Speed of Influence"));
+  parameter Time v3 = 0.5 "High speed" annotation(Dialog(group = "Speed of Influence"));
+  parameter Time v2 = 1 "Average speed" annotation(Dialog(group = "Speed of Influence"));
+  parameter Time v1 = 3 "Low speed" annotation(Dialog(group = "Speed of Influence"));
+  Theta theta annotation(Placement(visible = true, transformation(origin = {-105, -70}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  inner ModelSettings modelSettings(modelTimeHorizon = 10, dt = 0.25, modelDisplayTimeBase = BusinessSimulation.Types.TimeBases.seconds) annotation(Placement(visible = true, transformation(origin = {-130, -70}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+
+  model Theta "Structural parameters"
+    extends Icons.Theta;
+    parameter Boolean c1ActiveQ = true "= true, to activate the budget control" annotation(Evaluate = true, Dialog(group = "Structural Parameters"));
+    parameter Boolean c2ActiveQ = false "= true, to activate the clear mandate control" annotation(Evaluate = true, Dialog(group = "Structural Parameters"));
+    parameter Boolean c3ActiveQ = false "= true, to activate the management knowledge level control" annotation(Evaluate = true, Dialog(group = "Structural Parameters"));
+    parameter Boolean c4ActiveQ = false "= true, to activate the management quality control" annotation(Evaluate = true, Dialog(group = "Structural Parameters"));
+  end Theta;
+
   Interfaces.Connectors.DataOutPort modelOutput "The model's performance output" annotation(Placement(visible = true, transformation(origin = {152.239, -70}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {90, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
 
   block AccumulatedPerformance "Weighted average performance per period"
@@ -25,17 +34,19 @@ model SoftwareReleaseProject "Causal loop example given by van Zijderveld (MARVE
     parameter Real weights[nin] "Constant weights to be used for aggregation";
     InformationSources.TimeInput modelTime "Time into the simulation" annotation(Placement(visible = true, transformation(origin = {80, -40}, extent = {{10, -10}, {-10, 10}}, rotation = 0)));
     Converters.Division_Guarded avgPerf "Average weighted performance score" annotation(Placement(visible = true, transformation(origin = {60, -0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+    Stocks.InformationLevel cumPerf(redeclare replaceable type OutputType = Unspecified) annotation(Placement(visible = true, transformation(origin = {0, -20}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+    SourcesOrSinks.Growth accumulating annotation(Placement(visible = true, transformation(origin = {-40, -20}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   protected
-    MoleculesOfStructure.Incubators.Account cumPerf(redeclare replaceable type OutputType = Dimensionless, hasNetRateInput = true) "Accumulated performance" annotation(Placement(visible = true, transformation(origin = {0, -30}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
     CausalLoop.Aggregation_Info avgWeightedPerformance(nin = nin, weights = weights) annotation(Placement(visible = true, transformation(origin = {-117.5, 0}, extent = {{-7.5, -7.5}, {7.5, 7.5}}, rotation = 0)));
   equation
     connect(u, avgWeightedPerformance.u) annotation(Line(visible = true, origin = {-135, 0}, points = {{-10, 0}, {10, 0}}, color = {0, 0, 128}));
-    connect(avgWeightedPerformance.y, cumPerf.u_plus) annotation(Line(visible = true, origin = {-42.25, -6.667}, points = {{-74.5, 6.667}, {37.25, 6.667}, {37.25, -13.333}}, color = {1, 37, 163}));
-    connect(cumPerf.y, avgPerf.u1) annotation(Line(visible = true, origin = {17.333, -3.2}, points = {{-17.333, -16.4}, {-17.333, 8.2}, {34.667, 8.2}}, color = {1, 37, 163}));
     connect(modelTime.y, avgPerf.u2) annotation(Line(visible = true, origin = {53.5, -22.5}, points = {{18.5, -17.5}, {-8.5, -17.5}, {-8.5, 17.5}, {-1.5, 17.5}}, color = {1, 37, 163}));
     connect(avgPerf.y, y) annotation(Line(visible = true, origin = {115.042, -0}, points = {{-47.043, -0}, {47.043, 0}}, color = {1, 37, 163}));
+    connect(accumulating.massPort, cumPerf.inflow) annotation(Line(visible = true, origin = {-20, -20}, points = {{-10, 0}, {10, 0}}, color = {128, 0, 128}));
+    connect(cumPerf.y, avgPerf.u1) annotation(Line(visible = true, origin = {20.667, 0.133}, points = {{-15.667, -9.733}, {-15.667, 4.867}, {31.333, 4.867}}, color = {1, 37, 163}));
+    connect(avgWeightedPerformance.y, accumulating.u) annotation(Line(visible = true, origin = {-68.917, -3.333}, points = {{-47.833, 3.333}, {23.917, 3.333}, {23.917, -6.667}}, color = {1, 37, 163}));
     annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>From the inputs <strong>u[nin =3]</strong> a <em>weighted average</em> is calculated using <code>weights[nin]</code>. This average is then accumulated (<code>cumPerf</code>) and averaged over the period from <code>startTime</code> to current model time (<code>modelTime</code>) to obtain the output <strong>y</strong>.</p>
 <h4>Implementation</h4>
 <p>
@@ -86,42 +97,42 @@ protected
   CausalLoop.SimpleInformationLevel swResistance(initialValue = 0.7) "Resistance against software" annotation(Placement(visible = true, transformation(origin = {28, -15}, extent = {{-10, 10}, {10, -10}}, rotation = 0)));
   CausalLoop.SimpleInformationLevel mgtQuality(initialValue = 0.4) "Management quality" annotation(Placement(visible = true, transformation(origin = {40, 30}, extent = {{10, -10}, {-10, 10}}, rotation = 0)));
   // relations (impact)
-  CausalLoop.ProportionalityDelayed r1(factor = +wk, delayTime(displayUnit = "yr") = v1) "External resrouces >> clear mandate" annotation(Placement(visible = true, transformation(origin = {-135, 5}, extent = {{-10, 10}, {10, -10}}, rotation = 270)));
-  CausalLoop.ProportionalityDelayed r2(factor = +wk, delayTime(displayUnit = "yr") = v2) "External resources >> management knowledge level" annotation(Placement(visible = true, transformation(origin = {-64, 7}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  CausalLoop.ProportionalityDelayed r3(factor = +av, delayTime(displayUnit = "yr") = v2) "External resources >> management quality" annotation(Placement(visible = true, transformation(origin = {-30, 30}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  CausalLoop.ProportionalityDelayed r4(factor = +av, delayTime(displayUnit = "yr") = v3) "External resources >> software management organization capacity" annotation(Placement(visible = true, transformation(origin = {-63, 17}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  CausalLoop.ProportionalityDelayed r5(factor = +st, delayTime(displayUnit = "yr") = v3, hasRateOutput = false) "Budget >> external resources" annotation(Placement(visible = true, transformation(origin = {-100, 55}, extent = {{10, 10}, {-10, -10}}, rotation = 0)));
-  CausalLoop.ProportionalityDelayed r6(factor = -st, delayTime(displayUnit = "yr") = v3) "Clear mandate >> number of parties involved" annotation(Placement(visible = true, transformation(origin = {-118, -35}, extent = {{10, 10}, {-10, -10}}, rotation = -270)));
-  CausalLoop.ProportionalityDelayed r7(factor = -vs, delayTime(displayUnit = "yr") = v3) "Costs >> cost effectiveness" annotation(Placement(visible = true, transformation(origin = {82.503, 40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  CausalLoop.ProportionalityDelayed r8(factor = +vs, delayTime(displayUnit = "yr") = v3) "Decision quality >> design quality" annotation(Placement(visible = true, transformation(origin = {-10, -40}, extent = {{-10, 10}, {10, -10}}, rotation = -90)));
-  CausalLoop.ProportionalityDelayed r9(factor = -av, delayTime(displayUnit = "yr") = v2) "Decision speed >> number of ad hoc design decisions" annotation(Placement(visible = true, transformation(origin = {-65, -35}, extent = {{10, 10}, {-10, -10}}, rotation = 90)));
-  CausalLoop.ProportionalityDelayed r10(factor = +av, delayTime(displayUnit = "yr") = v2) "Design quality >> software quality" annotation(Placement(visible = true, transformation(origin = {15, -40}, extent = {{-10, 10}, {10, -10}}, rotation = 0)));
-  CausalLoop.ProportionalityDelayed r11(factor = +st, delayTime(displayUnit = "yr") = v4) "Management knowledge level >> decision quality" annotation(Placement(visible = true, transformation(origin = {-30, -15}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
-  CausalLoop.ProportionalityDelayed r12(factor = -wk, delayTime(displayUnit = "yr") = v2) "Management quality >> resistance against software" annotation(Placement(visible = true, transformation(origin = {50, -5.412}, extent = {{10, 10}, {-10, -10}}, rotation = 90)));
-  CausalLoop.ProportionalityDelayed r13(factor = +wk, delayTime(displayUnit = "yr") = v2) "Management quality >> software usage" annotation(Placement(visible = true, transformation(origin = {72.552, -40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  CausalLoop.ProportionalityDelayed r14(factor = +av, delayTime(displayUnit = "yr") = v2) "Change pressure >> budget" annotation(Placement(visible = true, transformation(origin = {-10, 45}, extent = {{10, -10}, {-10, 10}}, rotation = 0)));
-  CausalLoop.ProportionalityDelayed r15(factor = -av, delayTime(displayUnit = "yr") = v4) "Number of ad hoc design decisions >> design quality" annotation(Placement(visible = true, transformation(origin = {-25, -60}, extent = {{-10, 10}, {10, -10}}, rotation = 0)));
-  CausalLoop.ProportionalityDelayed r16(factor = +av, delayTime(displayUnit = "yr") = v4) "Number of employees >> costs" annotation(Placement(visible = true, transformation(origin = {33, 15}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  CausalLoop.ProportionalityDelayed r17(factor = -wk, delayTime(displayUnit = "yr") = v2) "Number of employees >> resistance against software" annotation(Placement(visible = true, transformation(origin = {28, -7.49}, extent = {{10, 10}, {-10, -10}}, rotation = 90)));
-  CausalLoop.ProportionalityDelayed r18(factor = -av, delayTime(displayUnit = "yr") = v3) "Number of parties involved >> decision speed" annotation(Placement(visible = true, transformation(origin = {-105, -20}, extent = {{-10, -10}, {10, 10}}, rotation = -270)));
-  CausalLoop.ProportionalityDelayed r19(factor = -av, delayTime(displayUnit = "yr") = v2) "Production efficiency >> costs" annotation(Placement(visible = true, transformation(origin = {80, 15}, extent = {{10, 10}, {-10, -10}}, rotation = 0)));
-  CausalLoop.ProportionalityDelayed r20(factor = +av, delayTime(displayUnit = "yr") = v3) "Production quality >> cost effectiveness" annotation(Placement(visible = true, transformation(origin = {123.248, 5}, extent = {{-10, -10}, {10, 10}}, rotation = 90)));
-  CausalLoop.ProportionalityDelayed r21(factor = +vs, delayTime(displayUnit = "yr") = v4) "Software acceptance >> software usage" annotation(Placement(visible = true, transformation(origin = {80, -55}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  CausalLoop.ProportionalityDelayed r22(factor = -av, delayTime(displayUnit = "yr") = v3) "Number of parties involved >> design quality" annotation(Placement(visible = true, transformation(origin = {-64, -70}, extent = {{-10, 10}, {10, -10}}, rotation = 0)));
-  CausalLoop.ProportionalityDelayed r23(factor = +wk, delayTime(displayUnit = "yr") = v1) "Software management organization capacity >> software quality" annotation(Placement(visible = true, transformation(origin = {-3.016, -10}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
-  CausalLoop.ProportionalityDelayed r24(factor = +av, delayTime(displayUnit = "yr") = v2) "Software quality >> software acceptance" annotation(Placement(visible = true, transformation(origin = {40, -65}, extent = {{10, 10}, {-10, -10}}, rotation = -270)));
-  CausalLoop.ProportionalityDelayed r25(factor = -wk, delayTime(displayUnit = "yr") = v2) "Software usage >> number of employees" annotation(Placement(visible = true, transformation(origin = {65, -27.118}, extent = {{10, -10}, {-10, 10}}, rotation = 0)));
-  CausalLoop.ProportionalityDelayed r26(factor = +av, delayTime(displayUnit = "yr") = v3) "Software usage >> productive efficiency" annotation(Placement(visible = true, transformation(origin = {85, -5}, extent = {{10, -10}, {-10, 10}}, rotation = -90)));
-  CausalLoop.ProportionalityDelayed r27(factor = +av, delayTime(displayUnit = "yr") = v3) "Software usage >> production quality" annotation(Placement(visible = true, transformation(origin = {115, -40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  CausalLoop.ProportionalityDelayed r28(factor = -st, delayTime(displayUnit = "yr") = v2) "Production quality >> change pressure" annotation(Placement(visible = true, transformation(origin = {135, 20}, extent = {{-10, -10}, {10, 10}}, rotation = 90)));
-  CausalLoop.ProportionalityDelayed r29(factor = -wk, delayTime(displayUnit = "yr") = v4) "Software usage >> resistance against software" annotation(Placement(visible = true, transformation(origin = {63, -15}, extent = {{10, -10}, {-10, 10}}, rotation = 0)));
-  CausalLoop.ProportionalityDelayed r30(factor = -st, delayTime(displayUnit = "yr") = v4) "resistance against software >> software acceptance" annotation(Placement(visible = true, transformation(origin = {50, -55}, extent = {{10, 10}, {-10, -10}}, rotation = -270)));
-  CausalLoop.ProportionalityDelayed r31(factor = +av, delayTime(displayUnit = "yr") = v4) "Software management organization capacity >> number of employees" annotation(Placement(visible = true, transformation(origin = {8.076, 7.13}, extent = {{10, -10}, {-10, 10}}, rotation = 90)));
+  CausalLoop.ProportionalityDelayed r1(factor = +wk, delayTime = v1) "External resrouces >> clear mandate" annotation(Placement(visible = true, transformation(origin = {-135, 5}, extent = {{-10, 10}, {10, -10}}, rotation = 270)));
+  CausalLoop.ProportionalityDelayed r2(factor = +wk, delayTime = v2) "External resources >> management knowledge level" annotation(Placement(visible = true, transformation(origin = {-64, 7}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  CausalLoop.ProportionalityDelayed r3(factor = +av, delayTime = v2) "External resources >> management quality" annotation(Placement(visible = true, transformation(origin = {-30, 30}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  CausalLoop.ProportionalityDelayed r4(factor = +av, delayTime = v3) "External resources >> software management organization capacity" annotation(Placement(visible = true, transformation(origin = {-63, 17}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  CausalLoop.ProportionalityDelayed r5(factor = +st, delayTime = v3, hasRateOutput = false) "Budget >> external resources" annotation(Placement(visible = true, transformation(origin = {-100, 55}, extent = {{10, 10}, {-10, -10}}, rotation = 0)));
+  CausalLoop.ProportionalityDelayed r6(factor = -st, delayTime = v3) "Clear mandate >> number of parties involved" annotation(Placement(visible = true, transformation(origin = {-118, -35}, extent = {{10, 10}, {-10, -10}}, rotation = -270)));
+  CausalLoop.ProportionalityDelayed r7(factor = -vs, delayTime = v3) "Costs >> cost effectiveness" annotation(Placement(visible = true, transformation(origin = {82.503, 40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  CausalLoop.ProportionalityDelayed r8(factor = +vs, delayTime = v3) "Decision quality >> design quality" annotation(Placement(visible = true, transformation(origin = {-10, -40}, extent = {{-10, 10}, {10, -10}}, rotation = -90)));
+  CausalLoop.ProportionalityDelayed r9(factor = -av, delayTime = v2) "Decision speed >> number of ad hoc design decisions" annotation(Placement(visible = true, transformation(origin = {-65, -35}, extent = {{10, 10}, {-10, -10}}, rotation = 90)));
+  CausalLoop.ProportionalityDelayed r10(factor = +av, delayTime = v2) "Design quality >> software quality" annotation(Placement(visible = true, transformation(origin = {15, -40}, extent = {{-10, 10}, {10, -10}}, rotation = 0)));
+  CausalLoop.ProportionalityDelayed r11(factor = +st, delayTime = v4) "Management knowledge level >> decision quality" annotation(Placement(visible = true, transformation(origin = {-30, -15}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
+  CausalLoop.ProportionalityDelayed r12(factor = -wk, delayTime = v2) "Management quality >> resistance against software" annotation(Placement(visible = true, transformation(origin = {50, -5.412}, extent = {{10, 10}, {-10, -10}}, rotation = 90)));
+  CausalLoop.ProportionalityDelayed r13(factor = +wk, delayTime = v2) "Management quality >> software usage" annotation(Placement(visible = true, transformation(origin = {72.552, -40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  CausalLoop.ProportionalityDelayed r14(factor = +av, delayTime = v2) "Change pressure >> budget" annotation(Placement(visible = true, transformation(origin = {-10, 45}, extent = {{10, -10}, {-10, 10}}, rotation = 0)));
+  CausalLoop.ProportionalityDelayed r15(factor = -av, delayTime = v4) "Number of ad hoc design decisions >> design quality" annotation(Placement(visible = true, transformation(origin = {-25, -60}, extent = {{-10, 10}, {10, -10}}, rotation = 0)));
+  CausalLoop.ProportionalityDelayed r16(factor = +av, delayTime = v4) "Number of employees >> costs" annotation(Placement(visible = true, transformation(origin = {33, 15}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  CausalLoop.ProportionalityDelayed r17(factor = -wk, delayTime = v2) "Number of employees >> resistance against software" annotation(Placement(visible = true, transformation(origin = {28, -7.49}, extent = {{10, 10}, {-10, -10}}, rotation = 90)));
+  CausalLoop.ProportionalityDelayed r18(factor = -av, delayTime = v3) "Number of parties involved >> decision speed" annotation(Placement(visible = true, transformation(origin = {-105, -20}, extent = {{-10, -10}, {10, 10}}, rotation = -270)));
+  CausalLoop.ProportionalityDelayed r19(factor = -av, delayTime = v2) "Production efficiency >> costs" annotation(Placement(visible = true, transformation(origin = {80, 15}, extent = {{10, 10}, {-10, -10}}, rotation = 0)));
+  CausalLoop.ProportionalityDelayed r20(factor = +av, delayTime = v3) "Production quality >> cost effectiveness" annotation(Placement(visible = true, transformation(origin = {123.248, 5}, extent = {{-10, -10}, {10, 10}}, rotation = 90)));
+  CausalLoop.ProportionalityDelayed r21(factor = +vs, delayTime = v4) "Software acceptance >> software usage" annotation(Placement(visible = true, transformation(origin = {80, -55}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  CausalLoop.ProportionalityDelayed r22(factor = -av, delayTime = v3) "Number of parties involved >> design quality" annotation(Placement(visible = true, transformation(origin = {-64, -70}, extent = {{-10, 10}, {10, -10}}, rotation = 0)));
+  CausalLoop.ProportionalityDelayed r23(factor = +wk, delayTime = v1) "Software management organization capacity >> software quality" annotation(Placement(visible = true, transformation(origin = {-3.016, -10}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
+  CausalLoop.ProportionalityDelayed r24(factor = +av, delayTime = v2) "Software quality >> software acceptance" annotation(Placement(visible = true, transformation(origin = {40, -65}, extent = {{10, 10}, {-10, -10}}, rotation = -270)));
+  CausalLoop.ProportionalityDelayed r25(factor = -wk, delayTime = v2) "Software usage >> number of employees" annotation(Placement(visible = true, transformation(origin = {65, -27.118}, extent = {{10, -10}, {-10, 10}}, rotation = 0)));
+  CausalLoop.ProportionalityDelayed r26(factor = +av, delayTime = v3) "Software usage >> productive efficiency" annotation(Placement(visible = true, transformation(origin = {85, -5}, extent = {{10, -10}, {-10, 10}}, rotation = -90)));
+  CausalLoop.ProportionalityDelayed r27(factor = +av, delayTime = v3) "Software usage >> production quality" annotation(Placement(visible = true, transformation(origin = {115, -40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  CausalLoop.ProportionalityDelayed r28(factor = -st, delayTime = v2) "Production quality >> change pressure" annotation(Placement(visible = true, transformation(origin = {135, 20}, extent = {{-10, -10}, {10, 10}}, rotation = 90)));
+  CausalLoop.ProportionalityDelayed r29(factor = -wk, delayTime = v4) "Software usage >> resistance against software" annotation(Placement(visible = true, transformation(origin = {63, -15}, extent = {{10, -10}, {-10, 10}}, rotation = 0)));
+  CausalLoop.ProportionalityDelayed r30(factor = -st, delayTime = v4) "resistance against software >> software acceptance" annotation(Placement(visible = true, transformation(origin = {50, -55}, extent = {{10, 10}, {-10, -10}}, rotation = -270)));
+  CausalLoop.ProportionalityDelayed r31(factor = +av, delayTime = v4) "Software management organization capacity >> number of employees" annotation(Placement(visible = true, transformation(origin = {8.076, 7.13}, extent = {{10, -10}, {-10, 10}}, rotation = 90)));
   // interventions (e.g., control)
-  CausalLoop.SimpleControl c1(initialSetpoint = 0.8, finalSetpoint = 0.8, duration(displayUnit = "yr") = 315360000, adjTime(displayUnit = "yr") = 31536000) if c1ActiveQ annotation(Placement(visible = true, transformation(origin = {-90, 45}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  CausalLoop.SimpleControl c2(initialSetpoint = 0.7, finalSetpoint = 0.7, duration(displayUnit = "yr") = 315360000, adjTime(displayUnit = "yr") = 31536000, hasRateOutput = false) if c2ActiveQ annotation(Placement(visible = true, transformation(origin = {-135, -30}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  CausalLoop.SimpleControl c3(initialSetpoint = 0.5, finalSetpoint = 0.5, duration(displayUnit = "yr") = 315360000, adjTime(displayUnit = "yr") = 31536000, hasRateOutput = false) if c3ActiveQ annotation(Placement(visible = true, transformation(origin = {-45, -12.32}, extent = {{-10, -10}, {10, 10}}, rotation = -270)));
-  CausalLoop.SimpleControl c4(initialSetpoint = 0.6, finalSetpoint = 0.6, duration(displayUnit = "yr") = 315360000, adjTime(displayUnit = "yr") = 31536000) if c4ActiveQ annotation(Placement(visible = true, transformation(origin = {21.696, 35}, extent = {{-10, 10}, {10, -10}}, rotation = 360)));
+  CausalLoop.SimpleControl c1(initialSetpoint = 0.8, finalSetpoint = 0.8, duration = 10, adjTime = 1) if theta.c1ActiveQ annotation(Placement(visible = true, transformation(origin = {-90, 45}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  CausalLoop.SimpleControl c2(initialSetpoint = 0.7, finalSetpoint = 0.7, duration = 10, adjTime = 1, hasRateOutput = false) if theta.c2ActiveQ annotation(Placement(visible = true, transformation(origin = {-135, -30}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  CausalLoop.SimpleControl c3(initialSetpoint = 0.5, finalSetpoint = 0.5, duration = 10, adjTime = 1, hasRateOutput = false) if theta.c3ActiveQ annotation(Placement(visible = true, transformation(origin = {-45, -12.32}, extent = {{-10, -10}, {10, 10}}, rotation = -270)));
+  CausalLoop.SimpleControl c4(initialSetpoint = 0.6, finalSetpoint = 0.6, duration = 10, adjTime = 1) if theta.c4ActiveQ annotation(Placement(visible = true, transformation(origin = {21.696, 35}, extent = {{-10, 10}, {10, -10}}, rotation = 360)));
   // performance (i.e., goals)
   CausalLoop.Performance usage(pol = "+", a = 0, b = 1) annotation(Placement(visible = true, transformation(origin = {100, -60}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
   CausalLoop.Performance quality(pol = "+", a = 0, b = 1) annotation(Placement(visible = true, transformation(origin = {135, -35}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
@@ -204,12 +215,12 @@ equation
   connect(usage.y, modelOutput.usagePerformance) annotation(Line(visible = true, origin = {117.413, -67}, points = {{-17.413, 6}, {-17.413, -3}, {34.826, -3}}, color = {192, 192, 192}));
   connect(cost.y, modelOutput.costPerformance) annotation(Line(visible = true, origin = {108.807, 18.333}, points = {{-29.807, 31.667}, {-43.807, 31.667}, {-43.807, 56.667}, {36.193, 56.667}, {36.193, -88.333}, {43.432, -88.333}}, color = {192, 192, 192}));
   connect(quality.y, modelOutput.qualityPerformance) annotation(Line(visible = true, origin = {140.746, -58.667}, points = {{-5.746, 22.667}, {-5.746, -11.333}, {11.493, -11.333}}, color = {192, 192, 192}));
-  annotation(preferredView = "diagram", Documentation(revisions = "<html>
+  annotation(preferredView = "diagram", experiment(StopTime = 10, StartTime = 0, Tolerance = 1e-06, Interval = 0.02), Documentation(revisions = "<html>
 <ul>
 <li>Added in v2.0.0.</li>
 </ul>
 </html>", info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>In 2007 Erik J.A. van Zijderveld introduced what he coined a \"<em>Method to Analyse Relations between Variables using Enriched Loops</em> (MARVEL)\"</em> [<a href=\"modelica://BusinessSimulation.UsersGuide.References\">24</a>]. He made the following observations:</p>
 <ul>
 <li>A <em>causal loop diagram</em> (CLD)—or impact diagram—is a good tool for integrating information from different stakeholdes and a modeling paradigm, which people with different backgrounds can easily relate to.</li><br>
@@ -268,5 +279,5 @@ In section 5 of his paper van Zijderveld gives an illustrative example for the a
 <p>
 <a href=\"modelica://BusinessSimulation.Examples.HealTheWorld\">HealTheWorld</a>
 </p> 
-</html>", figures = {Figure(title = "Performance Evaluation", identifier = "default", preferred = true, plots = {Plot(curves = {Curve(y = modelOutput.costPerformance, legend = "Cost"), Curve(y = modelOutput.qualityPerformance, legend = "Quality"), Curve(y = modelOutput.usagePerformance, legend = "Usage")})}), Figure(title = "Total Performance", identifier = "totalPerformance", plots = {Plot(curves = {Curve(y = modelOutput.totalPerformance, legend = "total perforamcne")})})}), experiment(StopTime = 315360000, __Wolfram_DisplayTimeUnit = "yr", __Wolfram_NumberOfIntervals = -1), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10})), uses(Modelica(version = "3.2.3"), BusinessSimulation(version = "1.1.0-alpha")), Diagram(coordinateSystem(extent = {{-150, -90}, {150, 90}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5}), graphics = {Text(visible = true, origin = {0, 80}, textColor = {76, 112, 136}, extent = {{-140, -6}, {140, 6}}, textString = "Software Release Project", fontName = "Lato", textStyle = {TextStyle.Bold}), Text(visible = true, origin = {0, 70}, textColor = {76, 112, 136}, extent = {{-140, -3}, {140, 3}}, textString = "van Zijderveld [24]", fontName = "Lato", textStyle = {TextStyle.Bold})}));
+</html>", figures = {Figure(title = "Performance Evaluation", identifier = "default", preferred = true, plots = {Plot(curves = {Curve(y = modelOutput.costPerformance, legend = "Cost"), Curve(y = modelOutput.qualityPerformance, legend = "Quality"), Curve(y = modelOutput.usagePerformance, legend = "Usage")})}), Figure(title = "Total Performance", identifier = "totalPerformance", plots = {Plot(curves = {Curve(y = modelOutput.totalPerformance, legend = "total perforamcne")})})}), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10})), Diagram(coordinateSystem(extent = {{-150, -90}, {150, 90}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5}), graphics = {Text(visible = true, origin = {0, 80}, textColor = {76, 112, 136}, extent = {{-140, -6}, {140, 6}}, textString = "Software Release Project", fontName = "Lato", textStyle = {TextStyle.Bold}), Text(visible = true, origin = {0, 70}, textColor = {76, 112, 136}, extent = {{-140, -3}, {140, 3}}, textString = "van Zijderveld [24]", fontName = "Lato", textStyle = {TextStyle.Bold}), Text(visible = true, origin = {0, 60}, textColor = {255, 0, 0}, extent = {{-140, -3}, {140, 3}}, textString = "1 s === 1 y", fontName = "Lato")}));
 end SoftwareReleaseProject;

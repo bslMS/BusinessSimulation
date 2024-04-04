@@ -36,7 +36,7 @@ equation
   connect(u_negDelayTime, actDelayTime.u2) annotation(Line(visible = true, origin = {-112.777, -52.5}, points = {{-32.223, -7.5}, {-7.223, -7.5}, {-7.223, 7.5}, {44.777, 7.5}}, color = {0, 0, 128}));
   connect(actDelayTime.y, rateOfChange.u2) annotation(Line(visible = true, origin = {-32.5, -7.5}, points = {{-19.5, -32.5}, {-7.5, -32.5}, {-7.5, 32.5}, {34.5, 32.5}}, color = {1, 37, 163}));
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>This converter behaves like a conventional <a href=\"modelica://BusinessSimulation.Converters.DiscreteDelay.Smooth\">→Smooth</a> but allows to give separate <em>delay times</em> for <em>positive</em> and <em>negative</em> information changes.</p>
 <h4>Notes</h4>
 <ul>

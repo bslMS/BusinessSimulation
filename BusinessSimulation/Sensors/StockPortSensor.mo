@@ -12,7 +12,7 @@ equation
   stockPort.stopInflow = flowPort.stopInflow;
   stockPort.stopOutflow = flowPort.stopOutflow;
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>This component is typically used to build submodels where the information regarding the rate of flow needs to be extracted from the outside <code>StockPort</code>.</p>
 <h4>See also</h4>
 <p><a href=\"modelica://BusinessSimulation.Sensors.StockPortSensor_Control\">StockPortSensor_Control</a>,&nbsp;<a href=\"modelica://BusinessSimulation.Sensors.FlowPortSensor\">FlowPortSensor</a></p>

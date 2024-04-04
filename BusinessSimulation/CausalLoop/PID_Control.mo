@@ -2,19 +2,19 @@ within BusinessSimulation.CausalLoop;
 
 model PID_Control "Directly influencing a stock to keep it at setpoint value"
   import BusinessSimulation.Units.*;
-  import Modelica.Blocks.Types.InitPID;
-  import BusinessSimulation.Constants.{small,inf};
+  import Modelica.Blocks.Types.Init;
+  import BusinessSimulation.Constants.{small, inf};
   extends BusinessSimulation.Interfaces.PartialCLD.Control;
   outer ModelSettings modelSettings;
   replaceable type GainType = Unspecified constrainedby Unspecified "Type choice for controller gain" annotation(choicesAllMatching = true);
   parameter GainType k(min = 0) = 1 "Gain of controller [GainType]";
   parameter Time Ti(min = small, start = 0.5) = inf "Time constant of integrator (i.e., gain for integrator = 1/Ti)";
   parameter Time Td(min = 0, start = 0.1) = 0 "Derivative gain (i.e., time span for error prediction)";
-  parameter InitPID initType = Modelica.Blocks.Types.InitPID.NoInit "Type of initialization (1: no init, 2: steady state, 3: initial state, 4: initial output)" annotation(Evaluate = true, Dialog(tab = "Initialization"));
+  parameter Init initType = Init.NoInit "Type of initialization (1: no init, 2: steady state, 3: initial state, 4: initial output)" annotation(Evaluate = true, Dialog(tab = "Initialization"));
   parameter Real Nd(min = small) = 10 "The higher Nd, the more ideal the derivative block" annotation(Dialog(tab = "Advanced"));
   parameter Fraction xi_start = 0 "Initial or guess value for integrator output (= integrator state)" annotation(Dialog(tab = "Initialization"));
   parameter Fraction xd_start = 0 "Initial or guess value for state of derivative block" annotation(Dialog(tab = "Initialization"));
-  parameter OutputType y_start = 0 "Initial value of output" annotation(Dialog(enable = initType == InitPID.InitialOutput, tab = "Initialization"));
+  parameter OutputType y_start = 0 "Initial value of output" annotation(Dialog(enable = initType == Init.InitialOutput, tab = "Initialization"));
 protected
   Modelica.Blocks.Continuous.PID PID(k = k, Ti = Ti, Td = Td, initType = initType, Nd = Nd, xi_start = xi_start, xd_start = xd_start, y_start = y_start) annotation(Placement(visible = true, transformation(origin = {-30, 40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Converters.Gap error "Gap between setpoint and current stock value" annotation(Placement(visible = true, transformation(origin = {-62.168, 60}, extent = {{-10, 10}, {10, -10}}, rotation = 360)));
@@ -34,8 +34,8 @@ equation
   connect(u, error.u1) annotation(Line(visible = true, origin = {-91.292, 27.5}, points = {{-53.708, -27.5}, {16.292, -27.5}, {16.292, 27.5}, {21.124, 27.5}}, color = {0, 0, 128}));
   /* control */
   annotation(defaultComponentName = "c", Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
-<p>This component uses a →<a href=\"modelica://Modelica.Blocks.Continuous.PID\"><code>PID</code></a> controller to arrive at a rate of flow that is needed to move a connected stock \"under management\" to a given <em>setpoint</em>, i.e., goal. The PID controller here follows the typical <em>standard form</em> implementation where the <em>error e(t)</em> is defined as the difference between the <em>setpoint SP(t)</em> and the current stock value <em>S(t)</em>: <em>e(t) = SP(t) - S(t)</em>. The <em>control u(t)</em> accordingly is the rate affecting the stock:</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
+<p>This component uses a →<a href=\"modelica:/Modelica.Blocks.Continuous.PID\"><code>PID</code></a> controller to arrive at a rate of flow that is needed to move a connected stock \"under management\" to a given <em>setpoint</em>, i.e., goal. The PID controller here follows the typical <em>standard form</em> implementation where the <em>error e(t)</em> is defined as the difference between the <em>setpoint SP(t)</em> and the current stock value <em>S(t)</em>: <em>e(t) = SP(t) - S(t)</em>. The <em>control u(t)</em> accordingly is the rate affecting the stock:</p>
 <p><img src=\"modelica://BusinessSimulation/Resources/Images/CausalLoop/PID_Control/Formula.svg\" alt=\"y(t) = ... \"></p>
 <p>There is <strong><em>proportional</em></strong> control <em>k e(t)</em> that is immediately acting upon any deviation between stock value and setpoint. The controller also has an <strong><em>integral</em></strong> component that is aiming at correcting the accumulated error within a time span of <code>Ti</code> units of time. Finally, the controller has a <strong><em>derivative</em></strong> component that uses the current rate of change in the error to predict the error <code>Td</code> units of time into the future.</p>
 <p>The control's <em>setpoint</em> can be provided either by an embedded →<a href=\"modelica://BusinessSimulation.InformationSources.RampInput\"><code>RampInput</code></a> or by an exogenous input <strong>u</strong>. In case of a <em>ramp input</em> the setpoint will move from <code>initialSetpoint</code> to <code>finalSetpoint</code> in linear fashion for a period given by <code>duration</code> starting at <code>startTime</code>.</p>
@@ -58,7 +58,8 @@ equation
 </p>
 </html>", revisions = "<html>
 <ul>
-<li>Introduced in v2.0.0.</li>
+<li>Introduced in v2.0.0.</li><br>
+<li>Class adapted as to be compliant with MSL 4.0.0 in v2.2.</li><br>
 </ul>
 </html>"), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10})), Diagram(coordinateSystem(extent = {{-150, -90}, {150, 90}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})));
 end PID_Control;

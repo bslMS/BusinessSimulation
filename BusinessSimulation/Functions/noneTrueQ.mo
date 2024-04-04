@@ -12,7 +12,7 @@ algorithm
     y := y and not x[i];
   end for;
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>The function takes a vector of Booleans and will return true, if none of the elements in the input vector is true, and false otherwise.</p>
 <h4>Syntax</h4>
 <br>

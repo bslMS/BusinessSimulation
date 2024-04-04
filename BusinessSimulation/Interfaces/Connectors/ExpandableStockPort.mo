@@ -3,7 +3,7 @@ within BusinessSimulation.Interfaces.Connectors;
 expandable connector ExpandableStockPort "Expandable connector for stock ports"
   extends Icons.ExpandableStockPort;
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>Expandable connector to accomodate multiple stock ports.</p>
 <h4>Notes</h4>
 <p>While the <em>StockMultiPort</em> component is typically used to visually show the presence of an array of <code>StockPort</code>, this component is an <em>expandable connector</em> that is much more flexible.</p>

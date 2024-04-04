@@ -16,7 +16,7 @@ equation
   y1 = massPort.rate;
   y2 = massPort.rate;
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>Partial model extending from the &rarr;<a href=\"modelica://BusinessSimulation.Interfaces.Basics.GenericSourceOrSink\">GenericSourceOrSink</a> base class. This partial class can be used to model <em>Sink</em> components using equations to assign a value to the Real variable <code>rate.</code></p>
 <h4>Notes</h4>
 <p>Only positive values should be assigned to <code>rate</code>&nbsp;and accordingly negative values will cause a warning.</p>

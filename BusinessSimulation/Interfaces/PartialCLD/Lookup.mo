@@ -25,7 +25,7 @@ equation
 <li>Introduced in v2.0.0.</li>
 </ul>
 </html>", info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>Partial class to be used for <em>extensions</em> within <em>lookup</em> classes.</p>
 <p>The input can be given using a <code>StockInfoInput</code> connector (in which case the stock value will be used) or using the input <stong>u</strong> depending upon the structural parameter <code>hasStockInfoInput</code>.</p>
 <p>The input will be <em>normalized</em>(→<a href=\"modelica://BusinessSimulation.Converters.DmnlInput\"><code>DmnlInput</code></a>) using either the parameter <code>referenceValue</code> (default = 1) or the optional input <strong>u_ref</strong>.

@@ -48,7 +48,7 @@ equation
   connect(actualTrend.y, y) annotation(Line(visible = true, origin = {122, -15}, points = {{-34, -15}, {-2, -15}, {-2, 15}, {38, 15}}, color = {1, 37, 163}));
   connect(ppc.y, y_ppc) annotation(Line(visible = true, origin = {30.833, -51.667}, points = {{-105.833, 51.667}, {-100.833, 51.667}, {-100.833, -43.333}, {89.167, -43.333}, {89.167, -8.333}, {129.167, -8.333}}, color = {1, 37, 163}));
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>The <em>Trend</em> component represents forecasting in behavioral models and has been proposed by Sterman [<a href=\"modelica://BusinessSimulation.MoleculesOfStructure.InformationProcessing.Trend\">3</a>, pp. 634 - 638]. The basic idea is rather intuitive: Forecasters perceive a present condition of some input as a smoothed input (ppc), while they also perceive the historic or reference condition&nbsp;(rc) as a smooth of their current perception.</p>
 <p>Dividing the diffence between the current condition and the reference condition by the reference condition will determine the fractional increase. A further division by the time horizon for the reference condition will then turn this into a <em>fractional rate</em>. The thus calculated rate of change (i.e., the indicated trend) may then again be smoothed, if <code>smoothTrend = true</code>.</p>
 <h4>See also</h4>

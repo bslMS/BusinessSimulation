@@ -19,7 +19,7 @@ equation
   connect(flowingFromAToB.y1, y1) annotation(Line(visible = true, origin = {63.146, -22.5}, points = {{-52.646, 17.5}, {-23.146, 17.5}, {-23.146, -17.5}, {98.937, -17.5}}, color = {1, 37, 163}));
   /* flow */
   annotation(defaultComponentName = "f", Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>Using →<a href = \"modelica://BusinessSimulation.Flows.Unidirectional.Transition\"><code>Transition</code></a> this component allows to model a transition from stock <strong>A</strong> (connected to <code>portA</code>) to stock <strong>B</strong> (connected to <code>portB</code>) at a rate given by the parameter <code>rate</code>. The parameter <code>rate</code> is multiplied either with 1 (<code>hasFactor = false</code>) or an exogenous factor <strong>u</strong> (<code>hasFactor = true</code>). Upon setting <code>hasRateOutput = true</code> the component will report the current rate of flow via an output connector (<code>y</code>).</p>
 <h4>Notes</h4>
 <ul>

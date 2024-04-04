@@ -25,7 +25,7 @@ equation
   stockPort.stopInflow = u_stopInflow;
   stockPort.stopOutflow = u_stopOutflow;
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>This component is typically used to build submodels where the information regarding the rate of flow needs to be extracted from the outside <code>StockPort</code>. In this component the Boolean flags <code>stopInflow</code> and <code>stopOutflow</code> can be explicitly set using the Boolean input connectors and the input values will override the signals received at the <code>FlowPort</code>, which will typically be connected to the inside <code>StockPort</code> which would normally be directly connected to the outside one.</p>
 <h4>See also</h4>
 <p><a href=\"modelica://BusinessSimulation.Sensors.StockPortSensor\">StockPortSensor</a>,&nbsp;<a href=\"modelica://BusinessSimulation.Sensors.FlowPortSensor\">FlowPortSensor</a></p>

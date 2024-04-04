@@ -9,7 +9,7 @@ block GameInput "Enable user input, if gaming mode is activated"
 algorithm
   y := if modelSettings.gaming == true then u_User else u;
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>This component allows to easily set up a model as to either allow for user input (i.e., <code>modelSettings.gaming = true</code>) or to work without any such input (i.e., <code>modelSettings.gaming = false</code>). The user input is to be provided using the input connector <code>u_User</code>, while the regular input needs to be connected to the input <strong>u</strong></p>
 </html>", revisions = "<html>
 <ul>

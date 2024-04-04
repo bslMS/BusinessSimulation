@@ -20,7 +20,7 @@ equation
   connect(absoluteSensor.outFlow, y1) annotation(Line(visible = true, origin = {70.521, -7.75}, points = {{-60.521, 31.75}, {-60.521, 47.75}, {-15.521, 47.75}, {-15.521, -32.25}, {91.562, -32.25}}, color = {1, 37, 163}));
   /* relation */
   annotation(defaultComponentName = "r", Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>The <em>ProportionalityDelayed</em> compactly combines →<a href=\"modelica://BusinessSimulation.CausalLoop.Proportionality\"><code>Proportionality</code></a> with →<a href=\"modelica://BusinessSimulation.CausalLoop.ExponentialDelay\"><code>ExponentialDelay</code></a>.</p>
 <h4>Notes</h4>
 <p>There are no optional input connectors for this component. If exogenous inputs (e.g., factors) are needed, then <code>Proportionality</code> and <code>ExponentialDelay</code> have to be used in combination.</p>

@@ -28,7 +28,7 @@ equation
   connect(splitFlow.y, y1) annotation(Line(visible = true, origin = {19.333, 43.467}, points = {{-64.333, -33.067}, {-64.333, 16.533}, {130.667, 16.533}}, color = {1, 37, 163}));
   connect(splitFlow.y, y2) annotation(Line(visible = true, origin = {3.6, -5.92}, points = {{-48.6, 16.32}, {-48.6, 25.92}, {-23.6, 25.92}, {-23.6, -34.08}, {146.4, -34.08}}, color = {1, 37, 163}));
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>The <em>SplitOutflowDynamicStock</em>&nbsp;is used to model the outflow from a stock with inherent dynamic behavior(e.g., a conveyor or a higher-order delay). In these cases, the stock will set the rate of flow and \"signal\" it via its &rarr;<a href=\"modelica://BusinessSimulation.Interfaces.Connectors.StockPort_Special\">StockPort_Special</a>.</p>
 <p>The total outflow is split proportionally according to given&nbsp;<em>weights</em> either given as a vector of parameters or as a vector of inputs&nbsp;<strong>u</strong>.</p>
 <h4>Notes</h4>

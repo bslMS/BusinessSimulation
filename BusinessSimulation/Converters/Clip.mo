@@ -3,7 +3,7 @@ within BusinessSimulation.Converters;
 block Clip "Clips input signal so that it remains within a given interval"
   import BusinessSimulation.Units.*;
   import BusinessSimulation.Constants.*;
-  import Modelica.Blocks.Types.{LimiterHomotopy,VariableLimiterHomotopy};
+  import Modelica.Blocks.Types.{LimiterHomotopy, VariableLimiterHomotopy};
   extends Interfaces.PartialConverters.SISO;
   Interfaces.Connectors.RealInput u_max if not hasConstantLimits "Upper limit input" annotation(Placement(visible = true, transformation(origin = {-145, 40}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-80, 50}, extent = {{-10, 10}, {10, -10}}, rotation = 0)));
   Interfaces.Connectors.RealInput u_min if not hasConstantLimits "Lower limit input" annotation(Placement(visible = true, transformation(origin = {-145, -40}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-80, -50}, extent = {{-10, 10}, {10, -10}}, rotation = 0)));
@@ -24,10 +24,10 @@ equation
   connect(u_min, variableLimiter.limit2) annotation(Line(visible = true, origin = {-79.25, -34}, points = {{-65.75, -6}, {-0.75, -6}, {-0.75, 6}, {67.25, 6}}, color = {0, 0, 128}));
   connect(variableLimiter.y, y) annotation(Line(visible = true, origin = {82.817, -10}, points = {{-71.817, -10}, {-2.817, -10}, {-2.817, 10}, {77.451, 10}}, color = {1, 37, 163}));
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>The input <strong>u</strong>&nbsp;will be <em>clipped</em> to make sure that it is within the interval <code>[minValue, maxValue]</code> before it is given as output <strong>y</strong>. Alternatively, variable inputs can be used to set the limits (<code>hasConstantLimits = false</code>).</p>
 <h4><strong>Implementation</strong></h4>
-<p>The component internally uses the →<a href=\"modelica://Modelica.Blocks.Nonlinear.Limiter\">Limiter</a> and the →<a href=\"modelica://Modelica.Blocks.Nonlinear.VariableLimiter\">VariableLimiter</a> from the Modelica Standard Library.</p>
+<p>The component internally uses the →<a href=\"modelica:/Modelica.Blocks.Nonlinear.Limiter\">Limiter</a> and the →<a href=\"modelica:/Modelica.Blocks.Nonlinear.VariableLimiter\">VariableLimiter</a> from the Modelica Standard Library.</p>
 <h4>See also</h4>
 <p><a href=\"modelica://BusinessSimulation.Functions.clip\">Functions.clip</a>, <a href=\"modelica://BusinessSimulation.Converters.Vector.Clip\">Vector.Clip</a>,&nbsp;<a href=\"modelica://BusinessSimulation.Converters.ClipProcessTime\">ClipProcessTime</a>,&nbsp;<a href=\"modelica://BusinessSimulation.Converters.ZeroIfNegative\">ZeroIfNegative&nbsp;</a></p>
 </html>"), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10}), graphics = {Text(visible = true, textColor = {0, 0, 128}, extent = {{-36.812, -12}, {36.812, 12}}, textString = "CLIP", fontName = "Lato", textStyle = {TextStyle.Bold})}), Diagram(coordinateSystem(extent = {{-148.5, -105}, {148.5, 105}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})));

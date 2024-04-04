@@ -3,7 +3,7 @@ within BusinessSimulation.Stocks;
 model DelayN "Material delay of n-th Order"
   import BusinessSimulation.Types.InitializationOptions;
   import BusinessSimulation.Units.*;
-  import BusinessSimulation.Constants.{small,zero,inf,INF};
+  import BusinessSimulation.Constants.{small, zero, inf, INF};
   extends Icons.DelayN;
   extends Interfaces.Basics.GenericStock_Special(hasStockInfoOutput = false, init = modelSettings.init);
   Interfaces.Connectors.RealInput u(quantity = "Time", unit = "s") if not hasConstantDelayTime "Delay time input (optional)" annotation(Placement(visible = true, transformation(origin = {-145, 40}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-50, 100}, extent = {{10, 10}, {-10, -10}}, rotation = -270)));
@@ -22,10 +22,10 @@ protected
 initial equation
   // set up in steady state or use fixed value
   if init == InitializationOptions.FixedValue then
-    x_hidden[1:n] = array(initialValue / n for i in 1:n);
+    x_hidden = fill(initialValue / n, n);
   elseif init == InitializationOptions.SteadyState then
     // make use of Little's Law
-    x_hidden[1:n] = array(inflow.rate * (actualDelayTime.y / n) for i in 1:n);
+    x_hidden = fill(inflow.rate * (actualDelayTime.y / n), n);
   end if;
   // properly initialize discrete vars with fixed = false
   // inflow to stock is restricted to inflow port; no draining allowed
@@ -62,7 +62,7 @@ equation
   // assert
   assert(n > 0, "Order of the delay must be at least 1");
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>The <em>DelayN</em> is a &rarr;<a href=\"modelica://BusinessSimulation.Stocks.MaterialStock\">MaterialStock</a>&nbsp;with inherent <em>dynamic behavior</em> that will result in a delay&mdash;which may have a <em>constant</em> (<code>delayTime</code>) or a <em>variable</em> delay time (<code>u</code>). Internally a material delay of order <code>n</code> is made up of a sequence of <code>n</code> first-order delays (&rarr;<a href=\"modelica://BusinessSimulation.Flows.Unidirectional.Decay\">Decay </a>) each having a delay time of <code>delayTime/n</code>.</p>
 <p>To better grasp the behavior of a <em>DelayN</em>, it helps to be aware of the fact, that given a single pulse input (e.g., a Dirac delta function) as <em>inflow</em> to a DelayN with constant delay time, its <em>outflow</em> will correspond to an <em>Exponential distribution</em> for <code>n = 1</code> and more generally to an <em>Erlang distribution</em> of order <em>k = n</em> for <code>n &ge; 1</code>. In other words, the <em>time of residence</em> within the stock is distributed according to an Erlang distribution with the mean residence time corresponding to the delay time and a diminishing variance as <code>n</code> increases—in the limit, as <code>n</code> approaches infinity, the DelayN will be equivalent to the &rarr;<a href=\"modelica://BusinessSimulation.Stocks.PureDelay\">PureDelay</a> (aka <em>pipeline delay</em>). For more detail, see Sterman [<a href=\"modelica://BusinessSimulation.UsersGuide.References\">3</a>, Chapter 11].</p>
 <h4>Notes</h4>

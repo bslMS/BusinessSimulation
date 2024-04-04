@@ -2,7 +2,7 @@ within BusinessSimulation.Functions;
 
 encapsulated function normalizePLpdf "Normalize a piecewise linear density function given by a list of points"
   import BusinessSimulation.Icons.Function;
-  import BusinessSimulation.Functions.{rescaleVector,areaLineSegment,normalizationConstant};
+  import BusinessSimulation.Functions.{rescaleVector, areaLineSegment, normalizationConstant};
   extends Function;
   input Real[:, 2] plPDF "Piecewise linear probability density function, i.e., { p1, p2, ... }";
   input Boolean rescaleQ = true "= true, if support is to be rescaled to the unit interval";
@@ -17,7 +17,7 @@ algorithm
   nc := normalizationConstant(y);
   y := if nc > 0 then transpose({support, plPDF[:, 2] ./ nc}) else plPDF;
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>The output <strong>y</strong> is a normalized piecewise linear probability distribution function specified by a list of points <code>{{x1,f(x1)}, {x2,f(x2}}, ... ,{xn, f(xn)}</code>, where the <em>support</em> may be rescaled to the unit interval (<code>rescaleQ = true</code>) and the area under the curve is equal to one.</p>
 <h4>Notes</h4>
 <p>If the normalization constant is not greater than zero, the function will simply return the input, albeit with possibly rescaled first dimension.</p>

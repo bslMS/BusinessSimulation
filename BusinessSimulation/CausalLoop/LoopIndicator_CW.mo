@@ -8,7 +8,7 @@ model LoopIndicator_CW "Loopindicator for clockwise feedback loop"
   parameter String pol = "+" "Loop polarity" annotation(choices(choice = "+", choice = "–", choice = "±"));
   /* Loop indicator */
   annotation(defaultComponentName = "L", Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>The <em>clockwise loop indicator</em> can be used to inidcate a <em>feedback loop</em> of polarity <code>pol</code> in a diagram. The component will not introduce any equations and is intended for diagramming purposes only.</p>
 <h4>See also</h4>
 <p>

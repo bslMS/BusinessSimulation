@@ -3,13 +3,13 @@ within BusinessSimulation.Stocks;
 model Conveyor "Conveyor delay (aka pipeline ~) with variable delay time"
   import BusinessSimulation.Types.InitializationOptions;
   import BusinessSimulation.Units.*;
-  import BusinessSimulation.Constants.{small,zero,inf,INF};
+  import BusinessSimulation.Constants.{small, zero, inf, INF};
   extends Icons.Conveyor;
   extends Icons.DiscreteStockLabel;
   extends Interfaces.Basics.GenericStock_Special(hasStockInfoOutput = false, init = modelSettings.init);
   Interfaces.Connectors.RealInput u(quantity = "Time") if not hasConstantDelayTime "Delay time input (optional)" annotation(Placement(visible = true, transformation(origin = {-145, 60}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-50, 100}, extent = {{-10, 10}, {10, -10}}, rotation = 270)));
   parameter OutputType initialValue(min = 0) = 0 "Initial load";
-  parameter Time delayTime(min = 0, max = maxDelayTime) "Constant delay time (optional)" annotation(Dialog(enable = hasConstantDelayTime));
+  parameter Time delayTime(min = 0, max = maxDelayTime) = 1 "Constant delay time (optional)" annotation(Dialog(enable = hasConstantDelayTime));
   parameter Time maxDelayTime(min = 0) = 10 "Maximum delay time (to restrict memory usage)" annotation(Evaluate = true);
   parameter Time samplingPeriod(min = small, max = modelSettings.dt) = modelSettings.samplingPeriod "Sampling period for discrete behavior (should be smaller than dt/2)" annotation(Evaluate = true, Dialog(tab = "Advanced"));
   parameter Boolean hasConstantDelayTime = true "= true, if the delay time is to be given by a constant parameter" annotation(Evaluate = true, Dialog(group = "Structural Parameters"));
@@ -120,7 +120,7 @@ equation
   assert(samplingPeriod < modelSettings.dt, "Sampling period should be significantly smaller than dt", level = AssertionLevel.warning);
   assert(samplingPeriod > small, "Sampling period must be greater than zero", level = AssertionLevel.error);
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>The <em>Conveyor</em> (aka <em>pipeline</em> <em>delay</em>) bevhaves as one would expect a conveyor belt to work: What <em>flows</em> <em>into</em> the Conveyor will <em>flow out</em> after a period given by  <code>delayTime</code> or the variable input <code>u</code> has passed. The order of outflow will preserve the order of inflow, i.e., when the delay time increases or decreases during the simulation, then it will affect everything that is currently \"loaded\" on the conveyor in the same way. Therefore, material&nbsp;might come out at the same time as material that had entered before, but it can never <em>overtake</em> older entries (this would be possible in a <em>PureDelay</em>).</p>
 <h4>Implementation</h4>
 <p>The <em>Conveyor</em>&nbsp; will work at <em>discrete</em> time intervals:</p>

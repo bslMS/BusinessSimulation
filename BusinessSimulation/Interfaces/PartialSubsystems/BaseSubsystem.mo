@@ -1,8 +1,8 @@
 within BusinessSimulation.Interfaces.PartialSubsystems;
 
 encapsulated partial model BaseSubsystem "Partial subsystem with flexible number of connectors"
-  import BusinessSimulation.Icons.{SubsystemBlock,SubsystemIncubator,SubsystemTransceiver,SubsystemActuator};
-  import BusinessSimulation.Interfaces.Connectors.{DataBus,RealInput,RealMultiInput,RealOutput,RealMultiOutput,FlowMultiPort,FlowPort,StockPort,StockMultiPort,StockInfoMultiInput,StockInfoInput,StockInfoMultiOutput,StockInfoOutput};
+  import BusinessSimulation.Icons.{SubsystemBlock, SubsystemIncubator, SubsystemTransceiver, SubsystemActuator};
+  import BusinessSimulation.Interfaces.Connectors.{DataBus, RealInput, RealMultiInput, RealOutput, RealMultiOutput, FlowMultiPort, FlowPort, StockPort, StockMultiPort, StockInfoMultiInput, StockInfoInput, StockInfoMultiOutput, StockInfoOutput};
   constant Integer nin(min = 0) = 0 "Number of input connectors" annotation(Dialog(tab = "Subsystem Specs", group = "System Connectors"));
   constant Integer nout(min = 0) = 0 "Number of output connectors" annotation(Dialog(tab = "Subsystem Specs", group = "System Connectors"));
   constant Integer n_stockPorts(min = 0) = 0 "Number of stock port connectors" annotation(Dialog(tab = "Subsystem Specs", group = "System Connectors"));
@@ -30,7 +30,7 @@ encapsulated partial model BaseSubsystem "Partial subsystem with flexible number
   RealOutput y if not hasMultiOutput and nout > 0 and nout < 2 "Output connector" annotation(Placement(visible = true, transformation(origin = {160, 40}, extent = {{-10, 10}, {10, -10}}, rotation = 0), iconTransformation(origin = {50, 104}, extent = {{-10, -10}, {10, 10}}, rotation = -630)));
   DataBus dataBus if hasDataBus "Information inputs and outputs" annotation(Placement(visible = true, transformation(origin = {0, 105}, extent = {{-20, -20}, {20, 20}}, rotation = 0), iconTransformation(origin = {0, 100}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>This partial class offers convenient flexible with regard to connectors. It is only used for extension.</p>
 <h4>Notes</h4>
 <ul>

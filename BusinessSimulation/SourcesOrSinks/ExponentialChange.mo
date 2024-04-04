@@ -27,7 +27,7 @@ equation
   connect(u, indicatedFractionalRate.u) annotation(Line(visible = true, origin = {-112, 55}, points = {{-33, -15}, {12, -15}, {12, 15}, {34, 15}}, color = {1, 37, 163}));
   connect(indicatedFractionalRate.y, changingRate.u2) annotation(Line(visible = true, origin = {-27.333, 57.667}, points = {{-34.667, 12.333}, {17.333, 12.333}, {17.333, -24.667}}, color = {1, 37, 163}));
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p><em>ExponentialChange</em>&nbsp;will fill (or drain) the connected stock from a source (or into a sink) with infinite capacity at a rate that is determined at any time as the product of the current amount in the connected stock and the fractional rate given by the real input <strong>u</strong>. By convention, a positive rate will fill the stock, while a negative rate will drain it.</p>
 <h4>Notes</h4>
 <ul>

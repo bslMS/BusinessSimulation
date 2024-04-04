@@ -14,7 +14,7 @@ protected
 equation
   connect(timeTable.y, y) annotation(Line(visible = true, origin = {130.5, 0}, points = {{-29.5, 0}, {29.5, 0}}, color = {0, 0, 127}));
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
-<p>The Real output <strong>y</strong> is found by <em>linear interpolation</em> in a time table&nbsp;&rarr; <a href=\"modelica://Modelica.Blocks.Sources.TimeTable\">Modelica.Blocks.Sources.TimeTable</a>.</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
+<p>The Real output <strong>y</strong> is found by <em>linear interpolation</em> in a time table&nbsp;&rarr; <a href=\"modelica:/Modelica.Blocks.Sources.TimeTable\">Modelica.Blocks.Sources.TimeTable</a>.</p>
 </html>"), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10})), Diagram(coordinateSystem(extent = {{-148.5, -105}, {148.5, 105}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})));
 end LinearTimeTable;

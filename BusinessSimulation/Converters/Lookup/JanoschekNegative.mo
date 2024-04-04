@@ -6,7 +6,7 @@ block JanoschekNegative "Janoschek's (S-shaped) growth curve with negative slope
   parameter Real upperBound = 2 "Upper asymptote for u <= 0 (upperBound > lowerBound)";
   parameter Real lowerBound = 0 "Lower asymptote for u -> infinity";
   parameter Real growthRate(min = 0) = 2 "Determines the gradient of the curve";
-  parameter Real x_ref(min = 0) = 1 "x-value for point of inflection(>0)";
+  parameter InputType x_ref(min = 0) = 1 "x-value (i.e., u) for point of inflection(>0)";
   parameter Real y_ref = 1 "y-value for point of inflection(lowerBound < y_ref < upperBound)";
   parameter Boolean strict = true "= true, if strict limits with noEvent(..)" annotation(Evaluate = true, Dialog(tab = "Advanced"));
 protected
@@ -24,7 +24,7 @@ equation
     y_c = if u_c <= 0 then upperBound else Functions.janoschek(x = u_c, l = lowerBound, b = upperBound, k = k, d = growthRate);
   end if;
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>This negative sloping Janoschek-Growth-Curve is simply a modification of the positive version. For more detail see <a href=\"modelica://BusinessSimulation.Converters.Lookup.JanoschekPositive\">JanoschekPositive</a>.</p>
 <p>The function is given by the following equation:</p>
 <p><img src=\"modelica://BusinessSimulation/Resources/Images/Converters/Lookup/JanoschekNegative/Formula.svg\" alt=\"y = l - (l-beta) * Exp(-k x^delta)\"></p>
@@ -70,6 +70,7 @@ equation
 </ul>
 <h4>See also</h4>
 <p><a href=\"modelica://BusinessSimulation.Converters.Lookup.JanoschekPositive\">JanoschekPositive</a></p></html>", revisions = "<html><ul>
-<li>Modified in v2.0.0.</li>
+<li>Modified in v2.0.0.</li><br>
+<li>Changed type for <code>x_ref</code> to <code>InputType</code> in v2.2.</li><br>
 </ul></html>"), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10}), graphics = {Ellipse(visible = true, lineColor = {0, 0, 128}, fillColor = {255, 255, 255}, fillPattern = FillPattern.Solid, lineThickness = 5, extent = {{-60, -60}, {60, 60}}), Line(visible = true, origin = {11.515, -18.173}, points = {{-46.394, 0}, {32.732, 0}, {13.662, 0}}, color = {128, 128, 128}, thickness = 1), Line(visible = true, origin = {-30, 12.704}, rotation = -270, points = {{-39.209, 0}, {18.362, 0}, {20.847, 0}}, color = {128, 128, 128}, thickness = 1), Line(visible = true, origin = {-16.063, -6.873}, points = {{-13.937, 32.823}, {9.408, 32.823}, {23.387, -7.757}, {51.346, -7.757}}, color = {0, 0, 128}, thickness = 3, smooth = Smooth.Bezier), Line(visible = true, origin = {2.099, -1.709}, points = {{-32.099, 1.709}, {-2.099, 1.709}}, color = {128, 128, 128}, pattern = LinePattern.Dot, thickness = 1), Line(visible = true, origin = {0.314, -32.099}, rotation = -90, points = {{-32.099, 1.709}, {-14.975, 1.709}}, color = {128, 128, 128}, pattern = LinePattern.Dot, thickness = 1), Ellipse(visible = true, origin = {2.097, 0}, lineColor = {255, 0, 0}, fillColor = {255, 0, 0}, fillPattern = FillPattern.Solid, extent = {{-3, -3}, {3, 3}}), Ellipse(visible = true, origin = {-29.903, 0}, lineColor = {128, 128, 128}, fillColor = {128, 128, 128}, fillPattern = FillPattern.Solid, extent = {{-2, -2}, {2, 2}}), Ellipse(visible = true, origin = {2.097, -18}, lineColor = {128, 128, 128}, fillColor = {128, 128, 128}, fillPattern = FillPattern.Solid, extent = {{-2, -2}, {2, 2}}), Text(visible = true, origin = {7.341, -37.537}, textColor = {128, 128, 128}, extent = {{-18.921, -12}, {18.921, 12}}, textString = "u", fontName = "Lato", textStyle = {TextStyle.Bold}), Text(visible = true, origin = {-43.292, 4.265}, textColor = {128, 128, 128}, extent = {{-18.921, -12}, {18.921, 12}}, textString = "y", fontName = "Lato", textStyle = {TextStyle.Bold})}), Diagram(coordinateSystem(extent = {{-148.5, -105}, {148.5, 105}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})));
 end JanoschekNegative;

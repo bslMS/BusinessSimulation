@@ -26,7 +26,7 @@ equation
   connect(splitFlow.y, y) annotation(Line(visible = true, origin = {54.022, 30.133}, points = {{-49.022, -19.733}, {-49.022, 9.867}, {98.045, 9.867}}, color = {1, 37, 163}));
   /* flow */
   annotation(defaultComponentName = "f", Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>Using →<a href = \"modelica://BusinessSimulation.MoleculesOfStructure.Transceivers.SplitFlow\"><code>SplitFlow</code></a> this component allows to split a flow connected to the stock port <code>portA</code> into <em>nout</em> outflows (<code>portB[nout]</code>); <code>nout</code> is implicitly determined by the length of the vector of split factors <code>splitFactors[:]</code> (parameters). The vecotor of split factors  is multiplied either with the scalar 1 (<code>hasFactor = false</code>) or an exogenous scalar <strong>u</strong> (<code>hasFactor = true</code>). Upon setting <code>hasRateOutput = true</code> the component will report the current rates of flow via a vector output connector (<code>y[nout]</code>).</p>
 <h4>Notes</h4>
 <ul>

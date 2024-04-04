@@ -22,7 +22,7 @@ equation
   connect(changing.y1, y1) annotation(Line(visible = true, origin = {95.646, -22.5}, points = {{-35.146, 17.5}, {-15.646, 17.5}, {-15.646, -17.5}, {66.437, -17.5}}, color = {1, 37, 163}));
   /* control */
   annotation(preferredView = "diagram", defaultComponentName = "c", Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p><em>SimpleControl</em> uses a →<a href=\"modelica://BusinessSimulation.MoleculesOfStructure.Policy.CloseGap\"><code>CloseGap</code></a> component to arrive (naively) at a flow that is needed to move a connected stock \"under management\" to a given <em>setpoint</em>, i.e., goal. The strength of the flow, i.e., the speed of the adjustment, is controlled by the parameter <code>adjTime</code>.</p>
 <p>The control's <em>setpoint</em> can be provided either by a →<a href=\"modelica://BusinessSimulation.InformationSources.RampInput\"><code>RampInput</code></a> or by an exogenous input <strong>u</strong>. In case of a <em>ramp input</em> the setpoint will move from <code>initialSetpoint</code> to <code>finalSetpoint</code> in linear fashion for a period given by <code>duration</code> starting at <code>startTime</code>.</p>
 <p>The controller by default is active over the whole simulation run, but can be restricted to an <em>on-off period</em> using <code>tc = TimingChoices.period</code> and the parameters <code>onTime</code> and <code>offTime</code>.</p>

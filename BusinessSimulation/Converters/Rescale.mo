@@ -11,7 +11,7 @@ equation
   assert(u_min < u_max, "Minimum value must be less than maximum");
   y = Functions.rescale(u, {u_min, u_max}, {y_min, y_max});
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>The input <strong>u</strong>&nbsp;will be <em>rescaled&nbsp;</em>to run from <code>y_min</code> to <code>y_max</code> over the range <code>u_min</code> to <code>u_max</code> to obtain the&nbsp;output <strong>y.</strong></p>
 <h4><strong>Implementation</strong></h4>
 <br>

@@ -9,7 +9,7 @@ encapsulated function bitShiftRight "n >> k"
 algorithm
   res := integer(n / 2 ^ k);
   annotation(Inline = true, Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>The output <strong>res</strong> corresponds to the binary bits of the input <strong>n</strong> shifted <strong>k</strong> places to the right.</p>
 <h4>Syntax</h4>
 <br>

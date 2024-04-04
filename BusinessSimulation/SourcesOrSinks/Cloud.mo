@@ -10,7 +10,7 @@ equation
   massPort.stopInflow = false;
   massPort.stopOutflow = false;
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>The <code>Cloud</code> is a reservoir (stock or level) with an infinite capacty. It is used at a system's border to provide a source for incoming or a sink for outgoing \"matter\".</p>
 </html>", revisions = "<html>
 <ul>

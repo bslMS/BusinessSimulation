@@ -9,14 +9,21 @@ encapsulated function normalizationConstant "Calculate the normalization constan
 protected
   Integer n = size(plPDF, 1) "Number of points in the piecewise linear density function";
 algorithm
-  y := sum(array(areaLineSegment(plPDF[i], plPDF[i + 1]) for i in 1:n - 1));
+  y := 0.0;
+  for i in 1:n - 1 loop
+    y := y + areaLineSegment(plPDF[i], plPDF[i + 1]);
+  end for;
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>The output <strong>y</strong> is the <em>area</em> under a piecewise linear probability distribution function specified by a list of points <strong>p1, p2, ... pn</strong>.</p>
 <h4>Syntax</h4>
 <p><code>Functions.<strong>normalizationConstant</strong>({{x1,y1},{x2,y2}, ...});</code></p>
 <h4>Implementation</h4><br>
-<pre>y := sum(array(areaLineSegment(plPDF[i], plPDF[i + 1]) for i in 1:n - 1));</pre><br>
+<pre>y := 0.0;
+for i in 1:n - 1 loop
+  y := y + areaLineSegment(plPDF[i], plPDF[i + 1]);
+end for;
+</pre><br>
 <h4>Examples</h4>
 <br>
 <pre>
@@ -26,7 +33,8 @@ normalizationConstant({{0,1},{10,1}});   // 10.0
 <br>
 </html>", revisions = "<html>
 <ul>
-<li>Introduced in v2.1.0.</li>
+<li>Introduced in v2.1.0.</li><br>
+<li>Robustified the implementation in v2.2.</li><br>
 </ul>
 </html>"), Diagram(coordinateSystem(extent = {{-150, -90}, {150, 90}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})));
 end normalizationConstant;

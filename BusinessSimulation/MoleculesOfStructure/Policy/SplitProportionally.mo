@@ -15,7 +15,7 @@ equation
   connect(proportions.y, y) annotation(Line(visible = true, origin = {78.75, -0}, points = {{-71.25, -0}, {71.25, 0}}, color = {1, 37, 163}));
   connect(u, proportions.u2) annotation(Line(visible = true, origin = {-58.895, 32.491}, points = {{-86.105, 27.509}, {18.895, 27.509}, {18.895, -27.491}, {22.376, -27.491}, {22.376, -27.529}, {50.857, -27.529}}, color = {0, 0, 128}));
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>The output vector <strong>y</strong> is a <em>proportional split</em> (<a href = \"modelica://BusinessSimulation.Converters.Vector.ProportionalSplitFactors\">→ProportionalSplitFactors</a>) of the single input <strong>u</strong>, which may be a <em>rate</em> or simply an <em>available amount</em> of entities.</p>
 <h4>Notes</h4>
 <ul>

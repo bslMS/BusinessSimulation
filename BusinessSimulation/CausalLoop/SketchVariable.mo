@@ -5,7 +5,7 @@ model SketchVariable "Class to be used for comments or sketch variables"
   extends NAME;
   /* Sketch variable */
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>A <em>sketch varible</em> can be used for quickly <em>drawing</em> a diagram for a model that is not to be simulated, but at the same time will make sure that variable names are <em>unique</em> and can be given a <em>comment</em>.</p>
 <h4>Notes</h4>
 <p>

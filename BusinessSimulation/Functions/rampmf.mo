@@ -9,7 +9,7 @@ function rampmf "Bounded ramp membership function"
 algorithm
   y := max(min((x - a) / (b - a), 1), 0);
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>The function returns the degree of membership using a <em>bounded ramp</em> function given the real input <strong>x</strong> and the parameters <em>lower bound</em> <code>a</code> and <em>upper bound</em> <code>b</code>.</p>
 <p>The ramp will usually ramp up from 0 to 1, but if lower bound and upper bound are switched (i.e., <code>a > b</code>), then the ramp will be ramp downwards from 1 to 0.</p>
 <h4>Implementation</h4>

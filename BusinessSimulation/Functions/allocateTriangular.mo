@@ -16,7 +16,7 @@ algorithm
    elseif a < x and x <= ub then 2.0 * (ub - x) ^ 2 / w2
    elseif x > ub then 0.0 else 1.0;
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>The function returns the <em>fraction of capacity or demand</em> that matches the allocated amount of a scarce resource given the clearing attractiveness <code>c</code>, the attractiveness <code>a</code> (e.g., utility), and the width <code>w</code> of a triangular distribution function that describes the priority profile for the recipient.</p>
 <br>
 <table cellspacing=\"0\" cellpadding=\"2\"><caption align=\"bottom\">Graph of the allocateTriangular Function (Distribution Shown Scaled for Clarity)</caption>

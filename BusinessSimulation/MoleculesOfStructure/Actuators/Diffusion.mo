@@ -12,7 +12,7 @@ model Diffusion "Social diffusion via direct contacts and/or a basic conversion 
   parameter People otherPopulation = unspecified "Other potential contacts that are neighter adopters or potential adopters" annotation(Dialog(enable = hasConstantOtherPopulation));
   parameter Rate contactRate = unspecified "Social contacts per person per period for adopters" annotation(Dialog(enable = hasConstantContactRate));
   parameter Rate fractionalAdoptionRate = unspecified "Basic conversion rate independent from social contacts" annotation(Dialog(enable = hasConstantFractionalAdoptionRate));
-  parameter Dimensionless adoptionFraction = unspecified "Fraction of social contacts that will result in adoption" annotation(Dialog(enable = hasConstantAdoptionFraction));
+  parameter Fraction adoptionFraction = unspecified "Fraction of social contacts that will result in adoption" annotation(Dialog(enable = hasConstantAdoptionFraction));
   parameter Boolean hasConstantOtherAdopters = false "= true, if other adopters are given by the parameter and not by the continuous input" annotation(Evaluate = true, Dialog(group = "Structural Parameters"));
   parameter Boolean hasConstantOtherPopulation = false "= true, if other population is given by the parameter and not by the continuous input" annotation(Evaluate = true, Dialog(group = "Structural Parameters"));
   parameter Boolean hasConstantContactRate = false "= true, if the rate of social contacts is given by the parameter and not by the continuous input" annotation(Evaluate = true, Dialog(group = "Structural Parameters"));
@@ -24,20 +24,20 @@ model Diffusion "Social diffusion via direct contacts and/or a basic conversion 
     import ICON = BusinessSimulation.Icons.DataOutPort;
     import BusinessSimulation.Units.*;
     extends ICON;
-    Rate conversionRate "Rate of conversion from social interaction";
-    Rate adoptionRate "Rate of adoption independent of social interaction";
-    Rate totalAdoptionRate "Total rate of adoption as a sum of conversion and independent adoption";
+    Real conversionRate "Rate of conversion from social interaction";
+    Real adoptionRate "Rate of adoption independent of social interaction";
+    Real totalAdoptionRate "Total rate of adoption as a sum of conversion and independent adoption";
   end DataOutPort;
 
   encapsulated expandable connector DataInPort "Input connector"
     import ICON = BusinessSimulation.Icons.DataInPort;
     import BusinessSimulation.Units.*;
     extends ICON;
-    People otherPopulation "Other potential contacts that are neighter adopters or potential adopters";
-    People otherAdopters "Other adopters involved in influencing potential adopters";
-    Rate fractionalAdoptionRate "Basic adoption rate independent from social contacts";
-    Rate adoptionFraction "Fraction of social contacts with potential adopters that will result in adoption";
-    Rate contactRate "Social contacts per person per period for adopters";
+    Real otherPopulation "Other potential contacts that are neighter adopters or potential adopters";
+    Real otherAdopters "Other adopters involved in influencing potential adopters";
+    Real fractionalAdoptionRate "Basic adoption rate independent from social contacts";
+    Real adoptionFraction "Fraction of social contacts with potential adopters that will result in adoption";
+    Real contactRate "Social contacts per person per period for adopters";
   end DataInPort;
 protected
   Converters.Add_2 totalAdopters "Sum of adopters and other adopters" annotation(Placement(visible = true, transformation(origin = {100, 45}, extent = {{10, -10}, {-10, 10}}, rotation = 0)));
@@ -54,18 +54,18 @@ protected
   Converters.PassThrough u_otherPopulation if not hasConstantOtherPopulation "Continuous input of other population (neither adopter nor potential adopter)" annotation(Placement(visible = true, transformation(origin = {-160, 70}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
   Converters.Division potAdoptConcentration "Concentration of potential adopters" annotation(Placement(visible = true, transformation(origin = {-86.592, 50}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Converters.PassThrough u_ContactRate if not hasConstantContactRate "Rate of social contacts for adopters" annotation(Placement(visible = true, transformation(origin = {90, 70}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
-  Converters.ConstantConverterRate parContactRate(value = contactRate) if hasConstantContactRate "Social contact rate for adopters (people per people per period)" annotation(Placement(visible = true, transformation(origin = {108.491, 75}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
+  Converters.ConstantConverter parContactRate(value = contactRate) if hasConstantContactRate "Social contact rate for adopters (people per people per period)" annotation(Placement(visible = true, transformation(origin = {108.491, 75}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
   Converters.Product_2 contactsAdopters "Contacts with adopters per period" annotation(Placement(visible = true, transformation(origin = {50, 50}, extent = {{10, -10}, {-10, 10}}, rotation = 0)));
   Converters.Product_2 contactsWithPotAdopt "Contacts of adopters with potential adopters" annotation(Placement(visible = true, transformation(origin = {-10, 30}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
   Converters.PassThrough u_AdoptionFraction if not hasConstantAdoptionFraction "Conversion propability for interaction of potential adopters with adopters" annotation(Placement(visible = true, transformation(origin = {-0, 70}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
   Converters.Product_2 conversionRate "Rate of conversion" annotation(Placement(visible = true, transformation(origin = {-5, -5}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
   Converters.PassThrough u_FractAdoptRate if not hasConstantFractionalAdoptionRate "Continuous fractional adoption rate" annotation(Placement(visible = true, transformation(origin = {-50, 70}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
-  Flows.Unidirectional.ProportionalTransition adopting(fractionalRate = fractionalAdoptionRate, hasConstantRate = hasConstantFractionalAdoptionRate) "Conversion independent from social contacts" annotation(Placement(visible = true, transformation(origin = {-45, -70}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  Flows.Unidirectional.ProportionalTransition adopting(fractionalRate = fractionalAdoptionRate) "Conversion independent from social contacts" annotation(Placement(visible = true, transformation(origin = {-45, -70}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Converters.ConstantConverter parAdoptionFraction(value = adoptionFraction) if hasConstantAdoptionFraction "Constant adoption fraction (optional)" annotation(Placement(visible = true, transformation(origin = {20, 75}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
   Converters.Add_2 totalAdoptionRate annotation(Placement(visible = true, transformation(origin = {55, -55}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Converters.ConstantConverter parOtherAdopters(value = otherAdopters) if hasConstantOtherAdopters "Constant opther adopters (optional)" annotation(Placement(visible = true, transformation(origin = {160, 80}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
   Converters.PassThrough u_otherAdopters if not hasConstantOtherAdopters "Continuous input of other adopters envolved in influencing potential adopters" annotation(Placement(visible = true, transformation(origin = {140, 70}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
-  Converters.ConstantConverterRate parFractAdoptRate(value = fractionalAdoptionRate) if hasConstantFractionalAdoptionRate "Constant fractinal adoption rate (optional)" annotation(Placement(visible = true, transformation(origin = {-30, 70}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
+  Converters.ConstantConverter parFractAdoptRate(value = fractionalAdoptionRate) if hasConstantFractionalAdoptionRate "Constant fractinal adoption rate (optional)" annotation(Placement(visible = true, transformation(origin = {-30, 70}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
 equation
   assert(not hasConstantOtherAdopters or otherAdopters < inf, "Parameter otherAdopters needs to be specified");
   assert(not hasConstantOtherPopulation or otherPopulation < inf, "Parameter otherPopulation needs to be specified");
@@ -116,7 +116,7 @@ equation
   connect(parFractAdoptRate.y, adopting.u) annotation(Line(visible = true, origin = {-40, 18.75}, points = {{10, 46.25}, {10, 16.25}, {-10, 16.25}, {-10, -78.75}}, color = {1, 37, 163}));
   connect(adopting.y1, totalAdoptionRate.u2) annotation(Line(visible = true, origin = {-6.875, -67.5}, points = {{-27.625, -7.5}, {-13.125, -7.5}, {-13.125, 7.5}, {53.875, 7.5}}, color = {1, 37, 163}));
   annotation(Diagram(coordinateSystem(extent = {{-180, -105}, {180, 105}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5})), Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>This is more or less the classical <em>Bass diffusion model</em>	 [<a href=\"modelica://BusinessSimulation.UsersGuide.References\">5</a>] that explains how new products get adopted in a population: &nbsp;Potential adopters turn into adopters being affected either by advertising or promotion (i.e., as <em>innovators</em>) or by social interaction (<em>\"word of mouth\"</em>) with adopters (i.e., as <em>imitators</em>).</p>
 <p>The basic model for diffusion can also be used to model the spread of infectious diseases (→<a href=\"modelica://BusinessSimulation.Examples.SIR\">SIR</a>). Since the disease is ultimately spread by contact with an infected person, the <em>fractionalAdoptionRate</em> in this case should be zero.</p>
 <p>While the structure in principle folllows Sterman's implementation [<a href=\"modelica://BusinessSimulation.UsersGuide.References\">3</a>, chapter 9], the component has been put in a more general form. We have to distinguish the following subgroups that make up the <strong>total population of potential contacts for social interaction</strong>:<p>

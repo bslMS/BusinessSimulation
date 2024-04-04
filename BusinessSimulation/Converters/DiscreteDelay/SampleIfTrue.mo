@@ -3,7 +3,7 @@ within BusinessSimulation.Converters.DiscreteDelay;
 block SampleIfTrue "Samples input, if Boolean trigger is true"
   import BusinessSimulation.Units.*;
   import BusinessSimulation.Types.InitializationOptions;
-  import BusinessSimulation.Constants.{inf,small,eps,e};
+  import BusinessSimulation.Constants.{inf, small, eps, e};
   extends Interfaces.PartialConverters.SmoothSISO(redeclare discrete RealOutput y);
   extends Icons.DiscreteSmoothLabel;
   Interfaces.Connectors.BooleanInput trigger "Triggers sampling upon `true`" annotation(Placement(visible = true, transformation(origin = {-145, 40}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {0.12, 49.88}, extent = {{-10.12, -10.12}, {10.12, 10.12}}, rotation = -450)));
@@ -24,7 +24,7 @@ algorithm
     y := u;
   end when;
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>The (discrete) output <strong>y</strong> is sampled from the input <strong>u</strong> whenever the Boolean input <code>trigger</code> becomes <code>true</code>.</p>
 <h4>Notes</h4>
 <ul>

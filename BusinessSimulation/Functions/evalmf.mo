@@ -2,7 +2,7 @@ within BusinessSimulation.Functions;
 
 function evalmf "Evaluate a fuzzy membership function"
   import BusinessSimulation.Types.MembershipFunctionTypes;
-  import BusinessSimulation.Functions.{rampmf,trimf,smf,sigmf,pimf,psigmf,gaussmf,gbellmf,trapmf};
+  import BusinessSimulation.Functions.{rampmf, trimf, smf, sigmf, pimf, psigmf, gaussmf, gbellmf, trapmf};
   extends BusinessSimulation.Icons.Function;
   input Real x "Input value for which the degree of membership is to be computed";
   input MembershipFunctionTypes mft = MembershipFunctionTypes.trapezoidal "Type of membership function to be used";
@@ -20,7 +20,7 @@ algorithm
    elseif mft == MembershipFunctionTypes.gaussian then gaussmf(x, a, c)
    elseif mft == MembershipFunctionTypes.bell then gbellmf(x, a, b, c) else trapmf(x, a, b, c, d);
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>The function returns the degree of membership using the <em>membership function</em> specified.</p>
 <h4>Syntax</h4>
 <p><code>Functions.<strong>evalmf</strong>(x, mft, a, b, c, d);</code></p>

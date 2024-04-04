@@ -13,7 +13,7 @@ equation
     y = smooth(0, if u < modelSettings.dt then modelSettings.dt else u);
   end if;
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>The global parameter <code>modelSettings.dt</code>&nbsp;gives the smallest possible average duration for any explicitly modeled process within a model (e.g., the shortest possible <em>delay time</em>). The time input <strong>u</strong> (usually a duration) will thus be <em>clipped&nbsp;</em>so that the output <strong>y</strong> will<em>&nbsp;</em>never be smaller than <code>dt</code>.</p>
 <h4>Implementation</h4>
 <p>In the default setting (<code>strict = true</code>) in the Advanced tab no events will be generated:</p>

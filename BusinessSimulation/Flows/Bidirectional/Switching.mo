@@ -7,8 +7,8 @@ model Switching "An exchange of matter between two stocks at an exogenous rate"
 equation
   A_rate = u;
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
-<p>This is the classical example for an exchange of \"mass\" (conserved matter or information) between two stocks, where the flow may go in either direction.</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
+<p>This is the classical example for an exchange of \"matter\" (conserved quantities either matter, energy, or information) between two stocks, where the flow may go in either direction.</p>
 <h4>Notes</h4>
 <ul>
 <li>A <em>positive rate</em> indicates a flow from stock A to stock B.</li><br>

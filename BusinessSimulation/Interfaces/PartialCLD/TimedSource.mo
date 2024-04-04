@@ -12,7 +12,7 @@ protected
   InformationSources.PulseInput onOff(width = 100, nperiod = 1, startTime = onTime, offset = 0, amplitude = 1, period = offTime - onTime) if tc == TimingChoices.period annotation(Placement(visible = true, transformation(origin = {-90, -20}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Converters.ConstantConverter permanent(value = 1) if tc == TimingChoices.permanent annotation(Placement(visible = true, transformation(origin = {-90, -40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>A single flow port with two output connectors (optional) and parameters and converters to enable on-off-control (timing) for the flow.</p>
 </html>", revisions = "<html>
 <ul>

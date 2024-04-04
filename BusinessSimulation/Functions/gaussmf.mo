@@ -12,7 +12,7 @@ protected
 algorithm
   y := exp(-(x - c) ^ 2 / (2 * sigma ^ 2));
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>The function returns the degree of membership using a <em>Gaussian</em> function given the real input <strong>x</strong> and the parameters <em>half width at half maximum</em> <code>a</code> and <em>mean</em> <code>c</code>.</p>
 <h4>Implementation</h4>
 <br>

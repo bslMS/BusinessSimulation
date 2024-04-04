@@ -11,7 +11,7 @@ algorithm
   // set rate to zero if stopSignal matches character of flow
   useRate := if stopInflow and indRateIsInflow then false elseif stopOutflow and not indRateIsInflow then false else true;
   annotation(Inline = true, Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>The real output <strong><code>actualRate</code> </strong>is determined by checking whether the real input <strong><code>indicatedRate</code> </strong>is complying with the restrictions signaled by a connected stock in form of the boolean flags <strong><code>stopInflow</code> </strong>and <strong><code>stopOutflow</code></strong>. If the rate is found to violate either flag <code>false</code> is returned, in all other cases <code>true</code> is&nbsp;returned.</p>
 <h4>Syntax</h4>
 <p>

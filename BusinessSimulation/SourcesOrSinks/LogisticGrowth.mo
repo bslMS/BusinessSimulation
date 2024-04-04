@@ -6,7 +6,7 @@ model LogisticGrowth "Logistic growth model"
   extends Interfaces.Basics.GenericSourceOrSink;
   extends Icons.Source;
   Interfaces.Connectors.RealMultiInput u[2] if not hasConstantInputs "[1] maximum fractional growth rate [2] carrying capacity" annotation(Placement(visible = true, transformation(origin = {-145, -0}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-50, 100}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
-  parameter OutputType r(min = 0) = unspecified "Maximum fractional growth rate" annotation(Dialog(enable = hasConstantInputs));
+  parameter Rate r(min = 0) = unspecified "Maximum fractional growth rate" annotation(Dialog(enable = hasConstantInputs));
   parameter CapacityType K(min = 0) = unspecified "Carrying capacity or maximum sustainable amount for the connected stock (>0)" annotation(Dialog(enable = hasConstantInputs));
   parameter Boolean isCCR = true "= true, if the maximum fractional rate given is assumed to be a continuously compounding rate else the rate will be converted" annotation(Dialog(group = "Structural Parameters"));
   parameter Boolean hasConstantInputs = false "= true, if constant parameters aure to be used instead of the real inputs u[1] and u[2]" annotation(Dialog(group = "Structural Parameters"));
@@ -49,7 +49,7 @@ equation
   connect(u[1], identicalRate.u) "Continuous input of maximum fractional growth rate" annotation(Line(visible = true, origin = {-117, 25}, points = {{-28, -25}, {12, -25}, {12, 25}, {19, 25}}, color = {1, 37, 163}));
   connect(u[1], convertedRate.u) "Continuous input of fractional growth rate that needs to be converted" annotation(Line(visible = true, origin = {-117, 45}, points = {{-28, -45}, {12, -45}, {12, 45}, {19, 45}}, color = {1, 37, 163}));
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p><em>LogisticGrowth</em> describes the growth of some population that is limited by the availability of some finite resource. While the population starts to grow exponentially at first at a given fractional rate of growth (either given by the constant parameter <code>r</code> or by the time-variant input <code>u[1]</code>), its growth rate will continously diminish until the population reaches its sustainable level (either given by the constant parameter <code>K</code> or the time-variant input <code>u[2]</code>), which is called the <em>carrying capacity</em>.</p>
 <p>The rate of inflow to a connected stock is given by the so called <em>Verhulst&nbsp;</em>equation:</p>
 <p><img src=\"modelica://BusinessSimulation/Resources/Images/SourcesOrSinks/LogisticGrowth/Formula.svg\" alt=\"dx/dt = r x ( 1 - x/K )\"></p>

@@ -33,7 +33,7 @@ equation
   connect(stock.y_stockInfo, y_stockInfo) annotation(Line(visible = true, origin = {65.2, -21.92}, points = {{-57.2, 32.32}, {-57.2, 41.92}, {14.8, 41.92}, {14.8, -58.08}, {84.8, -58.08}}, color = {128, 0, 128}));
   connect(movingOn.portB, cloud.massPort) annotation(Line(visible = true, origin = {66.25, -10}, points = {{-16.25, 10}, {-6.25, 10}, {-6.25, -10}, {28.75, -10}}, color = {128, 0, 128}));
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>The reservoir structure consists of a stock component that is typically <em>filled</em> via the accumulated net flow received at its <code>stockPort</code>. The stock is then drained at a rate set by the input <strong>u</strong>.</p>
 <h4>Implementation</h4>
 <p>The stock component used is declared as</p>

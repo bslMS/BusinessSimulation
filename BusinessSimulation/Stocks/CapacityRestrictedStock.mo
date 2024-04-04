@@ -3,7 +3,7 @@ within BusinessSimulation.Stocks;
 model CapacityRestrictedStock "Material stock, that cannot be drained or filled beyond its capacity limits"
   import BusinessSimulation.Types.InitializationOptions;
   import BusinessSimulation.Units.*;
-  import BusinessSimulation.Constants.{small,zero,inf,INF};
+  import BusinessSimulation.Constants.{small, zero, inf, INF};
   extends Interfaces.PartialStocks.BasicStock(initialValue(min = 0), minValue(min = zero) = zero, useAssert = false);
   extends Icons.MaterialStockIndicator;
   extends Icons.CapacityLabel;
@@ -12,23 +12,25 @@ model CapacityRestrictedStock "Material stock, that cannot be drained or filled 
   parameter Boolean hasVariableAdmissableRange = false "=true, if capacity restrictions are to be given by the variable inputs u_min and u_max" annotation(Evaluate = true, Dialog(group = "Structural Parameters"));
   parameter Boolean reinitializeStock = false "= true, if the stock is to be reinitalized to guarante nonnegativity" annotation(Evaluate = true, Dialog(tab = "Advanced"));
 protected
-  Converters.Special.VariableRangeAssert variableRangeControl(causeError = causeError) if useAssert and hasVariableAdmissableRange "Use assert() to check admissable values" annotation(Placement(visible = true, transformation(origin = {-50, 65}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  OutputType minCapacity = if hasVariableAdmissableRange then u_min else minValue "Minimum capacity";
-  OutputType maxCapacity = if hasVariableAdmissableRange then u_max else maxValue "Maximum capacity";
+  Converters.ConstantConverter parMinValue(value = minValue) if not hasVariableAdmissableRange annotation(Placement(visible = true, transformation(origin = {-120, 20}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  Converters.ConstantConverter parMaxValue(value = maxValue) if not hasVariableAdmissableRange annotation(Placement(visible = true, transformation(origin = {-120, 90}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  Converters.PassThrough theMinValue annotation(Placement(visible = true, transformation(origin = {-60, 20}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  Converters.PassThrough theMaxValue annotation(Placement(visible = true, transformation(origin = {-60, 45}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  Converters.Special.VariableRangeAssert variableRangeControl(causeError = causeError) if useAssert and hasVariableAdmissableRange "Use assert() to check admissable values" annotation(Placement(visible = true, transformation(origin = {-60, 65}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
 initial equation
   // properly initialize discrete vars with fixed = false
   // provide Boolean signal when above capacity
-  pre(inflow.stopInflow) = not x < maxCapacity - small;
+  pre(inflow.stopInflow) = not x < theMaxValue.y - small;
   pre(outflow.stopInflow) = inflow.stopInflow;
   // provide Boolean signal when below capacity
-  pre(inflow.stopOutflow) = not x > minCapacity + small;
+  pre(inflow.stopOutflow) = not x > theMinValue.y + small;
   pre(outflow.stopOutflow) = pre(inflow.stopOutflow);
 equation
   // provide Boolean signal when above capacity
-  inflow.stopInflow = not x < maxCapacity - small;
+  inflow.stopInflow = not x < theMaxValue.y - small;
   outflow.stopInflow = inflow.stopInflow;
   // provide Boolean signal when below capacity
-  inflow.stopOutflow = not x > minCapacity + small;
+  inflow.stopOutflow = not x > theMinValue.y + small;
   outflow.stopOutflow = inflow.stopOutflow;
   // optional reinitialize stock to zero if negative //
   if reinitializeStock then
@@ -36,13 +38,16 @@ equation
       reinit(x, 0);
     end when;
   end if;
-  assert(minCapacity < maxCapacity, "Minimum capacity must be smaller than maximum capacity");
-  connect(y1, variableRangeControl.u) annotation(Line(visible = true, origin = {20.4, 74}, points = {{139.6, -4}, {139.6, 11}, {-100.4, 11}, {-100.4, -9}, {-78.4, -9}}, color = {1, 37, 163}));
-  connect(u_max, variableRangeControl.u_max) annotation(Line(visible = true, origin = {-101.5, 70}, points = {{-43.5, 0}, {43.5, 0}}, color = {0, 0, 128}));
-  connect(u_min, variableRangeControl.u_min) annotation(Line(visible = true, origin = {-110.313, 50}, points = {{-34.687, -10}, {10.313, -10}, {10.313, 10}, {52.313, 10}}, color = {0, 0, 128}));
+  assert(theMinValue.y < theMaxValue.y, "Minimum capacity must be smaller than maximum capacity");
+  connect(y1, variableRangeControl.u) annotation(Line(visible = true, origin = {20.4, 74}, points = {{139.6, -4}, {139.6, 11}, {-100.4, 11}, {-100.4, -9}, {-88.4, -9}}, color = {1, 37, 163}));
+  connect(u_max, variableRangeControl.u_max) annotation(Line(visible = true, origin = {-106.5, 70}, points = {{-38.5, 0}, {38.5, 0}}, color = {0, 0, 128}));
+  connect(u_min, variableRangeControl.u_min) annotation(Line(visible = true, origin = {-110.313, 50}, points = {{-34.687, -10}, {10.313, -10}, {10.313, 10}, {42.313, 10}}, color = {0, 0, 128}));
+  connect(u_min, theMinValue.u) annotation(Line(visible = true, origin = {-93.25, 30}, points = {{-51.75, 10}, {13.25, 10}, {13.25, -10}, {25.25, -10}}, color = {0, 0, 128}));
+  connect(parMinValue.y, theMinValue.u) annotation(Line(visible = true, origin = {-91, 20}, points = {{-23, 0}, {23, 0}}, color = {1, 37, 163}));
+  connect(parMaxValue.y, theMaxValue.u) annotation(Line(visible = true, origin = {-90.5, 67.5}, points = {{-23.5, 22.5}, {0.5, 22.5}, {0.5, -22.5}, {22.5, -22.5}}, color = {1, 37, 163}));
   annotation(Documentation(info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
-<p>This is a restricted&nbsp;<em>reservoir</em> of the System Dynamics methodology, which accumulates <em>material &nbsp;</em>(i.e., countable entities, some kind of mass) transported by flow components connected to the component's StockPorts. Like a&nbsp;<em>MaterialStock </em>the<em> CapacityRestrictedStock&nbsp;</em>can never become negative—we are not collecting \"antimatter\"—and will prevent connected flow components from draining its value below zero. Unlike other stocks, <code>minCapacity</code> and <code>maxCapacity</code> are seen as capacity restrictions that for \"physical\" reasons cannot be violated—the restrictions can be given as either constant parameters (<code>minValue, maxValue</code>) or as variable inputs (<code>u_min, u_max</code>). Accordingly, the component will signal flow restrictions via its port that must be observed by connected flow components.</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
+<p>This is a restricted&nbsp;<em>reservoir</em> of the system dynamics methodology, which accumulates <em>material &nbsp;</em>(i.e., countable entities, some form of matter) transported by flow components connected to the component's StockPorts. Like a&nbsp;<em>MaterialStock </em>the<em> CapacityRestrictedStock&nbsp;</em>can never become negative—we are not collecting \"antimatter\"—and will prevent connected flow components from draining its value below zero. Unlike other stocks, <code>minCapacity</code> and <code>maxCapacity</code> are seen as capacity restrictions that for \"physical\" reasons cannot be violated—the restrictions can be given as either constant parameters (<code>minValue, maxValue</code>) or as variable inputs (<code>u_min, u_max</code>). Accordingly, the component will signal flow restrictions via its port that must be observed by connected flow components.</p>
 <h4>Implementation</h4>
 <p>The value of the stock will be set to zero if the calculated value <code>x</code> is less than a very small positive amount and if <code>reinitializeStock = true</code> is chosen in the Advanced tab:</p>
 <pre>  if reinitializeStock then

@@ -9,8 +9,8 @@ partial model Delay "Partial model of a delay for CLD+ modeling"
   parameter Boolean subtractDelayedOutflow = true "= true, if a delayed outflow is to be deducted before it actually leaves the stock" annotation(Enable = true, Dialog(group = "Structural Parameters"));
   parameter Boolean hasFactor = false "= true, if coefficients are to be multiplied with input u" annotation(Evaluate = true, Dialog(group = "Structural Parameters"));
   parameter Boolean hasStockInfoOutput = false "= true, if information from the internal 'in process' stock is to be made accessible" annotation(Evaluate = true, Dialog(group = "Structural Parameters"));
-  parameter MaterialType IDI = 0 "Initial material in the process of flowing into the connected stock" annotation(Dialog(tab = Initialization));
-  parameter MaterialType IDO = 0 "Initial material in the process of flowing into the connected stock" annotation(Dialog(tab = Initialization));
+  parameter MaterialType IDI = 0 "Initial material in the process of flowing into the connected stock" annotation(Dialog(tab = "Initialization"));
+  parameter MaterialType IDO = 0 "Initial material in the process of flowing into the connected stock" annotation(Dialog(tab = "Initialization"));
   replaceable type MaterialType = Unspecified constrainedby Unspecified "Type choice for material flowing in and out of the connected stock" annotation(choicesAllMatching = true);
 protected
   parameter Real k2 = if subtractDelayedOutflow then -1 else 0 "Gain of outflowing elements of stock B being delayed" annotation(Evaluate = true, Dialog(enable = false, tab = "Initialization"));
@@ -40,7 +40,7 @@ equation
 <li>Introduced in v2.0.0.</li>
 </ul>
 </html>", info = "<html>
-<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL).</p>
+<p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>This is a fairly elaborate class serving as a building block for <em>delay</em> components. Since inflows to and outflows from a stock should be modeled using the same component, the class provides machinery to either deduct outflowing material at once or after it has left the stock (at the end of the delay process).</p>
 <p>The <code>delayTime</code> is given by a parameter, that is (optionally) multiplied by an exogenous input <strong>u</strong> as to enable exogenous input of delay times (e.g., <code>delayTime = 1</code> and <code>hasFactor = true</code>) or have the time of delay be modified by other variables.</p>
 <p>The stock value reported at the stock port <code>portA</code> is  determined from the choices made with regard to outflowing material (deducted or not), while the flags are immediately copied from the flow port <code>portB</code>.
