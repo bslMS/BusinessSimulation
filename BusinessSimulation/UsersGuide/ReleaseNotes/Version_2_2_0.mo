@@ -5,6 +5,7 @@ final class Version_2_2_0 "Version 2.2.0 (2024-03-04)"
   extends Icons.DocumentationInfo;
   annotation(Documentation(info = "<html>
 <p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
+<p>This build has been tested and adapted for compatibility with Open Modelica <code>v1.23.0-dev-416-g0f1ee9aef5 (64-bit)</code> (Nightly Build as of April 3, 2024) and will run smoothly in <code>v1.23.0</code>, once it has been released.</p>
 <p>Some <strong>errors were fixed in the following classes</strong>:</p>
 <br>
 <ul>
@@ -39,6 +40,7 @@ final class Version_2_2_0 "Version 2.2.0 (2024-03-04)"
 <li>Extensive revisions to the <a href = \"modelica://BusinessSimulation.Units\"><code>Units</code></a> package to streamline the use of <code>quantity</code>, <code>unit</code>, and <code>displayUnit</code> attributes with the new unit framework in Wolfram System Modeler 14. The <a href=\"modelica://BusinessSimulation.UsersGuide.Tutorial.UnitsInBusinessSimulations\">tutorial on the use of units</a> has been completely rewritten and should be consulted as a first step to make yourself familiar with the changes.</li><br>
 <li>The display unit <code>\"yr\"</code>—available in Wolfram System Modeler—is deprecated in favor of the custom derived unit <a href = \"modelica://BusinessSimulation.Units.Time_years\"><code>\"yrCal\"</code></a>,which will display as <code>y</code>, based on the average Gregorian calendar year. The definitions for <a href=\"modelica://BusinessSimulation.Units.Time_months\"><code>mo</code></a> and <a href=\"modelica://BusinessSimulation.Units.Time_quarters\"><code>qtr</code></a> have been adapted to this change.</li><br>
 <li>Some icons have been updated.</li><br>
+<li>Example models have been adapted for a better user experience in Open Modelica and other tools that do not support non-SI units of time and editing of top level parameters.</li><br>
 </ul>
 <p><strong>Known issues</strong>:
 <br>

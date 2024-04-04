@@ -2,22 +2,31 @@ within BusinessSimulation.Examples;
 
 model SoftwareReleaseProject "Causal loop example given by van Zijderveld (MARVEL)"
   extends BusinessSimulation.Icons.Example;
-  inner ModelSettings modelSettings(modelTimeHorizon= 10, dt= 0.25, modelDisplayTimeBase = BusinessSimulation.Types.TimeBases.seconds) annotation(Placement(visible = true, transformation(origin = {-130, -70}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  parameter Real wCost = 1 "Weigth for cost performance" annotation(Dialog(group = "Performance"));
-  parameter Real wQuality = 1 "Weigth for quality performance" annotation(Dialog(group = "Performance"));
-  parameter Real wUsage = 1 "Weigth for usage performance" annotation(Dialog(group = "Performance"));
-  parameter Real wk = 0.2 "Weak influence" annotation(Dialog(group = "Strength of Influence"));
-  parameter Real av = 0.5 "Average influence" annotation(Dialog(group = "Strength of Influence"));
-  parameter Real st = 1 "Strong influence" annotation(Dialog(group = "Strength of Influence"));
-  parameter Real vs = 1.2 "Very strong influence" annotation(Dialog(group = "Strength of Influence"));
+  // Performance
+  parameter Ratio wCost = 1 "Weigth for cost performance" annotation(Dialog(group = "Performance"));
+  parameter Ratio wQuality = 1 "Weigth for quality performance" annotation(Dialog(group = "Performance"));
+  parameter Ratio wUsage = 1 "Weigth for usage performance" annotation(Dialog(group = "Performance"));
+  // Strength of Influence
+  parameter Ratio wk = 0.2 "Weak influence" annotation(Dialog(group = "Strength of Influence"));
+  parameter Ratio av = 0.5 "Average influence" annotation(Dialog(group = "Strength of Influence"));
+  parameter Ratio st = 1 "Strong influence" annotation(Dialog(group = "Strength of Influence"));
+  parameter Ratio vs = 1.2 "Very strong influence" annotation(Dialog(group = "Strength of Influence"));
+  // Speed of Influence
   parameter Time v4 = 0.25 "Very high speed" annotation(Dialog(group = "Speed of Influence"));
   parameter Time v3 = 0.5 "High speed" annotation(Dialog(group = "Speed of Influence"));
   parameter Time v2 = 1 "Average speed" annotation(Dialog(group = "Speed of Influence"));
   parameter Time v1 = 3 "Low speed" annotation(Dialog(group = "Speed of Influence"));
-  parameter Boolean c1ActiveQ = true "= true, to activate the budget control" annotation(Evaluate = true, Dialog(group = "Structural Parameters"));
-  parameter Boolean c2ActiveQ = false "= true, to activate the clear mandate control" annotation(Evaluate = true, Dialog(group = "Structural Parameters"));
-  parameter Boolean c3ActiveQ = false "= true, to activate the management knowledge level control" annotation(Evaluate = true, Dialog(group = "Structural Parameters"));
-  parameter Boolean c4ActiveQ = false "= true, to activate the management quality control" annotation(Evaluate = true, Dialog(group = "Structural Parameters"));
+  Theta theta annotation(Placement(visible = true, transformation(origin = {-105, -70}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  inner ModelSettings modelSettings(modelTimeHorizon = 10, dt = 0.25, modelDisplayTimeBase = BusinessSimulation.Types.TimeBases.seconds) annotation(Placement(visible = true, transformation(origin = {-130, -70}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+
+  model Theta "Structural parameters"
+    extends Icons.Theta;
+    parameter Boolean c1ActiveQ = true "= true, to activate the budget control" annotation(Evaluate = true, Dialog(group = "Structural Parameters"));
+    parameter Boolean c2ActiveQ = false "= true, to activate the clear mandate control" annotation(Evaluate = true, Dialog(group = "Structural Parameters"));
+    parameter Boolean c3ActiveQ = false "= true, to activate the management knowledge level control" annotation(Evaluate = true, Dialog(group = "Structural Parameters"));
+    parameter Boolean c4ActiveQ = false "= true, to activate the management quality control" annotation(Evaluate = true, Dialog(group = "Structural Parameters"));
+  end Theta;
+
   Interfaces.Connectors.DataOutPort modelOutput "The model's performance output" annotation(Placement(visible = true, transformation(origin = {152.239, -70}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {90, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
 
   block AccumulatedPerformance "Weighted average performance per period"
@@ -120,16 +129,15 @@ protected
   CausalLoop.ProportionalityDelayed r30(factor = -st, delayTime = v4) "resistance against software >> software acceptance" annotation(Placement(visible = true, transformation(origin = {50, -55}, extent = {{10, 10}, {-10, -10}}, rotation = -270)));
   CausalLoop.ProportionalityDelayed r31(factor = +av, delayTime = v4) "Software management organization capacity >> number of employees" annotation(Placement(visible = true, transformation(origin = {8.076, 7.13}, extent = {{10, -10}, {-10, 10}}, rotation = 90)));
   // interventions (e.g., control)
-  CausalLoop.SimpleControl c1(initialSetpoint = 0.8, finalSetpoint = 0.8, duration = 10, adjTime = 1) if c1ActiveQ annotation(Placement(visible = true, transformation(origin = {-90, 45}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  CausalLoop.SimpleControl c2(initialSetpoint = 0.7, finalSetpoint = 0.7, duration = 10, adjTime = 1, hasRateOutput = false) if c2ActiveQ annotation(Placement(visible = true, transformation(origin = {-135, -30}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  CausalLoop.SimpleControl c3(initialSetpoint = 0.5, finalSetpoint = 0.5, duration = 10, adjTime = 1, hasRateOutput = false) if c3ActiveQ annotation(Placement(visible = true, transformation(origin = {-45, -12.32}, extent = {{-10, -10}, {10, 10}}, rotation = -270)));
-  CausalLoop.SimpleControl c4(initialSetpoint = 0.6, finalSetpoint = 0.6, duration = 10, adjTime = 1) if c4ActiveQ annotation(Placement(visible = true, transformation(origin = {21.696, 35}, extent = {{-10, 10}, {10, -10}}, rotation = 360)));
+  CausalLoop.SimpleControl c1(initialSetpoint = 0.8, finalSetpoint = 0.8, duration = 10, adjTime = 1) if theta.c1ActiveQ annotation(Placement(visible = true, transformation(origin = {-90, 45}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  CausalLoop.SimpleControl c2(initialSetpoint = 0.7, finalSetpoint = 0.7, duration = 10, adjTime = 1, hasRateOutput = false) if theta.c2ActiveQ annotation(Placement(visible = true, transformation(origin = {-135, -30}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  CausalLoop.SimpleControl c3(initialSetpoint = 0.5, finalSetpoint = 0.5, duration = 10, adjTime = 1, hasRateOutput = false) if theta.c3ActiveQ annotation(Placement(visible = true, transformation(origin = {-45, -12.32}, extent = {{-10, -10}, {10, 10}}, rotation = -270)));
+  CausalLoop.SimpleControl c4(initialSetpoint = 0.6, finalSetpoint = 0.6, duration = 10, adjTime = 1) if theta.c4ActiveQ annotation(Placement(visible = true, transformation(origin = {21.696, 35}, extent = {{-10, 10}, {10, -10}}, rotation = 360)));
   // performance (i.e., goals)
   CausalLoop.Performance usage(pol = "+", a = 0, b = 1) annotation(Placement(visible = true, transformation(origin = {100, -60}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
   CausalLoop.Performance quality(pol = "+", a = 0, b = 1) annotation(Placement(visible = true, transformation(origin = {135, -35}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
   CausalLoop.Performance cost(pol = "+", a = 0, b = 1) annotation(Placement(visible = true, transformation(origin = {80, 50}, extent = {{-10, 10}, {10, -10}}, rotation = 540)));
   AccumulatedPerformance totalPerformance(nin = 3, weights = {wCost, wQuality, wUsage}) "Mean weighted-average performance from startTime to currentTime" annotation(Placement(visible = true, transformation(origin = {127.5, -80}, extent = {{-7.5, -7.5}, {7.5, 7.5}}, rotation = 0)));
-public
 equation
   connect(externalResources.stockInfoOutput, r1.stockInfoInput) annotation(Line(visible = true, origin = {-117.5, 25}, points = {{20.516, 0}, {20.516, 5}, {-17.5, 5}, {-17.5, -10}}, color = {128, 0, 128}));
   connect(externalResources.stockInfoOutput, r2.stockInfoInput) annotation(Line(visible = true, origin = {-93, 17}, points = {{-3.984, 8}, {-3.984, 13}, {8, 13}, {8, -10}, {19, -10}}, color = {128, 0, 128}));
@@ -207,10 +215,7 @@ equation
   connect(usage.y, modelOutput.usagePerformance) annotation(Line(visible = true, origin = {117.413, -67}, points = {{-17.413, 6}, {-17.413, -3}, {34.826, -3}}, color = {192, 192, 192}));
   connect(cost.y, modelOutput.costPerformance) annotation(Line(visible = true, origin = {108.807, 18.333}, points = {{-29.807, 31.667}, {-43.807, 31.667}, {-43.807, 56.667}, {36.193, 56.667}, {36.193, -88.333}, {43.432, -88.333}}, color = {192, 192, 192}));
   connect(quality.y, modelOutput.qualityPerformance) annotation(Line(visible = true, origin = {140.746, -58.667}, points = {{-5.746, 22.667}, {-5.746, -11.333}, {11.493, -11.333}}, color = {192, 192, 192}));
-  annotation(
-    preferredView = "diagram",
-    experiment(StopTime = 10, StartTime = 0, Tolerance = 1e-06, Interval = 0.02),
-    Documentation(revisions = "<html>
+  annotation(preferredView = "diagram", experiment(StopTime = 10, StartTime = 0, Tolerance = 1e-06, Interval = 0.02), Documentation(revisions = "<html>
 <ul>
 <li>Added in v2.0.0.</li>
 </ul>
@@ -274,7 +279,5 @@ In section 5 of his paper van Zijderveld gives an illustrative example for the a
 <p>
 <a href=\"modelica://BusinessSimulation.Examples.HealTheWorld\">HealTheWorld</a>
 </p> 
-</html>", figures = {Figure(title = "Performance Evaluation", identifier = "default", preferred = true, plots = {Plot(curves = {Curve(y = modelOutput.costPerformance, legend = "Cost"), Curve(y = modelOutput.qualityPerformance, legend = "Quality"), Curve(y = modelOutput.usagePerformance, legend = "Usage")})}), Figure(title = "Total Performance", identifier = "totalPerformance", plots = {Plot(curves = {Curve(y = modelOutput.totalPerformance, legend = "total perforamcne")})})}),
-    Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10})),
-    Diagram(graphics = {Text(origin = {0, 63}, textColor = {255, 0, 0}, extent = {{-140, -3}, {140, 3}}, textString = "1 s === 1 y", fontName = "Lato")}));
+</html>", figures = {Figure(title = "Performance Evaluation", identifier = "default", preferred = true, plots = {Plot(curves = {Curve(y = modelOutput.costPerformance, legend = "Cost"), Curve(y = modelOutput.qualityPerformance, legend = "Quality"), Curve(y = modelOutput.usagePerformance, legend = "Usage")})}), Figure(title = "Total Performance", identifier = "totalPerformance", plots = {Plot(curves = {Curve(y = modelOutput.totalPerformance, legend = "total perforamcne")})})}), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {10, 10})), Diagram(coordinateSystem(extent = {{-150, -90}, {150, 90}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5}), graphics = {Text(visible = true, origin = {0, 80}, textColor = {76, 112, 136}, extent = {{-140, -6}, {140, 6}}, textString = "Software Release Project", fontName = "Lato", textStyle = {TextStyle.Bold}), Text(visible = true, origin = {0, 70}, textColor = {76, 112, 136}, extent = {{-140, -3}, {140, 3}}, textString = "van Zijderveld [24]", fontName = "Lato", textStyle = {TextStyle.Bold}), Text(visible = true, origin = {0, 60}, textColor = {255, 0, 0}, extent = {{-140, -3}, {140, 3}}, textString = "1 s === 1 y", fontName = "Lato")}));
 end SoftwareReleaseProject;

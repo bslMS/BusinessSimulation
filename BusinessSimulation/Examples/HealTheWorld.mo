@@ -2,102 +2,62 @@ within BusinessSimulation.Examples;
 
 model HealTheWorld "Causal loop model of world dynamics"
   extends BusinessSimulation.Icons.Example;
-  // parameter Real c = +0.3 "Elasticity coefficient for the impact of environmental load upon societal action (≥0)";
-  parameter Real campaignTarget = 1/0.3 "Target multiplier for the elasticity coefficient" annotation(
-    Dialog(enable = withIntervention));
-  parameter Time campaignStart = 1 "Start time for the intervention" annotation(
-    Dialog(enable = withIntervention));
-  parameter Time campaignDuration(min = modelSettings.dt) = 3 "Duration of the intervention" annotation(
-    Dialog(enable = withIntervention));
-  parameter Boolean withIntervention = true "= true, if there is to be a compaign to raise public awareness" annotation(
-    Evaluate = true,
-    Dialog(group = "Structural Parameters"));
-  inner ModelSettings modelSettings(modelDisplayTimeBase = BusinessSimulation.Types.TimeBases.seconds, modelTimeHorizon= 10, dt= 0.25) annotation(
-    Placement(visible = true, transformation(origin = {-110, -70}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  final Interfaces.Connectors.DataOutPort modelOutput "Index levels for the model's stocks" annotation(
-    Placement(visible = true, transformation(origin = {130, -0}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {90, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+
+  model Theta "Parameter definitions for the Base Case"
+    extends Icons.Theta;
+    // parameter Real c = +0.3 "Elasticity coefficient for the impact of environmental load upon societal action (≥0)";
+    parameter Ratio campaignTarget = 1 / 0.3 "Target multiplier for the elasticity coefficient" annotation(Dialog(enable = withIntervention));
+    parameter Time campaignStart = 1 "Start time for the intervention" annotation(Dialog(enable = withIntervention));
+    parameter Time campaignDuration(min = modelSettings.dt) = 3 "Duration of the intervention" annotation(Dialog(enable = withIntervention));
+    parameter Boolean withIntervention = true "= true, if there is to be a compaign to raise public awareness" annotation(Evaluate = true, Dialog(group = "Structural Parameters"));
+    outer ModelSettings modelSettings;
+  end Theta;
+
+  Theta theta annotation(Placement(visible = true, transformation(origin = {-110, -40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  inner ModelSettings modelSettings(modelDisplayTimeBase = BusinessSimulation.Types.TimeBases.seconds, modelTimeHorizon = 10, dt = 0.25) annotation(Placement(visible = true, transformation(origin = {-110, -70}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  final Interfaces.Connectors.DataOutPort modelOutput "Index levels for the model's stocks" annotation(Placement(visible = true, transformation(origin = {130, -0}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {90, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
 protected
-  CausalLoop.SimpleInformationLevel societalAction annotation(
-    Placement(visible = true, transformation(origin = {-60, 10}, extent = {{-10, 10}, {10, -10}}, rotation = 0)));
-  CausalLoop.SimpleInformationLevel environmentalLoad annotation(
-    Placement(visible = true, transformation(origin = {0, 20}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  CausalLoop.SimpleInformationLevel population annotation(
-    Placement(visible = true, transformation(origin = {0, -30}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  CausalLoop.SimpleInformationLevel consumption annotation(
-    Placement(visible = true, transformation(origin = {60, -10}, extent = {{-10, -10}, {10, 10}}, rotation = -630)));
-  CausalLoop.InputControl campaign(startTime = campaignStart, duration = campaignDuration, initialInput = 1.0, finalInput = campaignTarget) if withIntervention "Awareness campain as 'control'" annotation(
-    Placement(visible = true, transformation(origin = {-65, 55}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  CausalLoop.ExponentialChange p1(rate = 0.01, hasRateOutput = false, redeclare replaceable type OutputType = Rate) "Exponential growth of the population" annotation(
-    Placement(visible = true, transformation(origin = {10, -45}, extent = {{10, -10}, {-10, 10}}, rotation = 0)));
-  CausalLoop.Elasticity r1(coefficient = +1) "Population growth is tightly coupled to increases in environmental load" annotation(
-    Placement(visible = true, transformation(origin = {0, 0}, extent = {{-10, -10}, {10, 10}}, rotation = -270)));
-  CausalLoop.Elasticity r2(coefficient = -0.1) "Societal action increases will slightly decrease population growth" annotation(
-    Placement(visible = true, transformation(origin = {-25, -50}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  CausalLoop.Elasticity r3(coefficient = -0.1) "Increases in environmental load will slightly decrease population growth" annotation(
-    Placement(visible = true, transformation(origin = {-30, 5}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
-  CausalLoop.Elasticity r4(coefficient = -1) "Societal action is tightly coupled to decreases in resource consumption" annotation(
-    Placement(visible = true, transformation(origin = {40, -70}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  CausalLoop.Elasticity r5(coefficient = +1.1) "Environmental load increase will rather strongly increase the level of resource consumption" annotation(
-    Placement(visible = true, transformation(origin = {50, 40}, extent = {{-10, -10}, {10, 10}}, rotation = -360)));
-  CausalLoop.Elasticity r6(coefficient = +0.3, hasFactor = withIntervention) "Growth in the environmental load will slightly increase growth of societal action" annotation(
-    Placement(visible = true, transformation(origin = {-50, 40}, extent = {{10, 10}, {-10, -10}}, rotation = 0)));
-  CausalLoop.Elasticity r7(coefficient = +0.3) "Increases in the level of resource consumption will slightly increase population growth" annotation(
-    Placement(visible = true, transformation(origin = {25, -30}, extent = {{-10, -10}, {10, 10}}, rotation = -540)));
-  CausalLoop.Elasticity r8(coefficient = +1) "Increases in resource consumption are tightly coupled to increases in environmental load" annotation(
-    Placement(visible = true, transformation(origin = {20, 20}, extent = {{-10, 10}, {10, -10}}, rotation = 540)));
-  CausalLoop.LoopIndicator_CW R1 "consumption > environmentalLoad > consumption" annotation(
-    Placement(visible = true, transformation(origin = {45, 32.707}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  CausalLoop.LoopIndicator_CW R2 "population > environmentalLoad > consumption > population" annotation(
-    Placement(visible = true, transformation(origin = {20, -7.15}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  CausalLoop.LoopIndicator_CCW B1(pol = "–") "population > environmentalLoad > population" annotation(
-    Placement(visible = true, transformation(origin = {-15, 2.026}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  CausalLoop.LoopIndicator_CCW B2(pol = "–") "population > environmentalLoad > societalAction > population" annotation(
-    Placement(visible = true, transformation(origin = {-43.327, -25}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  CausalLoop.LoopIndicator_CCW B3(pol = "–") "population > environmentalLoad > societalAction > consumption > population" annotation(
-    Placement(visible = true, transformation(origin = {0, -60}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  CausalLoop.MatFlowIndicator lab1 annotation(
-    Placement(visible = true, transformation(origin = {-12.564, -25}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  final CausalLoop.StockInformation indexInfo[4] "Index levels for the model's stocks" annotation(
-    Placement(visible = true, transformation(origin = {120, -0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-public
+  CausalLoop.SimpleInformationLevel societalAction annotation(Placement(visible = true, transformation(origin = {-60, 10}, extent = {{-10, 10}, {10, -10}}, rotation = 0)));
+  CausalLoop.SimpleInformationLevel environmentalLoad annotation(Placement(visible = true, transformation(origin = {0, 20}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  CausalLoop.SimpleInformationLevel population annotation(Placement(visible = true, transformation(origin = {0, -30}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  CausalLoop.SimpleInformationLevel consumption annotation(Placement(visible = true, transformation(origin = {60, -10}, extent = {{-10, -10}, {10, 10}}, rotation = -630)));
+  CausalLoop.InputControl campaign(startTime = theta.campaignStart, duration = theta.campaignDuration, initialInput = 1.0, finalInput = theta.campaignTarget) if theta.withIntervention "Awareness campain as 'control'" annotation(Placement(visible = true, transformation(origin = {-65, 55}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  CausalLoop.ExponentialChange p1(rate = 0.01, hasRateOutput = false, redeclare replaceable type OutputType = Rate) "Exponential growth of the population" annotation(Placement(visible = true, transformation(origin = {10, -45}, extent = {{10, -10}, {-10, 10}}, rotation = 0)));
+  CausalLoop.Elasticity r1(coefficient = +1) "Population growth is tightly coupled to increases in environmental load" annotation(Placement(visible = true, transformation(origin = {0, 0}, extent = {{-10, -10}, {10, 10}}, rotation = -270)));
+  CausalLoop.Elasticity r2(coefficient = -0.1) "Societal action increases will slightly decrease population growth" annotation(Placement(visible = true, transformation(origin = {-25, -50}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  CausalLoop.Elasticity r3(coefficient = -0.1) "Increases in environmental load will slightly decrease population growth" annotation(Placement(visible = true, transformation(origin = {-30, 5}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
+  CausalLoop.Elasticity r4(coefficient = -1) "Societal action is tightly coupled to decreases in resource consumption" annotation(Placement(visible = true, transformation(origin = {40, -70}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  CausalLoop.Elasticity r5(coefficient = +1.1) "Environmental load increase will rather strongly increase the level of resource consumption" annotation(Placement(visible = true, transformation(origin = {50, 40}, extent = {{-10, -10}, {10, 10}}, rotation = -360)));
+  CausalLoop.Elasticity r6(coefficient = +0.3, hasFactor = theta.withIntervention) "Growth in the environmental load will slightly increase growth of societal action" annotation(Placement(visible = true, transformation(origin = {-50, 40}, extent = {{10, 10}, {-10, -10}}, rotation = 0)));
+  CausalLoop.Elasticity r7(coefficient = +0.3) "Increases in the level of resource consumption will slightly increase population growth" annotation(Placement(visible = true, transformation(origin = {25, -30}, extent = {{-10, -10}, {10, 10}}, rotation = -540)));
+  CausalLoop.Elasticity r8(coefficient = +1) "Increases in resource consumption are tightly coupled to increases in environmental load" annotation(Placement(visible = true, transformation(origin = {20, 20}, extent = {{-10, 10}, {10, -10}}, rotation = 540)));
+  CausalLoop.LoopIndicator_CW R1 "consumption > environmentalLoad > consumption" annotation(Placement(visible = true, transformation(origin = {45, 32.707}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  CausalLoop.LoopIndicator_CW R2 "population > environmentalLoad > consumption > population" annotation(Placement(visible = true, transformation(origin = {20, -7.15}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  CausalLoop.LoopIndicator_CCW B1(pol = "–") "population > environmentalLoad > population" annotation(Placement(visible = true, transformation(origin = {-15, 2.026}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  CausalLoop.LoopIndicator_CCW B2(pol = "–") "population > environmentalLoad > societalAction > population" annotation(Placement(visible = true, transformation(origin = {-43.327, -25}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  CausalLoop.LoopIndicator_CCW B3(pol = "–") "population > environmentalLoad > societalAction > consumption > population" annotation(Placement(visible = true, transformation(origin = {0, -60}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  CausalLoop.MatFlowIndicator lab1 annotation(Placement(visible = true, transformation(origin = {-12.564, -25}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  final CausalLoop.StockInformation indexInfo[4] "Index levels for the model's stocks" annotation(Placement(visible = true, transformation(origin = {120, -0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
 equation
-  connect(environmentalLoad.stockInfoOutput, r6.stockInfoInput) annotation(
-    Line(visible = true, origin = {-13.333, 35}, points = {{13.333, -10}, {13.333, 5}, {-26.667, 5}}, color = {128, 0, 128}));
-  connect(r6.flowPort, societalAction.stockPort) annotation(
-    Line(visible = true, origin = {-55.553, 35.422}, points = {{5.553, 4.578}, {-4.447, 4.578}, {-4.447, -25.422}}, color = {128, 0, 128}));
-  connect(r1.flowPort, environmentalLoad.stockPort) annotation(
-    Line(visible = true, origin = {0, 10}, points = {{0, -10}, {0, 10}}, color = {128, 0, 128}));
-  connect(societalAction.stockInfoOutput, r2.stockInfoInput) annotation(
-    Line(visible = true, origin = {-51.667, -31.667}, points = {{-8.333, 36.667}, {-8.333, -18.333}, {16.667, -18.333}}, color = {128, 0, 128}));
-  connect(r2.flowPort, population.stockPort) annotation(
-    Line(visible = true, origin = {-12.5, -40}, points = {{-12.5, -10}, {0, -10}, {0, 10}, {12.5, 10}}, color = {128, 0, 128}));
-  connect(r3.flowPort, population.stockPort) annotation(
-    Line(visible = true, origin = {-15, -11.664}, points = {{-15, 16.664}, {-15, -18.336}, {15, -18.336}}, color = {128, 0, 128}));
-  connect(r3.stockInfoInput, environmentalLoad.stockInfoOutput) annotation(
-    Line(visible = true, origin = {-15, 22.5}, points = {{-15, -7.5}, {-15, 7.5}, {15, 7.5}, {15, 2.5}}, color = {128, 0, 128}));
-  connect(r4.stockInfoInput, societalAction.stockInfoOutput) annotation(
-    Line(visible = true, origin = {-30, -45}, points = {{60, -25}, {-30, -25}, {-30, 50}}, color = {128, 0, 128}));
-  connect(r4.flowPort, consumption.stockPort) annotation(
-    Line(visible = true, origin = {53.333, -50}, points = {{-13.333, -20}, {6.667, -20}, {6.667, 40}}, color = {128, 0, 128}));
-  connect(environmentalLoad.stockInfoOutput, r5.stockInfoInput) annotation(
-    Line(visible = true, origin = {13.333, 35}, points = {{-13.333, -10}, {-13.333, 5}, {26.667, 5}}, color = {128, 0, 128}));
-  connect(r5.flowPort, consumption.stockPort) annotation(
-    Line(visible = true, origin = {62.097, 15}, points = {{-12.097, 25}, {-2.097, 25}, {-2.097, -25}}, color = {128, 0, 128}, rotation = -360));
-  connect(r8.flowPort, environmentalLoad.stockPort) annotation(
-    Line(visible = true, origin = {10, 20}, points = {{10, 0}, {-10, 0}}, color = {128, 0, 128}));
-  connect(r8.stockInfoInput, consumption.stockInfoOutput) annotation(
-    Line(visible = true, origin = {39.308, 5}, points = {{-9.308, 15}, {5.692, 15}, {5.692, -15}, {15.692, -15}}, color = {128, 0, 128}));
-  connect(r7.flowPort, population.stockPort) annotation(
-    Line(visible = true, origin = {12.5, -30}, points = {{12.5, 0}, {-12.5, 0}}, color = {128, 0, 128}));
-  connect(p1.flowPort, population.stockPort) annotation(
-    Line(visible = true, origin = {3.333, -40}, points = {{6.667, -5}, {-3.333, -5}, {-3.333, 10}}, color = {128, 0, 128}));
-  connect(campaign.y, r6.u) annotation(
-    Line(visible = true, origin = {-51.667, 51.667}, points = {{-13.333, 3.333}, {6.667, 3.333}, {6.667, -6.667}}, color = {1, 37, 163}));
-  connect(population.stockInfoOutput, r1.stockInfoInput) annotation(
-    Line(visible = true, origin = {0, -17.5}, points = {{0, -7.5}, {0, 7.5}}, color = {128, 0, 128}));
-  connect(consumption.stockInfoOutput, r7.stockInfoInput) annotation(
-    Line(visible = true, origin = {45, -20}, points = {{10, 10}, {0, 10}, {0, -10}, {-10, -10}}, color = {128, 0, 128}));
-// invisible connections
+  connect(environmentalLoad.stockInfoOutput, r6.stockInfoInput) annotation(Line(visible = true, origin = {-13.333, 35}, points = {{13.333, -10}, {13.333, 5}, {-26.667, 5}}, color = {128, 0, 128}));
+  connect(r6.flowPort, societalAction.stockPort) annotation(Line(visible = true, origin = {-55.553, 35.422}, points = {{5.553, 4.578}, {-4.447, 4.578}, {-4.447, -25.422}}, color = {128, 0, 128}));
+  connect(r1.flowPort, environmentalLoad.stockPort) annotation(Line(visible = true, origin = {0, 10}, points = {{0, -10}, {0, 10}}, color = {128, 0, 128}));
+  connect(societalAction.stockInfoOutput, r2.stockInfoInput) annotation(Line(visible = true, origin = {-51.667, -31.667}, points = {{-8.333, 36.667}, {-8.333, -18.333}, {16.667, -18.333}}, color = {128, 0, 128}));
+  connect(r2.flowPort, population.stockPort) annotation(Line(visible = true, origin = {-12.5, -40}, points = {{-12.5, -10}, {0, -10}, {0, 10}, {12.5, 10}}, color = {128, 0, 128}));
+  connect(r3.flowPort, population.stockPort) annotation(Line(visible = true, origin = {-15, -11.664}, points = {{-15, 16.664}, {-15, -18.336}, {15, -18.336}}, color = {128, 0, 128}));
+  connect(r3.stockInfoInput, environmentalLoad.stockInfoOutput) annotation(Line(visible = true, origin = {-15, 22.5}, points = {{-15, -7.5}, {-15, 7.5}, {15, 7.5}, {15, 2.5}}, color = {128, 0, 128}));
+  connect(r4.stockInfoInput, societalAction.stockInfoOutput) annotation(Line(visible = true, origin = {-30, -45}, points = {{60, -25}, {-30, -25}, {-30, 50}}, color = {128, 0, 128}));
+  connect(r4.flowPort, consumption.stockPort) annotation(Line(visible = true, origin = {53.333, -50}, points = {{-13.333, -20}, {6.667, -20}, {6.667, 40}}, color = {128, 0, 128}));
+  connect(environmentalLoad.stockInfoOutput, r5.stockInfoInput) annotation(Line(visible = true, origin = {13.333, 35}, points = {{-13.333, -10}, {-13.333, 5}, {26.667, 5}}, color = {128, 0, 128}));
+  connect(r5.flowPort, consumption.stockPort) annotation(Line(visible = true, origin = {62.097, 15}, points = {{-12.097, 25}, {-2.097, 25}, {-2.097, -25}}, color = {128, 0, 128}, rotation = -360));
+  connect(r8.flowPort, environmentalLoad.stockPort) annotation(Line(visible = true, origin = {10, 20}, points = {{10, 0}, {-10, 0}}, color = {128, 0, 128}));
+  connect(r8.stockInfoInput, consumption.stockInfoOutput) annotation(Line(visible = true, origin = {39.308, 5}, points = {{-9.308, 15}, {5.692, 15}, {5.692, -15}, {15.692, -15}}, color = {128, 0, 128}));
+  connect(r7.flowPort, population.stockPort) annotation(Line(visible = true, origin = {12.5, -30}, points = {{12.5, 0}, {-12.5, 0}}, color = {128, 0, 128}));
+  connect(p1.flowPort, population.stockPort) annotation(Line(visible = true, origin = {3.333, -40}, points = {{6.667, -5}, {-3.333, -5}, {-3.333, 10}}, color = {128, 0, 128}));
+  connect(campaign.y, r6.u) annotation(Line(visible = true, origin = {-51.667, 51.667}, points = {{-13.333, 3.333}, {6.667, 3.333}, {6.667, -6.667}}, color = {1, 37, 163}));
+  connect(population.stockInfoOutput, r1.stockInfoInput) annotation(Line(visible = true, origin = {0, -17.5}, points = {{0, -7.5}, {0, 7.5}}, color = {128, 0, 128}));
+  connect(consumption.stockInfoOutput, r7.stockInfoInput) annotation(Line(visible = true, origin = {45, -20}, points = {{10, 10}, {0, 10}, {0, -10}, {-10, -10}}, color = {128, 0, 128}));
+  // invisible connections
   connect(population.stockInfoOutput, indexInfo[1].stockInfoInput) "Population";
   connect(environmentalLoad.stockInfoOutput, indexInfo[2].stockInfoInput) "Environmental load";
   connect(consumption.stockInfoOutput, indexInfo[3].stockInfoInput) "Consumption";
@@ -106,12 +66,9 @@ equation
   connect(indexInfo[2].y, modelOutput.environmentalLoad) "Index for the environmental load";
   connect(indexInfo[3].y, modelOutput.consumption) "Index for resource consumption";
   connect(indexInfo[4].y, modelOutput.societalAction) "Index for societal action taken";
-// assertions
-  assert(campaignStart >= modelSettings.modelStartTime, "Campaign should not start before the model's start time", level = AssertionLevel.warning);
-  annotation(
-    preferredView = "diagram",
-    experiment(StartTime = 0, StopTime = 10, Tolerance = 1e-06, Interval = 0.02),
-    Documentation(figures = {Figure(title = "State of the World", identifier = "default", preferred = true, plots = {Plot(curves = {Curve(y = modelOutput.environmentalLoad, legend = "environmentalLoad"), Curve(y = modelOutput.population, legend = "population")}, y = Axis(min = 0, max = 3.5))})}, info = "<html>
+  // assertions
+  assert(theta.campaignStart >= modelSettings.modelStartTime, "Campaign should not start before the model's start time", level = AssertionLevel.warning);
+  annotation(preferredView = "diagram", experiment(StartTime = 0, StopTime = 10, Tolerance = 1e-06, Interval = 0.02), Documentation(figures = {Figure(title = "State of the World", identifier = "default", preferred = true, plots = {Plot(curves = {Curve(y = modelOutput.environmentalLoad, legend = "environmentalLoad"), Curve(y = modelOutput.population, legend = "population")}, y = Axis(min = 0, max = 3.5))})}, info = "<html>
 <p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>Using the classes in the →<a href = \"modelica://BusinessSimulation.CausalLoop\"><code>CausalLoop</code></a> package we can quickly start out with a model that captures the important dynamics in a system. This simplified model of world dynamics is given by Hartmut Bossel [<a href=\"modelica://BusinessSimulation.UsersGuide.References\">25</a>] who reduces the world system to four main variables indicating the <em>state</em> of the world: <em>population, consumption, environmental load, and societal action</em>.</p>
 <p>These <em>states</em> or <em>stocks</em> may be initialized with a value of <code>1.0</code> representing the respective current <em>level</em>, i.e., an index. In the next step, we must identify <em>direct</em> causal influences between the model variables, i.e., a change in A will affect B (<em>A → B</em>). To more precisely capture the dynamics of the system we may ask ourselves for any impact: <em>If A increases by </em><code>r_A</code><em> percent, what will be the fractional rate </em>(<code>r_B</code>)<em> of change for B?</em>. The <em>elasticity coefficient</em> is simply the factor of proportionality between the fractional rates and we can use it to embedd the stocks in a <em>dynamic model of impact</em> as shown in the diagram below.</p>
@@ -158,6 +115,5 @@ equation
 <li>Added in v2.0.0.</li><br>
 <li>Moved check for <code>campaignStart</code> from <code>min</code> attribute to <code>assert</code> statement to guarantee that attribute values are presented in evaluated form (e.g., as structural parameter values); <code>modelSettings.modelStartTime</code> has <code>fixed = false</code>.</li>
 </ul>
-</html>"),
-    Diagram(graphics = {Text(origin = {0, 80}, textColor = {76, 112, 136}, extent = {{-140, -6}, {140, 6}}, textString = "World Model", fontName = "Lato"), Text(origin = {0, 70}, textColor = {76, 112, 136}, extent = {{-140, -3}, {140, 3}}, textString = "Hartmut Bossel [25]", fontName = "Lato", textStyle = {TextStyle.Bold}), Text(origin = {0, 63}, textColor = {255, 0, 0}, extent = {{-140, -3}, {140, 3}}, textString = "1 s === 1 y", fontName = "Lato")}));
+</html>"), Diagram(coordinateSystem(extent = {{-148.5, -105}, {148.5, 105}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5}), graphics = {Text(visible = true, origin = {0, 80}, textColor = {76, 112, 136}, extent = {{-140, -6}, {140, 6}}, textString = "World Model", fontName = "Lato"), Text(visible = true, origin = {0, 70}, textColor = {76, 112, 136}, extent = {{-140, -3}, {140, 3}}, textString = "Hartmut Bossel [25]", fontName = "Lato", textStyle = {TextStyle.Bold}), Text(visible = true, origin = {0, 60}, textColor = {255, 0, 0}, extent = {{-140, -3}, {140, 3}}, textString = "1 s === 1 y", fontName = "Lato")}));
 end HealTheWorld;

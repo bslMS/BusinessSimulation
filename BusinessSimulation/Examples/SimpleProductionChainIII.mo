@@ -3,7 +3,7 @@ within BusinessSimulation.Examples;
 model SimpleProductionChainIII "Further extending the first example to explain new product diffusion"
   extends Icons.Example;
   ModelOutput modelOutput annotation(Placement(visible = true, transformation(origin = {135, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {90, -0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  inner ModelSettings modelSettings(modelDisplayTimeBase = BusinessSimulation.Types.TimeBases.seconds, dt= 0.25, modelTimeHorizon= 120) annotation(Placement(visible = true, transformation(origin = {-135, -75}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  inner ModelSettings modelSettings(modelDisplayTimeBase = BusinessSimulation.Types.TimeBases.seconds, dt = 0.25, modelTimeHorizon = 120) annotation(Placement(visible = true, transformation(origin = {-135, -75}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
 
   expandable connector ModelOutput
     extends Icons.DataOutPort;
@@ -26,9 +26,9 @@ protected
   SourcesOrSinks.Cloud cloud1 annotation(Placement(visible = true, transformation(origin = {110, -30}, extent = {{10, -10}, {-10, 10}}, rotation = 0)));
   Converters.Add_2 totalOrders(redeclare replaceable type OutputType = AmountRate) annotation(Placement(visible = true, transformation(origin = {10, 0}, extent = {{-10, -10}, {10, 10}}, rotation = -900)));
   Stocks.MaterialStock potCustomers(initialValue = 250000, redeclare replaceable type OutputType = Amount) "Potential customers" annotation(Placement(visible = true, transformation(origin = {-90, 30}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  MoleculesOfStructure.Actuators.Diffusion wordOfMouth(hasConstantOtherAdopters = true, hasConstantOtherPopulation = true, hasConstantContactRate = true, nextStageIsInfluencing = true, hasConstantAdoptionFraction = true, adoptionFraction = 0.02, contactRate= 10, hasConstantFractionalAdoptionRate = true, fractionalAdoptionRate = 0, otherAdopters = 0, otherPopulation = 0) "Bass diffusion model for a word-of-mouth process" annotation(Placement(visible = true, transformation(origin = {-50, 30}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  MoleculesOfStructure.Actuators.Diffusion wordOfMouth(hasConstantOtherAdopters = true, hasConstantOtherPopulation = true, hasConstantContactRate = true, nextStageIsInfluencing = true, hasConstantAdoptionFraction = true, adoptionFraction = 0.02, contactRate = 10, hasConstantFractionalAdoptionRate = true, fractionalAdoptionRate = 0, otherAdopters = 0, otherPopulation = 0) "Bass diffusion model for a word-of-mouth process" annotation(Placement(visible = true, transformation(origin = {-50, 30}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Stocks.MaterialStock customers(initialValue = 10, redeclare replaceable type OutputType = Amount) "Initial customers (early adopters)" annotation(Placement(visible = true, transformation(origin = {-10, 30}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  MoleculesOfStructure.Policy.FirstOrderStockAdjustment productionPlanning(hasConstantAdjTime = true, adjTime= 1) annotation(Placement(visible = true, transformation(origin = {-90, -70}, extent = {{10, -10}, {-10, 10}}, rotation = 0)));
+  MoleculesOfStructure.Policy.FirstOrderStockAdjustment productionPlanning(hasConstantAdjTime = true, adjTime = 1) annotation(Placement(visible = true, transformation(origin = {-90, -70}, extent = {{10, -10}, {-10, 10}}, rotation = 0)));
   Converters.ConstantConverter desiredInventory(value = 100, redeclare replaceable type OutputType = Amount) annotation(Placement(visible = true, transformation(origin = {-55, -70}, extent = {{10, -10}, {-10, 10}}, rotation = 0)));
   Interfaces.Connectors.DataBus bus annotation(Placement(visible = true, transformation(origin = {110, 50}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {73.333, 77.778}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
 public
@@ -55,9 +55,7 @@ equation
   connect(scrapping.y1, modelOutput.scrapping) annotation(Line(visible = true, origin = {104.25, -31.667}, points = {{-23.75, -3.333}, {-19.25, -3.333}, {-19.25, -28.333}, {15.75, -28.333}, {15.75, 31.667}, {30.75, 31.667}}, color = {192, 192, 192}));
   connect(potCustomers.outflow, wordOfMouth.portA) annotation(Line(visible = true, origin = {-70, 30}, points = {{-10, 0}, {10, 0}}, color = {128, 0, 128}));
   connect(productionPlanning.y, producing.u) annotation(Line(visible = true, origin = {-106.2, -36}, points = {{5.2, -34}, {-13.8, -34}, {-13.8, 26}, {11.2, 26}, {11.2, 16}}, color = {1, 37, 163}));
-  annotation(
-    experiment(StartTime = 0, StopTime = 120, Tolerance = 1e-06, Interval = 0.24),
-    Documentation(info = "<html>
+  annotation(experiment(StartTime = 0, StopTime = 120, Tolerance = 1e-06, Interval = 0.24), Documentation(info = "<html>
 <p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>In this final extension of the introductory <code>SimpleProductionChain</code>, we have replaced the <code>Ramp</code> component for the first-time purchases with a model of new product diffusion.</p>
 <p>We are assuming that there are 10 initial customers and a stock of 250'000 potential customers that will be turned into customers by \"word-of-mouth\" processes&mdash;for now we will assume that there is no growth or decline with regard to this potential. Each customer will meet 10 other persons at a constant <code>contactRate</code> per month and the <code>adoptionFraction</code> is assumed to be 2%.</p>
@@ -76,6 +74,5 @@ equation
 <li>Updated plot and changed type to <code>AmountRate</code> for reported flows in v2.0.0.</li><br>
 <li>Unit modification for <code>wordOfMouth.fractionalAdoptionRate</code> should have been a modification of <code>displayUnit</code>; fixed in v2.2.</li><br>
 </ul>
-</html>"),
-     Diagram(graphics = {Text(origin = {0, 55}, textColor = {255, 0, 0}, extent = {{-140, -3}, {140, 3}}, textString = "1 s === 1 mo", fontName = "Lato")}));
+</html>"), Diagram(coordinateSystem(extent = {{-150, -90}, {150, 90}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5}), graphics = {Text(visible = true, origin = {0, 65}, textColor = {76, 112, 136}, extent = {{-140, -6}, {140, 6}}, textString = "Simple Production Chain III", fontName = "Lato", textStyle = {TextStyle.Bold}), Text(visible = true, origin = {0, 55}, textColor = {255, 0, 0}, extent = {{-140, -3}, {140, 3}}, textString = "1 s === 1 mo", fontName = "Lato")}));
 end SimpleProductionChainIII;

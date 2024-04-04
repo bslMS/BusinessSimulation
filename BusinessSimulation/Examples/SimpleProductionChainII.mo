@@ -3,7 +3,7 @@ within BusinessSimulation.Examples;
 model SimpleProductionChainII "Extending the first example to include replacement purchases"
   extends Icons.Example;
   ModelOutput modelOutput "Main output for the model" annotation(Placement(visible = true, transformation(origin = {130, -40}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {90, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  inner ModelSettings modelSettings(modelDisplayTimeBase = BusinessSimulation.Types.TimeBases.seconds, dt= 0.25, modelTimeHorizon= 60) annotation(Placement(visible = true, transformation(origin = {-135, -75}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  inner ModelSettings modelSettings(modelDisplayTimeBase = BusinessSimulation.Types.TimeBases.seconds, dt = 0.25, modelTimeHorizon = 60) annotation(Placement(visible = true, transformation(origin = {-135, -75}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
 
   expandable connector ModelOutput "Main output for the model"
     extends Icons.DataOutPort;
@@ -19,10 +19,10 @@ protected
   SourcesOrSinks.Growth producing(hasConstantRate = false, rate = 100) "Production at a constant rate" annotation(Placement(visible = true, transformation(origin = {-90, -10}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Stocks.DelayN installedBase(hasConstantDelayTime = false, n = 4, delayTime = 60, initialValue = 0, redeclare replaceable type OutputType = Amount) "Product stays in use for around 5 years" annotation(Placement(visible = true, transformation(origin = {30, -10}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Flows.Unidirectional.OutflowDynamicStock scrapping "After its useful life has expired, products will be discarded" annotation(Placement(visible = true, transformation(origin = {70, -10}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  InformationSources.RampInput firstTimePurchases(offset= 10, height= 90, startTime= 6, duration= 18, redeclare replaceable type OutputType = AmountRate) "Ramping up from 10 to 100 units per month starting at 6 mo for 18 mo" annotation(Placement(visible = true, transformation(origin = {-65, 45}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  InformationSources.RampInput firstTimePurchases(offset = 10, height = 90, startTime = 6, duration = 18, redeclare replaceable type OutputType = AmountRate) "Ramping up from 10 to 100 units per month starting at 6 mo for 18 mo" annotation(Placement(visible = true, transformation(origin = {-65, 45}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Converters.ConstantConverterTime usefulLife(value = 60, redeclare type OutputType = BusinessSimulation.Units.Time) "Average time a product remains in use" annotation(Placement(visible = true, transformation(origin = {10, 20}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Converters.Add_2 shippingRate "The total rate of material that is being shipped to customers" annotation(Placement(visible = true, transformation(origin = {-15, 22.729}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
-  MoleculesOfStructure.Policy.FirstOrderStockAdjustment productionRate(adjTime= 1, hasConstantAdjTime = true, redeclare replaceable type OutputType = AmountRate) "Policy to determine rate of production" annotation(Placement(visible = true, transformation(origin = {-90, -50}, extent = {{10, -10}, {-10, 10}}, rotation = 0)));
+  MoleculesOfStructure.Policy.FirstOrderStockAdjustment productionRate(adjTime = 1, hasConstantAdjTime = true, redeclare replaceable type OutputType = AmountRate) "Policy to determine rate of production" annotation(Placement(visible = true, transformation(origin = {-90, -50}, extent = {{10, -10}, {-10, 10}}, rotation = 0)));
   Converters.ConstantConverter desiredInventory(value = 100, redeclare replaceable type OutputType = Amount) "The constant level of inventory we wich to maintain" annotation(Placement(visible = true, transformation(origin = {-50, -50}, extent = {{10, -10}, {-10, 10}}, rotation = 0)));
   SourcesOrSinks.Cloud cloud1 annotation(Placement(visible = true, transformation(origin = {110, -10}, extent = {{10, -10}, {-10, 10}}, rotation = 0)));
 public
@@ -45,8 +45,7 @@ equation
   connect(inventory.y1, modelOutput.inventory) annotation(Line(visible = true, origin = {5.125, -27.5}, points = {{-44.625, 12.5}, {-40.125, 12.5}, {-40.125, -12.5}, {124.875, -12.5}}, color = {192, 192, 192}));
   connect(scrapping.y1, modelOutput.scrapping) annotation(Line(visible = true, origin = {95.125, -27.5}, points = {{-14.625, 12.5}, {-10.125, 12.5}, {-10.125, -12.5}, {34.875, -12.5}}, color = {192, 192, 192}));
   connect(installedBase.y1, modelOutput.installedBase) annotation(Line(visible = true, origin = {65.125, -27.5}, points = {{-24.625, 12.5}, {-20.125, 12.5}, {-20.125, -12.5}, {64.875, -12.5}}, color = {192, 192, 192}));
-  annotation(
-    Documentation(info = "<html>
+  annotation(Documentation(info = "<html>
 <p class=\"aside\">This information is part of the Business Simulation&nbsp;Library (BSL). Please support this work and <a href=\"https://www.paypal.com/donate/?hosted_button_id=GXVZT8LD7CFXN\" style=\"font-weight:bold; color:orange; text-decoration:none;\">&#9658;&nbsp;donate</a>.</p>
 <p>In this model we extend the introductory example &rarr;<a href=\"modelica://BusinessSimulation.Examples.SimpleProductionChain\">SimpleProductionChain</a>&nbsp;by letting the rate of scrapping \"inform\" our chosen rate of shipping. We simply assume, that whatever is scrapped will immediately be replaced by a new product.</p>
 <p>Since this introduces some variation in the rate of shipping, we need to have an adequate <em>policy</em> to determine the production rate. In this case we make use of a policy component called &rarr;<a href=\"modelica://BusinessSimulation.MoleculesOfStructure.Policy.FirstOrderStockAdjustment\">FirstOrderStockAdjustment</a> that can be found in the <code<MoleculesOfStructure</code> package. It sets the rate of inflow as required to keep a stock at the desired level, given the current amount in the stock and the (perceived) rate of outflow from that stock.</p>
@@ -64,7 +63,5 @@ equation
 <ul>
 <li>Updated plots in v2.0.0.</li>
 </ul>
-</html>"),
-    experiment(StartTime = 0, StopTime = 60, Tolerance = 1e-06, Interval = 0.12),
-    Diagram(graphics = {Text(origin = {0, 55}, textColor = {255, 0, 0}, extent = {{-140, -3}, {140, 3}}, textString = "1 s === 1 mo", fontName = "Lato")}));
+</html>"), experiment(StartTime = 0, StopTime = 60, Tolerance = 1e-06, Interval = 0.12), Diagram(coordinateSystem(extent = {{-150, -90}, {150, 90}}, preserveAspectRatio = true, initialScale = 0.1, grid = {5, 5}), graphics = {Text(visible = true, origin = {0, 65}, textColor = {76, 112, 136}, extent = {{-140, -6}, {140, 6}}, textString = "Simple Production Chain II", fontName = "Lato", textStyle = {TextStyle.Bold}), Text(visible = true, origin = {0, 55}, textColor = {255, 0, 0}, extent = {{-140, -3}, {140, 3}}, textString = "1 s === 1 mo", fontName = "Lato")}));
 end SimpleProductionChainII;

@@ -22,7 +22,7 @@ protected
 initial equation
   // set up in steady state or use fixed value
   if init == InitializationOptions.FixedValue then
-    x_hidden = fill(initialValue/n, n);
+    x_hidden = fill(initialValue / n, n);
   elseif init == InitializationOptions.SteadyState then
     // make use of Little's Law
     x_hidden = fill(inflow.rate * (actualDelayTime.y / n), n);
