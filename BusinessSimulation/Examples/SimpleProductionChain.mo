@@ -15,9 +15,9 @@ model SimpleProductionChain "A first example"
     AmountRate scrapping "Rate of scrapping at the end of useful life";
   end ModelOutput;
 
+protected
   Converters.ConstantConverter productionRate(redeclare type OutputType = BusinessSimulation.Units.AmountRate, value = 100)  annotation(
     Placement(transformation(origin = {-120, 24}, extent = {{-10, -10}, {10, 10}})));
-protected
   Stocks.MaterialStock inventory(initialValue = 0, redeclare replaceable type OutputType = Amount) "Finished goods inventory" annotation(Placement(visible = true, transformation(origin = {-50, -5}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Flows.Unidirectional.Transition shipping(hasConstantRate = false, rate(displayUnit = "each/mo") = 3.80517503805175e-06, redeclare replaceable type OutputType = AmountRate) "Shippment to the customer at an exogenous rate" annotation(Placement(visible = true, transformation(origin = {-10, -5}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   SourcesOrSinks.Growth producing(hasConstantRate = false, rate = 0, redeclare replaceable type OutputType = AmountRate) "Production at a constant rate" annotation(Placement(transformation(origin = {-90, -5}, extent = {{-10, -10}, {10, 10}})));
